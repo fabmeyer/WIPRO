@@ -37,6 +37,7 @@
 * Die Graphiken (SVG-Elemente) können via CSS einfach weiterverarbeitet werden
 
 ##### Nachteile:
+* Performance? (client-seitig)
 
 ### Backend
 
@@ -50,11 +51,11 @@
 
 ### Technologie
 
-[idyll] (https://idyll-lang.org)
-[Idyll: A Markup Language for Authoring and Publishing Interactive Articles on the Web] (https://idl.cs.washington.edu/files/2018-Idyll-UIST.pdf)
-[D3.js] (https://d3js.org)
+* [idyll] (https://idyll-lang.org)
+* [Idyll: A Markup Language for Authoring and Publishing Interactive Articles on the Web] (https://idl.cs.washington.edu/files/2018-Idyll-UIST.pdf)
+* [D3.js] (https://d3js.org)
 
 ### Sonstige
 
-[semantic zoom] (https://infovis-wiki.net/wiki/Semantic_Zoom)
-[explorable explanations] (http://worrydream.com/ExplorableExplanations/)
+* [semantic zoom] (https://infovis-wiki.net/wiki/Semantic_Zoom)
+* [explorable explanations] (http://worrydream.com/ExplorableExplanations/)
