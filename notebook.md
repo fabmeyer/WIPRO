@@ -12,8 +12,8 @@
 #### idyll
 
 ##### Beschrieb:
-* Idyll ist ein toolkit für _data driven stories_ und _explorable explanations_
-* Geschrieben in js
+* [idyll] (https://idyll-lang.org) ist ein toolkit für _data driven stories_ und _explorable explanations_
+* Geschrieben in JavaScript
 * Resultat wäre ein Webapp, das wie ein interaktives, wissenschaftliches Paper daherkommt
 
 #### Vorteile:
@@ -25,8 +25,36 @@
 #### Nachteile:
 * Performance? (client-seitig)
 
+#### d3.js
+
+##### Beschrieb:
+* [D3.js] (https://d3js.org) ist eine JavaScript-Library, um Daten im Web zu visualisieren, mithilfe von HTML, SVG und CSS
+* D3 steht für _Data-Driven Documents_
+
+##### Vorteile:
+* Grosse Anzahl an Möglichkeiten, um Daten zu visualisieren
+* Da es sich um eine Library handelt, kann sie einfach eingebunden werden
+* Die Graphiken (SVG-Elemente) können via CSS einfach weiterverarbeitet werden
+
+##### Nachteile:
+
 ### Backend
+
+## Roadmap
 
 ## Notes
 
-## Roadmap
+## Links
+
+### Aufgabenstellung
+
+### Technologie
+
+[idyll] (https://idyll-lang.org)
+[Idyll: A Markup Language for Authoring and Publishing Interactive Articles on the Web] (https://idl.cs.washington.edu/files/2018-Idyll-UIST.pdf)
+[D3.js] (https://d3js.org)
+
+### Sonstige
+
+[semantic zoom] (https://infovis-wiki.net/wiki/Semantic_Zoom)
+[explorable explanations] (http://worrydream.com/ExplorableExplanations/)
