@@ -52,10 +52,11 @@
 ### Technologie
 
 * [idyll] (https://idyll-lang.org)
-* [Idyll: A Markup Language for Authoring and Publishing Interactive Articles on the Web] (https://idl.cs.washington.edu/files/2018-Idyll-UIST.pdf)
+* [idyll: A Markup Language for Authoring and Publishing Interactive Articles on the Web] (https://idl.cs.washington.edu/files/2018-Idyll-UIST.pdf)
 * [D3.js] (https://d3js.org)
 
 ### Sonstige
 
-* [semantic zoom] (https://infovis-wiki.net/wiki/Semantic_Zoom)
-* [explorable explanations] (http://worrydream.com/ExplorableExplanations/)
+* [Semantic Zoom] (https://infovis-wiki.net/wiki/Semantic_Zoom)
+* [Explorable Explanations] (http://worrydream.com/ExplorableExplanations/)
+* [New York Times: The Upshot] (https://www.nytimes.com/interactive/2019/04/22/upshot/upshot-at-five-years.html)
