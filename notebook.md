@@ -3,7 +3,7 @@
 ## Offene Fragen
 
 1. Verhältnis Verständnis Theorie Quantenkryptografie zu Anwendung bzw. Visualisierung?
-2. Kann der Technologiestack frei gewählt werden? _Ja_
+2. ~~Kann der Technologiestack frei gewählt werden?~~ _Ja_
 
 ## Wahl der Technologie
 
@@ -45,18 +45,25 @@
 
 ## Notes
 
+## Literatur
+* Grant, Rober; Data visualization; CRC Press, Taylor & Francis Group; 2019
+
 ## Links
 
 ### Aufgabenstellung
 
 ### Technologie
 
-* [idyll] (https://idyll-lang.org)
-* [idyll: A Markup Language for Authoring and Publishing Interactive Articles on the Web] (https://idl.cs.washington.edu/files/2018-Idyll-UIST.pdf)
-* [D3.js] (https://d3js.org)
+#### idyll
+* [idyll](https://idyll-lang.org)
+* [idyll: A Markup Language for Authoring and Publishing Interactive Articles on the Web](https://idl.cs.washington.edu/files/2018-Idyll-UIST.pdf)
+* [idyll-lang/Lobby on Gitter](https://gitter.im/idyll-lang/Lobby#)
+
+#### D3
+* [D3.js](https://d3js.org)
+* [The D3.js Graph Gallery](https://www.d3-graph-gallery.com)
 
 ### Sonstige
-
-* [Semantic Zoom] (https://infovis-wiki.net/wiki/Semantic_Zoom)
-* [Explorable Explanations] (http://worrydream.com/ExplorableExplanations/)
-* [New York Times: The Upshot] (https://www.nytimes.com/interactive/2019/04/22/upshot/upshot-at-five-years.html)
+* [Semantic Zoom](https://infovis-wiki.net/wiki/Semantic_Zoom)
+* [Explorable Explanations](http://worrydream.com/ExplorableExplanations/)
+* [New York Times: The Upshot](https://www.nytimes.com/interactive/2019/04/22/upshot/upshot-at-five-years.html)
