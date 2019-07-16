@@ -12,7 +12,7 @@
 #### idyll
 
 ##### Beschrieb:
-* [idyll] (https://idyll-lang.org) ist ein toolkit für _data driven stories_ und _explorable explanations_
+* [idyll](https://idyll-lang.org) ist ein toolkit für _data driven stories_ und _explorable explanations_
 * Geschrieben in JavaScript
 * Resultat wäre ein Webapp, das wie ein interaktives, wissenschaftliches Paper daherkommt
 
@@ -28,7 +28,7 @@
 #### d3.js
 
 ##### Beschrieb:
-* [D3.js] (https://d3js.org) ist eine JavaScript-Library, um Daten im Web zu visualisieren, mithilfe von HTML, SVG und CSS
+* [D3.js](https://d3js.org) ist eine JavaScript-Library, um Daten im Web zu visualisieren, mithilfe von HTML, SVG und CSS
 * D3 steht für _Data-Driven Documents_
 
 ##### Vorteile:
@@ -45,7 +45,7 @@
 
 ## Notes
 
-## Literatur
+## Literatur :books:
 * Grant, Rober; Data visualization; CRC Press, Taylor & Francis Group; 2019
 
 ## Links
