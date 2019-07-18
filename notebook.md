@@ -9,21 +9,23 @@
 
 ### Frontend
 
-#### JavaScript-Stack: idyll & D3.js
+#### JavaScript-Stack: idyll, React, D3.js, React-Diagrams
 
 ##### idyll:
 * [idyll] (https://idyll-lang.org) ist ein toolkit für _data driven stories_ und _explorable explanations_
-* Geschrieben in JavaScript
+* Geschrieben in JavaScript und basiert auf React
 * Resultat wäre ein Webapp, das wie ein interaktives, wissenschaftliches Paper daherkommt
 
 ##### Vorteile:
 * Hat eine grosse Anzahl von eigenen Komponenten zur Verfügung (von UI-Elementen bis zu LaTeX-Rendering)
 * Interaktiv, ästhetisch und didaktisch
-* Weitere Komponenten lassen sich einfach einbauen (entweder React-Components oder andere js-libraries, wie z.B. d3.js)
-* Plattform- und OS-unabhängig
+* Weitere Komponenten lassen sich einfach einbauen (entweder React-Components oder andere js-libraries, wie z.B. D3.js)
+* Plattform- und OS-unabhängig, da eine WebApp
 
 ##### Nachteile:
 * Performance? (client-seitig)
+
+##### React:
 
 ##### D3.js:
 * [D3.js] (https://d3js.org) ist eine JavaScript-Library, um Daten im Web zu visualisieren, mithilfe von HTML, SVG und CSS
@@ -32,14 +34,26 @@
 ##### Vorteile:
 * Grosse Anzahl an Möglichkeiten, um Daten zu visualisieren
 * Da es sich um eine Library handelt, kann sie einfach eingebunden werden
-* Die Graphiken (SVG-Elemente) können via CSS einfach weiterverarbeitet werden
+* Die Graphiken sind in einem nativen Webformat (SVG-Elemente) und können via CSS einfach weiterverarbeitet werden
 
 ##### Nachteile:
 * Performance? (client-seitig)
 
+##### React-Diagrams:
+* [React-Diagrams](https://github.com/projectstorm/react-diagrams) ist eine React-Library um Diagramme (Komponenten- oder Flowcharts) als UI-Elemente zu rendern
+
+##### Vorteile:
+* Ist eine React-Library (Integration sollte nicht allzu schwer sein)
+
+##### Nachteile:
+* Abklären: Integration mit Backend
+* Abklären: _Semantic Zoom_ möglich?
+
 #### Python-Stack: Plotly Express & Dash
 
 ### Backend
+
+## Sketches
 
 ## Roadmap
 
