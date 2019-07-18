@@ -12,7 +12,7 @@
 #### JavaScript-Stack: idyll, React, D3.js, React-Diagrams
 
 ##### idyll:
-* [idyll] (https://idyll-lang.org) ist ein toolkit für _data driven stories_ und _explorable explanations_
+* [idyll](https://idyll-lang.org) ist ein toolkit für _data driven stories_ und _explorable explanations_
 * Geschrieben in JavaScript und basiert auf React
 * Resultat wäre ein Webapp, das wie ein interaktives, wissenschaftliches Paper daherkommt
 
@@ -28,7 +28,7 @@
 ##### React:
 
 ##### D3.js:
-* [D3.js] (https://d3js.org) ist eine JavaScript-Library, um Daten im Web zu visualisieren, mithilfe von HTML, SVG und CSS
+* [D3.js](https://d3js.org) ist eine JavaScript-Library, um Daten im Web zu visualisieren, mithilfe von HTML, SVG und CSS
 * D3 steht für _Data-Driven Documents_
 
 ##### Vorteile:
