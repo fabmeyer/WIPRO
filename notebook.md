@@ -4,12 +4,18 @@
 
 1. Verhältnis Verständnis Theorie Quantenkryptografie zu Anwendung bzw. Visualisierung?
 2. ~~Kann der Technologiestack frei gewählt werden?~~ _Ja_
+3. Schwerpunkte legen:
+	* Verständnis von Quantenkryptografie (wissenschaftlicher Anspruch)
+	* Saubere Implementation der Simulation (komponentenbasiertes Vorgehen im Backend; Wiederverwendbarkeit und Austauschbarkeit)
+	* Visualisierung (ästhetische Anforderungen, Interaktivität)
+	* Präsentation (didaktische Anforderungen, Usability- und Performance-Aspekte) 
+4. Mächtigkeit des Backends als Standalone-software?
 
 ## Wahl der Technologie
 
 ### Frontend
 
-#### JavaScript-Stack: idyll, React, D3.js, React-Diagrams
+#### JavaScript-Stack: Idyll, React, D3.js
 
 ##### idyll:
 * [idyll](https://idyll-lang.org) ist ein toolkit für _data driven stories_ und _explorable explanations_
@@ -39,23 +45,15 @@
 ##### Nachteile:
 * Performance? (client-seitig)
 
-##### React-Diagrams:
-* [React-Diagrams](https://github.com/projectstorm/react-diagrams) ist eine React-Library um Diagramme (Komponenten- oder Flowcharts) als UI-Elemente zu rendern
-
-##### Vorteile:
-* Ist eine React-Library (Integration sollte nicht allzu schwer sein)
-
-##### Nachteile:
-* Abklären: Integration mit Backend
-* Abklären: _Semantic Zoom_ möglich?
-
-#### Python-Stack: Plotly Express & Dash
-
 ### Backend
 
 ## Sketches
 
 ## Roadmap
+
+### Fabian
+* Implementieren eines React-Komponenten in Idyll
+* Durchlesen der Unterlagen von Herrn Bürgler
 
 ## Notes
 
@@ -76,12 +74,6 @@
 #### D3
 * [D3.js](https://d3js.org)
 * [The D3.js Graph Gallery](https://www.d3-graph-gallery.com)
-
-#### Plotly Express
-* [Plotly Express](https://plot.ly/python/plotly-express/)
-
-#### Dash
-* [Dash](https://plot.ly/dash/)
 
 ### Sonstige
 * [Semantic Zoom](https://infovis-wiki.net/wiki/Semantic_Zoom)
