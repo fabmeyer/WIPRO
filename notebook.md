@@ -10,6 +10,9 @@
 	* Visualisierung (ästhetische Anforderungen, Interaktivität)
 	* Präsentation (didaktische Anforderungen, Usability- und Performance-Aspekte) 
 4. Mächtigkeit des Backends als Standalone-software?
+5. Anforderung an Komponenten für physikalische Modelle (analog Java Beans)
+6. Kotlin anstatt Java sinnvoll / machbar / wünschenswert? 
+7. Anbindung an bestehende Projekte: Komponente innerhalb Applikation, oder ganze Applikation als Komponente? 
 
 ## Wahl der Technologie
 
@@ -46,6 +49,14 @@
 * Performance? (client-seitig)
 
 ### Backend
+#### Server
+* Tomcat
+#### Applikation
+* Java Webapplikation (Alternative: Kotlin)
+* REST-Schnittstelle, Unterstützung von Session-Daten möglich
+* Physikalische Komponenten als Java-Schnittstellen (Design by contract)
+* Duale Verwendung der Applikation: 1. Webapplikation ; 2. Lokaler Aufruf als CLI-Tool für Anbindung an weitere Tools
+* Optional: GUI für lokale Verwendung
 
 ## Sketches
 
@@ -54,6 +65,11 @@
 ### Fabian
 * Implementieren eines React-Komponenten in Idyll
 * Durchlesen der Unterlagen von Herrn Bürgler
+
+### Adrian
+* Aufsetzen von Embedded Tomcat Server, REST-Schnittstelle, Dummy-Komponente
+* Konfiguration Gradle: Run: Tomcat Server ; Build: CLI-Tool, JAR-File mit allen Komponenten
+* Ggf. Export als WAR-File
 
 ## Notes
 
