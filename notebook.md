@@ -1,5 +1,23 @@
 # WIPRO - Notebook
 
+## TODO bis Sonntag, 22.09. 
+* Bis Sonntag Abend
+	* Dokument: Aufgabenstellung
+	* Ziele formulieren (messbar)
+	* Bewertungskriterien (messbar)
+	* Konkretisierung
+	* Fokusierung
+	* Validierung
+	* Dokumentieren (API)
+	* Grobplanung - Meilensteine
+	* Bitstream als Output
+	* Architektur erklären, begründen, evaluieren
+	* Usecase der Webapp / *responsive* (PC, Smartphone, Tablet etc.)
+	* Arbeitsjournal / genau notieren, wer welche Arbeiten gemacht hat
+	* Physikalische Komponenten, Komponentendiagramm, Flowdiagramm
+	* Erklärung Top-Down
+	* Auch Sketches im Bericht möglich (z.B. Designalternativen), Bilder im Bericht
+
 ## Offene Fragen
 
 1. Verhältnis Verständnis Theorie Quantenkryptografie zu Anwendung bzw. Visualisierung?
@@ -49,8 +67,10 @@
 * Performance? (client-seitig)
 
 ### Backend
+
 #### Server
 * Tomcat
+
 #### Applikation
 * Java Webapplikation (Alternative: Kotlin)
 * REST-Schnittstelle, Unterstützung von Session-Daten möglich
