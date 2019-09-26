@@ -1,6 +1,32 @@
 # WIPRO - Notebook
 
-## TODO bis Sonntag, 22.09. 
+## TODO bis 29.09.
+
+* BB84-Protokoll schematisch darstellen; komponentenweise darstellen und Verständnis darüber erlangen (absprechen mit Dozenten)
+* Proof of work von Zusammenspiel von Backend und Frontend
+
+Mindestanforderungen:
+
+* Simulation:
+	* BB84-Protokoll simulieren ohne Rauschen
+	* Komponenten: Photonenemitter, Übertragungsmedium, Photonenemitter
+* Visualisierung:
+	* Start und Endbutton
+	* Darstellung / Visualisierung des vereinbarten Schlüssels
+* Funktionsfähiges Produkt mit Backend und Frontend, welche miteinander kommunizieren können
+
+Optionale Anforderungen:
+
+* Simulation:	
+	* Rauschen einfügen
+	* Konfigurationsmöglichkeiten der Komponenten
+	* Weitere Protokolle
+* Visualisierung:
+	* Möglichkeit der Eingabe eines Strings (oder Inputs) am Anfang, sowie der Ausgabe eines Strings am Schluss als Output
+* Überlegen, welche Sprache das Produkt haben soll (Übersetzungsfile, i18n)
+
+## TODO bis Sonntag, 22.09.
+
 * Bis Sonntag Abend
 	* Dokument: Aufgabenstellung
 	* Ziele formulieren (messbar)
