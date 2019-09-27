@@ -7,9 +7,27 @@
   author:"Fabian Meyer"
   authorLink:"https://idyll-lang.org"
   date:`(new Date()).toDateString()`
-  background:"pink"
+  background:"yellow"
   color:"white"
    /]
+
+## Incrementer.js
+[var name:"clickCount" value:0 /]
+[Incrementer value:clickCount /]
+[Display value:clickCount /]
+
+## Incrementer2
+
+[var name:"myVar" value:5 /]
+[Range value:myVar min:0 max:100 /]
+[Display value:myVar /]
+[Incrementer value:myVar /]
+
+## Text Input
+
+[var name:"textVal" value:"Hello World" /]
+[TextInput value:textVal /]
+[Text value:textVal/]
 
 ## Stepper (idyll-component)
 
@@ -36,11 +54,6 @@
 
 This is a custom D3.js-Component:
 [CircleWave/]
-
-// TODO: ## custom React-Component:
-
-// TODO: This is a custom React-Component:
-// TODO: [DemoSimple/]
 
 ## Introduction
 
