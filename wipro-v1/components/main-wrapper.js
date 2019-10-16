@@ -1,10 +1,12 @@
 const React = require("react");
 import ButtonStart from "./button-start";
 import ButtonOutput from "./button-output";
+import OutputBox from "./output-box";
 
 class MainWrapper extends React.Component {
   state = {
-    posts: []
+    posts: [],
+    content: []
   };
 
   start = () => {
@@ -19,18 +21,23 @@ class MainWrapper extends React.Component {
 
   output = () => {
     // TODO: insert nice output here
-    const myPosts = JSON.stringify(this.state.posts.map(c => c.title), null, 2);
-    alert(myPosts);
+    this.setState({
+      content: JSON.stringify(this.state.posts.map(c => c.title), null, "\n")
+    });
+    console.log(this.state.content);
   };
 
   render() {
     return (
       <div className="main-container">
-        <div className="start-container">
-          <ButtonStart start={this.start}></ButtonStart>
+        <div className="start-button-container">
+          <ButtonStart start={this.start} />
         </div>
-        <div className="output-container">
-          <ButtonOutput output={this.output}></ButtonOutput>
+        <div className="output-button-container">
+          <ButtonOutput output={this.output} />
+        </div>
+        <div className="output-text-container">
+          <OutputBox content={this.state.content} />
         </div>
       </div>
     );

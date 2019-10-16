@@ -5,7 +5,7 @@ class ButtonOutput extends React.Component {
     const { hasError, idyll, updateProps, ...props } = this.props;
     return (
       <div>
-        <button {...props} onClick={this.props.output}>
+        <button {...props} onClick={() => this.props.output()}>
           Output
         </button>
       </div>

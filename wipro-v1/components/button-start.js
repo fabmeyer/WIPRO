@@ -5,7 +5,7 @@ class ButtonStart extends React.Component {
     const { hasError, idyll, updateProps, ...props } = this.props;
     return (
       <div>
-        <button {...props} onClick={this.props.start}>
+        <button {...props} onClick={() => this.props.start()}>
           Start
         </button>
       </div>
