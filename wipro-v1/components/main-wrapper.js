@@ -6,42 +6,15 @@ class MainWrapper extends React.Component {
     posts: []
   };
 
-  start = async () => {
+  start = () => {
     // TODO: insert start logic here
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts/1"
-      );
-      const myJson = await response.json();
-      console.log(JSON.stringify(myJson));
-      console.log("start button clicked");
-
-      if (this.state.posts !== []) {
-        const posts = [...this.state.posts];
-        posts.push({
-          body: json.body,
-          id: json.id,
-          title: json.title,
-          userId: json.userId
-        });
-        this.setState({ posts });
-      } else {
-        const posts = [
-          {
-            body: json.body,
-            id: json.id,
-            title: json.title,
-            userId: json.userId
-          }
-        ];
-        this.setState({ posts });
-      }
-      console.log("MainWrapper.state: ", this.state);
-    } catch (error) {
-      console.log("error: ", error);
-    } finally {
-      console.log("done");
-    }
+    fetch("http://jsonplaceholder.typicode.com/todos")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ posts: data });
+      })
+      .catch(console.log);
+    console.log("state: ", this.state);
   };
 
   render() {
