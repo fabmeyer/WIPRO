@@ -159,10 +159,7 @@ dependencies {
     // Java Mail
     providedCompile('javax.mail:mail:1.4.5') { transitive = false }
     compile('javax.activation:activation:1.1.1') { transitive = false }
-    runtime 'javax.activation:activation:1.1.1'
-
-
-  
+    runtime 'javax.activation:activation:1.1.1'  
 }
 
 
