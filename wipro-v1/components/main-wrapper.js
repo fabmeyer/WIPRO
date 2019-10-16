@@ -1,4 +1,5 @@
 const React = require("react");
+// const fs = require("fs");
 import ButtonStart from "./button-start";
 import ButtonOutput from "./button-output";
 import OutputBox from "./output-box";
@@ -24,7 +25,14 @@ class MainWrapper extends React.Component {
     this.setState({
       content: JSON.stringify(this.state.posts.map(c => c.title), null, "\n")
     });
-    console.log(this.state.content);
+    // TODO: showing output from /data instead of React state
+    // fs.writeFile("output.json", this.data.content, "utf8", function(err) {
+    //   if (err) {
+    //     console.log("An error occured while writing JSON Object to File.");
+    //     return console.log(err);
+    //   }
+    //   console.log("JSON file has been saved.");
+    // });
   };
 
   render() {
