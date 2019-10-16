@@ -1,5 +1,6 @@
 const React = require("react");
-import ButtonStart from "./button-start.js";
+import ButtonStart from "./button-start";
+import ButtonOutput from "./button-output";
 
 class MainWrapper extends React.Component {
   state = {
@@ -14,7 +15,12 @@ class MainWrapper extends React.Component {
         this.setState({ posts: data });
       })
       .catch(console.log);
-    console.log("state: ", this.state);
+  };
+
+  output = () => {
+    // TODO: insert nice output here
+    const myPosts = JSON.stringify(this.state.posts.map(c => c.title), null, 2);
+    alert(myPosts);
   };
 
   render() {
@@ -22,6 +28,7 @@ class MainWrapper extends React.Component {
       <div>
         <p>Hello World</p>
         <ButtonStart start={this.start}></ButtonStart>
+        <ButtonOutput output={this.output}></ButtonOutput>
       </div>
     );
   }
