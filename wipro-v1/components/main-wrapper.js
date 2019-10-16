@@ -25,10 +25,13 @@ class MainWrapper extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Hello World</p>
-        <ButtonStart start={this.start}></ButtonStart>
-        <ButtonOutput output={this.output}></ButtonOutput>
+      <div className="main-container">
+        <div className="start-container">
+          <ButtonStart start={this.start}></ButtonStart>
+        </div>
+        <div className="output-container">
+          <ButtonOutput output={this.output}></ButtonOutput>
+        </div>
       </div>
     );
   }
