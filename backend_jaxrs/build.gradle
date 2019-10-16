@@ -164,9 +164,6 @@ dependencies {
 
 
 
-
-
-
 mainClassName = 'ch.hslu.wipro.qc.embedded.TomcatStarter'
 applicationDefaultJvmArgs = ["-Xshare:off", "-Dcom.sun.management.jmxremote.port=8086", "-Dcom.sun.management.jmxremote.ssl=false", "-Ddb.url=jdbc:mysql://localhost:3306/qc", "-Ddb.username=asb", "-Ddb.password=m6HtPweJXn2HR4LG", "-Dsmtp.host=mail.application.expact.ch", "-Dmail.mime.charset=UTF-8", "-Dfile.encoding=UTF-8", "-Dsmtp.port=587", "-Dsmtp.auth=true", "-Dsmtp.username=baseexpact", "-Dsmtp.password=alov8RIamp7d", "-Dcom.sun.management.jmxremote.authenticate=false"]
 compileJava.options.encoding = 'UTF-8'
