@@ -22,9 +22,9 @@ class MainWrapper extends React.Component {
 
   output = () => {
     // TODO: insert nice output here
-    const myPosts = JSON.stringify(this.state.posts.map(c => c.title), null, 2);
-    console.log(this.state.posts);
-    alert(myPosts);
+    var bitString = this.state.posts.bitString;
+    console.log(bitString);
+    alert(bitString);
   };
 
   render() {
