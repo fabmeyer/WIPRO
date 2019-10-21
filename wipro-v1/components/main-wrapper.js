@@ -22,21 +22,9 @@ class MainWrapper extends React.Component {
 
   output = () => {
     // TODO: insert nice output here
-
-    this.setState({
-      content: JSON.stringify(this.state.posts.map(c => c.title), null, "\n")
-    });
-    // TODO: showing output from /data instead of React state
-    // fs.writeFile("output.json", this.data.content, "utf8", function(err) {
-    //   if (err) {
-    //     console.log("An error occured while writing JSON Object to File.");
-    //     return console.log(err);
-    //   }
-    //   console.log("JSON file has been saved.");
-    // });
-    const myPosts = JSON.stringify(this.state.posts.map(c => c.title), null, 2);
-    console.log(this.state.posts);
-    alert(myPosts);
+    var bitString = this.state.posts.bitString;
+    console.log(bitString);
+    alert(bitString);
   };
 
   render() {
