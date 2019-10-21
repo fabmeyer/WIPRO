@@ -18,9 +18,41 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-
-
-@Path( "/emitphoton/{str}" )
+@Path( "/emitphoton/{base}/{str}" )
 public class PhotonEmitterAdapter {
+	@Context
+	private HttpServletRequest request;
+	
+	
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String encrypt_plain(@PathParam( "base" ) String base, @PathParam( "str" ) String str)
+	{
+		String response = BB84Service.getPhotonString(base, str);
+		return response;
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public String encrypt_html(@PathParam( "base" ) String base, @PathParam( "str" ) String str)
+	{
+		String response = BB84Service.getPhotonString(base, str);
+		return "<html><body>"+response+"</body></html>";
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_XML)
+	public String encrypt_xml(@PathParam( "base" ) String base, @PathParam( "str" ) String str)
+	{
+		String response = BB84Service.getPhotonString(base, str);
+		return "<xml><response>"+response+"</response></xml>";	
+		}
 
+	@GET
+	@Produces( MediaType.APPLICATION_JSON )
+	public String encrypt(@PathParam( "base" ) String base, @PathParam( "str" ) String str)
+	{
+		String response = BB84Service.getPhotonString(base, str);
+		return response;
+		}
 }

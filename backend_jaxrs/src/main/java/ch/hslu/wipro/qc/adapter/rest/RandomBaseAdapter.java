@@ -18,19 +18,18 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/randomstring/{str}" )
-public class RandomBitStringAdapter { // implements CryptoInterface
+@Path( "/randombase/{str}" )
+public class RandomBaseAdapter { // implements CryptoInterface
 
 	@Context
 	private HttpServletRequest request;
 	
-	/*
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String encrypt_plain(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getRandomBaseString(str);
 		return response;
 	}
 	
@@ -38,7 +37,7 @@ public class RandomBitStringAdapter { // implements CryptoInterface
 	@Produces(MediaType.TEXT_HTML)
 	public String encrypt_html(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getRandomBaseString(str);
 		return "<html><body>"+response+"</body></html>";
 	}
 	
@@ -46,17 +45,15 @@ public class RandomBitStringAdapter { // implements CryptoInterface
 	@Produces(MediaType.TEXT_XML)
 	public String encrypt_xml(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getRandomBaseString(str);
 		return "<xml><response>"+response+"</response></xml>";	
 		}
 
-	*/
-	
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
 	public String encrypt(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getRandomBaseString(str);
 		return response;
 		}
 }

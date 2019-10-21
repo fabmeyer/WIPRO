@@ -18,35 +18,34 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/randomstring/{str}" )
-public class RandomBitStringAdapter { // implements CryptoInterface
+@Path( "/comparebase/{base1}/{base2}" )
+public class CompareBaseAdapter { // implements CryptoInterface
 
 	@Context
 	private HttpServletRequest request;
 	
 	/*
-	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String encrypt_plain(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "base1" ) String base1, @PathParam( "base2" ) String base2)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.compareBase(base1, base2);
 		return response;
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public String encrypt_html(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "base1" ) String base1, @PathParam( "base2" ) String base2)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.compareBase(base1, base2);
 		return "<html><body>"+response+"</body></html>";
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_XML)
-	public String encrypt_xml(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "base1" ) String base1, @PathParam( "base2" ) String base2)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.compareBase(base1, base2);
 		return "<xml><response>"+response+"</response></xml>";	
 		}
 
@@ -54,9 +53,9 @@ public class RandomBitStringAdapter { // implements CryptoInterface
 	
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
-	public String encrypt(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "base1" ) String base1, @PathParam( "base2" ) String base2)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.compareBase(base1, base2);
 		return response;
 		}
 }

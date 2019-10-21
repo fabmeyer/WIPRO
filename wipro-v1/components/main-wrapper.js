@@ -2,6 +2,9 @@ const React = require("react");
 import ButtonStart from "./button-start";
 import ButtonOutput from "./button-output";
 
+
+
+
 class MainWrapper extends React.Component {
   state = {
     posts: []
@@ -9,7 +12,7 @@ class MainWrapper extends React.Component {
 
   start = () => {
     // TODO: insert start logic here
-    fetch("http://jsonplaceholder.typicode.com/todos")
+    fetch("http://localhost:8080/rest/randomstring/16")
       .then(res => res.json())
       .then(data => {
         this.setState({ posts: data });
@@ -20,6 +23,7 @@ class MainWrapper extends React.Component {
   output = () => {
     // TODO: insert nice output here
     const myPosts = JSON.stringify(this.state.posts.map(c => c.title), null, 2);
+    console.log(this.state.posts);
     alert(myPosts);
   };
 

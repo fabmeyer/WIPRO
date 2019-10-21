@@ -18,45 +18,43 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/randomstring/{str}" )
-public class RandomBitStringAdapter { // implements CryptoInterface
-
+@Path( "/receivephoton/{photons}/{base}" )
+public class PhotonReceiverAdapter {
 	@Context
 	private HttpServletRequest request;
 	
 	/*
-	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String encrypt_plain(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
 		return response;
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public String encrypt_html(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
 		return "<html><body>"+response+"</body></html>";
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_XML)
-	public String encrypt_xml(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
 		return "<xml><response>"+response+"</response></xml>";	
 		}
-
-	*/
 	
+	*/
+
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
-	public String encrypt(@PathParam( "str" ) String str)
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
 	{
-		String response = BB84Service.getRandomBitString(str);
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
 		return response;
 		}
 }

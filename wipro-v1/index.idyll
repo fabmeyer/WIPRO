@@ -1,11 +1,10 @@
-[meta title:"WIPRO V1" description:"Short description of your project" /]
+[meta title:"WIPRO V1" description:"BB84 Protokoll"/]
 
 [Header
   fullWidth:true
   title:"WIPRO V1"
-  subtitle:"Welcome to Idyll. Open index.idyll to start writing"
-  author:"Your Name Here"
-  authorLink:"https://idyll-lang.org"
+  subtitle:"BB84 Protokoll"
+  author:"Fabian Meyer, Adrian Althaus"
   date:`(new Date()).toDateString()`
   background:"#222222"
   color:"#ffffff"
