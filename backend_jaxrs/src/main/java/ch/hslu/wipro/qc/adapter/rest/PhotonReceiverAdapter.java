@@ -1,0 +1,60 @@
+package ch.hslu.wipro.qc.adapter.rest;
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+
+import ch.hslu.wipro.qc.service.BB84Service;
+
+/*
+ * TODO : inject encrytion with Guava
+ * @Inject
+	private CryptoService cryptoService;
+ * 
+ */
+
+@Path( "/receivephoton/{photons}/{base}" )
+public class PhotonReceiverAdapter {
+	@Context
+	private HttpServletRequest request;
+	
+	/*
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	{
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		return response;
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	{
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		return "<html><body>"+response+"</body></html>";
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_XML)
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	{
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		return "<xml><response>"+response+"</response></xml>";	
+		}
+	
+	*/
+
+	@GET
+	@Produces( MediaType.APPLICATION_JSON )
+	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	{
+		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		return response;
+		}
+}

@@ -9,9 +9,13 @@
     "authorView": false
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "d3": "^4.0.0",
-    "idyll": "^4.7.0",
-    "idyll-d3-component": "^2.0.0"
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.20.0",
+    "idyll": "^4.0.0",
+    "idyll-d3-component": "^2.0.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "gh-pages": "^0.12.0"

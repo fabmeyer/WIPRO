@@ -1,7 +1,5 @@
 package ch.hslu.wipro.qc.embedded;
 
-
-
 import java.io.File;
 import java.net.MalformedURLException;
 
@@ -14,6 +12,7 @@ import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
+
 
 public class TomcatStarter {
 	public static void main( String[] args ) throws MalformedURLException, ServletException, LifecycleException

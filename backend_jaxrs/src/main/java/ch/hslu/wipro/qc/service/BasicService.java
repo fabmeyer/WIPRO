@@ -38,14 +38,6 @@ public class BasicService implements Serializable
 	}
 
 	@Transactional
-	public Object persist( Object persistableObject, Class< ? > persistableSubClass ) throws InstantiationException, IllegalAccessException
-	{
-		Object existingObject = findById( persistableObject, persistableSubClass );
-		synchronize( persistableObject, existingObject );
-		return basicDao.persist( existingObject );
-	}
-	
-	@Transactional
 	public Object persist( Object persistableObject ) throws InstantiationException, IllegalAccessException
 	{
 		return basicDao.persist( persistableObject );
@@ -96,24 +88,6 @@ public class BasicService implements Serializable
 		return existingObject == null ? subClass.newInstance() : existingObject;
 	}
 	
-	public String generateFileNameByLastSlug(Class< ? > clazz, String slug) {
-		String newFileName = "";
-		String lastSlug = basicDao.findFileNameBySlugLike(clazz, slug);
-		
-		if ( lastSlug == null )
-			newFileName = slug + "-000";
-		else {
-			Matcher matcher = Pattern.compile( "([a-zA-Z0-9-]+)([\\d]{3})" ).matcher( lastSlug );
-			
-			if ( matcher.find() )
-				newFileName = slug + "-" + String.format("%03d", (Integer.valueOf( matcher.group( 2 ) )+1) );
-			else
-				newFileName = slug + "-000";
-		}
-		return newFileName;
-	}
-	
-
 	public BasicDao getBasicDao()
 	{
 		return basicDao;
