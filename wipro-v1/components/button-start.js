@@ -1,30 +1,33 @@
 const React = require("react");
+import fromExponential from "from-exponential";
 
 class ButtonStart extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      strLength: this.props.strLength,
+      strLength: this.checkType(this.props.strLength),
       bitString: this.props.bitString,
       baseString: this.props.baseString
     };
-
-    this.checktype(this.props.strLength);
   }
 
-  checktype = arg => {
+  checkType = arg => {
     if (typeof arg !== "number") {
       console.log(arg, "is not a number, it is a", typeof arg);
-      if (typeof arg === "string") {
-        const newNum = Number(arg.toPrecision());
-        console.log(newNum);
-        this.setState({
-          strLength: newNum
-        });
-        console.log(typeof this.state.strLength);
+      let newNum = Number(arg);
+      if (typeof newNum !== "number") {
+        console.log(newNum, "is not a number, it is a", typeof newNum);
+        newNum = fromExponential(newNum);
+        return newNum;
+      } else {
+        console.log("it's a number");
+        return newNum;
       }
-    } else console.log("it's a number");
+    } else {
+      console.log("it's a number");
+      return arg;
+    }
   };
 
   componentDidMount() {
@@ -42,9 +45,9 @@ class ButtonStart extends React.Component {
 
   start() {
     // convert from to number
-    this.checktype(this.state.strLength);
+    const newLenght = this.checkType(this.state.strLength);
     // get Bitstring with length strLength
-    fetch(`http://localhost:8080/rest/randomstring/${this.state.strLength}`)
+    fetch(`http://localhost:8080/rest/randomstring/${newLenght}`)
       .then(res => res.json())
       .then(data => {
         this.setState({ bitString: data.bitString });
@@ -54,7 +57,7 @@ class ButtonStart extends React.Component {
       })
       .catch(console.log);
     // get Basestring with length strLength
-    fetch(`http://localhost:8080/rest/randombase/${this.state.strLength}`)
+    fetch(`http://localhost:8080/rest/randombase/${newLenght}`)
       .then(res => res.json())
       .then(data => {
         this.setState({ baseString: data.baseString });
