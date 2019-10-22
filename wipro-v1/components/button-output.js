@@ -1,6 +1,6 @@
 const React = require("react");
 
-class ButtonOutput extends React.Component {
+class ButtonOutput extends React.PureComponent {
   render() {
     const { hasError, idyll, updateProps, ...props } = this.props;
     return (

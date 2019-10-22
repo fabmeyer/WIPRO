@@ -10,4 +10,11 @@
   color:"#ffffff"
    /]
 
-[MainWrapper/]
+# Create a random string
+
+## Length of string
+[var name:"strLength" value:16 /]
+[Range value:strLength min:1 max:1024 /]
+[Display value:strLength /]
+
+[ButtonStart strLength:strLength/]
