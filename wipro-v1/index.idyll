@@ -10,21 +10,22 @@
   color:"#ffffff"
    /]
 
-# Create a random string
+# Create a random bitstring
 
 ## Length of string
-// Length
+// Length of string
 [var name:"strLength" value:16 /]
-[Range value:strLength min:1 max:1024 /]
-[Display value:strLength /]
+[TextInput value:strLength /]
 
-// render Bitstring and Basisstring
+## Compute string and base with given length
+// Get bitstring via REST API
 [var name:"bitString" value:null /]
 [var name:"baseString" value:null /]
 [ButtonStart strLength:strLength bitString:bitString baseString:baseString /]
 
----
-
-Bitstring: [Display value:bitString /]
-
-Basestring: [Display value:baseString /]
+// render Bitstring
+Bitstring:
+[ScrollBox value:bitString /]
+// render Basestring
+Basestring:
+[ScrollBox value:baseString /]
