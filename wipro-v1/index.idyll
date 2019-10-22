@@ -13,13 +13,18 @@
 # Create a random string
 
 ## Length of string
-// create Bitstring
-// TODO: create Basis
+// Length
 [var name:"strLength" value:16 /]
 [Range value:strLength min:1 max:1024 /]
 [Display value:strLength /]
 
-// render Bitstring
-[var name:"bitString" value:0 /]
-[ButtonStart strLength:strLength bitString:bitString/]
-[Display value:bitString /]
+// render Bitstring and Basisstring
+[var name:"bitString" value:null /]
+[var name:"baseString" value:null /]
+[ButtonStart strLength:strLength bitString:bitString baseString:baseString /]
+
+---
+
+Bitstring: [Display value:bitString /]
+
+Basestring: [Display value:baseString /]
