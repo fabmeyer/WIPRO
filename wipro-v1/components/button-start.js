@@ -5,7 +5,8 @@ class ButtonStart extends React.Component {
     super(props);
 
     this.state = {
-      strLength: this.props.strLength
+      strLength: this.props.strLength,
+      bitString: null
     };
   }
 
@@ -20,21 +21,25 @@ class ButtonStart extends React.Component {
 
   start() {
     // TODO: insert start logic here
-    fetch("http://localhost:8080/rest/randomstring/16")
+    fetch(`http://localhost:8080/rest/randomstring/${this.state.strLength}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({ posts: data });
+        console.log(data);
+        this.setState({ bitString: data.bitString });
       })
       .catch(console.log);
-    this.props.updateProps({});
+    this.props.updateProps({
+      bitString: this.state.bitString
+    });
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.start.bind(this)}>
+        <button onClick={this.start.bind(this, this.state.strLength)}>
           Start, Length: {this.state.strLength}
         </button>
+        {/* <p>Bitstring is: {this.state.bitString}</p> */}
       </div>
     );
   }
