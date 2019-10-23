@@ -28,8 +28,8 @@ public class RandomBitStringAdapter { // implements CryptoInterface
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response encrypt(@PathParam("str") String str) {
-		final String bitString = BB84Service.getRandomBitString(str);
+	public Response encrypt(@PathParam("str") int n) {
+		final String bitString = BB84Service.getRandomBitString(n);
 		JsonObject response = Json.createObjectBuilder()
 				.add("bitString", bitString)
 				.build();

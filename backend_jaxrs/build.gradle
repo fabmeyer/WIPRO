@@ -164,6 +164,9 @@ dependencies {
     // JSON 
     compile group: 'javax.json', name: 'javax.json-api', version: '1.1.4'
     compile group: 'org.glassfish', name: 'javax.json', version: '1.1.4' 
+    
+    // msgpack
+    compile group: 'org.msgpack', name: 'msgpack', version: '0.6.12'
 }
 
 

@@ -6,9 +6,9 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class BB84Service {
-	public static String getRandomBitString(String n) {
+	public static String getRandomBitString(int n) {
 		String bitString = "";
-		for (int i = 0; i < Integer.valueOf(n); i++ ) {
+		for (int i = 0; i < n; i++ ) {
             Random random = new Random();
             double randomDouble = random.nextDouble();
             if(randomDouble > 0.5) {
@@ -21,9 +21,9 @@ public class BB84Service {
 		return bitString;
 	}
 
-	public static String getRandomBaseString(String n) {
+	public static String getRandomBaseString(int n) {
 		String bitString = "";
-		for (int i = 0; i < Integer.valueOf(n); i++ ) {
+		for (int i = 0; i < n; i++ ) {
             Random random = new Random();
             double randomDouble = random.nextDouble();
             if(randomDouble > 0.5) {

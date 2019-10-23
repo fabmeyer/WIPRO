@@ -21,7 +21,7 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/randombase/{str}" )
+@Path( "/randombase/{n}" )
 public class RandomBaseAdapter { // implements CryptoInterface
 
 	@Context
@@ -29,8 +29,8 @@ public class RandomBaseAdapter { // implements CryptoInterface
 	
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
-	public Response encrypt(@PathParam("str") String str) {
-		final String baseString = BB84Service.getRandomBaseString(str);
+	public Response encrypt(@PathParam("n") int n) {
+		final String baseString = BB84Service.getRandomBaseString(Integer.valueOf(n));
 		JsonObject response = Json.createObjectBuilder()
 				.add("baseString", baseString)
 				.build();
