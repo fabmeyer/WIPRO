@@ -1,14 +1,31 @@
-[meta title:"WIPRO V1" description:"Short description of your project" /]
+[meta title:"WIPRO V1" description:"BB84 Protokoll"/]
 
 [Header
   fullWidth:true
   title:"WIPRO V1"
-  subtitle:"Welcome to Idyll. Open index.idyll to start writing"
-  author:"Your Name Here"
-  authorLink:"https://idyll-lang.org"
+  subtitle:"BB84 Protokoll"
+  author:"Adrian Althaus, Fabian Meyer"
   date:`(new Date()).toDateString()`
   background:"#222222"
   color:"#ffffff"
    /]
 
-[MainWrapper/]
+# Create a random bitstring
+
+## Length of string
+// Length of string
+[var name:"strLength" value:16 /]
+[TextInput value:strLength /]
+
+## Compute string and base with given length
+// Get bitstring via REST API
+[var name:"bitString" value:null /]
+[var name:"baseString" value:null /]
+[ButtonStart strLength:strLength bitString:bitString baseString:baseString /]
+
+// render Bitstring
+Bitstring:
+[ScrollBox value:bitString /]
+// render Basestring
+Basestring:
+[ScrollBox value:baseString /]
