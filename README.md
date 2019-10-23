@@ -1,2 +1,2 @@
 # WIPRO
-Wirtschaftsprojekt: Simulation ond Visualisierung von Quantenkryptografie
+Wirtschaftsprojekt: Simulation und Visualisierung von Quantenkryptografie
