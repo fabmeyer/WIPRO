@@ -62,6 +62,7 @@ idyll-test1/build
 idyll-test1/node_modules
 wipro-v1/build
 wipro-v1/node_modules
+wipro-v1/.idyll/browserify-cache.json
 
 # macOS directory files
 .DS_Store
