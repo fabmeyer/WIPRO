@@ -43,10 +43,10 @@ public class BB84Service {
 		}
 		for (int i=0; i< base.length(); i++) {
 			if (String.valueOf(base.charAt(i)).equals("x")) {
-				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? "\\" : "/"; 
+				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? "0" : "2"; 
 			}
 			else {
-				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? "|" : "-"; 	
+				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? "1" : "3"; 	
 			}
 		}	
 		return photonString;
@@ -59,10 +59,10 @@ public class BB84Service {
 		}
 		for (int i=0; i< base.length(); i++) {
 			if (String.valueOf(base.charAt(i)).equals("x")) {
-				bitString += (String.valueOf(photons.charAt(i)).equals("\\")) ? "1" : "0"; 
+				bitString += (String.valueOf(photons.charAt(i)).equals("0")) ? "1" : "0"; 
 			}
 			else {
-				bitString += (String.valueOf(photons.charAt(i)).equals("|")) ? "1" : "0"; 	
+				bitString += (String.valueOf(photons.charAt(i)).equals("1")) ? "1" : "0"; 	
 			}
 		}	
 		return bitString;
