@@ -1,5 +1,4 @@
 const React = require("react");
-import fromExponential from "from-exponential";
 
 class ButtonStart extends React.Component {
   constructor(props) {
@@ -14,18 +13,8 @@ class ButtonStart extends React.Component {
 
   checkType = arg => {
     if (typeof arg !== "number") {
-      console.log(arg, "is not a number, it is a", typeof arg);
-      let newNum = Number(arg);
-      if (typeof newNum !== "number") {
-        console.log(newNum, "is not a number, it is a", typeof newNum);
-        newNum = fromExponential(newNum);
-        return newNum;
-      } else {
-        console.log("it's a number");
-        return newNum;
-      }
+      return eval(arg);
     } else {
-      console.log("it's a number");
       return arg;
     }
   };
