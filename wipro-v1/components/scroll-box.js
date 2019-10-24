@@ -6,26 +6,28 @@ class ScrollBox extends React.Component {
   }
 
   render() {
-    const outerStyle = {
+    const scrollBoxOuter = {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       margin: "5px"
     };
 
-    const divStyle = {
+    const scrollBoxInner = {
       height: "500px",
       width: "500px",
       padding: "5px",
       border: "1px solid #999",
       borderRadius: "10px",
-      font: "32px",
+      fontSize: "32px",
+      fontFamily: "monospace",
+      backgroundColor: "GhostWhite",
       overflow: "auto"
     };
 
     return (
-      <div className="outer-box" style={outerStyle}>
-        <div className="scroll-box" style={divStyle}>
+      <div style={scrollBoxOuter}>
+        <div style={scrollBoxInner}>
           <p>{this.props.value}</p>
         </div>
       </div>

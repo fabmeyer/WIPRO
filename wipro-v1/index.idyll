@@ -25,7 +25,14 @@
 
 // render Bitstring
 Bitstring:
-[ScrollBox value:bitString /]
+
+[ShowHide]
+  [ScrollBox value:bitString /]
+[/ShowHide]
+
 // render Basestring
 Basestring:
-[ScrollBox value:baseString /]
+
+[ShowHide]
+  [ScrollBox value:baseString /]
+[/ShowHide]

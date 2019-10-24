@@ -1,4 +1,5 @@
 const React = require("react");
+// import "../styles.css";
 
 class ButtonStart extends React.Component {
   constructor(props) {
@@ -58,19 +59,12 @@ class ButtonStart extends React.Component {
   }
 
   render() {
-    const buttonStyle = {
-      padding: "5px",
-      border: "1px solid #999",
-      borderRadius: "5px",
-      font: "32px"
-    };
-
     return (
-      <div>
-        <button onClick={this.start.bind(this)} style={buttonStyle}>
+      <React.Fragment>
+        <button className="button-small" onClick={this.start.bind(this)}>
           Start, Length: {this.state.strLength}
         </button>
-      </div>
+      </React.Fragment>
     );
   }
 }
