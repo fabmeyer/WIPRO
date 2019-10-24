@@ -1,5 +1,50 @@
 # WIPRO - Notebook
 
+## TODO bis 07.11.
+
+## Allgmein
+
+* Spezifikation der physikalischen Komponenten in eigenem file
+	* Namen
+	* Attribute
+	* Methoden
+* Gedanken machen über Alternative zu REST:
+	* Websockets oder GraphQL
+* Deployment ?!?
+
+### Frontend
+
+* BB84 Protokoll fertig machen
+* 2 Modi: Erklärend und Produktiv
+	* Container mit `show()` und `hide()`
+* Gedanken machen über Animation:
+	* svg, html5, css3, js
+* Verbersserung der Simulation:
+	* Verhältnis der Basen Regler von 0 - 100%
+	* Noise der Übertragung Regler von 0 - 100%
+	* Photonengenerator und Detektor arbeiten nicht 100% genau:
+		* Mehr Photonen generiert oder detektiert
+		* Zu wenig Photonen generiert oder detektiert
+* JavaScript: `eval()`
+
+#### Frontend: Ideas
+
+* Bei Bitstring und Basen und Polariserung:
+	* Monospaced Font symmetrisch zu quadratischem window
+	* Einbau eines Reglers für Einstellung der font-size
+
+### Backend
+
+* Polarisierung der Photonen umschreiben in Zahlen 0...3
+* Aufruf über Interfaces
+* Verbersserung der Simulation:
+	* Verhältnis der Basen
+	* Noise der Übertragung
+	* Photonengenerator und Detektor arbeiten nicht 100% genau:
+		* Mehr Photonen generiert oder detektiert
+		* Zu wenig Photonen generiert oder detektiert
+* CLI? Notwendig?
+
 ## TODO bis 29.09.
 
 * BB84-Protokoll schematisch darstellen; komponentenweise darstellen und Verständnis darüber erlangen (absprechen mit Dozenten)

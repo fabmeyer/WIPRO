@@ -24,15 +24,19 @@
 [ButtonStart strLength:strLength bitString:bitString baseString:baseString /]
 
 // render Bitstring
-Bitstring:
+## Bitstring:
 
+[var name:"bitStringZoom" value:100 /]
 [ShowHide]
-  [ScrollBox value:bitString /]
+  [Range value:bitStringZoom min:100 max:1000 step:100 /]
+  [ScrollBox value:bitString zoomFactor:bitStringZoom /]
 [/ShowHide]
 
 // render Basestring
-Basestring:
+## Basestring:
 
+[var name:"baseStringZoom" value:100 /]
 [ShowHide]
-  [ScrollBox value:baseString /]
+  [Range value:baseStringZoom min:100 max:1000 step:100 /]
+  [ScrollBox value:baseString zoomFactor:baseStringZoom /]
 [/ShowHide]

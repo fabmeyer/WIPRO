@@ -3,23 +3,33 @@ const React = require("react");
 class ScrollBox extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      fontSize: this.props.zoomFactor
+    };
+  }
+
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+    if (oldProps.zoomFactor !== newProps.zoomFactor) {
+      this.setState({
+        fontSize: this.props.zoomFactor
+      });
+    }
   }
 
   render() {
     const scrollBoxOuter = {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
-      margin: "5px"
+      justifyContent: "center"
     };
 
     const scrollBoxInner = {
-      height: "500px",
+      maxHeight: "500px",
       width: "500px",
-      padding: "5px",
       border: "1px solid #999",
       borderRadius: "10px",
-      fontSize: "32px",
       fontFamily: "monospace",
       backgroundColor: "GhostWhite",
       overflow: "auto"
@@ -28,7 +38,17 @@ class ScrollBox extends React.Component {
     return (
       <div style={scrollBoxOuter}>
         <div style={scrollBoxInner}>
-          <p>{this.props.value}</p>
+          <p
+            style={{
+              fontSize: `${this.state.fontSize}%`,
+              marginTop: "5px",
+              marginBottom: "5px",
+              textAlign: "center",
+              verticalAlign: "middle"
+            }}
+          >
+            {this.props.value}
+          </p>
         </div>
       </div>
     );

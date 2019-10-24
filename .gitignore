@@ -60,6 +60,7 @@ typings/
 # idyll files (build and dependencies)
 idyll-test1/build
 idyll-test1/node_modules
+idyll-test1/.idyll/browserify-cache.json
 wipro-v1/build
 wipro-v1/node_modules
 wipro-v1/.idyll/browserify-cache.json
