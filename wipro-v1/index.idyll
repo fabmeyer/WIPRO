@@ -40,3 +40,5 @@
   [Range value:baseStringZoom min:100 max:1000 step:100 /]
   [ScrollBox value:baseString zoomFactor:baseStringZoom /]
 [/ShowHide]
+
+[AnimationTest /]
