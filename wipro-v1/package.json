@@ -9,6 +9,7 @@
     "authorView": false
   },
   "dependencies": {
+    "animejs": "^3.1.0",
     "cors": "^2.8.5",
     "d3": "^4.0.0",
     "express": "^4.17.1",
@@ -17,6 +18,7 @@
     "idyll": "^4.0.0",
     "idyll-d3-component": "^2.0.0",
     "path": "^0.12.7",
+    "react-anime": "^2.2.0",
     "react-rough": "^2.0.0-beta.4",
     "roughjs": "^3.1.0"
   },
