@@ -1,26 +1,54 @@
 const React = require("react");
-import ReactRough, { Circle } from "react-rough";
 import Anime from "react-anime";
+import AnimationCircle from "./animation-circle";
 
 class AnimationTest extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      shift: [100, 200, 300]
+    };
   }
 
+  componentDidMount() {
+    console.log("component did mount");
+    this.interval = setInterval(() => {
+      console.log(this.state.shift);
+      this.setState(state => {
+        const shift = state.shift.map(c => c + 100);
+        // return { shift };
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount = () => {
+    console.log("component will unmount");
+    clearInterval(this.interval);
+  };
+
   render() {
+    const animationContainer = {
+      position: "absolute"
+    };
     return (
       <Anime
-        easing="easeInSine"
+        easing="linear"
+        elasticity="0"
         duration={2000}
         direction="normal"
         loop={true}
-        translateX="100%"
+        delay={(el, index) => index * 1000}
+        translateX={(el, index) => 200}
       >
-        <div>
-          <ReactRough width={200} height={200}>
-            <Circle points={[100, 100, 100]} fill="yellow" fillWeight="1" />
-          </ReactRough>
-        </div>
+        <span style={animationContainer}>
+          <AnimationCircle color="yellow" x={100} y={100}></AnimationCircle>
+        </span>
+        <span style={animationContainer}>
+          <AnimationCircle color="orange" x={300} y={100}></AnimationCircle>
+        </span>
+        <span style={animationContainer}>
+          <AnimationCircle color="red" x={500} y={100}></AnimationCircle>
+        </span>
       </Anime>
     );
   }

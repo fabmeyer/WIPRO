@@ -17,7 +17,7 @@ class ShowHide extends React.Component {
     };
   }
 
-  showHide() {
+  showHide = () => {
     this.state.isVisible
       ? (this.setState(prevState => {
           let showHideInner = Object.assign({}, prevState.showHideInner);
@@ -31,7 +31,7 @@ class ShowHide extends React.Component {
           return { showHideInner };
         }),
         this.setState({ isVisible: true }));
-  }
+  };
 
   render() {
     const showHideOuter = {
