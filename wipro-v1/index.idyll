@@ -13,32 +13,34 @@
 # Create a random bitstring
 
 ## Length of string
-// Length of string
+
 [var name:"strLength" value:16 /]
 [TextInput value:strLength /]
 
 ## Compute string and base with given length
-// Get bitstring via REST API
+
 [var name:"bitString" value:null /]
 [var name:"baseString" value:null /]
 [ButtonStart strLength:strLength bitString:bitString baseString:baseString /]
 
-// render Bitstring
 ## Bitstring:
 
 [var name:"bitStringZoom" value:100 /]
-[ShowHide]
+[ShowHide isVisible:"flex" position:"center"]
   [Range value:bitStringZoom min:100 max:1000 step:100 /]
   [ScrollBox value:bitString zoomFactor:bitStringZoom /]
 [/ShowHide]
 
-// render Basestring
 ## Basestring:
 
 [var name:"baseStringZoom" value:100 /]
-[ShowHide]
+[ShowHide isVisible:"flex" position:"center"]
   [Range value:baseStringZoom min:100 max:1000 step:100 /]
   [ScrollBox value:baseString zoomFactor:baseStringZoom /]
 [/ShowHide]
 
-[AnimationTest /]
+## Sending Photons:
+
+[ShowHide isVisible:"none" position:"flex-start"]
+  [AnimationTest /]
+[/ShowHide]

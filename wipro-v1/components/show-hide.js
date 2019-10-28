@@ -6,31 +6,28 @@ class ShowHide extends React.Component {
     super(props);
 
     this.state = {
-      isVisible: true,
       showHideInner: {
         heigth: "10px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        margin: "5px"
+        display: `${this.props.isVisible}`,
+        alignItems: "middle",
+        justifyContent: `${this.props.position}`,
+        marginBottom: "10px"
       }
     };
   }
 
   showHide = () => {
-    this.state.isVisible
-      ? (this.setState(prevState => {
+    this.state.showHideInner.display === "flex"
+      ? this.setState(prevState => {
           let showHideInner = Object.assign({}, prevState.showHideInner);
           showHideInner.display = "none";
           return { showHideInner };
-        }),
-        this.setState({ isVisible: false }))
-      : (this.setState(prevState => {
+        })
+      : this.setState(prevState => {
           let showHideInner = Object.assign({}, prevState.showHideInner);
           showHideInner.display = "flex";
           return { showHideInner };
-        }),
-        this.setState({ isVisible: true }));
+        });
   };
 
   render() {

@@ -1,10 +1,26 @@
 .button-small {
-  padding: 3px;
+  padding: 2px;
   border: 1px solid #999;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 10px;
+}
+
+input {
+  margin: 0;
 }
 
 p {
   font-size: 12px;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
 }

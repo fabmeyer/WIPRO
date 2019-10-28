@@ -9,18 +9,22 @@ class AnimationTest extends React.Component {
   }
 
   render() {
+    const outerContainer = {
+      display: "flex"
+    };
     const animationContainer = {
-      position: "absolute"
+      display: "flex",
+      justifyContent: "start"
     };
     return (
-      <React.Fragment>
+      <div style={outerContainer}>
         <Anime
           easing="easeInOutExpo"
           elasticity="0.5"
           duration={2000}
           direction="normal"
           loop={true}
-          translateX={300}
+          translateX={200}
         >
           <span style={animationContainer}>
             <AnimationCircle color="yellow" x={100} y={100}></AnimationCircle>
@@ -32,13 +36,13 @@ class AnimationTest extends React.Component {
           duration={2000}
           direction="normal"
           loop={true}
-          translateX={300}
+          translateX={200}
         >
           <span style={animationContainer}>
-            <AnimationCircle color="yellow" x={400} y={100}></AnimationCircle>
+            <AnimationCircle color="yellow" x={100} y={100}></AnimationCircle>
           </span>
         </Anime>
-      </React.Fragment>
+      </div>
     );
   }
 }
