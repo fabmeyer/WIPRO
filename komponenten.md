@@ -1,27 +1,30 @@
 # BB84 Komponenten
+
 ## Bitstring Generator
 * Länge
-* Wahrscheinlichkeitsverteilung / Wahrscheinlichkeit von Rückgabewert 1
+* Wahrscheinlichkeitsverteilung / Wahrscheinlichkeit von Rückgabewert 1 im Gegensatz zu Rückgabewert 0
 
 ## Basen Generator
 * Länge
-* Wahrscheinlichkeitsverteilung / Wahrscheinlichkeit von Rückgabewert rectilinear
+* Wahrscheinlichkeitsverteilung / Wahrscheinlichkeit von Rückgabewert rectilinear im Gegensatz zu Rückgabewert diagonal
 
-  
 ## Photon Emitter
-* Frequenz
-* Ausrichtung Basis (rectilinear / diagonal)
-* Ungenauigkeit Basis
+* Frequenz / Speed des Outputs
+* Ungenauigkeit der erzeugten Polarisierung (Winkel verändert sich, 0 - 100%) ???
+* Ausrichtung Polarisierung (Winkel) ???
+* Photon zuviel ausgesendet
+* Photon zuwenig ausgesendet
 
 ## Photon Empfänger
-* Ausrichtung Basis (rectilinear / diagonal)
-* Ungenaugkeit Ausrichtung
-* Prozentsatz falsche Messung
+* Frequenz / Speed des Inputs
+* Ungenaugkeit der gemessenen Polarisierung (falscher Winkel gemessen, 0 - 100%) ???
+* Ausrichtung Polarisierung (Winkel) ???
+* Prozentsatz falsche Messung (nichtexistentes Photon gemessen)
 * Prozentsatz fehlgeschlagene Messung (Photon bleibt unbemerkt)
 
 ## Übertragungskanal
-* Fehlerrate
-* Noise
+* Verlustrate (Photon geht verloren)
+* Noise (Polarisierung verändert sich, 0 - 100%)
 
 ## Comparator
 * Basis / Bitstring 1
