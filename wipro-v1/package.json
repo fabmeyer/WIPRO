@@ -9,6 +9,7 @@
     "authorView": false
   },
   "dependencies": {
+    "@elsdoerfer/react-arrow": "^1.0.3",
     "animejs": "^3.1.0",
     "cors": "^2.8.5",
     "d3": "^4.0.0",

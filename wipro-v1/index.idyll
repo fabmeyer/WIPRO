@@ -10,9 +10,9 @@
   color:"#ffffff"
    /]
 
-# Create a random bitstring
+# Alice creates a random bitstring
 
-## Length of string
+## Length of Alice string
 
 [var name:"strLength" value:16 /]
 [TextInput value:strLength /]
@@ -23,7 +23,7 @@
 [var name:"baseString" value:null /]
 [ButtonStart strLength:strLength bitString:bitString baseString:baseString /]
 
-## Bitstring:
+## Alice bitstring:
 
 [var name:"bitStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
@@ -31,7 +31,7 @@
   [ScrollBox value:bitString zoomFactor:bitStringZoom /]
 [/ShowHide]
 
-## Basestring:
+## Alice basestring:
 
 [var name:"baseStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
@@ -39,7 +39,7 @@
   [ScrollBox value:baseString zoomFactor:baseStringZoom /]
 [/ShowHide]
 
-## Sending Photons:
+## Alice sends the photons to Bob:
 
 [ShowHide isVisible:"none" position:"flex-start"]
   [AnimationTest /]
