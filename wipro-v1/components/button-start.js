@@ -1,5 +1,4 @@
 const React = require("react");
-// import "../styles.css";
 
 class ButtonStart extends React.Component {
   constructor(props) {

@@ -1,5 +1,4 @@
 const React = require("react");
-// import "../styles.css";
 
 class ShowHide extends React.Component {
   constructor(props) {

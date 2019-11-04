@@ -3,6 +3,17 @@
   border: 1px solid #999;
   border-radius: 5px;
   font-size: 10px;
+  background: #ededef;
+}
+
+.article-header {
+  background: #403d58 !important;
+}
+
+body {
+  --photons: FFF200;
+  --scrollBox: C1EEFF;
+  --header: 403d58;
 }
 
 input {

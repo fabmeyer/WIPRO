@@ -31,7 +31,7 @@ class ScrollBox extends React.Component {
       border: "1px solid #999",
       borderRadius: "10px",
       fontFamily: "monospace",
-      backgroundColor: "GhostWhite",
+      backgroundColor: "#F3FBFF",
       overflow: "auto"
     };
 
