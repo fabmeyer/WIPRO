@@ -30,25 +30,24 @@ class ScrollBox extends React.Component {
       width: "500px",
       border: "1px solid #999",
       borderRadius: "10px",
-      fontFamily: "monospace",
       backgroundColor: "#F3FBFF",
       overflow: "auto"
+    };
+
+    const scrollBoxText = {
+      fontFamily: `"Fira Code", monospace`,
+      fontVariantLigatures: "none",
+      fontSize: `${this.state.fontSize}%`,
+      marginTop: "5px",
+      marginBottom: "5px",
+      textAlign: "center",
+      verticalAlign: "middle"
     };
 
     return (
       <div style={scrollBoxOuter}>
         <div style={scrollBoxInner}>
-          <p
-            style={{
-              fontSize: `${this.state.fontSize}%`,
-              marginTop: "5px",
-              marginBottom: "5px",
-              textAlign: "center",
-              verticalAlign: "middle"
-            }}
-          >
-            {this.props.value}
-          </p>
+          <p style={scrollBoxText}>{this.props.value}</p>
         </div>
       </div>
     );
