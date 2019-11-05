@@ -6,11 +6,11 @@ class ShowHide extends React.Component {
 
     this.state = {
       showHideInner: {
-        heigth: "10px",
+        heigth: "5px",
         display: `${this.props.isVisible}`,
         alignItems: "middle",
         justifyContent: `${this.props.position}`,
-        marginBottom: "10px"
+        marginBottom: "5px"
       }
     };
   }
@@ -34,7 +34,7 @@ class ShowHide extends React.Component {
       borderTop: "1px solid #999"
     };
     const showHideButton = {
-      marginRight: "0"
+      marginRight: "10%"
     };
 
     return (

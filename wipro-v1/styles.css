@@ -1,21 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Code&display=swap");
 
 .button-small {
-  padding: 2px;
+  padding: 3px;
   border: 1px solid #999;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 11px;
   background: #ededef;
-}
-
-.article-header {
-  background: #403d58 !important;
 }
 
 body {
   --photons: FFF200;
   --scrollBox: C1EEFF;
-  --header: 403d58;
 }
 
 input {
@@ -23,7 +18,7 @@ input {
 }
 
 p {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 h1 {

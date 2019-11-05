@@ -20,7 +20,9 @@ class ButtonStart extends React.Component {
   };
 
   componentDidMount() {
-    this.start();
+    if (this.props.autostart) {
+      this.start();
+    }
   }
 
   componentDidUpdate(oldProps) {
@@ -61,7 +63,7 @@ class ButtonStart extends React.Component {
     return (
       <React.Fragment>
         <button className="button-small" onClick={this.start.bind(this)}>
-          Start, Length: {this.state.strLength}
+          {this.props.text}, Length: {this.state.strLength}
         </button>
       </React.Fragment>
     );

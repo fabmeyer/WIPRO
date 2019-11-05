@@ -6,7 +6,7 @@
   subtitle:"BB84 Protokoll"
   author:"Adrian Althaus, Fabian Meyer"
   date:`(new Date()).toDateString()`
-  background:"#222222"
+  background:"#403d58"
   color:"#ffffff"
    /]
 
@@ -14,38 +14,80 @@
 
 ## Length of Alices string
 
-[var name:"strLength" value:16 /]
+[var name:"strLength" value:1028 /]
 [TextInput value:strLength /]
 
-## Compute string and base with given length
+## Alices computes a string and a base with given length
 
-[var name:"bitString" value:null /]
-[var name:"baseString" value:null /]
-[ButtonStart strLength:strLength bitString:bitString baseString:baseString /]
+[var name:"AliceBitString" value:null /]
+[var name:"AliceBaseString" value:null /]
+[ButtonStart strLength:strLength bitString:AliceBitString baseString:AliceBaseString autostart:true text:"get Alices string"/]
 
-## Alices bitstring:
+## Alices string
 
-[var name:"bitStringZoom" value:100 /]
+[var name:"AliceBitStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
-  [Range value:bitStringZoom min:100 max:1000 step:100 /]
-  [ScrollBox value:bitString zoomFactor:bitStringZoom /]
+  [Range value:AliceBitStringZoom min:100 max:1000 step:100 /]
+  [ScrollBox value:AliceBitString zoomFactor:AliceBitStringZoom /]
 [/ShowHide]
 
-## Alices basestring:
+## Alices base
 
-[var name:"baseStringZoom" value:100 /]
+[var name:"AliceBaseStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
-  [Range value:baseStringZoom min:100 max:1000 step:100 /]
-  [ScrollBox value:baseString zoomFactor:baseStringZoom /]
+  [Range value:AliceBaseStringZoom min:100 max:1000 step:100 /]
+  [ScrollBox value:AliceBaseString zoomFactor:AliceBaseStringZoom /]
 [/ShowHide]
 
-## Alice sends the photons to Bob:
+## Alice sends her photons to Bob
 
 [fullWidth]
-  [ShowHide isVisible:"none" position:"center"]
+  [ShowHide isVisible:"flex" position:"center"]
     [AnimationTest /]
   [/ShowHide]
 [/fullWidth]
 
-## Bob measures Alices photons:
+# Bob measures Alices photons
 
+## Length of Bobs base
+
+Like Alice, Bob will define a random basestring to measure Alices Photons Polarization. Bobs basestring has the same length as Alices ones.
+
+Length of string: [Display value:strLength format:"d" /].
+
+## Bobs computes a base with the same length
+
+[var name:"BobBaseString" value:null /]
+[ButtonStart strLength:strLength baseString:BobBaseString bitString:BobBitString autostart:false text:"get Bobs base"/]
+
+[var name:"BobBaseStringZoom" value:100 /]
+[ShowHide isVisible:"flex" position:"center"]
+  [Range value:BobBaseStringZoom min:100 max:1000 step:100 /]
+  [ScrollBox value:BobBaseString zoomFactor:BobBaseStringZoom /]
+[/ShowHide]
+
+## Bob measures Alices Photons with his base
+
+For every photon, if Bobs base is the same as Alices, the outcome will be certain and Bob will be able to decode the String. However if he chose the wrong base, the polarization of the photons will be lost. On average, Bob should measure every second photon correctly.
+
+[var name:"BobBitString" value:null /]
+
+[var name:"BobBitStringZoom" value:100 /]
+[ShowHide isVisible:"flex" position:"center"]
+  [Range value:BobBitStringZoom min:100 max:1000 step:100 /]
+  [ScrollBox value:BobBitString zoomFactor:BobBitStringZoom /]
+[/ShowHide]
+
+## Alice and Bob compare their bases
+
+Alice and Bob use a public authenticated channel to compare their bases.
+
+[var name:"comparedString" value:null /]
+[ButtonCompare baseString1:AliceBaseString baseString2:BobBaseString comparedString:comparedString
+text:"compare basestrings"/]
+
+[var name:"comparedStringZoom" value:100 /]
+[ShowHide isVisible:"flex" position:"center"]
+  [Range value:comparedStringZoom min:100 max:1000 step:100 /]
+  [ScrollBox value:comparedString zoomFactor:comparedStringZoom /]
+[/ShowHide]
