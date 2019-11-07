@@ -21,16 +21,16 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/receivephoton/{photons}/{base}" )
-public class PhotonReceiverAdapter {
+@Path( "/receivephoton/{photons}/{base}/{fp}/{undetected}" )
+public class PhotonReceiverParamAdapter {
 	@Context
 	private HttpServletRequest request;
 	
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
-	public Response encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public Response encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base, @PathParam("fp") float fp, @PathParam("undetected") float undetected )
 	{
-		final String bitString = BB84Service.getBitStringFromPhotons(photons, base);
+		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, fp, undetected);
 		JsonObject response = Json.createObjectBuilder()
 				.add("bitString", bitString)
 				.build();

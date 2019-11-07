@@ -21,47 +21,48 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/receivephoton/{photons}/{base}" )
-public class PhotonReceiverAdapter {
+@Path( "/randombase/{n}/{prob}" )
+public class RandomBaseParamAdapter { // implements CryptoInterface
+
 	@Context
 	private HttpServletRequest request;
 	
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
-	public Response encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
-	{
-		final String bitString = BB84Service.getBitStringFromPhotons(photons, base);
+	public Response encrypt(@PathParam("n") int n, @PathParam("prob") float prob) {
+		final String baseString = BB84Service.getRandomBaseString(Integer.valueOf(n), prob);
 		JsonObject response = Json.createObjectBuilder()
-				.add("bitString", bitString)
-				.build();
+				.add("baseString", baseString) 
+				.build(); 
 		return Response.ok(response.toString()).build();
 	}
 
 	/*
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_plain(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getRandomBaseString(str);
 		return response;
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_html(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getRandomBaseString(str);
 		return "<html><body>"+response+"</body></html>";
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_XML)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_xml(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getRandomBaseString(str);
 		return "<xml><response>"+response+"</response></xml>";	
 		}
-	
+		
 	*/
+	
 
 }

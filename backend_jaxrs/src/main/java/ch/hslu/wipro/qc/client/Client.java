@@ -29,7 +29,7 @@ public class Client {
 
 	    
 	    List<String> src = new ArrayList<String>();
-	    src.add(BB84Service.getRandomBitString(1024));
+	    src.add(BB84Service.getRandomBitString(1024, 0.5f));
 
 	    MessagePack msgpack = new MessagePack();
 	    // Serialize
