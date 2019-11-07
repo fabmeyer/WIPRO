@@ -5,7 +5,7 @@ class ScrollBox extends React.Component {
     super(props);
     this.exampleRef = React.createRef();
     this.state = {
-      string: null
+      span: null
     };
   }
 
