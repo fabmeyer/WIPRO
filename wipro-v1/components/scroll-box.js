@@ -3,7 +3,25 @@ const React = require("react");
 class ScrollBox extends React.Component {
   constructor(props) {
     super(props);
+    this.exampleRef = React.createRef();
+    this.state = {
+      string: null
+    };
   }
+
+  componentDidMount() {
+    console.log(this.exampleRef.current);
+  }
+
+  colorBackground = () => {
+    let span = String(this.exampleRef.current.innerHTML)
+      .split("")
+      .map(function(el) {
+        return '<span class="char-' + el.toLowerCase() + '">' + el + "</span>";
+      })
+      .join("");
+    this.exampleRef.current.innerHTML = span;
+  };
 
   render() {
     const scrollBoxOuter = {
@@ -33,8 +51,11 @@ class ScrollBox extends React.Component {
 
     return (
       <div style={scrollBoxOuter}>
+        <button onClick={this.colorBackground}></button>
         <div style={scrollBoxInner}>
-          <p style={scrollBoxText}>{this.props.value}</p>
+          <p className="sBT" style={scrollBoxText} ref={this.exampleRef}>
+            {this.props.value}
+          </p>
         </div>
       </div>
     );

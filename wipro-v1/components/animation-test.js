@@ -37,6 +37,7 @@ class AnimationTest extends React.Component {
           direction="normal"
           loop={true}
           translateX={[300, 600, 900, 0]}
+          opacity={[1, 1, 1, 0]}
         >
           <span style={animationContainer}>
             <AnimationCircle
@@ -54,6 +55,7 @@ class AnimationTest extends React.Component {
           direction="normal"
           loop={true}
           translateX={[300, 600, -300, 0]}
+          opacity={[1, 1, 0, 1]}
         >
           <span style={animationContainer}>
             <AnimationCircle
@@ -71,6 +73,7 @@ class AnimationTest extends React.Component {
           direction="normal"
           loop={true}
           translateX={[300, -600, -300, 0]}
+          opacity={[1, 0, 1, 1]}
         >
           <span style={animationContainer}>
             <AnimationCircle
@@ -88,6 +91,7 @@ class AnimationTest extends React.Component {
           direction="normal"
           loop={true}
           translateX={[-900, -600, -300, 0]}
+          opacity={[0, 1, 1, 1]}
         >
           <span style={animationContainer}>
             <AnimationCircle
