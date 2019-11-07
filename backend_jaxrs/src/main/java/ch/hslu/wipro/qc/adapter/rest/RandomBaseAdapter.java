@@ -30,7 +30,7 @@ public class RandomBaseAdapter { // implements CryptoInterface
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
 	public Response encrypt(@PathParam("n") int n) {
-		final String baseString = BB84Service.getRandomBaseString(Integer.valueOf(n));
+		final String baseString = BB84Service.getRandomBaseString(Integer.valueOf(n), 0.5f);
 		JsonObject response = Json.createObjectBuilder()
 				.add("baseString", baseString)
 				.build();

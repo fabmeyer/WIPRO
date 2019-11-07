@@ -20,16 +20,16 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path("/randomstring/{n}")
-public class RandomBitStringAdapter { // implements CryptoInterface
+@Path("/randomstring/{n}/{prob}")
+public class RandomBitStringParamAdapter { // implements CryptoInterface
 
 	@Context
 	private HttpServletRequest request;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response encrypt(@PathParam("n") int n) {
-		final String bitString = BB84Service.getRandomBitString(n, 0.5f);
+	public Response encrypt(@PathParam("n") int n, @PathParam("prob") float prob) {
+		final String bitString = BB84Service.getRandomBitString(n, prob);
 		JsonObject response = Json.createObjectBuilder()
 				.add("bitString", bitString)
 				.build();

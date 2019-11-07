@@ -21,47 +21,48 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/receivephoton/{photons}/{base}" )
-public class PhotonReceiverAdapter {
+@Path( "/emitphoton/{base}/{str}/{angle_var}/{length_var}" )
+public class PhotonEmitterParamAdapter {
 	@Context
 	private HttpServletRequest request;
-	
+
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
-	public Response encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public Response encrypt(@PathParam( "base" ) String base, @PathParam( "str" ) String str, @PathParam("angle_var") float angle_var, @PathParam("length_bar") float length_var )
 	{
-		final String bitString = BB84Service.getBitStringFromPhotons(photons, base);
+		final String photonString = BB84Service.getPhotonString(base, str, angle_var, length_var);
 		JsonObject response = Json.createObjectBuilder()
-				.add("bitString", bitString)
+				.add("photonString", photonString)
 				.build();
 		return Response.ok(response.toString()).build();
 	}
-
+	
 	/*
+	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_plain(@PathParam( "base" ) String base, @PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getPhotonString(base, str);
 		return response;
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_html(@PathParam( "base" ) String base, @PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getPhotonString(base, str);
 		return "<html><body>"+response+"</body></html>";
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_XML)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_xml(@PathParam( "base" ) String base, @PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getPhotonString(base, str);
 		return "<xml><response>"+response+"</response></xml>";	
 		}
-	
+
 	*/
 
 }
