@@ -5,7 +5,8 @@ class ScrollBox extends React.Component {
     super(props);
     this.exampleRef = React.createRef();
     this.state = {
-      span: null
+      string: null,
+      isColor: false
     };
   }
 
@@ -13,14 +14,36 @@ class ScrollBox extends React.Component {
     console.log(this.exampleRef.current);
   }
 
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+    if (oldProps.zoomFactor !== newProps.zoomFactor) {
+      this.colorBackground();
+    }
+  }
+
   colorBackground = () => {
-    let span = String(this.exampleRef.current.innerHTML)
-      .split("")
-      .map(function(el) {
-        return '<span class="char-' + el.toLowerCase() + '">' + el + "</span>";
-      })
-      .join("");
-    this.exampleRef.current.innerHTML = span;
+    if (this.props.zoomFactor <= 50) {
+      if (!this.state.isColor) {
+        this.setState({
+          string: this.exampleRef.current.innerHTML
+        });
+        let span = String(this.exampleRef.current.innerHTML)
+          .split("")
+          .map(function(el) {
+            return (
+              '<span class="char-' + el.toLowerCase() + '">' + el + "</span>"
+            );
+          })
+          .join("");
+        this.exampleRef.current.innerHTML = span;
+      }
+      this.state.isColor = true;
+    } else if (this.props.zoomFactor > 50) {
+      if (this.state.isColor) {
+        this.exampleRef.current.innerHTML = this.state.string;
+        this.state.isColor = false;
+      }
+    }
   };
 
   render() {
@@ -46,14 +69,14 @@ class ScrollBox extends React.Component {
       marginTop: "5px",
       marginBottom: "5px",
       textAlign: "center",
-      verticalAlign: "middle"
+      verticalAlign: "middle",
+      lineHeight: "1"
     };
 
     return (
       <div style={scrollBoxOuter}>
-        <button onClick={this.colorBackground}></button>
         <div style={scrollBoxInner}>
-          <p className="sBT" style={scrollBoxText} ref={this.exampleRef}>
+          <p style={scrollBoxText} ref={this.exampleRef}>
             {this.props.value}
           </p>
         </div>

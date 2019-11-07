@@ -8,6 +8,26 @@
   background: #ededef;
 }
 
+.char-0 {
+  color: white;
+  background-color: white;
+}
+
+.char-1 {
+  color: black;
+  background-color: black;
+}
+
+.char-\+ {
+  color: yellow;
+  background-color: yellow;
+}
+
+.char-x {
+  color: blue;
+  background-color: blue;
+}
+
 body {
   --photons: FFF200;
   --scrollBox: C1EEFF;

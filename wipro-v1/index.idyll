@@ -14,7 +14,7 @@
 
 ## Length of Alices string
 
-[var name:"strLength" value:1028 /]
+[var name:"strLength" value:4096 /]
 [TextInput value:strLength /]
 
 ## Alices computes a string and a base with given length
@@ -27,7 +27,7 @@
 
 [var name:"AliceBitStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
-  [Range value:AliceBitStringZoom min:100 max:1000 step:100 /]
+  [Range value:AliceBitStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:AliceBitString zoomFactor:AliceBitStringZoom /]
 [/ShowHide]
 
@@ -35,7 +35,7 @@
 
 [var name:"AliceBaseStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
-  [Range value:AliceBaseStringZoom min:100 max:1000 step:100 /]
+  [Range value:AliceBaseStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:AliceBaseString zoomFactor:AliceBaseStringZoom /]
 [/ShowHide]
 
@@ -62,7 +62,7 @@ Length of string: [Display value:strLength format:"d" /].
 
 [var name:"BobBaseStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
-  [Range value:BobBaseStringZoom min:100 max:1000 step:100 /]
+  [Range value:BobBaseStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:BobBaseString zoomFactor:BobBaseStringZoom /]
 [/ShowHide]
 
@@ -74,7 +74,7 @@ For every photon, if Bobs base is the same as Alices, the outcome will be certai
 
 [var name:"BobBitStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
-  [Range value:BobBitStringZoom min:100 max:1000 step:100 /]
+  [Range value:BobBitStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:BobBitString zoomFactor:BobBitStringZoom /]
 [/ShowHide]
 
@@ -88,6 +88,6 @@ text:"compare basestrings"/]
 
 [var name:"comparedStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
-  [Range value:comparedStringZoom min:100 max:1000 step:100 /]
+  [Range value:comparedStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:comparedString zoomFactor:comparedStringZoom /]
 [/ShowHide]

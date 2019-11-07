@@ -1,5 +1,17 @@
 # WIPRO - Notebook
 
+## TODO bis 20.11.
+
+### Frontend
+
+1. BB84 Protokoll fertig machen
+2. Darstellung Bitstring/Basis als Raster, aligniert / nebeneinander
+3. Animationen fertig machen
+4. Übersichtsgraphik ("Optical table") für Übersicht über das System und Konfiguration der Komponenten
+5. Design-Sketchen von Hand
+6. (responsive)
+7. (deployment)
+
 ## TODO bis 07.11.
 
 ## Allgmein
