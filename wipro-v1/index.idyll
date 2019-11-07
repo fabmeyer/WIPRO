@@ -58,7 +58,7 @@ Length of string: [Display value:strLength format:"d" /].
 ## Bobs computes a base with the same length
 
 [var name:"BobBaseString" value:null /]
-[ButtonStart strLength:strLength baseString:BobBaseString bitString:BobBitString autostart:false text:"get Bobs base"/]
+[ButtonStart strLength:strLength bitString:null baseString:BobBaseString autostart:false text:"get Bobs base"/]
 
 [var name:"BobBaseStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
@@ -71,6 +71,7 @@ Length of string: [Display value:strLength format:"d" /].
 For every photon, if Bobs base is the same as Alices, the outcome will be certain and Bob will be able to decode the String. However if he chose the wrong base, the polarization of the photons will be lost. On average, Bob should measure every second photon correctly.
 
 [var name:"BobBitString" value:null /]
+[ButtonMeasure strLength:strLength bitString:AliceBitString baseString:BobBaseString measuredString:BobBitString autostart:false text:"measure Alices photons"/]
 
 [var name:"BobBitStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]

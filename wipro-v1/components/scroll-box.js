@@ -10,10 +10,6 @@ class ScrollBox extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.exampleRef.current);
-  }
-
   componentDidUpdate(oldProps) {
     const newProps = this.props;
     if (oldProps.zoomFactor !== newProps.zoomFactor) {

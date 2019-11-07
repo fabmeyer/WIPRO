@@ -1,23 +1,23 @@
 const React = require("react");
 
-class ButtonCompare extends React.Component {
+class ButtonMeasure extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      comparedString: null
+      measuredString: null
     };
   }
 
-  compare() {
+  measure() {
     fetch(
-      `http://localhost:8080/rest/comparebase/${this.props.baseString1}/${this.props.baseString2}`
+      `http://localhost:8080/rest/receivephoton/${this.props.bitString}/${this.props.baseString}`
     )
       .then(res => res.json())
       .then(data => {
-        this.setState({ comparedString: data.compareString });
+        this.setState({ measuredString: data.bitString });
         this.props.updateProps({
-          comparedString: this.state.comparedString
+          measuredString: this.state.measuredString
         });
         console.log(this.state);
       })
@@ -27,7 +27,7 @@ class ButtonCompare extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <button className="button-small" onClick={this.compare.bind(this)}>
+        <button className="button-small" onClick={this.measure.bind(this)}>
           {this.props.text}, Length: {this.state.strLength}
         </button>
       </React.Fragment>
@@ -35,4 +35,4 @@ class ButtonCompare extends React.Component {
   }
 }
 
-module.exports = ButtonCompare;
+module.exports = ButtonMeasure;
