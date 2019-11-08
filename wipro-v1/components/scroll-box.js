@@ -6,12 +6,24 @@ class ScrollBox extends React.Component {
     this.exampleRef = React.createRef();
     this.state = {
       string: null,
-      isColor: false
+      isColor: false,
+      zoomFactor: this.props.zoomFactor
     };
   }
 
   componentDidUpdate(oldProps) {
     const newProps = this.props;
+    if (oldProps.value !== newProps.value) {
+      if (this.props.zoomFactor <= 50) {
+        this.setState({
+          zoomFactor: 75
+        });
+        this.props.updateProps({
+          zoomFactor: this.state.zoomFactor
+        });
+        this.colorBackground();
+      }
+    }
     if (oldProps.zoomFactor !== newProps.zoomFactor) {
       this.colorBackground();
     }
@@ -21,7 +33,8 @@ class ScrollBox extends React.Component {
     if (this.props.zoomFactor <= 50) {
       if (!this.state.isColor) {
         this.setState({
-          string: this.exampleRef.current.innerHTML
+          string: this.exampleRef.current.innerHTML,
+          isColor: true
         });
         let span = String(this.exampleRef.current.innerHTML)
           .split("")
@@ -33,11 +46,13 @@ class ScrollBox extends React.Component {
           .join("");
         this.exampleRef.current.innerHTML = span;
       }
-      this.state.isColor = true;
     } else if (this.props.zoomFactor > 50) {
       if (this.state.isColor) {
         this.exampleRef.current.innerHTML = this.state.string;
-        this.state.isColor = false;
+        this.setState({
+          string: null,
+          isColor: false
+        });
       }
     }
   };

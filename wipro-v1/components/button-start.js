@@ -7,7 +7,8 @@ class ButtonStart extends React.Component {
     this.state = {
       strLength: this.checkType(this.props.strLength),
       bitString: this.props.bitString,
-      baseString: this.props.baseString
+      baseString: this.props.baseString,
+      dataHasLoaded: false
     };
   }
 
@@ -35,9 +36,8 @@ class ButtonStart extends React.Component {
   }
 
   start() {
-    // convert from to number
+    this.setState({ dataHasLoaded: false });
     const newLenght = this.checkType(this.state.strLength);
-    // get Bitstring with length strLength
     fetch(`http://localhost:8080/rest/randomstring/${newLenght}`)
       .then(res => res.json())
       .then(data => {
@@ -47,7 +47,6 @@ class ButtonStart extends React.Component {
         });
       })
       .catch(console.log);
-    // get Basestring with length strLength
     fetch(`http://localhost:8080/rest/randombase/${newLenght}`)
       .then(res => res.json())
       .then(data => {
@@ -56,7 +55,13 @@ class ButtonStart extends React.Component {
           baseString: this.state.baseString
         });
       })
-      .catch(console.log);
+      .catch(console.log)
+      .then(_data => {
+        this.setState({ dataHasLoaded: true });
+        this.props.updateProps({
+          dataHasLoaded: true
+        });
+      });
   }
 
   render() {

@@ -21,7 +21,8 @@
 
 [var name:"AliceBitString" value:null /]
 [var name:"AliceBaseString" value:null /]
-[ButtonStart strLength:strLength bitString:AliceBitString baseString:AliceBaseString autostart:true text:"get Alices string"/]
+[var name:"dataHasLoaded" value:null /]
+[ButtonStart strLength:strLength bitString:AliceBitString baseString:AliceBaseString autostart:true dataHasLoaded:dataHasLoaded text:"get Alices string"/]
 
 ## Alices string
 
@@ -38,6 +39,10 @@
   [Range value:AliceBaseStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:AliceBaseString zoomFactor:AliceBaseStringZoom /]
 [/ShowHide]
+
+## Test
+
+[PhotonGrid bitString:AliceBitString baseString:AliceBaseString dataHasLoaded:dataHasLoaded /]
 
 ## Alice sends her photons to Bob
 

@@ -28,6 +28,30 @@
   background-color: blue;
 }
 
+.photonGrid-0 {
+  color: black;
+  background-color: white;
+  margin: 0 1px;
+}
+
+.photonGrid-1 {
+  color: black;
+  background-color: white;
+  margin: 0 1px;
+}
+
+.photonGrid-\+ {
+  color: black;
+  background-color: white;
+  margin: 0 1px;
+}
+
+.photonGrid-x {
+  color: black;
+  background-color: white;
+  margin: 0 1px;
+}
+
 body {
   --photons: FFF200;
   --scrollBox: C1EEFF;
