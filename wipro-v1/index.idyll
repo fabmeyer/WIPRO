@@ -14,7 +14,7 @@
 
 ## Length of Alices string
 
-[var name:"strLength" value:4096 /]
+[var name:"strLength" value:16 /]
 [TextInput value:strLength /]
 
 ## Alices computes a string and a base with given length
