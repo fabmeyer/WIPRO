@@ -86,11 +86,14 @@ h4 {
 
 h1.hed,
 h2.dek {
+  text-align: center;
+  vertical-align: middle;
   color: var(--background);
 }
 
 h1.hed {
-  font-size: 96px;
+  font-size: 128px;
   font-style: italic;
   font-weight: 900;
+  letter-spacing: 1px;
 }

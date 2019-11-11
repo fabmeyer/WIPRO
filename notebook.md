@@ -5,15 +5,27 @@
 ### Frontend
 
 1. BB84 Protokoll fertig machen
+	* Basenvergleich
 	* Schlüssel kürzen nach Basenvergleich
 	* Statistische Tests auf gekürzten Schlüssel, erneut kürzen
-	* fertig
+	* (Perfektes BB84 Protokoll fertig)
+	* Einbau der realistischeren features:
+		* Photonengenerator: Verhältnis der Basen
+		* Übertragung: Rauschen
+		* ...
 2. Darstellung Bitstring/Basis als Raster, aligniert / nebeneinander
-3. Animationen fertig machen
-4. Übersichtsgraphik ("Optical table") für Übersicht über das System und Konfiguration der Komponenten
+3. Komponenten fertig machen:
+	* Übersichtsgraphik ("Optical table") für Übersicht über das System und Konfiguration der Komponenten
+	* Modal ("Rodal") um zusätzliche Infos zu Komponent zu bekommen
+	* Animationen:
+		* Photon wird "richtig" gemessen (keine Änderung d. Polarisation)
+		* Photon wird "falsch" gemessen (Änderung d. Polarisation)
+		* Dazu ein Raster machen, welches Winkel d. Filters darstellt
+4. Text einfügen
 5. Design-Sketchen von Hand
-6. (responsive)
-7. (deployment)
+6. (Gedanken machen über Testing; Front- und Backend)
+7. (responsive)
+8. (deployment)
 
 ## TODO bis 07.11.
 
