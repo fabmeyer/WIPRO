@@ -1,21 +1,30 @@
-[meta title:"WIPRO V1" description:"BB84 Protokoll"/]
+[meta title:"BB84" description:"Quantum cryptography protocol explained"/]
 
 [Header
   fullWidth:true
-  title:"WIPRO V1"
-  subtitle:"BB84 Protokoll"
+  title:"BB84"
+  subtitle:"Quantum cryptography protocol explained"
   author:"Adrian Althaus, Fabian Meyer"
   date:`(new Date()).toDateString()`
   background:"#403d58"
-  color:"#ffffff"
+  color:"#ededef"
    /]
 
 # Alice creates a random bitstring
 
 ## Length of Alices string
 
-[var name:"strLength" value:16 /]
+[var name:"strLength" value:32 /]
 [TextInput value:strLength /]
+
+## Test
+[Aside]
+  [AsideText]
+    Jass oder auch Jas kommt aus den Niederlanden. Niederländische Vorläufer waren Jasspel und Belle-Bruid. Nicht nur der Jas (Bauer), auch die Trumpfneun («Nell») erinnert an die niederländischen Ursprünge.
+
+    Im letzten Drittel des 18. Jahrhunderts gelangte das Spiel mit protestantischen Söldnern in die Schweiz. Jass gewann schnell an Beliebtheit und verdrängte das Tarock, welches von eidgenössischen und französischen Söldnern aus Oberitalien in die Schweiz gebracht wurde.
+  [/AsideText]
+[/Aside]
 
 ## Alices computes a string and a base with given length
 

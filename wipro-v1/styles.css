@@ -1,11 +1,20 @@
-@import url("https://fonts.googleapis.com/css?family=Fira+Code&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:400i|Fira+Code|Fira+Sans:400,900i&display=swap");
+
+.aside-text p {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 18px;
+  margin: 5px 0;
+  text-align: center;
+  vertical-align: middle;
+}
 
 .button-small {
   padding: 3px;
   border: 1px solid #999;
   border-radius: 5px;
   font-size: 11px;
-  background: #ededef;
+  background: var(--background);
 }
 
 .char-0 {
@@ -53,26 +62,35 @@
 }
 
 body {
-  --photons: FFF200;
-  --scrollBox: C1EEFF;
+  --header: #403d58;
+  --background: #ededef;
+  --aside: #fef9ff;
+  --scrollBox: #c1eeff;
+  --border: #999;
+  --border-light: #ccc;
+  --photons: #fff200;
 }
 
 input {
   margin: 0;
 }
 
-p {
-  font-size: 14px;
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fira Sans", sans-serif;
+  color: var(--header);
+  font-weight: 400;
 }
 
-h1 {
-  font-size: 20px;
+h1.hed,
+h2.dek {
+  color: var(--background);
 }
 
-h2 {
-  font-size: 18px;
-}
-
-h3 {
-  font-size: 16px;
+h1.hed {
+  font-size: 96px;
+  font-style: italic;
+  font-weight: 900;
 }
