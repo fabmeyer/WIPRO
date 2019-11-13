@@ -1,5 +1,6 @@
 const React = require("react");
 import ReactRough, { Rectangle } from "react-rough";
+import Popup from "reactjs-popup";
 
 class SystemOverview extends React.Component {
   constructor(props) {
@@ -20,21 +21,35 @@ class SystemOverview extends React.Component {
       border: "1px solid #ccc"
     };
 
+    const buttonStyle = {
+      border: "none",
+      backgroundColor: "inherit"
+    };
+
     return (
       <div style={overviewContainer}>
         <div>
           <p>Alice</p>
-          <ReactRough width={240} height={240}>
-            <Rectangle
-              points={[20, 20, 200, 200]}
-              fill="yellow"
-              fillWeight="6"
-              fillStyle="hachure"
-              strokeWidth="2"
-              roughness="2"
-              bowing="0"
-            />
-          </ReactRough>
+          <Popup
+            position="right center"
+            trigger={
+              <button style={buttonStyle}>
+                <ReactRough width={240} height={240}>
+                  <Rectangle
+                    points={[20, 20, 200, 200]}
+                    fill="yellow"
+                    fillWeight="6"
+                    fillStyle="hachure"
+                    strokeWidth="2"
+                    roughness="2"
+                    bowing="0"
+                  />
+                </ReactRough>
+              </button>
+            }
+          >
+            Modal Content
+          </Popup>
         </div>
         <div>
           <p>Channel</p>
