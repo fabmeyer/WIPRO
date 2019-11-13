@@ -10,6 +10,12 @@
   color:"#ededef"
    /]
 
+# Introduction
+
+[fullWidth]
+  [SystemOverview /]
+[/fullWidth]
+
 # Alice creates a random bitstring
 
 ## Length of Alices string

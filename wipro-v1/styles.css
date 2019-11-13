@@ -61,16 +61,6 @@
   margin: 0 1px;
 }
 
-body {
-  --header: #403d58;
-  --background: #ededef;
-  --aside: #fef9ff;
-  --scrollBox: #c1eeff;
-  --border: #999;
-  --border-light: #ccc;
-  --photons: #fff200;
-}
-
 input {
   margin: 0;
 }
@@ -96,4 +86,16 @@ h1.hed {
   font-style: italic;
   font-weight: 900;
   letter-spacing: 1px;
+}
+
+body {
+  --header: #403d58;
+  --background: #ededef;
+  --aside: #fef9ff;
+  --scrollBox: #c1eeff;
+  --border: #999;
+  --border-light: #ccc;
+  /* animation */
+  --photons: #fff200;
+  --overview-grey: #b1cba1;
 }

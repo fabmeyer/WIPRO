@@ -13,14 +13,14 @@ class AnimationCircle extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    setInterval(
-      function() {
-        this.forceUpdate();
-      }.bind(this),
-      100
-    );
-  };
+  // componentDidMount = () => {
+  //   setInterval(
+  //     function() {
+  //       this.forceUpdate();
+  //     }.bind(this),
+  //     100
+  //   );
+  // };
 
   returnArrowX = args => {
     if (args === 90) {
