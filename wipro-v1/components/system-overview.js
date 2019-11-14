@@ -1,6 +1,6 @@
 const React = require("react");
 import ReactRough, { Rectangle } from "react-rough";
-import Popup from "reactjs-popup";
+import Dropdown from "react-dropdown";
 
 class SystemOverview extends React.Component {
   constructor(props) {
@@ -21,35 +21,39 @@ class SystemOverview extends React.Component {
       border: "1px solid #ccc"
     };
 
-    const buttonStyle = {
-      border: "none",
-      backgroundColor: "inherit"
+    const variables = {
+      containerWidth: "240",
+      containerHeight: "240",
+      width: "200",
+      height: "200"
     };
+
+    const options = ["one", "two", "three"];
 
     return (
       <div style={overviewContainer}>
         <div>
           <p>Alice</p>
-          <Popup
-            position="right center"
-            trigger={
-              <button style={buttonStyle}>
-                <ReactRough width={240} height={240}>
-                  <Rectangle
-                    points={[20, 20, 200, 200]}
-                    fill="yellow"
-                    fillWeight="6"
-                    fillStyle="hachure"
-                    strokeWidth="2"
-                    roughness="2"
-                    bowing="0"
-                  />
-                </ReactRough>
-              </button>
-            }
+          <ReactRough
+            width={eval(variables.containerWidth)}
+            height={eval(variables.containerHeight)}
           >
-            Modal Content
-          </Popup>
+            <Rectangle
+              points={[20, 20, eval(variables.width), eval(variables.height)]}
+              fill="yellow"
+              fillWeight="6"
+              fillStyle="hachure"
+              strokeWidth="2"
+              roughness="2"
+              bowing="0"
+            />
+          </ReactRough>
+          <Dropdown
+            options={options}
+            onChange={this._onSelect}
+            value={null}
+            placeholder="Select an option"
+          />
         </div>
         <div>
           <p>Channel</p>
@@ -64,6 +68,7 @@ class SystemOverview extends React.Component {
               bowing="0"
             />
           </ReactRough>
+          <Range></Range>
         </div>
         <div>
           <p>Bob</p>
@@ -78,6 +83,12 @@ class SystemOverview extends React.Component {
               bowing="0"
             />
           </ReactRough>
+          <Dropdown
+            options={options}
+            onChange={this._onSelect}
+            value={null}
+            placeholder="Select an option"
+          />
         </div>
       </div>
     );
