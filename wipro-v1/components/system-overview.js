@@ -1,14 +1,26 @@
 const React = require("react");
 import ReactRough, { Rectangle } from "react-rough";
 import Dropdown from "react-dropdown";
+import ReactSlider from "react-slider";
 
 class SystemOverview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      noise: this.props.noise
+    };
   }
 
   componentDidMount = () => {};
+
+  componentDidUpdate(oldState) {
+    const newState = this.state;
+    if (oldState.noise !== newState.noise) {
+      this.props.updateProps({
+        noise: this.state.noise
+      });
+    }
+  }
 
   render() {
     const overviewContainer = {
@@ -18,7 +30,13 @@ class SystemOverview extends React.Component {
       textAlign: "center",
       verticalAlign: "middle",
       backgroundColor: "#FEF9FF",
-      border: "1px solid #ccc"
+      border: "1px solid #ccc",
+      padding: "10px 0"
+    };
+
+    const noiseContainer = {
+      display: "flex",
+      transform: "translateY(-100px)"
     };
 
     const variables = {
@@ -28,6 +46,7 @@ class SystemOverview extends React.Component {
       height: "200"
     };
 
+    // insert options here
     const options = ["one", "two", "three"];
 
     return (
@@ -52,7 +71,7 @@ class SystemOverview extends React.Component {
             options={options}
             onChange={this._onSelect}
             value={null}
-            placeholder="Select an option"
+            placeholder="Select photon generator"
           />
         </div>
         <div>
@@ -68,7 +87,28 @@ class SystemOverview extends React.Component {
               bowing="0"
             />
           </ReactRough>
-          <Range></Range>
+          <div style={noiseContainer}>
+            <p
+              style={{
+                width: "100px",
+                margin: "0"
+              }}
+            >
+              Set noise
+            </p>
+            <ReactSlider
+              className="horizontal-slider"
+              thumbClassName="example-thumb"
+              trackClassName="example-track"
+              onChange={props => {
+                this.setState({
+                  noise: props
+                });
+              }}
+              renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
+              defaultValue={this.state.noise}
+            />
+          </div>
         </div>
         <div>
           <p>Bob</p>
@@ -87,7 +127,7 @@ class SystemOverview extends React.Component {
             options={options}
             onChange={this._onSelect}
             value={null}
-            placeholder="Select an option"
+            placeholder="Select photon detector"
           />
         </div>
       </div>

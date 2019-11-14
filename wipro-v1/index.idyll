@@ -12,8 +12,9 @@
 
 # Introduction
 
+[var name:"noise" value:0 /]
 [fullWidth]
-  [SystemOverview /]
+  [SystemOverview noise:noise/]
 [/fullWidth]
 
 # Alice creates a random bitstring
