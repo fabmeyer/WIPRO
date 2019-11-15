@@ -61,11 +61,13 @@ class ScrollBox extends React.Component {
     const scrollBoxOuter = {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      height: "100%"
     };
 
     const scrollBoxInner = {
       maxHeight: "500px",
+      height: "100%",
       width: "500px",
       border: "1px solid #999",
       borderRadius: "10px",

@@ -107,6 +107,7 @@ class SystemOverview extends React.Component {
               }}
               renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
               defaultValue={this.state.noise}
+              style={{ cursor: "pointer" }}
             />
           </div>
         </div>

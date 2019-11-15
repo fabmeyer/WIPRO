@@ -21,10 +21,9 @@
 
 ## Length of Alices string
 
-[var name:"strLength" value:32 /]
+[var name:"strLength" value:2048 /]
 [TextInput value:strLength /]
 
-## Test
 [Aside]
   [AsideText]
     Jass oder auch Jas kommt aus den Niederlanden. Niederländische Vorläufer waren Jasspel und Belle-Bruid. Nicht nur der Jas (Bauer), auch die Trumpfneun («Nell») erinnert an die niederländischen Ursprünge.
@@ -35,30 +34,27 @@
 
 ## Alices computes a string and a base with given length
 
+[ButtonStart strLength:strLength bitString:AliceBitString baseString:AliceBaseString autostart:true dataHasLoaded:dataHasLoaded text:"get Alices string"/]
+
+## Alices bitstring and base
+
 [var name:"AliceBitString" value:null /]
 [var name:"AliceBaseString" value:null /]
 [var name:"dataHasLoaded" value:null /]
-[ButtonStart strLength:strLength bitString:AliceBitString baseString:AliceBaseString autostart:true dataHasLoaded:dataHasLoaded text:"get Alices string"/]
-
-## Alices string
-
 [var name:"AliceBitStringZoom" value:100 /]
-[ShowHide isVisible:"flex" position:"center"]
+[var name:"AliceBaseStringZoom" value:100 /]
+[PhotonGrid
+  bitString:AliceBitString
+  baseString:AliceBaseString
+  dataHasLoaded:dataHasLoaded
+  aliceBitStringZoom:AliceBaseStringZoom
+  aliceBaseStringZoom:AliceBaseStringZoom
+  ]
   [Range value:AliceBitStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:AliceBitString zoomFactor:AliceBitStringZoom /]
-[/ShowHide]
-
-## Alices base
-
-[var name:"AliceBaseStringZoom" value:100 /]
-[ShowHide isVisible:"flex" position:"center"]
   [Range value:AliceBaseStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:AliceBaseString zoomFactor:AliceBaseStringZoom /]
-[/ShowHide]
-
-## Test
-
-[PhotonGrid bitString:AliceBitString baseString:AliceBaseString dataHasLoaded:dataHasLoaded /]
+[/PhotonGrid]
 
 ## Alice sends her photons to Bob
 

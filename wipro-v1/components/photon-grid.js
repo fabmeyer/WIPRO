@@ -1,4 +1,6 @@
 const React = require("react");
+import Rodal from "rodal";
+import ScrollBox from "./scroll-box";
 
 class PhotonGrid extends React.Component {
   constructor(props) {
@@ -8,7 +10,9 @@ class PhotonGrid extends React.Component {
     this.state = {
       string1: null,
       string2: null,
-      isColor: false
+      isColor: false,
+      rodal1: false,
+      rodal2: false
     };
   }
 
@@ -59,6 +63,24 @@ class PhotonGrid extends React.Component {
     }
   };
 
+  rodal1() {
+    this.setState(function(prevState) {
+      return { rodal1: !prevState.rodal1 };
+    });
+    this.state.rodal1 === false
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }
+
+  rodal2() {
+    this.setState(function(prevState) {
+      return { rodal2: !prevState.rodal2 };
+    });
+    this.state.rodal2 === false
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }
+
   render() {
     this.colorBackground();
 
@@ -77,18 +99,57 @@ class PhotonGrid extends React.Component {
       borderBottom: "2px solid black",
       marginBottom: "0",
       backgroundColor: "black",
-      width: "min-content"
+      width: "min-content",
+      cursor: "pointer"
     };
 
     return (
       <div>
         <div style={textContainer}>
-          <p style={text} ref={this.exampleRef1}>
+          <p
+            style={text}
+            ref={this.exampleRef1}
+            onClick={this.rodal1.bind(this)}
+          >
             {this.props.bitString}
           </p>
-          <p style={text} ref={this.exampleRef2}>
+          <Rodal
+            visible={this.state.rodal1}
+            onClose={this.rodal1.bind(this)}
+            width="500px"
+            height="auto"
+            measure=""
+            showCloseButton="true"
+          >
+            <div>
+              <ScrollBox
+                value={this.props.bitString}
+                zoomFactor={this.props.aliceBitStringZoom}
+              ></ScrollBox>
+            </div>
+          </Rodal>
+          <p
+            style={text}
+            ref={this.exampleRef2}
+            onClick={this.rodal2.bind(this)}
+          >
             {this.props.baseString}
           </p>
+          <Rodal
+            visible={this.state.rodal2}
+            onClose={this.rodal2.bind(this)}
+            width="500px"
+            height="auto"
+            measure=""
+            showCloseButton="true"
+          >
+            <div>
+              <ScrollBox
+                value={this.props.baseString}
+                zoomFactor={this.props.aliceBaseStringZoom}
+              ></ScrollBox>
+            </div>
+          </Rodal>
         </div>
       </div>
     );

@@ -9,7 +9,8 @@ class AsideText extends React.Component {
     const textContainer = {
       backgroundColor: "#FEF9FF",
       border: "1px solid #ccc",
-      padding: "5px"
+      padding: "5px",
+      boxShadow: "0 1px 4px rgba(0, 0, 0, 0.25)"
     };
 
     return (
