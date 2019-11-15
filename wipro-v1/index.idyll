@@ -49,11 +49,10 @@
   dataHasLoaded:dataHasLoaded
   aliceBitStringZoom:AliceBaseStringZoom
   aliceBaseStringZoom:AliceBaseStringZoom
+  min:25
+  max:500
+  step:25
   ]
-  [Range value:AliceBitStringZoom min:25 max:500 step:25 /]
-  [ScrollBox value:AliceBitString zoomFactor:AliceBitStringZoom /]
-  [Range value:AliceBaseStringZoom min:25 max:500 step:25 /]
-  [ScrollBox value:AliceBaseString zoomFactor:AliceBaseStringZoom /]
 [/PhotonGrid]
 
 ## Alice sends her photons to Bob

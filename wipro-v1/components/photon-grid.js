@@ -1,6 +1,7 @@
 const React = require("react");
 import Rodal from "rodal";
 import ScrollBox from "./scroll-box";
+import ReactSlider from "react-slider";
 
 class PhotonGrid extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class PhotonGrid extends React.Component {
   }
 
   componentDidUpdate(oldProps) {
+    console.log(this.props, this.state);
     const newProps = this.props;
     if (
       oldProps.bitString !== newProps.bitString ||
@@ -119,8 +121,28 @@ class PhotonGrid extends React.Component {
             width="500px"
             height="auto"
             measure=""
-            showCloseButton="true"
+            showCloseButton={true}
           >
+            <div>
+              <ReactSlider
+                className="horizontal-slider"
+                thumbClassName="example-thumb"
+                trackClassName="example-track"
+                onChange={props => {
+                  this.props.updateProps({
+                    aliceBitStringZoom: props
+                  });
+                }}
+                renderThumb={(props, state) => (
+                  <p {...props}>{state.valueNow}</p>
+                )}
+                defaultValue={this.props.aliceBitStringZoom}
+                style={{ cursor: "pointer" }}
+                min={25}
+                max={250}
+                step={25}
+              />
+            </div>
             <div>
               <ScrollBox
                 value={this.props.bitString}
@@ -141,8 +163,9 @@ class PhotonGrid extends React.Component {
             width="500px"
             height="auto"
             measure=""
-            showCloseButton="true"
+            showCloseButton={true}
           >
+            <div></div>
             <div>
               <ScrollBox
                 value={this.props.baseString}

@@ -11,8 +11,6 @@ class SystemOverview extends React.Component {
     };
   }
 
-  componentDidMount = () => {};
-
   componentDidUpdate(oldState) {
     const newState = this.state;
     if (oldState.noise !== newState.noise) {
@@ -107,7 +105,7 @@ class SystemOverview extends React.Component {
               }}
               renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
               defaultValue={this.state.noise}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", width: "500px" }}
             />
           </div>
         </div>

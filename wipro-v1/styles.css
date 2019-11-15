@@ -204,7 +204,6 @@ body {
 
 .horizontal-slider {
   margin: auto;
-  width: 500px;
   height: 40px;
   border: 1px solid grey;
   border-radius: 4px;
@@ -262,12 +261,7 @@ body {
 }
 
 .rodal-dialog {
-  max-height: 545px !important;
-  padding-top: 45px !important;
-}
-
-.rodal-dialog div {
-  height: 100%;
+  max-height: 555px !important;
 }
 
 /* -- mask -- */
