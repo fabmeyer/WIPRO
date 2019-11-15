@@ -203,11 +203,19 @@ body {
 /* React Slider */
 
 .horizontal-slider {
-  margin: auto;
   height: 40px;
   border: 1px solid grey;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.overview-slider {
+  margin: auto;
+  width: 500px;
+}
+
+.zoom-slider {
+  width: 440;
 }
 
 .example-thumb {
@@ -261,7 +269,7 @@ body {
 }
 
 .rodal-dialog {
-  max-height: 555px !important;
+  max-height: 570px !important;
 }
 
 /* -- mask -- */

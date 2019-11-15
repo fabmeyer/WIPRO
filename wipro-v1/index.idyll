@@ -12,7 +12,7 @@
 
 # Introduction
 
-[var name:"noise" value:0 /]
+[var name:"noise" value:50 /]
 [fullWidth]
   [SystemOverview noise:noise/]
 [/fullWidth]
@@ -47,7 +47,7 @@
   bitString:AliceBitString
   baseString:AliceBaseString
   dataHasLoaded:dataHasLoaded
-  aliceBitStringZoom:AliceBaseStringZoom
+  aliceBitStringZoom:AliceBitStringZoom
   aliceBaseStringZoom:AliceBaseStringZoom
   min:25
   max:500

@@ -3,21 +3,9 @@ import ReactRough, { Rectangle } from "react-rough";
 import Dropdown from "react-dropdown";
 import ReactSlider from "react-slider";
 
-class SystemOverview extends React.Component {
+class SystemOverview extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      noise: this.props.noise
-    };
-  }
-
-  componentDidUpdate(oldState) {
-    const newState = this.state;
-    if (oldState.noise !== newState.noise) {
-      this.props.updateProps({
-        noise: this.state.noise
-      });
-    }
   }
 
   render() {
@@ -95,17 +83,17 @@ class SystemOverview extends React.Component {
               Set noise
             </p>
             <ReactSlider
-              className="horizontal-slider"
+              className="horizontal-slider overview-slider"
               thumbClassName="example-thumb"
               trackClassName="example-track"
               onChange={props => {
-                this.setState({
+                this.props.updateProps({
                   noise: props
                 });
               }}
               renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
-              defaultValue={this.state.noise}
-              style={{ cursor: "pointer", width: "500px" }}
+              defaultValue={this.props.noise}
+              style={{ width: "500px" }}
             />
           </div>
         </div>

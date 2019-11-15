@@ -121,11 +121,10 @@ class PhotonGrid extends React.Component {
             width="500px"
             height="auto"
             measure=""
-            showCloseButton={true}
           >
             <div>
               <ReactSlider
-                className="horizontal-slider"
+                className="horizontal-slider zoom-slider"
                 thumbClassName="example-thumb"
                 trackClassName="example-track"
                 onChange={props => {
@@ -163,9 +162,27 @@ class PhotonGrid extends React.Component {
             width="500px"
             height="auto"
             measure=""
-            showCloseButton={true}
           >
-            <div></div>
+            <div>
+              <ReactSlider
+                className="horizontal-slider zoom-slider"
+                thumbClassName="example-thumb"
+                trackClassName="example-track"
+                onChange={props => {
+                  this.props.updateProps({
+                    aliceBaseStringZoom: props
+                  });
+                }}
+                renderThumb={(props, state) => (
+                  <p {...props}>{state.valueNow}</p>
+                )}
+                defaultValue={this.props.aliceBaseStringZoom}
+                style={{ cursor: "pointer" }}
+                min={25}
+                max={250}
+                step={25}
+              />
+            </div>
             <div>
               <ScrollBox
                 value={this.props.baseString}
