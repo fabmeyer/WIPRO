@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-1.9.1.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+function settings(){
+    data = {};
+    data["frequency"] = $("#settings_frequency").val();
+    data["noise"] = $("#settings_noise").val();   
+     data["error"] = $("#settings_error").val();
+    $.ajax({
+	    url: 'http://localhost:8080/rest/post/settings',
+        method: "POST",
+        data: data,
+	    success: function(data) {
+	    	$("#comparestring_response").html(data.compareString);
+	    	},
+	  	error: function(e){
+	  		console.log("error" + e);
+	  	}
+	  });
+} 
+
+
+function compareString(){
+    data = {};
+    data["base1"] = $("#comparestring1").val();
+    data["base2"] = $("#comparestring2").val();
+    $.ajax({
+	    url: 'http://localhost:8080/rest/post/comparebase',
+        method: "POST",
+        data: data,
+	    success: function(data) {
+	    	$("#comparestring_response").html(data.compareString);
+	    	},
+	  	error: function(e){
+	  		console.log("error" + e);
+	  	}
+	  });
+}
+
+function randombase(){
+    data = {};
+    data["n"] = $("#randombase_n").val();
+    data["prob"] = $("#randombase_prob").val();
+    $.ajax({
+	    url: 'http://localhost:8080/rest/post/randombase',
+        method: "POST",
+        data: data,
+	    success: function(data) {
+	    	$("#randombase_response").html(data.baseString);
+	    	},
+	  	error: function(e){
+	  		console.log("error" + e);
+	  	}
+	  });
+}
+
+function emitphotons(){
+    data = {};
+    data["str"] = $("#emit_str").val();
+    data["base"] = $("#emit_base").val();
+    data["angle_variance"] = $("#emit_angle_variance").val();
+    data["length_variance"] = $("#emit_length_variance").val();
+    $.ajax({
+	    url: 'http://localhost:8080/rest/post/emitphoton',
+        method: "POST",
+        data: data,
+	    success: function(data) {
+	    	$("#emitphotons_response").html(data.photonString);
+	    	},
+	  	error: function(e){
+	  		console.log("error" + e);
+	  	}
+	  });
+}
+
+
+function receivephotons(){
+    data = {};
+    data["base"] = $("#receive_base").val();
+    data["photons"] = $("#receive_photons").val();
+    data["fp"] = $("#receive_fp").val();
+    data["undetected"] = $("#receive_undetected").val();
+
+    $.ajax({
+	    url: 'http://localhost:8080/rest/post/receivephoton',
+        method: "POST",
+        data: data,
+	    success: function(data) {
+	    	$("#receive_response").html(data.bitString);
+	    	},
+	  	error: function(e){
+	  		console.log("error" + e);
+	  	}
+	  });
+}
+</script>
+
+<h1>Settings</h1>
+<p>
+    Frequency 
+    <input type="text" id="settings_frequency"/><br/>
+
+    Noise [0-1] 
+    <input type="text" id="settings_noise"/><br/>
+
+    Fehler [0-1] 
+    <input type="text" id="settings_error"/><br/>
+</p>
+<button onclick="settings()">Submit settings</button>
+
+
+<h2>Compare String</h2>
+<p>
+    String 1
+    <input type="text" id="comparestring1"/>
+    <br/>
+    String 2
+    <input type="text" id="comparestring2"/>
+</p>
+<button onclick="compareString()">Compare String</button>
+<br/>
+Result: <span id="comparestring_response"></span>
+
+<h2>Random Base</h2><p>
+    Lenth [n]
+    <input type="text" id="randombase_n"/>
+    <br/>
+    Propability "x" [0-1]
+    <input type="text" id="randombase_prob"/>
+</p>
+<button onclick="randombase()">Compare String</button>
+<br/>
+
+<div>
+Result:   <span id="randombase_response"/>
+</div>
+
+<h2>Random String</h2>
+<p>
+            Lenth [n]
+            <input type="text" id="randomstring_n"/>
+            <br/>
+            Propability "x" [0-1]
+            <input type="text" id="randomstring_prob"/>
+        </p>
+        <button onclick="randomstring()">Compare String</button>
+        <br/>
+        
+        <div>
+        Result:  <span id="randomstring_response"/>
+        </div>
+
+
+<h2>Emit Photons</h2>
+<p>
+            Base
+            <input type="text" id="emit_base"/>
+            <br/>
+            Bitstring
+            <input type="text" id="emit_str"/>
+            <br/>
+            Angle variance [0-1]
+            <input type="text" id="emit_angle_variance"/>
+            <br/>       
+             Bitstring [0-1]
+            <input type="text" id="emit_length_variance"/>
+            <br/>
+        </p>
+        <button onclick="emitphotons()">Emit photons</button>
+        <br/>
+        
+        <div>
+        Result:  <span id="emitphotons_response"/>
+        </div>
+
+
+ <h2>Receive Photons</h2>
+        <p>
+                    Photons
+                    <input type="text" id="receive_photons"/>
+                    <br/>
+                    Base
+                    <input type="text" id="receive_base"/>
+                    <br/>
+                    False positives [0-1]
+                    <input type="text" id="receive_fp"/>
+                    <br/>       
+                    Undetected [0-1]
+                    <input type="text" id="receive_undetected"/>
+                    <br/>
+                </p>
+                <button onclick="receivephotons()">Emit photons</button>
+                <br/>
+                
+                <div>
+                Result:  <span id="receive_response"/>
+                </div>
+</body>
+</html>

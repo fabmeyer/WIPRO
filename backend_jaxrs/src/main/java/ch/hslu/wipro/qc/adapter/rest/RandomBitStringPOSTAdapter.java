@@ -3,9 +3,9 @@ package ch.hslu.wipro.qc.adapter.rest;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.GET;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -20,15 +20,15 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path("/randomstring/{n}/{prob}")
-public class RandomBitStringParamAdapter { // implements CryptoInterface
+@Path("/post/randomstring")
+public class RandomBitStringPOSTAdapter { // implements CryptoInterface
 
 	@Context
 	private HttpServletRequest request;
 
-	@GET
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response encrypt(@PathParam("n") int n, @PathParam("prob") float prob) {
+	public Response encrypt(@FormParam("n") int n, @FormParam("prob") float prob) {
 		final String bitString = BB84Service.getRandomBitString(n, prob);
 		JsonObject response = Json.createObjectBuilder()
 				.add("bitString", bitString)
@@ -36,7 +36,7 @@ public class RandomBitStringParamAdapter { // implements CryptoInterface
 		return Response.ok(response.toString()).build();
 	}
 
-
+	
 	/*
 	
 	@Produces(MediaType.APPLICATION_JSON)

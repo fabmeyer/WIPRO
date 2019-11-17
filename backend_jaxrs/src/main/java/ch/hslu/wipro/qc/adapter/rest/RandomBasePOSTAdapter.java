@@ -1,10 +1,12 @@
-  package ch.hslu.wipro.qc.adapter.rest;
+package ch.hslu.wipro.qc.adapter.rest;
 
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -21,47 +23,48 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/receivephoton/{photons}/{base}" )
-public class PhotonReceiverAdapter {
+@Path( "/post/randombase/" )
+public class RandomBasePOSTAdapter { // implements CryptoInterface
+
 	@Context
 	private HttpServletRequest request;
 	
-	@GET
+	@POST
 	@Produces( MediaType.APPLICATION_JSON )
-	public Response encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
-	{
-		final String bitString = BB84Service.getBitStringFromPhotons(photons, base);
+	public Response encrypt(@FormParam("n") int n, @FormParam("prob") float prob) {
+		final String baseString = BB84Service.getRandomBaseString(Integer.valueOf(n), prob);
 		JsonObject response = Json.createObjectBuilder()
-				.add("bitString", bitString)
-				.build();
+				.add("baseString", baseString) 
+				.build(); 
 		return Response.ok(response.toString()).build();
 	}
 
 	/*
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_plain(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getRandomBaseString(str);
 		return response;
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_html(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getRandomBaseString(str);
 		return "<html><body>"+response+"</body></html>";
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_XML)
-	public String encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public String encrypt_xml(@PathParam( "str" ) String str)
 	{
-		String response = BB84Service.getBitStringFromPhotons(photons, base);
+		String response = BB84Service.getRandomBaseString(str);
 		return "<xml><response>"+response+"</response></xml>";	
 		}
-	
+		
 	*/
+	
 
 }

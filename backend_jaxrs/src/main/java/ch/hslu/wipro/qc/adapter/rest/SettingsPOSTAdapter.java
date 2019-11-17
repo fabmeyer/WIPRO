@@ -1,11 +1,12 @@
 package ch.hslu.wipro.qc.adapter.rest;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.GET;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -20,20 +21,21 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path("/randomstring/{n}/{prob}")
-public class RandomBitStringParamAdapter { // implements CryptoInterface
+@Path("/post/settings")
+public class SettingsPOSTAdapter { // implements CryptoInterface
 
 	@Context
 	private HttpServletRequest request;
 
-	@GET
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response encrypt(@PathParam("n") int n, @PathParam("prob") float prob) {
-		final String bitString = BB84Service.getRandomBitString(n, prob);
-		JsonObject response = Json.createObjectBuilder()
-				.add("bitString", bitString)
-				.build();
-		return Response.ok(response.toString()).build();
+	public Response encrypt(@FormParam("frequency") int frequency, @FormParam("error") float error, @FormParam("noise") float noise) {
+		Map<String, Object> settings = new HashMap<String, Object>();
+		settings.put("frequency", frequency);
+		settings.put("error", error);
+		settings.put("noise", noise);
+		BB84Service.setSettings(settings);
+		return Response.ok().build();
 	}
 
 

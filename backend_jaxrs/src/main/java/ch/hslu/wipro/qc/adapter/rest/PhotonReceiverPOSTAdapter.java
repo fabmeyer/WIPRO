@@ -1,12 +1,12 @@
-  package ch.hslu.wipro.qc.adapter.rest;
+package ch.hslu.wipro.qc.adapter.rest;
 
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.GET;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -21,16 +21,16 @@ import ch.hslu.wipro.qc.service.BB84Service;
  * 
  */
 
-@Path( "/receivephoton/{photons}/{base}" )
-public class PhotonReceiverAdapter {
+@Path( "/post/receivephoton/" )
+public class PhotonReceiverPOSTAdapter {
 	@Context
 	private HttpServletRequest request;
 	
-	@GET
+	@POST
 	@Produces( MediaType.APPLICATION_JSON )
-	public Response encrypt_plain(@PathParam( "photons" ) String photons, @PathParam( "base" ) String base)
+	public Response encrypt_plain(@FormParam( "photons" ) String photons, @FormParam( "base" ) String base, @FormParam("fp") float fp, @FormParam("undetected") float undetected )
 	{
-		final String bitString = BB84Service.getBitStringFromPhotons(photons, base);
+		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, fp, undetected);
 		JsonObject response = Json.createObjectBuilder()
 				.add("bitString", bitString)
 				.build();

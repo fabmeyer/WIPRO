@@ -2,6 +2,7 @@ package ch.hslu.wipro.qc.service;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Map;
 import java.util.Random;
 
 import com.google.inject.Singleton;
@@ -137,5 +138,11 @@ public class BB84Service {
 			}
 		}
 		return compareString;
+	}
+
+	public static void setSettings(Map<String, Object> settings) {
+		// TODO Auto-generated method stub
+		
+		
 	}
 }
