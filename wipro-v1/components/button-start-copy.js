@@ -44,14 +44,19 @@ class ButtonStartCopy extends React.Component {
       error: this.props.error
     };
     console.log(JSON.stringify(data));
-    async function postData(url = "http://localhost:8080/rest/post/settings") {
-      const res = await fetch(url, {
+    (async () => {
+      const res = await fetch("http://localhost:8080/rest/post/settings", {
         method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(data)
       });
-      return await res.json();
-    }
-    postData();
+      const content = await res.json();
+
+      console.log(content);
+    })();
   };
 
   start = () => {
