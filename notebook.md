@@ -27,6 +27,16 @@
 7. (responsive)
 8. (deployment)
 
+### Addendum 
+* Testing planen und aufgleisen 
+* Texteditor
+
+## TODO bis 18.11
+ * Komponente Schlüsselkürzung 
+ * Trennung Settings vs. erster REST-call
+ * Settings: Frequency, Noise (Übertragungskanal), Länge
+  
+
 ## TODO bis 07.11.
 
 ## Allgmein
