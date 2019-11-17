@@ -1,5 +1,17 @@
 # WIPRO - Notebook
 
+## Bugs
+
+### Frontend
+* Komponenten photon-grid und scroll-box:
+	* In photon-grid: react-slider, default-value wird falsch gerendert
+	* In scroll-box: wenn hinausgezoomt wird, und box gefärbt wird, modal verlassen wird und ein neuer schlüssel berechnet wird, stürzt komponente ab
+
+## TODO bis 18.11
+ * Komponente Schlüsselkürzung 
+ * Trennung Settings vs. erster REST-call
+ * Settings: Frequency, Noise (Übertragungskanal), Länge
+
 ## TODO bis 20.11.
 
 ### Frontend
@@ -30,12 +42,6 @@
 ### Addendum 
 * Testing planen und aufgleisen 
 * Texteditor
-
-## TODO bis 18.11
- * Komponente Schlüsselkürzung 
- * Trennung Settings vs. erster REST-call
- * Settings: Frequency, Noise (Übertragungskanal), Länge
-  
 
 ## TODO bis 07.11.
 

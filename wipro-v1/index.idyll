@@ -12,17 +12,19 @@
 
 # Introduction
 
+[var name:"strLength" value:2048 /]
 [var name:"noise" value:50 /]
+[var name:"frequency" value:null /]
 [fullWidth]
-  [SystemOverview noise:noise/]
+  [SystemOverview
+    noise:noise
+    frequency:frequency
+  ]
+      [TextInput value:strLength name:textInput/]
+  [/SystemOverview]
 [/fullWidth]
 
 # Alice creates a random bitstring
-
-## Length of Alices string
-
-[var name:"strLength" value:2048 /]
-[TextInput value:strLength /]
 
 [Aside]
   [AsideText]
@@ -34,7 +36,14 @@
 
 ## Alices computes a string and a base with given length
 
-[ButtonStart strLength:strLength bitString:AliceBitString baseString:AliceBaseString autostart:true dataHasLoaded:dataHasLoaded text:"get Alices string"/]
+[ButtonStart
+  strLength:strLength
+  bitString:AliceBitString
+  baseString:AliceBaseString
+  autostart:true
+  dataHasLoaded:dataHasLoaded
+  text:"get Alices string"
+/]
 
 ## Alices bitstring and base
 
@@ -52,8 +61,7 @@
   min:25
   max:500
   step:25
-  ]
-[/PhotonGrid]
+  /]
 
 ## Alice sends her photons to Bob
 

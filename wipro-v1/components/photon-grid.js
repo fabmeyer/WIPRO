@@ -18,7 +18,6 @@ class PhotonGrid extends React.Component {
   }
 
   componentDidUpdate(oldProps) {
-    console.log(this.props, this.state);
     const newProps = this.props;
     if (
       oldProps.bitString !== newProps.bitString ||
