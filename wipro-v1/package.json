@@ -9,6 +9,7 @@
     "authorView": false
   },
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "@elsdoerfer/react-arrow": "^1.0.3",
     "animejs": "^3.1.0",
     "babel-cli": "^6.26.0",

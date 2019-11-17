@@ -14,7 +14,8 @@
 
 [var name:"strLength" value:2048 /]
 [var name:"noise" value:50 /]
-[var name:"frequency" value:null /]
+[var name:"frequency" value:1 /]
+[var name:"error" value:0 /]
 [fullWidth]
   [SystemOverview
     noise:noise
@@ -36,11 +37,14 @@
 
 ## Alices computes a string and a base with given length
 
-[ButtonStart
+[ButtonStartCopy
   strLength:strLength
+  noise:noise
+  frequency:frequency
+  error:error
   bitString:AliceBitString
   baseString:AliceBaseString
-  autostart:true
+  autostart:false
   dataHasLoaded:dataHasLoaded
   text:"get Alices string"
 /]
