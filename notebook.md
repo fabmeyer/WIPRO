@@ -8,7 +8,10 @@
 	* In scroll-box: wenn hinausgezoomt wird, und box gefärbt wird, modal verlassen wird und ein neuer schlüssel berechnet wird, stürzt komponente ab
 
 ## TODO bis 18.11
- * Komponente Schlüsselkürzung 
+ * Komponente Schlüsselkürzung:
+ 	* Alice und Bob vergleichen ihre Basen
+ 	* Alle Stellen, bei denen die Basis nicht gleich ist werden gekürzt
+ 	* Dieselben Stellen werden auch bei den Bitstrings gekürzt
  * Trennung Settings vs. erster REST-call
  * Settings: Frequency, Noise (Übertragungskanal), Länge
 
