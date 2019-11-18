@@ -8,7 +8,8 @@ class AnimationPhoton2 extends React.PureComponent {
     const outerContainer = {
       display: "flex",
       justifyContent: "center",
-      transform: "translateX(-200px)"
+      transform: "translateX(-200px)",
+      padding: "20px 0"
     };
     const animationContainer = {
       display: "flex",

@@ -8,7 +8,8 @@ class AnimationPhoton1 extends React.PureComponent {
     const outerContainer = {
       display: "flex",
       justifyContent: "center",
-      transform: "translateX(-200px)"
+      transform: "translateX(-200px)",
+      padding: "20px 0"
     };
     const animationContainer = {
       display: "flex",
@@ -22,7 +23,6 @@ class AnimationPhoton1 extends React.PureComponent {
       <div style={outerContainer}>
         <Anime
           easing="linear"
-          elasticity="0"
           duration={5000}
           direction="normal"
           loop={true}

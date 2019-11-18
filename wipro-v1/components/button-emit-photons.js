@@ -1,26 +1,29 @@
 const React = require("react");
+import "babel-polyfill";
 
-class ButtonMeasure extends React.Component {
+class ButtonEmitPhotons extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      bitString: this.props.bitString,
+      baseString: this.props.baseString,
       polarization: this.props.polarization,
-      measuredString: this.props.measuredString
+      dataHasLoaded: false
     };
   }
 
-  measure = () => {
-    console.log("measure button");
+  emit = () => {
+    console.log("emit button");
     const data = {
-      photons: this.props.polarization,
-      base: this.props.baseString,
-      fp: 0,
-      undetected: 0
+      base: this.props.bitString,
+      str: this.props.baseString,
+      angle_variance: 0,
+      legth_variance: 0
     };
     this.setState({ dataHasLoaded: false });
     async function getPolarization(
-      url = "http://localhost:8080/rest/post/receivephoton"
+      url = "http://localhost:8080/rest/post/emitphoton"
     ) {
       const res = await fetch(url, {
         method: "POST",
@@ -31,24 +34,23 @@ class ButtonMeasure extends React.Component {
       });
       const content = await res.json();
       console.log(content);
-      this.setState({ measuredString: content });
+      this.setState({ polarization: content });
       this.props.updateProps({
-        measuredString: this.state.measuredString
+        polarization: this.state.polarization
       });
     }
     getPolarization();
-    this.setState({ dataHasLoaded: true });
   };
 
   render() {
     return (
       <React.Fragment>
-        <button className="button-small" onClick={this.measure.bind(this)}>
-          {this.props.text}, Length: {this.state.strLength}
+        <button className="button-small" onClick={this.emit.bind(this)}>
+          {this.props.text}
         </button>
       </React.Fragment>
     );
   }
 }
 
-module.exports = ButtonMeasure;
+module.exports = ButtonEmitPhotons;

@@ -1,26 +1,25 @@
 const React = require("react");
 
-class ButtonMeasure extends React.Component {
+class ButtonShortenKey extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      polarization: this.props.polarization,
-      measuredString: this.props.measuredString
+      comparedBase: this.props.comparedBase,
+      commonKey: this.props.commonKey
     };
   }
 
-  measure = () => {
+  shorten = () => {
     console.log("measure button");
     const data = {
-      photons: this.props.polarization,
-      base: this.props.baseString,
-      fp: 0,
-      undetected: 0
+      base1: this.props.baseString1,
+      base2: this.props.baseString2,
+      string_alice: this.props.bitstring
     };
     this.setState({ dataHasLoaded: false });
-    async function getPolarization(
-      url = "http://localhost:8080/rest/post/receivephoton"
+    async function getShortenedKey(
+      url = "http://localhost:8080/rest/post/shortenkey"
     ) {
       const res = await fetch(url, {
         method: "POST",
@@ -31,19 +30,23 @@ class ButtonMeasure extends React.Component {
       });
       const content = await res.json();
       console.log(content);
-      this.setState({ measuredString: content });
+      this.setState({ comparedBase: content.comparedBase });
       this.props.updateProps({
-        measuredString: this.state.measuredString
+        comparedBase: this.state.comparedBase
+      });
+      this.setState({ commonKey: content.commonKey });
+      this.props.updateProps({
+        commonKey: this.state.commonKey
       });
     }
-    getPolarization();
+    getShortenedKey();
     this.setState({ dataHasLoaded: true });
   };
 
   render() {
     return (
       <React.Fragment>
-        <button className="button-small" onClick={this.measure.bind(this)}>
+        <button className="button-small" onClick={this.compare.bind(this)}>
           {this.props.text}, Length: {this.state.strLength}
         </button>
       </React.Fragment>
@@ -51,4 +54,4 @@ class ButtonMeasure extends React.Component {
   }
 }
 
-module.exports = ButtonMeasure;
+module.exports = ButtonShortenKey;

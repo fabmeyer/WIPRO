@@ -10,44 +10,44 @@
   color:"#ededef"
    /]
 
-# Animation Tests
-
-[fullWidth]
-  [AnimationPhoton1/]
-[/fullWidth]
-
-[fullWidth]
-  [AnimationPhoton2/]
-[/fullWidth]
-
 # Introduction
+
+The goal of this website is to explain the BB84-protocol in a simple way.
+BB84 is named after its inventors, Charles H. Bennet and Gilles Brassard and the year of its publication, 1984. BB84 is one of the most popular quantum-key-distribution (QKD) Protocols.
+
+With this protocol, two parties (Alice and Bob) can compute together securely a private key (a string of bits, 1 or 0) and share it via a quantum channel. With that key they can encrypt and decrypt data synchronous as a one-time pad.
+
+First of all Alice and Bob have to decide on some settings like the length of the bitstring, the ratio of their bases and so on:
 
 [var name:"strLength" value:2048 /]
 [var name:"noise" value:50 /]
 [var name:"frequency" value:1 /]
 [var name:"error" value:0 /]
+[var name:"aliceProb" value:50 /]
+[var name:"bobProb" value:50 /]
 [fullWidth]
   [SystemOverview
+    strLength:strLength
     noise:noise
     frequency:frequency
+    error:error
+    aliceProb:aliceProb
+    bobProb:bobProb
+    text:"save settings"
   ]
-    [TextInput value:strLength name:textInput/]
+    [TextInput value:strLength/]
   [/SystemOverview]
 [/fullWidth]
 
-# Alice creates a random bitstring
+# Alices computes a string and a base with given length
 
-[Aside]
-  [AsideText]
-    Jass oder auch Jas kommt aus den Niederlanden. Niederländische Vorläufer waren Jasspel und Belle-Bruid. Nicht nur der Jas (Bauer), auch die Trumpfneun («Nell») erinnert an die niederländischen Ursprünge.
+Alice computes a random bitstring with the given length. She then also has to compute a random string of bases.
 
-    Im letzten Drittel des 18. Jahrhunderts gelangte das Spiel mit protestantischen Söldnern in die Schweiz. Jass gewann schnell an Beliebtheit und verdrängte das Tarock, welches von eidgenössischen und französischen Söldnern aus Oberitalien in die Schweiz gebracht wurde.
-  [/AsideText]
-[/Aside]
+Every single bit of her string will be encoded with the base so that from the bit and the base a specific polarization results. Her photons can have a polarization with 0°, 45°, 90° or 135°.
 
-## Alices computes a string and a base with given length
-
-[ButtonStartCopy
+[var name:"AliceBitString" value:null /]
+[var name:"AliceBaseString" value:null /]
+[ButtonAliceStart
   strLength:strLength
   noise:noise
   frequency:frequency
@@ -56,13 +56,13 @@
   baseString:AliceBaseString
   autostart:false
   dataHasLoaded:dataHasLoaded
-  text:"get Alices string"
+  text:"get Alices bitstring and base"
 /]
+
+You can take a look at Alices bitstring and her base here:
 
 ## Alices bitstring and base
 
-[var name:"AliceBitString" value:null /]
-[var name:"AliceBaseString" value:null /]
 [var name:"dataHasLoaded" value:null /]
 [var name:"AliceBitStringZoom" value:100 /]
 [var name:"AliceBaseStringZoom" value:100 /]
@@ -79,37 +79,55 @@
 
 ## Alice sends her photons to Bob
 
+Now Alice takes her photons and sends them via a quantum channel to Bob.
+This quantum channel is an optical channel like a optical-fibre cable.
+Sometimes the channel is noisy and some photons or their polarization will get changed.
+
+[var name:"AlicePolarization" value:null /]
+[ButtonEmitPhotons
+  bitString:AliceBitString
+  baseString:AliceBaseString
+  polarization:AlicePolarization
+  text:"Send photons to Bob"
+/]
+
 [fullWidth]
-  [ShowHide isVisible:"flex" position:"center"]
-    [AnimationTest /]
-  [/ShowHide]
+  [AnimationTest /]
 [/fullWidth]
 
 # Bob measures Alices photons
 
-## Length of Bobs base
+## Bobs computes a base with the same length
 
 Like Alice, Bob will define a random basestring to measure Alices Photons Polarization. Bobs basestring has the same length as Alices ones.
 
 Length of string: [Display value:strLength format:"d" /].
 
-## Bobs computes a base with the same length
-
 [var name:"BobBaseString" value:null /]
-[ButtonStart strLength:strLength bitString:null baseString:BobBaseString autostart:false text:"get Bobs base"/]
+[ButtonBobBase strLength:strLength baseString:BobBaseString text:"get Bobs base"/]
+
+## Bob measures Alices Photons with his base
+
+[fullWidth]
+  [AnimationPhoton1/]
+[/fullWidth]
+
+For every photon, if Bobs base is the same as Alices, the outcome will be certain and Bob will be able to decode the String from the polarization together with his base.
+
+[fullWidth]
+  [AnimationPhoton2/]
+[/fullWidth]
+
+However if he chose the wrong base, the polarization of the photons will be lost. On average, Bob should measure every second photon correctly.
+
+[var name:"BobBitString" value:null /]
+[ButtonMeasure strLength:strLength polarization:AlicePolarization baseString:BobBaseString measuredString:BobBitString autostart:false text:"measure Alices photons"/]
 
 [var name:"BobBaseStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
   [Range value:BobBaseStringZoom min:25 max:500 step:25 /]
   [ScrollBox value:BobBaseString zoomFactor:BobBaseStringZoom /]
 [/ShowHide]
-
-## Bob measures Alices Photons with his base
-
-For every photon, if Bobs base is the same as Alices, the outcome will be certain and Bob will be able to decode the String. However if he chose the wrong base, the polarization of the photons will be lost. On average, Bob should measure every second photon correctly.
-
-[var name:"BobBitString" value:null /]
-[ButtonMeasure strLength:strLength bitString:AliceBitString baseString:BobBaseString measuredString:BobBitString autostart:false text:"measure Alices photons"/]
 
 [var name:"BobBitStringZoom" value:100 /]
 [ShowHide isVisible:"flex" position:"center"]
@@ -121,8 +139,9 @@ For every photon, if Bobs base is the same as Alices, the outcome will be certai
 
 Alice and Bob use a public authenticated channel to compare their bases.
 
-[var name:"comparedString" value:null /]
-[ButtonCompare baseString1:AliceBaseString baseString2:BobBaseString comparedString:comparedString
+[var name:"comparedBase" value:null /]
+[var name:"shortenedKey" value:null /]
+[ButtonCompare baseString1:AliceBaseString baseString2:BobBaseString bitString:AliceBitString comparedBase:comparedBase commonKey:commonKey
 text:"compare basestrings"/]
 
 [var name:"comparedStringZoom" value:100 /]
