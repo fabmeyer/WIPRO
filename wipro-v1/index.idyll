@@ -16,6 +16,10 @@
   [AnimationPhoton1/]
 [/fullWidth]
 
+[fullWidth]
+  [AnimationPhoton2/]
+[/fullWidth]
+
 # Introduction
 
 [var name:"strLength" value:2048 /]

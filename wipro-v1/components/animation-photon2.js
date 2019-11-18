@@ -3,7 +3,7 @@ import Anime from "react-anime";
 import AnimationCircle from "./animation-circle";
 import AnimationFilter from "./animation-filter";
 
-class AnimationPhoton1 extends React.PureComponent {
+class AnimationPhoton2 extends React.PureComponent {
   render() {
     const outerContainer = {
       display: "flex",
@@ -22,16 +22,31 @@ class AnimationPhoton1 extends React.PureComponent {
       <div style={outerContainer}>
         <Anime
           easing="linear"
-          elasticity="0"
-          duration={5000}
+          duration={2500}
           direction="normal"
           loop={true}
-          translateX={[-190, 610]}
+          translateX={[0, 400]}
         >
           <span style={animationContainer}>
             <AnimationCircle
               color="#FFF200"
-              x={175}
+              x={200}
+              y={110}
+              polarisation={45}
+            ></AnimationCircle>
+          </span>
+        </Anime>
+        <Anime
+          easing="linear"
+          duration={2500}
+          direction="normal"
+          loop={true}
+          translateX={[0, 400]}
+        >
+          <span style={animationContainer}>
+            <AnimationCircle
+              color="#FFF200"
+              x={225}
               y={110}
               polarisation={0}
             ></AnimationCircle>
@@ -45,4 +60,4 @@ class AnimationPhoton1 extends React.PureComponent {
   }
 }
 
-module.exports = AnimationPhoton1;
+module.exports = AnimationPhoton2;
