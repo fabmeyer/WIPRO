@@ -4,10 +4,6 @@ import Dropdown from "react-dropdown";
 import ReactSlider from "react-slider";
 
 class SystemOverview extends React.PureComponent {
-  componentDidMount() {
-    console.log(this.props.children);
-  }
-
   render() {
     const overviewContainer = {
       backgroundColor: "#FEF9FF",
@@ -33,7 +29,8 @@ class SystemOverview extends React.PureComponent {
       justifyContent: "space-around",
       margin: "auto",
       textAlign: "center",
-      verticalAlign: "middle"
+      verticalAlign: "middle",
+      paddingBottom: "10px"
     };
 
     const noiseContainer = {

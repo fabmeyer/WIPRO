@@ -10,6 +10,12 @@
   color:"#ededef"
    /]
 
+# Animation Tests
+
+[fullWidth]
+  [AnimationPhoton1/]
+[/fullWidth]
+
 # Introduction
 
 [var name:"strLength" value:2048 /]
@@ -21,7 +27,7 @@
     noise:noise
     frequency:frequency
   ]
-      [TextInput value:strLength name:textInput/]
+    [TextInput value:strLength name:textInput/]
   [/SystemOverview]
 [/fullWidth]
 
