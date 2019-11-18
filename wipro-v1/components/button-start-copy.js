@@ -47,19 +47,38 @@ class ButtonStartCopy extends React.Component {
     async function postData(url = "http://localhost:8080/rest/post/settings") {
       const res = await fetch(url, {
         method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
         body: JSON.stringify(data)
       });
-      return await res.json();
+      const content = await res.json();
+      console.log(content);
     }
     postData();
   };
 
   start = () => {
     this.settings();
-    // this.setState({ dataHasLoaded: false });
-    // const newLenght = this.checkType(this.state.strLength);
-    // fetch(`http://localhost:8080/rest/randomstring/${newLenght}`)
+    const data = {
+      prob: 0.5
+    };
+    this.setState({ dataHasLoaded: false });
+    async function getBitString(
+      url = "http://localhost:8080/rest/post/randomstring"
+    ) {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: JSON.stringify(data)
+      });
+      const content = await res.json();
+      console.log(content);
+    }
+
+    // fetch(`http://localhost:8080/rest/post/randomstring/`)
     //   .then(res => res.json())
     //   .then(data => {
     //     this.setState({ bitString: data.bitString });
@@ -68,7 +87,7 @@ class ButtonStartCopy extends React.Component {
     //     });
     //   })
     //   .catch(console.log);
-    // fetch(`http://localhost:8080/rest/randombase/${newLenght}`)
+    // fetch(`http://localhost:8080/rest/post/randombase`)
     //   .then(res => res.json())
     //   .then(data => {
     //     this.setState({ baseString: data.baseString });
