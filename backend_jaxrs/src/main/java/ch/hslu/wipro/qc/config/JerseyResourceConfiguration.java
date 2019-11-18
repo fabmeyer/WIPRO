@@ -61,7 +61,7 @@ public class JerseyResourceConfiguration extends ResourceConfig {
                 guiceBridge.bridgeGuiceInjector(injector);
             }
         });
-        register(injector.getProvider(AdvancedCrnkFeature.class).get());
+        //register(injector.getProvider(AdvancedCrnkFeature.class).get());
 //        EntityManagerFactory emf = injector.getInstance(EntityManagerFactory.class);
     }
 }
