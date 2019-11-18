@@ -61,7 +61,7 @@ class ButtonStartCopy extends React.Component {
   start = () => {
     this.settings();
     const data = {
-      prob: 0.5
+      prob: 50
     };
     this.setState({ dataHasLoaded: false });
     async function getBitString(
@@ -76,8 +76,12 @@ class ButtonStartCopy extends React.Component {
       });
       const content = await res.json();
       console.log(content);
+      this.setState({ bitString: content });
+      this.props.updateProps({
+        bitString: this.state.bitString
+      });
     }
-
+    getBitString();
     // fetch(`http://localhost:8080/rest/post/randomstring/`)
     //   .then(res => res.json())
     //   .then(data => {
