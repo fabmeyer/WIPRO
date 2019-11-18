@@ -5,16 +5,25 @@ import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.container.PreMatching;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.ext.Provider;
+
 import com.google.inject.Singleton;
+
 
 @Singleton
 public class BB84Service {
-	public static String getRandomBitString(int n, float prob) {
+	
+	public static String getRandomBitString(int prob, HttpServletRequest request) {
+		//int n = request.getSession().getAttribute("length");
 		String bitString = "";
+		int n = (int) request.getSession().getAttribute("length");
 		for (int i = 0; i < n; i++) {
 			Random random = new Random();
 			double randomDouble = random.nextDouble();
-			if (randomDouble <= prob) {
+			if (randomDouble <= prob/100f) {
 				bitString += "1";
 			} else {
 				bitString += "0";
@@ -140,9 +149,9 @@ public class BB84Service {
 		return compareString;
 	}
 
-	public static void setSettings(Map<String, Object> settings) {
+	public void setSettings(Map<String, Object> settings, HttpServletRequest request) {
 		for (String s: settings.keySet())  {
-			System.out.println(s);
+			request.getSession().setAttribute(s, settings.get(s));  
 		}
 		// TODO Auto-generated method stub
 	}
