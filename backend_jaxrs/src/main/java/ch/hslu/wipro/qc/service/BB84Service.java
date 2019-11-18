@@ -1,14 +1,11 @@
 package ch.hslu.wipro.qc.service;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.container.PreMatching;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.ext.Provider;
 
 import com.google.inject.Singleton;
 
@@ -16,11 +13,25 @@ import com.google.inject.Singleton;
 @Singleton
 public class BB84Service {
 	
-	public static String getRandomBitString(int prob, HttpServletRequest request) {
+	public static String getRandomBitString(int stringLength, int prob, HttpServletRequest request) {
 		//int n = request.getSession().getAttribute("length");
 		String bitString = "";
-		int n = (int) request.getSession().getAttribute("length");
-		for (int i = 0; i < n; i++) {
+		System.out.println("session id getRandomBitString " +request.getSession().getId());
+		System.out.println("session attr length "+request.getSession().getAttributeNames());
+		Enumeration e = (Enumeration) (request.getSession().getAttributeNames());
+
+        while ( e.hasMoreElements())
+        {
+        	System.out.println("another element");
+            Object tring;
+            if((tring = e.nextElement())!=null)
+            {
+                System.out.println(request.getSession().getAttribute((String) tring));
+                System.out.println("<br/>");
+            }
+
+        }
+		for (int i = 0; i < stringLength; i++) {
 			Random random = new Random();
 			double randomDouble = random.nextDouble();
 			if (randomDouble <= prob/100f) {
@@ -149,10 +160,37 @@ public class BB84Service {
 		return compareString;
 	}
 
-	public void setSettings(Map<String, Object> settings, HttpServletRequest request) {
+	public static void setSettings(Map<String, Object> settings, HttpServletRequest request) {
 		for (String s: settings.keySet())  {
-			request.getSession().setAttribute(s, settings.get(s));  
+			request.getSession().setAttribute(s, 10);  
 		}
+		System.out.println("session id setsettings " + request.getSession().getId());
+		// TODO Auto-generated method stub
+	}
+
+	public static Map<String, String> shortenKey(String base1, String base2, String string_alice, String base_bob,
+		HttpServletRequest request) {
+		
+		String compareBase = ""; 
+		String commonKey = ""; 
+		
+		if ((base1.length() + base2.length() + string_alice.length() != base1.length() / 3)) {
+			return null; 
+		}
+		for (int i = 0; i < base1.length(); i++) {
+			if (String.valueOf(base1.charAt(i)).equals(String.valueOf(base2.charAt(i)))) {
+				compareBase += base1.charAt(i);
+				commonKey += string_alice.charAt(i);
+			} else {
+				compareBase += "_";
+			}
+		}
+		
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("comparedBase", compareBase); 
+		result.put("commonKey", commonKey);
+		return result;
+		
 		// TODO Auto-generated method stub
 	}
 }

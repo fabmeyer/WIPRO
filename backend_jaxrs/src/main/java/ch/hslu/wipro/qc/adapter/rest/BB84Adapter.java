@@ -28,13 +28,6 @@ public class BB84Adapter implements BB84Interface {
 	@Context
 	private HttpServletRequest request;
 	
-	private BB84Service bb84service;
-
-	public  BB84Adapter() {
-		bb84service = new BB84Service();
-		
-		// TODO Auto-generated constructor stub
-	}
 	
 	@POST
 	@Path("/comparebase/")
@@ -77,22 +70,39 @@ public class BB84Adapter implements BB84Interface {
 	@POST
 	@Path("/randomstring")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response randomString(@FormParam("prob") int prob) {
-		final String bitString = BB84Service.getRandomBitString(prob, request);
+	public Response randomString(@FormParam("stringLength") int stringLength, @FormParam("prob") int prob) {
+		System.out.println("Session id rest " + request); 
+		final String bitString = BB84Service.getRandomBitString(stringLength, prob, request);
 		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
 		return Response.ok(response.toString()).build();
 	}
 
+	
+	@POST
+	@Path("/shortenkey")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("base_bob") String base_bob) {
+		System.out.println("Session id rest " + request); 
+		final Map<String, String> shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, base_bob, request); 
+		JsonObject response = Json.createObjectBuilder().add("baseString", shortenedKey.get("baseString"))
+		 .add("baseString", shortenedKey.get("baseString"))
+		 .build();
+		return Response.ok(response.toString()).build();
+	}
+	
+	
 	@POST
 	@Path("/settings")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response settings(@FormParam("frequency") int frequency, @FormParam("error") int error,
-			@FormParam("noise") int noise) {
+			@FormParam("noise") int noise, @FormParam("stringLength") int stringLength) {
 		Map<String, Object> settings = new HashMap<String, Object>();
 		settings.put("frequency", frequency);
 		settings.put("error", error);
 		settings.put("noise", noise);
-		bb84service.setSettings(settings, request);
+		settings.put("stringLength", stringLength); 
+		System.out.println("session id REST adapter " + request.getSession().getId());
+		BB84Service.setSettings(settings, request);
 		return Response.ok().build();
 	}
 }
