@@ -26,11 +26,9 @@ public class Client {
 	    while ((bInput.read()) != -1) {
 	        System.out.println(((char) c));
 	    }
-	    */
 
 	    
 	    List<String> src = new ArrayList<String>();
-	    src.add(BB84Service.getRandomBitString(3, 0.5f));
 
 	    MessagePack msgpack = new MessagePack();
 	    // Serialize
@@ -40,6 +38,9 @@ public class Client {
 	    List<String> dst1 = msgpack.read(raw, Templates.tList(Templates.TString));
 	    //rateLimiter.acquire();
 	    System.out.println(dst1.get(0));
+	    
+		 */
+	    
 
 	}
 
