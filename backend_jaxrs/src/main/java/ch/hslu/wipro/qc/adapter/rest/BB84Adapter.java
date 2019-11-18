@@ -16,6 +16,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import ch.hslu.wipro.qc.adapter.BB84Interface;
@@ -26,9 +27,15 @@ public class BB84Adapter implements BB84Interface {
 
 	@Context
 	private HttpServletRequest request;
+	
+	private BB84Service bb84service;
 
-
-
+	public  BB84Adapter() {
+		bb84service = new BB84Service();
+		
+		// TODO Auto-generated constructor stub
+	}
+	
 	@POST
 	@Path("/comparebase/")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -70,8 +77,8 @@ public class BB84Adapter implements BB84Interface {
 	@POST
 	@Path("/randomstring")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response randomString(@FormParam("n") int n, @FormParam("prob") float prob) {
-		final String bitString = BB84Service.getRandomBitString(n, prob);
+	public Response randomString(@FormParam("prob") int prob) {
+		final String bitString = BB84Service.getRandomBitString(prob, request);
 		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
 		return Response.ok(response.toString()).build();
 	}
@@ -85,7 +92,7 @@ public class BB84Adapter implements BB84Interface {
 		settings.put("frequency", frequency);
 		settings.put("error", error);
 		settings.put("noise", noise);
-		BB84Service.setSettings(settings);
+		bb84service.setSettings(settings, request);
 		return Response.ok().build();
 	}
 }

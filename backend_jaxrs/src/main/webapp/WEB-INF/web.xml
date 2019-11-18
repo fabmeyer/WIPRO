@@ -7,7 +7,7 @@
      <!-- Register resources and providers under com.vogella.jersey.first package. -->
     <init-param>
         <param-name>jersey.config.server.provider.packages</param-name>
-        <param-value>ch.hslu.wipro.qc.adapter.rest</param-value>
+        <param-value>ch.hslu.wipro.qc.adapter.rest;ch.hslu.wipro.qc.adapter.service;ch.hslu.wipro.qc.adapter.filter</param-value>
     </init-param>
 
 		<init-param>
@@ -46,9 +46,27 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
   
-  
-<!--      <listener> -->
-<!--       <listener-class>ch.hslu.wipro.qc.config.injection.GuiceServletConfig</listener-class> -->
-<!--    </listener> -->
-  
+  <filter>
+        <filter-name>OptionsAndSessionInitFilter</filter-name>
+        <filter-class>ch.hslu.wipro.qc.filter.OptionsAndSessionInitFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>OptionsAndSessionInitFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+   <listener>
+      <listener-class>ch.hslu.wipro.qc.config.session.listener.QcSessionListener</listener-class>
+   </listener>
+   
+   	<session-config>
+		<session-timeout>20</session-timeout>
+		<cookie-config>
+			<path>hslu_qc_s</path>
+			<http-only>false</http-only>
+			<secure>false</secure>
+		</cookie-config>
+		<tracking-mode>COOKIE</tracking-mode>
+  	</session-config>
+    
 </web-app>
