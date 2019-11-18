@@ -141,8 +141,9 @@ public class BB84Service {
 	}
 
 	public static void setSettings(Map<String, Object> settings) {
+		for (String s: settings.keySet())  {
+			System.out.println(s);
+		}
 		// TODO Auto-generated method stub
-		
-		
 	}
 }
