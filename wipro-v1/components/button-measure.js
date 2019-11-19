@@ -28,7 +28,6 @@ class ButtonMeasure extends React.Component {
       this.props.bobBaseHasLoaded === true &&
       this.props.bobStringHasLoaded === true
     ) {
-      console.log("base and string loaded");
       this.props.updateProps({
         bobDataHasLoaded: true
       });

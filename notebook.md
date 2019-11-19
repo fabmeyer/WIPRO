@@ -5,7 +5,6 @@
 ### Frontend
 * Komponenten photon-grid und scroll-box:
 	* In photon-grid: react-slider, default-value wird falsch gerendert
-	* In scroll-box: wenn hinausgezoomt wird, und box gefärbt wird, modal verlassen wird und ein neuer schlüssel berechnet wird, stürzt komponente ab
 
 ## TODO bis 18.11
  * Komponente Schlüsselkürzung:
