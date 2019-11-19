@@ -75,22 +75,18 @@ public class BB84Service {
 				.round(StringLength + (randomDoubleLength * StringLength * 2 - randomDoubleLength / 2));
 
 		for (int i = 0; i < StringLength; i++) {
-			Float element;
 			Random random = new Random();
 			double randomDouble = random.nextDouble() * angle_var;
-			float angle_variance = (float) randomDouble * 180 - 45;
+			float angle_variance = 0f; // (float) randomDouble * 180 - 45;
 			double shift = Math.pow(10, 2);
 			angle_variance = (float) (Math.round(angle_variance * shift) / shift);
 			if (String.valueOf(base.charAt(i)).equals("x")) {
-				element = (String.valueOf(str.charAt(i)).equals("1")) ? 0 + angle_variance
-						: 90 + angle_variance;
+	
 				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? 0 + angle_variance
 						: 90 + angle_variance;
 			} else {
-				element = (String.valueOf(str.charAt(i)).equals("1")) ? 0 + angle_variance
-						: 90 + angle_variance;
 				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? 45 + angle_variance
-						: 15 + angle_variance;
+						: 135 + angle_variance;
 			}
 			if (i < StringLength - 1) {
 				photonString += ",";
