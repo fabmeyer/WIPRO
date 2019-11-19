@@ -26,9 +26,9 @@ class ButtonMeasure extends React.Component {
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
-        body: data
+        body: data 
       });
       const content = await res.json();
       console.log(content);

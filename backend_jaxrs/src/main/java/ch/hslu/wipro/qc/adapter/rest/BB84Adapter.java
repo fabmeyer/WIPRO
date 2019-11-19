@@ -31,6 +31,7 @@ public class BB84Adapter implements BB84Interface {
 	
 	@POST
 	@Path("/comparebase/")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response compareBase(@FormParam("base1") String base1, @FormParam("base2") String base2) {
 		final String compareString = BB84Service.compareBase(base1, base2);
@@ -51,7 +52,8 @@ public class BB84Adapter implements BB84Interface {
 
 	@POST
 	@Path("/receivephoton/")
-	@Produces(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response receivePhoton(@FormDataParam("photons") String photons, @FormParam("base") String base,
 			@FormParam("fp") float fp, @FormParam("undetected") float undetected) {
 		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, fp, undetected);
@@ -70,8 +72,8 @@ public class BB84Adapter implements BB84Interface {
 	}
 
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Path("/randomstring")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response randomString(@FormParam("stringLength") int stringLength, @FormParam("prob") int prob) {
 		System.out.println("Session id rest " + request); 
@@ -83,6 +85,7 @@ public class BB84Adapter implements BB84Interface {
 	
 	@POST
 	@Path("/shortenkey")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("base_bob") String base_bob) {
 		System.out.println("Session id rest " + request); 
@@ -96,6 +99,7 @@ public class BB84Adapter implements BB84Interface {
 	
 	@POST
 	@Path("/settings")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response settings(@FormParam("frequency") int frequency, @FormParam("error") int error,
 			@FormParam("noise") int noise, @FormParam("stringLength") int stringLength) {
