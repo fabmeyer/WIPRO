@@ -54,13 +54,14 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/receivephoton")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response receivePhoton(@FormDataParam("photons") String photons, @FormParam("base") String base,
+	public Response receivePhoton(@FormParam("photons") String photons, @FormParam("base") String base,
 			@FormParam("fp") float fp, @FormParam("undetected") float undetected) {
 		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, fp, undetected);
 		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
 		return Response.ok(response.toString()).build();
 	}
 
+	
 	@POST
 	@Path("/randombase")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
