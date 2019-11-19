@@ -27,13 +27,17 @@ class ButtonShortenKey extends React.Component {
       });
       const content = await res.json();
       console.log(content);
-      const comparedBase = content.compareBase;
+      const comparedBase = content.comparedBase;
       this.props.updateProps({
         comparedBase: comparedBase
       });
       const commonKey = content.commonKey;
       this.props.updateProps({
         commonKey: commonKey
+      });
+      const commonKeyLength = commonKey.length;
+      this.props.updateProps({
+        commonKeyLength: commonKeyLength
       });
     };
     getShortenedKey();

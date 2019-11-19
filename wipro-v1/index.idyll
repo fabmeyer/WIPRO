@@ -170,13 +170,16 @@ Alice and Bob use a public authenticated channel to compare their bases.
 [var name:"ComparedBase" value:null /]
 [var name:"ShortenKey" value:null /]
 [var name:"ShortenKeyHasLoaded" value:null /]
+[var name:"CommonKey" value: null /]
+[var name:"CommonKeyLength" value: null /]
 [ButtonShortenKey
   baseString1:AliceBaseString
   baseString2:BobBaseString
   bitString:AliceBitString
   shortenKeyHasLoaded:ShortenKeyHasLoaded
   comparedBase:ComparedBase
-  shortenKey:ShortenKey
+  commonKey:CommonKey
+  commonKeyLength:CommonKeyLength
   text:"compare basestrings"
   /]
 
@@ -184,3 +187,5 @@ Alice and Bob use a public authenticated channel to compare their bases.
 
 They drop all bits from their bitstrings where their bases do not correspond.
 In that way they create a shortened key together that they share.
+
+Length of their shortend key: [Display value:CommonKeyLength format:"d" /].
