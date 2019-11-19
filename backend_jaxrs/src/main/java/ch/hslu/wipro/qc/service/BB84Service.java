@@ -163,15 +163,13 @@ public class BB84Service {
 		// TODO Auto-generated method stub
 	}
 
-	public static Map<String, String> shortenKey(String base1, String base2, String string_alice,
+	public static String[] shortenKey(String base1, String base2, String string_alice,
 		HttpServletRequest request) {
 		
 		String compareBase = ""; 
 		String commonKey = ""; 
 		
-		if ((base1.length() + base2.length() + string_alice.length() != base1.length() / 3)) {
-			return null; 
-		}
+	
 		for (int i = 0; i < base1.length(); i++) {
 			if (String.valueOf(base1.charAt(i)).equals(String.valueOf(base2.charAt(i)))) {
 				compareBase += base1.charAt(i);
@@ -181,9 +179,7 @@ public class BB84Service {
 			}
 		}
 		
-		Map<String, String> result = new HashMap<String, String>();
-		result.put("comparedBase", compareBase); 
-		result.put("commonKey", commonKey);
+		String[] result = {compareBase, commonKey};
 		return result;
 		
 		// TODO Auto-generated method stub

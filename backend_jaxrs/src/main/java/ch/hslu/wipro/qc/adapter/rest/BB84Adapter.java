@@ -89,12 +89,17 @@ public class BB84Adapter implements BB84Interface {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice) {
 		System.out.println("Session id rest " + request); 
-		final Map<String, String> shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, request); 
-		JsonObject response = Json.createObjectBuilder().add("baseString", shortenedKey.get("baseString"))
-		 .add("baseString", shortenedKey.get("baseString"))
+		final String[] shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, request); 
+		
+		
+		System.out.println(shortenedKey[0]);
+		System.out.println(shortenedKey[1]);	
+		
+		JsonObject response = Json.createObjectBuilder().add("comparedBase", shortenedKey[0])
+		 .add("commonKey", shortenedKey[1])
 		 .build();
 		return Response.ok(response.toString()).build();
-	}
+}	
 	
 	
 	@POST
