@@ -5,26 +5,24 @@ class ButtonEmitPhotons extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      bitString: this.props.bitString,
-      baseString: this.props.baseString,
-      polarization: this.props.polarization,
-      dataHasLoaded: false
-    };
+    this.emit = this.emit.bind(this);
   }
 
-  emit = () => {
+  emit() {
     console.log("emit button");
+    this.props.updateProps({
+      polarizationHasLoaded: false
+    });
+
     let formData = new FormData();
-    formData.append("base", this.props.bitString);
-    formData.append("str", this.props.baseString);
+    formData.append("str", this.props.bitString);
+    formData.append("base", this.props.baseString);
     formData.append("angle_variance", 0);
     formData.append("length_variance", 0);
     const data = new URLSearchParams(formData);
-    this.setState({ dataHasLoaded: false });
-    async function getPolarization(
-      url = "http://localhost:8080/rest/post/emitphoton"
-    ) {
+
+    const getPolarization = async () => {
+      const url = "http://localhost:8080/rest/post/emitphoton";
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -34,13 +32,12 @@ class ButtonEmitPhotons extends React.Component {
       });
       const content = await res.json();
       console.log(content);
-      this.setState({ polarization: content });
-      this.props.updateProps({
-        polarization: this.state.polarization
-      });
-    }
+      const photonString = content.photonString;
+      const photonArray = photonString.split(";");
+      console.log(photonArray);
+    };
     getPolarization();
-  };
+  }
 
   render() {
     return (
