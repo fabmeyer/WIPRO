@@ -87,9 +87,9 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/shortenkey")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("base_bob") String base_bob) {
+	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice) {
 		System.out.println("Session id rest " + request); 
-		final Map<String, String> shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, base_bob, request); 
+		final Map<String, String> shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, request); 
 		JsonObject response = Json.createObjectBuilder().add("baseString", shortenedKey.get("baseString"))
 		 .add("baseString", shortenedKey.get("baseString"))
 		 .build();

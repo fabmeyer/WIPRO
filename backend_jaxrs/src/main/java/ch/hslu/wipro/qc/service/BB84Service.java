@@ -163,7 +163,7 @@ public class BB84Service {
 		// TODO Auto-generated method stub
 	}
 
-	public static Map<String, String> shortenKey(String base1, String base2, String string_alice, String base_bob,
+	public static Map<String, String> shortenKey(String base1, String base2, String string_alice,
 		HttpServletRequest request) {
 		
 		String compareBase = ""; 
