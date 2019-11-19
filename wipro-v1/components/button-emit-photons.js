@@ -7,7 +7,6 @@ class ButtonEmitPhotons extends React.Component {
   }
 
   emit() {
-    console.log("emit button");
     this.props.updateProps({
       polarizationHasLoaded: false
     });

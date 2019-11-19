@@ -24,11 +24,21 @@ class ButtonMeasure extends React.Component {
         strLength: this.checkType(this.props.strLength)
       });
     }
+    if (
+      this.props.bobBaseHasLoaded === true &&
+      this.props.bobStringHasLoaded === true
+    ) {
+      console.log("base and string loaded");
+      this.props.updateProps({
+        bobDataHasLoaded: true
+      });
+    }
   }
 
   measure() {
     this.props.updateProps({
-      bobStringHasLoaded: false
+      bobStringHasLoaded: false,
+      bobDataHasLoaded: false
     });
 
     let formData = new FormData();
@@ -48,10 +58,9 @@ class ButtonMeasure extends React.Component {
         body: data
       });
       const content = await res.json();
-      console.log(content);
-      const bitString = content.photons;
+      const bitString = content.bitString;
       this.props.updateProps({
-        bitString: bitString
+        measuredString: bitString
       });
     };
     measurePhotons();

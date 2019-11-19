@@ -29,6 +29,8 @@ class PhotonGrid extends React.Component {
         isColor: false
       });
       this.colorBackground();
+    } else if (oldProps.dataHasLoaded !== newProps.dataHasLoaded) {
+      this.colorBackground();
     }
   }
 
@@ -144,7 +146,7 @@ class PhotonGrid extends React.Component {
             <div>
               <ScrollBox
                 value={this.props.bitString}
-                zoomFactor={this.props.aliceBitStringZoom}
+                zoomFactor={this.props.bitStringZoom}
               ></ScrollBox>
             </div>
           </Rodal>
@@ -185,7 +187,7 @@ class PhotonGrid extends React.Component {
             <div>
               <ScrollBox
                 value={this.props.baseString}
-                zoomFactor={this.props.aliceBaseStringZoom}
+                zoomFactor={this.props.baseStringZoom}
               ></ScrollBox>
             </div>
           </Rodal>

@@ -53,7 +53,7 @@ Alice computes a random bitstring with the given length. She then also has to co
   error:error
   bitString:AliceBitString
   baseString:AliceBaseString
-  autostart:false
+  autostart:true
   dataHasLoaded:AliceDataHasLoaded
   text:"get Alices bitstring and base"
   /]
@@ -68,8 +68,8 @@ You can take a look at Alices bitstring and her base here:
   bitString:AliceBitString
   baseString:AliceBaseString
   dataHasLoaded:AliceDataHasLoaded
-  aliceBitStringZoom:AliceBitStringZoom
-  aliceBaseStringZoom:AliceBaseStringZoom
+  bitStringZoom:AliceBitStringZoom
+  baseStringZoom:AliceBaseStringZoom
   min:25
   max:500
   step:25
@@ -134,28 +134,34 @@ Now Bob takes his base and measures Alices Photons to compute a bitstring.
 
 [var name:"BobBitString" value:null /]
 [var name:"BobStringHasLoaded" value:false /]
+[var name:"BobDataHasLoaded" value:false /]
 [ButtonMeasure
   strLength:strLength
   rawPolarization:RawPolarization
   polarization:AlicePolarization
   baseString:BobBaseString
   measuredString:BobBitString
+  bobBaseHasLoaded:BobBaseHasLoaded
   bobStringHasLoaded:BobStringHasLoaded
+  bobDataHasLoaded:BobDataHasLoaded
   autostart:false
   text:"measure Alices photons"
   /]
 
-// [var name:"BobBaseStringZoom" value:100 /]
-// [ShowHide isVisible:"flex" position:"center"]
-//   [Range value:BobBaseStringZoom min:25 max:500 step:25 /]
-//   [ScrollBox value:BobBaseString zoomFactor:BobBaseStringZoom /]
-// [/ShowHide]
+## Bobs bitstring and base
 
-// [var name:"BobBitStringZoom" value:100 /]
-// [ShowHide isVisible:"flex" position:"center"]
-//   [Range value:BobBitStringZoom min:25 max:500 step:25 /]
-//   [ScrollBox value:BobBitString zoomFactor:BobBitStringZoom /]
-// [/ShowHide]
+[var name:"BobBitStringZoom" value:100 /]
+[var name:"BobBaseStringZoom" value:100 /]
+[PhotonGrid
+  bitString:BobBitString
+  baseString:BobBaseString
+  dataHasLoaded:BobDataHasLoaded
+  bitStringZoom:BobBitStringZoom
+  baseStringZoom:BobBaseStringZoom
+  min:25
+  max:500
+  step:25
+  /]
 
 // ## Alice and Bob compare their bases
 
