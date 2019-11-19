@@ -40,6 +40,7 @@ public class BB84Adapter implements BB84Interface {
 
 	@POST
 	@Path("/emitphoton/")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str,
 			@FormParam("angle_variance") float angle_var, @FormParam("length_variance") float length_var) {
@@ -50,8 +51,8 @@ public class BB84Adapter implements BB84Interface {
 
 	@POST
 	@Path("/receivephoton/")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response receivePhoton(@FormParam("photons") String photons, @FormParam("base") String base,
+	@Produces(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response receivePhoton(@FormDataParam("photons") String photons, @FormParam("base") String base,
 			@FormParam("fp") float fp, @FormParam("undetected") float undetected) {
 		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, fp, undetected);
 		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
@@ -60,14 +61,16 @@ public class BB84Adapter implements BB84Interface {
 
 	@POST
 	@Path("/randombase/")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response randomBase(@FormParam("n") int n, @FormParam("prob") float prob) {
-		final String baseString = BB84Service.getRandomBaseString(Integer.valueOf(n), prob);
+	public Response randomBase(@FormParam("stringLength") int stringLength, @FormParam("prob") float prob) {
+		final String baseString = BB84Service.getRandomBaseString(stringLength, prob);
 		JsonObject response = Json.createObjectBuilder().add("baseString", baseString).build();
 		return Response.ok(response.toString()).build();
 	}
 
 	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Path("/randomstring")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response randomString(@FormParam("stringLength") int stringLength, @FormParam("prob") int prob) {

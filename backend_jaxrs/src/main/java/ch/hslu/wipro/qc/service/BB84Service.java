@@ -14,23 +14,12 @@ import com.google.inject.Singleton;
 public class BB84Service {
 	
 	public static String getRandomBitString(int stringLength, int prob, HttpServletRequest request) {
+		System.out.println("bit string "+stringLength);
+
 		//int n = request.getSession().getAttribute("length");
 		String bitString = "";
-		System.out.println("session id getRandomBitString " +request.getSession().getId());
-		System.out.println("session attr length "+request.getSession().getAttributeNames());
-		Enumeration e = (Enumeration) (request.getSession().getAttributeNames());
 
-        while ( e.hasMoreElements())
-        {
-        	System.out.println("another element");
-            Object tring;
-            if((tring = e.nextElement())!=null)
-            {
-                System.out.println(request.getSession().getAttribute((String) tring));
-                System.out.println("<br/>");
-            }
 
-        }
 		for (int i = 0; i < stringLength; i++) {
 			Random random = new Random();
 			double randomDouble = random.nextDouble();
@@ -44,11 +33,12 @@ public class BB84Service {
 	}
 
 	public static String getRandomBaseString(int n, float prob) {
+		System.out.println("base string "+n);
 		String bitString = "";
 		for (int i = 0; i < n; i++) {
 			Random random = new Random();
 			double randomDouble = random.nextDouble();
-			if (randomDouble > prob) {
+			if (randomDouble > prob/100f) {
 				bitString += "x";
 			} else {
 				bitString += "+";
