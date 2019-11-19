@@ -30,7 +30,7 @@ public class BB84Adapter implements BB84Interface {
 	
 	
 	@POST
-	@Path("/comparebase/")
+	@Path("/comparebase")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response compareBase(@FormParam("base1") String base1, @FormParam("base2") String base2) {
@@ -51,7 +51,7 @@ public class BB84Adapter implements BB84Interface {
 	}
 
 	@POST
-	@Path("/receivephoton/")
+	@Path("/receivephoton")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response receivePhoton(@FormDataParam("photons") String photons, @FormParam("base") String base,
@@ -62,7 +62,7 @@ public class BB84Adapter implements BB84Interface {
 	}
 
 	@POST
-	@Path("/randombase/")
+	@Path("/randombase")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response randomBase(@FormParam("stringLength") int stringLength, @FormParam("prob") float prob) {
