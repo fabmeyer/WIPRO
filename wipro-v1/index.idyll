@@ -163,17 +163,24 @@ Now Bob takes his base and measures Alices Photons to compute a bitstring.
   step:25
   /]
 
-// ## Alice and Bob compare their bases
+## Alice and Bob compare their bases
 
-// Alice and Bob use a public authenticated channel to compare their bases.
+Alice and Bob use a public authenticated channel to compare their bases.
 
-// [var name:"comparedBase" value:null /]
-// [var name:"shortenedKey" value:null /]
-// [ButtonCompare baseString1:AliceBaseString baseString2:BobBaseString bitString:AliceBitString comparedBase:comparedBase commonKey:commonKey
-// text:"compare basestrings"/]
+[var name:"ComparedBase" value:null /]
+[var name:"ShortenKey" value:null /]
+[var name:"ShortenKeyHasLoaded" value:null /]
+[ButtonShortenKey
+  baseString1:AliceBaseString
+  baseString2:BobBaseString
+  bitString:AliceBitString
+  shortenKeyHasLoaded:ShortenKeyHasLoaded
+  comparedBase:ComparedBase
+  shortenKey:ShortenKey
+  text:"compare basestrings"
+  /]
 
-// [var name:"comparedStringZoom" value:100 /]
-// [ShowHide isVisible:"flex" position:"center"]
-//   [Range value:comparedStringZoom min:25 max:500 step:25 /]
-//   [ScrollBox value:comparedString zoomFactor:comparedStringZoom /]
-// [/ShowHide]
+## Alice and Bob shorten their bitstrings
+
+They drop all bits from their bitstrings where their bases do not correspond.
+In that way they create a shortened key together that they share.

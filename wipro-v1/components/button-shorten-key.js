@@ -3,25 +3,21 @@ const React = require("react");
 class ButtonShortenKey extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      comparedBase: this.props.comparedBase,
-      commonKey: this.props.commonKey
-    };
   }
 
-  shorten = () => {
-    console.log("measure button"); 
+  shorten() {
+    this.props.updateProps({
+      shortenKeyHasLoaded: false
+    });
+
     let formData = new FormData();
-    formData.append("base1",  this.props.baseString1);
+    formData.append("base1", this.props.baseString1);
     formData.append("base2", this.props.baseString2);
-    formData.append("string_alice", this.props.bitstring);
+    formData.append("string_alice", this.props.bitString);
     const data = new URLSearchParams(formData);
 
-    this.setState({ dataHasLoaded: false });
-    async function getShortenedKey(
-      url = "http://localhost:8080/rest/post/shortenkey"
-    ) {
+    const getShortenedKey = async () => {
+      const url = "http://localhost:8080/rest/post/shortenkey";
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -31,24 +27,26 @@ class ButtonShortenKey extends React.Component {
       });
       const content = await res.json();
       console.log(content);
-      this.setState({ comparedBase: content.comparedBase });
+      const comparedBase = content.compareBase;
       this.props.updateProps({
-        comparedBase: this.state.comparedBase
+        comparedBase: comparedBase
       });
-      this.setState({ commonKey: content.commonKey });
+      const commonKey = content.commonKey;
       this.props.updateProps({
-        commonKey: this.state.commonKey
+        commonKey: commonKey
       });
-    }
+    };
     getShortenedKey();
-    this.setState({ dataHasLoaded: true });
-  };
+    this.props.updateProps({
+      shortenKeyHasLoaded: true
+    });
+  }
 
   render() {
     return (
       <React.Fragment>
-        <button className="button-small" onClick={this.compare.bind(this)}>
-          {this.props.text}, Length: {this.state.strLength}
+        <button className="button-small" onClick={this.shorten.bind(this)}>
+          {this.props.text}
         </button>
       </React.Fragment>
     );
