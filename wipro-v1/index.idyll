@@ -84,10 +84,12 @@ This quantum channel is an optical channel like a optical-fibre cable.
 Sometimes the channel is noisy and some photons or their polarization will get changed.
 
 [var name:"AlicePolarization" value:null /]
+[var name:"PolarizationHasLoaded" value:false /]
 [ButtonEmitPhotons
   bitString:AliceBitString
   baseString:AliceBaseString
   polarization:AlicePolarization
+  polarizationHasLoaded:PolarizationHasLoaded
   text:"Send photons to Bob"
 /]
 

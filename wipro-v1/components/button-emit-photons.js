@@ -33,8 +33,12 @@ class ButtonEmitPhotons extends React.Component {
       const content = await res.json();
       console.log(content);
       const photonString = content.photonString;
-      const photonArray = photonString.split(";");
+      const photonArray = photonString.split(",");
       console.log(photonArray);
+      this.props.updateProps({
+        polarization: photonArray,
+        polarizationHasLoaded: true
+      });
     };
     getPolarization();
   }
