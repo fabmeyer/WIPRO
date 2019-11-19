@@ -130,13 +130,13 @@ class PhotonGrid extends React.Component {
                 trackClassName="example-track"
                 onChange={props => {
                   this.props.updateProps({
-                    aliceBitStringZoom: props
+                    bitStringZoom: props
                   });
                 }}
                 renderThumb={(props, state) => (
                   <p {...props}>{state.valueNow}</p>
                 )}
-                defaultValue={this.props.aliceBitStringZoom}
+                defaultValue={this.props.bitStringZoom}
                 style={{ cursor: "pointer" }}
                 min={25}
                 max={250}
@@ -171,13 +171,13 @@ class PhotonGrid extends React.Component {
                 trackClassName="example-track"
                 onChange={props => {
                   this.props.updateProps({
-                    aliceBaseStringZoom: props
+                    baseStringZoom: props
                   });
                 }}
                 renderThumb={(props, state) => (
                   <p {...props}>{state.valueNow}</p>
                 )}
-                defaultValue={this.props.aliceBaseStringZoom}
+                defaultValue={this.props.baseStringZoom}
                 style={{ cursor: "pointer" }}
                 min={25}
                 max={250}
