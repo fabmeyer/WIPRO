@@ -47,6 +47,7 @@ Every single bit of her string will be encoded with the base so that from the bi
 
 [var name:"AliceBitString" value:"" /]
 [var name:"AliceBaseString" value:"" /]
+[var name:"dataHasLoaded" value:null /]
 [ButtonAliceStart
   strLength:strLength
   noise:noise
@@ -63,7 +64,6 @@ You can take a look at Alices bitstring and her base here:
 
 ## Alices bitstring and base
 
-[var name:"dataHasLoaded" value:null /]
 [var name:"AliceBitStringZoom" value:100 /]
 [var name:"AliceBaseStringZoom" value:100 /]
 [PhotonGrid

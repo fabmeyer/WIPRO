@@ -6,10 +6,7 @@ class ButtonAliceStart extends React.Component {
     super(props);
 
     this.state = {
-      strLength: this.checkType(this.props.strLength),
-      bitString: null,
-      baseString: null,
-      dataHasLoaded: false
+      strLength: this.checkType(this.props.strLength)
     };
 
     this.start = this.start.bind(this);
@@ -24,8 +21,6 @@ class ButtonAliceStart extends React.Component {
   };
 
   componentDidMount() {
-    console.log("props", this.props);
-    console.log("state", this.state);
     if (this.props.autostart) {
       this.start();
     }
@@ -41,13 +36,14 @@ class ButtonAliceStart extends React.Component {
   }
 
   start() {
-    console.log(this);
-    console.log("start button");
+    this.props.updateProps({
+      dataHasLoaded: false
+    });
+
     let formData = new FormData();
     formData.append("stringLength", this.checkType(this.props.strLength));
     formData.append("prob", 50);
     const data = new URLSearchParams(formData);
-    this.setState({ dataHasLoaded: false });
 
     const getBitString = async () => {
       const url = "http://localhost:8080/rest/post/randomstring";
@@ -60,10 +56,8 @@ class ButtonAliceStart extends React.Component {
       });
       const content = await res.json();
       const bitString = content.bitString;
-      console.log("getting bitstring", bitString);
-      this.setState({ bitString: bitString });
       this.props.updateProps({
-        bitString: this.state.bitString
+        bitString: bitString
       });
     };
     getBitString();
@@ -79,14 +73,14 @@ class ButtonAliceStart extends React.Component {
       });
       const content = await res.json();
       const baseString = content.baseString;
-      console.log("getting basestring", baseString);
-      this.setState({ baseString: baseString });
       this.props.updateProps({
-        baseString: this.state.baseString
+        baseString: baseString
       });
     };
     getBaseString();
-    this.setState({ dataHasLoaded: true });
+    this.props.updateProps({
+      dataHasLoaded: true
+    });
   }
 
   render() {

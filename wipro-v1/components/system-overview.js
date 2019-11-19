@@ -16,10 +16,6 @@ class SystemOverview extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    console.log(this.state);
-  };
-
   checkType = arg => {
     if (typeof arg !== "number") {
       return eval(arg);
@@ -35,7 +31,6 @@ class SystemOverview extends React.Component {
       frequency: this.props.frequency,
       error: this.props.error
     };
-    console.log(JSON.stringify(data));
     async function postData(url = "http://localhost:8080/rest/post/settings") {
       await fetch(url, {
         method: "POST",
@@ -88,9 +83,6 @@ class SystemOverview extends React.Component {
       width: "200",
       height: "200"
     };
-
-    // insert options here
-    const options = ["one", "two", "three"];
 
     const children = React.Children.toArray(this.props.children);
     const textInput = children[0];
