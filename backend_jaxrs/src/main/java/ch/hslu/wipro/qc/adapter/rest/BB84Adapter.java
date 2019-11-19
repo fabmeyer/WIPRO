@@ -16,8 +16,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
-import org.glassfish.jersey.media.multipart.FormDataParam;
+import com.google.inject.Provider;
 
 import ch.hslu.wipro.qc.adapter.BB84Interface;
 import ch.hslu.wipro.qc.service.BB84Service;
@@ -27,7 +26,7 @@ public class BB84Adapter implements BB84Interface {
 
 	@Context
 	private HttpServletRequest request;
-	
+
 	
 	@POST
 	@Path("/comparebase")

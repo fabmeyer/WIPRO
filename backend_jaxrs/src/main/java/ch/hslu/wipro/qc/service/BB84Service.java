@@ -112,8 +112,9 @@ public class BB84Service {
 
 	public static String getBitStringFromPhotons(String photons, String base, float fp, float undetected) {
 		String bitString = "";
-		if (photons.length() != base.length()) {
-			return null;
+		String[] photonList = photons.split(",");
+		if (photonList.length != base.length()) {
+			//return null;
 		}
 		for (int i = 0; i < base.length(); i++) {
 			Random randomUndetected = new Random();
@@ -121,20 +122,20 @@ public class BB84Service {
 			
 			Random randomFp = new Random();
 			double randomDoubleFp= randomFp.nextDouble();
+			
+			float photon = Float.parseFloat(photonList[i]);
 
 			if (1 - undetected >= randomDoubleUndetected) {
 				if (String.valueOf(base.charAt(i)).equals("x")) {
-					bitString += (String.valueOf(photons.charAt(i)).equals("0")) ? "1" : "0";
+					bitString += ((photon > -5 && photon < 5)) ? "1" : "0";
 				} else {
-					bitString += (String.valueOf(photons.charAt(i)).equals("1")) ? "1" : "0";
+					bitString += ((photon > 40 && photon < 50)) ? "1" : "0";
 				}
 			}
 			
 			if (1 - fp >= randomDoubleFp) {
-				bitString += (randomDoubleUndetected >  0.5f) ? "1" : "0";
-			}
-			
-			
+				//bitString += (randomDoubleUndetected >  0.5f) ? "1" : "0";
+			}	
 		}
 		return bitString;
 	}
