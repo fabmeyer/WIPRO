@@ -38,26 +38,27 @@ class ButtonAliceStart extends React.Component {
 
   start = () => {
     console.log("start button");
-    const data = {
-      stringLength: this.checkType(this.props.strLength),
-      prob: 50
-    };
+    let formData = new FormData();
+    formData.append("stringLength", this.checkType(this.props.strLength));
+    formData.append("prob", 50);
+    const data = new URLSearchParams(formData);
     this.setState({ dataHasLoaded: false });
+
     async function getBitString(
       url = "http://localhost:8080/rest/post/randomstring"
     ) {
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
-        body: JSON.stringify(data)
+        body: data
       });
       const content = await res.json();
       console.log(content);
       this.setState({ bitString: content });
       this.props.updateProps({
-        bitString: this.state.bitString
+        bitString: this.state.bitString 
       });
     }
     getBitString();
@@ -68,9 +69,9 @@ class ButtonAliceStart extends React.Component {
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
-        body: JSON.stringify(data)
+        body: data
       });
       const content = await res.json();
       console.log(content);

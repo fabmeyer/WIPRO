@@ -15,12 +15,12 @@ class ButtonEmitPhotons extends React.Component {
 
   emit = () => {
     console.log("emit button");
-    const data = {
-      base: this.props.bitString,
-      str: this.props.baseString,
-      angle_variance: 0,
-      legth_variance: 0
-    };
+    let formData = new FormData();
+    formData.append("base", this.props.bitString);
+    formData.append("str", this.props.baseString);
+    formData.append("angle_variance", 0);
+    formData.append("length_variance", 0);
+    const data = new URLSearchParams(formData);
     this.setState({ dataHasLoaded: false });
     async function getPolarization(
       url = "http://localhost:8080/rest/post/emitphoton"
@@ -30,7 +30,7 @@ class ButtonEmitPhotons extends React.Component {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: JSON.stringify(data)
+        body: data
       });
       const content = await res.json();
       console.log(content);
