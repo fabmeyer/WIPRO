@@ -7,7 +7,8 @@ class ButtonShortenKey extends React.Component {
 
   shorten() {
     this.props.updateProps({
-      shortenKeyHasLoaded: false
+      shortenKeyHasLoaded: false,
+      comparedBaseHasLoaded: false
     });
 
     let formData = new FormData();
@@ -42,7 +43,8 @@ class ButtonShortenKey extends React.Component {
     };
     getShortenedKey();
     this.props.updateProps({
-      shortenKeyHasLoaded: true
+      comparedBaseHasLoaded: true,
+      commonKeyHasLoaded: true
     });
   }
 

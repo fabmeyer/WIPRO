@@ -3,7 +3,7 @@ import Rodal from "rodal";
 import ScrollBox from "./scroll-box";
 import ReactSlider from "react-slider";
 
-class PhotonGrid extends React.Component {
+class PhotonGridDouble extends React.Component {
   constructor(props) {
     super(props);
     this.exampleRef1 = React.createRef();
@@ -197,4 +197,4 @@ class PhotonGrid extends React.Component {
   }
 }
 
-module.exports = PhotonGrid;
+module.exports = PhotonGridDouble;

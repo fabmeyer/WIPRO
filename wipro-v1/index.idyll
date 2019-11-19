@@ -64,15 +64,12 @@ You can take a look at Alices bitstring and her base here:
 
 [var name:"AliceBitStringZoom" value:100 /]
 [var name:"AliceBaseStringZoom" value:100 /]
-[PhotonGrid
+[PhotonGridDouble
   bitString:AliceBitString
   baseString:AliceBaseString
   dataHasLoaded:AliceDataHasLoaded
   bitStringZoom:AliceBitStringZoom
   baseStringZoom:AliceBaseStringZoom
-  min:25
-  max:500
-  step:25
   /]
 
 ## Alice sends her photons to Bob
@@ -152,15 +149,12 @@ Now Bob takes his base and measures Alices Photons to compute a bitstring.
 
 [var name:"BobBitStringZoom" value:100 /]
 [var name:"BobBaseStringZoom" value:100 /]
-[PhotonGrid
+[PhotonGridDouble
   bitString:BobBitString
   baseString:BobBaseString
   dataHasLoaded:BobDataHasLoaded
   bitStringZoom:BobBitStringZoom
   baseStringZoom:BobBaseStringZoom
-  min:25
-  max:500
-  step:25
   /]
 
 ## Alice and Bob compare their bases
@@ -168,19 +162,29 @@ Now Bob takes his base and measures Alices Photons to compute a bitstring.
 Alice and Bob use a public authenticated channel to compare their bases.
 
 [var name:"ComparedBase" value:null /]
-[var name:"ShortenKey" value:null /]
-[var name:"ShortenKeyHasLoaded" value:null /]
+[var name:"ComparedBaseHasLoaded" value:null /]
 [var name:"CommonKey" value: null /]
+[var name:"CommonKeyHasLoaded" value:null /]
 [var name:"CommonKeyLength" value: null /]
 [ButtonShortenKey
   baseString1:AliceBaseString
   baseString2:BobBaseString
   bitString:AliceBitString
-  shortenKeyHasLoaded:ShortenKeyHasLoaded
   comparedBase:ComparedBase
+  comparedBaseHasLoaded:ComparedBaseHasLoaded
   commonKey:CommonKey
+  commonKeyHasLoaded:CommonKeyHasLoaded
   commonKeyLength:CommonKeyLength
   text:"compare basestrings"
+  /]
+
+If they choose both bases with a chance of 50%, then they should have the same base for every photon with a probability of 50%.
+
+[var name:"ComparedBaseZoom" value:null /]
+[PhotonGridSingle
+  string:ComparedBase
+  dataHasLoaded:ComparedBaseHasLoaded
+  stringZoom:ComparedBaseZoom
   /]
 
 ## Alice and Bob shorten their bitstrings
@@ -188,4 +192,13 @@ Alice and Bob use a public authenticated channel to compare their bases.
 They drop all bits from their bitstrings where their bases do not correspond.
 In that way they create a shortened key together that they share.
 
-Length of their shortend key: [Display value:CommonKeyLength format:"d" /].
+The length of their shortend key: [Display value:CommonKeyLength format:"d" /]
+
+This is the shortened key:
+
+[var name:"CommonKeyZoom" value:null /]
+[PhotonGridSingle
+  string:CommonKey
+  dataHasLoaded:CommonKeyHasLoaded
+  stringZoom:CommonKeyZoom
+  /]
