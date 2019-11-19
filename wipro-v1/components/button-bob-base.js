@@ -31,10 +31,12 @@ class ButtonBobBase extends React.Component {
 
   start = () => {
     console.log("start button");
-    const data = {
-      stringLength: this.checkType(this.props.strLength),
-      prob: 50
-    };
+
+    let formData = new FormData();
+    formData.append("stringLength", this.props.strLength);
+    formData.append("prob", 50);
+    const data = new URLSearchParams(formData);
+
     this.setState({ dataHasLoaded: false });
     async function getBaseString(
       url = "http://localhost:8080/rest/post/randombase"
@@ -44,7 +46,7 @@ class ButtonBobBase extends React.Component {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: JSON.stringify(data)
+        body: data
       });
       const content = await res.json();
       console.log(content);

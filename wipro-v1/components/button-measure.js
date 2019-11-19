@@ -12,12 +12,13 @@ class ButtonMeasure extends React.Component {
 
   measure = () => {
     console.log("measure button");
-    const data = {
-      photons: this.props.polarization,
-      base: this.props.baseString,
-      fp: 0,
-      undetected: 0
-    };
+    let formData = new FormData();
+    formData.append("photons", this.props.polarization);
+    formData.append("base", this.props.baseString);
+    formData.append("fp", 0);
+    formData.append("undeteced", 0);
+    const data = new URLSearchParams(formData);
+
     this.setState({ dataHasLoaded: false });
     async function getPolarization(
       url = "http://localhost:8080/rest/post/receivephoton"
@@ -27,7 +28,7 @@ class ButtonMeasure extends React.Component {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: JSON.stringify(data)
+        body: data
       });
       const content = await res.json();
       console.log(content);
