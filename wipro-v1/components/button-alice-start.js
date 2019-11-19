@@ -7,10 +7,12 @@ class ButtonAliceStart extends React.Component {
 
     this.state = {
       strLength: this.checkType(this.props.strLength),
-      bitString: this.props.bitString,
-      baseString: this.props.baseString,
+      bitString: null,
+      baseString: null,
       dataHasLoaded: false
     };
+
+    this.start = this.start.bind(this);
   }
 
   checkType = arg => {
@@ -22,6 +24,8 @@ class ButtonAliceStart extends React.Component {
   };
 
   componentDidMount() {
+    console.log("props", this.props);
+    console.log("state", this.state);
     if (this.props.autostart) {
       this.start();
     }
@@ -36,7 +40,8 @@ class ButtonAliceStart extends React.Component {
     }
   }
 
-  start = () => {
+  start() {
+    console.log(this);
     console.log("start button");
     let formData = new FormData();
     formData.append("stringLength", this.checkType(this.props.strLength));
@@ -44,45 +49,45 @@ class ButtonAliceStart extends React.Component {
     const data = new URLSearchParams(formData);
     this.setState({ dataHasLoaded: false });
 
-    async function getBitString(
-      url = "http://localhost:8080/rest/post/randomstring"
-    ) {
+    const getBitString = async () => {
+      const url = "http://localhost:8080/rest/post/randomstring";
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
         body: data
       });
       const content = await res.json();
-      console.log(content);
-      this.setState({ bitString: content });
+      const bitString = content.bitString;
+      console.log("getting bitstring", bitString);
+      this.setState({ bitString: bitString });
       this.props.updateProps({
-        bitString: this.state.bitString 
+        bitString: this.state.bitString
       });
-    }
+    };
     getBitString();
 
-    async function getBaseString(
-      url = "http://localhost:8080/rest/post/randombase"
-    ) {
+    const getBaseString = async () => {
+      const url = "http://localhost:8080/rest/post/randombase";
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
         body: data
       });
       const content = await res.json();
-      console.log(content);
-      this.setState({ baseString: content });
+      const baseString = content.baseString;
+      console.log("getting basestring", baseString);
+      this.setState({ baseString: baseString });
       this.props.updateProps({
         baseString: this.state.baseString
       });
-    }
+    };
     getBaseString();
     this.setState({ dataHasLoaded: true });
-  };
+  }
 
   render() {
     return (

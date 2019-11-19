@@ -45,8 +45,8 @@ Alice computes a random bitstring with the given length. She then also has to co
 
 Every single bit of her string will be encoded with the base so that from the bit and the base a specific polarization results. Her photons can have a polarization with 0°, 45°, 90° or 135°.
 
-[var name:"AliceBitString" value:null /]
-[var name:"AliceBaseString" value:null /]
+[var name:"AliceBitString" value:"" /]
+[var name:"AliceBaseString" value:"" /]
 [ButtonAliceStart
   strLength:strLength
   noise:noise
