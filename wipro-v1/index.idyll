@@ -8,7 +8,7 @@
   date:`(new Date()).toDateString()`
   background:"#403d58"
   color:"#ededef"
-   /]
+  /]
 
 # Introduction
 
@@ -34,7 +34,7 @@ First of all Alice and Bob have to decide on some settings like the length of th
     aliceProb:aliceProb
     bobProb:bobProb
     text:"save settings"
-  ]
+    ]
     [TextInput value:strLength/]
   [/SystemOverview]
 [/fullWidth]
@@ -43,11 +43,9 @@ First of all Alice and Bob have to decide on some settings like the length of th
 
 Alice computes a random bitstring with the given length. She then also has to compute a random string of bases.
 
-Every single bit of her string will be encoded with the base so that from the bit and the base a specific polarization results. Her photons can have a polarization with 0°, 45°, 90° or 135°.
-
 [var name:"AliceBitString" value:"" /]
 [var name:"AliceBaseString" value:"" /]
-[var name:"dataHasLoaded" value:null /]
+[var name:"AliceDataHasLoaded" value:false /]
 [ButtonAliceStart
   strLength:strLength
   noise:noise
@@ -56,9 +54,9 @@ Every single bit of her string will be encoded with the base so that from the bi
   bitString:AliceBitString
   baseString:AliceBaseString
   autostart:false
-  dataHasLoaded:dataHasLoaded
+  dataHasLoaded:AliceDataHasLoaded
   text:"get Alices bitstring and base"
-/]
+  /]
 
 You can take a look at Alices bitstring and her base here:
 
@@ -69,7 +67,7 @@ You can take a look at Alices bitstring and her base here:
 [PhotonGrid
   bitString:AliceBitString
   baseString:AliceBaseString
-  dataHasLoaded:dataHasLoaded
+  dataHasLoaded:AliceDataHasLoaded
   aliceBitStringZoom:AliceBitStringZoom
   aliceBaseStringZoom:AliceBaseStringZoom
   min:25
@@ -79,19 +77,23 @@ You can take a look at Alices bitstring and her base here:
 
 ## Alice sends her photons to Bob
 
+Every single bit of her string will be encoded with the base so that from the bit and the base a specific polarization results. Her photons can have a polarization with 0°, 45°, 90° or 135°.
+
 Now Alice takes her photons and sends them via a quantum channel to Bob.
 This quantum channel is an optical channel like a optical-fibre cable.
 Sometimes the channel is noisy and some photons or their polarization will get changed.
 
+[var name:"RawPolarization" value:null /]
 [var name:"AlicePolarization" value:null /]
 [var name:"PolarizationHasLoaded" value:false /]
 [ButtonEmitPhotons
   bitString:AliceBitString
   baseString:AliceBaseString
+  rawPolarization:RawPolarization
   polarization:AlicePolarization
   polarizationHasLoaded:PolarizationHasLoaded
   text:"Send photons to Bob"
-/]
+  /]
 
 [fullWidth]
   [AnimationTest /]
@@ -106,48 +108,66 @@ Like Alice, Bob will define a random basestring to measure Alices Photons Polari
 Length of string: [Display value:strLength format:"d" /].
 
 [var name:"BobBaseString" value:null /]
-[ButtonBobBase strLength:strLength baseString:BobBaseString text:"get Bobs base"/]
+[var name:"BobBaseHasLoaded" value:false /]
+[ButtonBobBase
+  strLength:strLength
+  baseString:BobBaseString
+  bobBaseHasLoaded:BobBaseHasLoaded
+  text:"get Bobs base"
+  /]
 
 ## Bob measures Alices Photons with his base
+
+For every photon, if Bobs base is the same as Alices, the outcome will be certain and Bob will be able to decode the String from the polarization together with his base.
 
 [fullWidth]
   [AnimationPhoton1/]
 [/fullWidth]
 
-For every photon, if Bobs base is the same as Alices, the outcome will be certain and Bob will be able to decode the String from the polarization together with his base.
+However if he chose the wrong base, the polarization of the photons will be lost. On average, Bob should measure every second photon correctly.
 
 [fullWidth]
   [AnimationPhoton2/]
 [/fullWidth]
 
-However if he chose the wrong base, the polarization of the photons will be lost. On average, Bob should measure every second photon correctly.
+Now Bob takes his base and measures Alices Photons to compute a bitstring.
 
 [var name:"BobBitString" value:null /]
-[ButtonMeasure strLength:strLength polarization:AlicePolarization baseString:BobBaseString measuredString:BobBitString autostart:false text:"measure Alices photons"/]
+[var name:"BobStringHasLoaded" value:false /]
+[ButtonMeasure
+  strLength:strLength
+  rawPolarization:RawPolarization
+  polarization:AlicePolarization
+  baseString:BobBaseString
+  measuredString:BobBitString
+  bobStringHasLoaded:BobStringHasLoaded
+  autostart:false
+  text:"measure Alices photons"
+  /]
 
-[var name:"BobBaseStringZoom" value:100 /]
-[ShowHide isVisible:"flex" position:"center"]
-  [Range value:BobBaseStringZoom min:25 max:500 step:25 /]
-  [ScrollBox value:BobBaseString zoomFactor:BobBaseStringZoom /]
-[/ShowHide]
+// [var name:"BobBaseStringZoom" value:100 /]
+// [ShowHide isVisible:"flex" position:"center"]
+//   [Range value:BobBaseStringZoom min:25 max:500 step:25 /]
+//   [ScrollBox value:BobBaseString zoomFactor:BobBaseStringZoom /]
+// [/ShowHide]
 
-[var name:"BobBitStringZoom" value:100 /]
-[ShowHide isVisible:"flex" position:"center"]
-  [Range value:BobBitStringZoom min:25 max:500 step:25 /]
-  [ScrollBox value:BobBitString zoomFactor:BobBitStringZoom /]
-[/ShowHide]
+// [var name:"BobBitStringZoom" value:100 /]
+// [ShowHide isVisible:"flex" position:"center"]
+//   [Range value:BobBitStringZoom min:25 max:500 step:25 /]
+//   [ScrollBox value:BobBitString zoomFactor:BobBitStringZoom /]
+// [/ShowHide]
 
-## Alice and Bob compare their bases
+// ## Alice and Bob compare their bases
 
-Alice and Bob use a public authenticated channel to compare their bases.
+// Alice and Bob use a public authenticated channel to compare their bases.
 
-[var name:"comparedBase" value:null /]
-[var name:"shortenedKey" value:null /]
-[ButtonCompare baseString1:AliceBaseString baseString2:BobBaseString bitString:AliceBitString comparedBase:comparedBase commonKey:commonKey
-text:"compare basestrings"/]
+// [var name:"comparedBase" value:null /]
+// [var name:"shortenedKey" value:null /]
+// [ButtonCompare baseString1:AliceBaseString baseString2:BobBaseString bitString:AliceBitString comparedBase:comparedBase commonKey:commonKey
+// text:"compare basestrings"/]
 
-[var name:"comparedStringZoom" value:100 /]
-[ShowHide isVisible:"flex" position:"center"]
-  [Range value:comparedStringZoom min:25 max:500 step:25 /]
-  [ScrollBox value:comparedString zoomFactor:comparedStringZoom /]
-[/ShowHide]
+// [var name:"comparedStringZoom" value:100 /]
+// [ShowHide isVisible:"flex" position:"center"]
+//   [Range value:comparedStringZoom min:25 max:500 step:25 /]
+//   [ScrollBox value:comparedString zoomFactor:comparedStringZoom /]
+// [/ShowHide]

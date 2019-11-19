@@ -5,41 +5,60 @@ class ButtonMeasure extends React.Component {
     super(props);
 
     this.state = {
-      polarization: this.props.polarization,
-      measuredString: this.props.measuredString
+      strLength: this.checkType(this.props.strLength)
     };
   }
 
-  measure = () => {
-    console.log("measure button");
+  checkType = arg => {
+    if (typeof arg !== "number") {
+      return eval(arg);
+    } else {
+      return arg;
+    }
+  };
+
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+    if (oldProps.strLength !== newProps.strLength) {
+      this.setState({
+        strLength: this.checkType(this.props.strLength)
+      });
+    }
+  }
+
+  measure() {
+    this.props.updateProps({
+      bobStringHasLoaded: false
+    });
+
     let formData = new FormData();
-    formData.append("photons", this.props.polarization);
+    formData.append("photons", this.props.rawPolarization);
     formData.append("base", this.props.baseString);
     formData.append("fp", 0);
-    formData.append("undeteced", 0);
+    formData.append("undetected", 0);
     const data = new URLSearchParams(formData);
 
-    this.setState({ dataHasLoaded: false });
-    async function getPolarization(
-      url = "http://localhost:8080/rest/post/receivephoton"
-    ) {
+    const measurePhotons = async () => {
+      const url = "http://localhost:8080/rest/post/receivephoton";
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: data 
+        body: data
       });
       const content = await res.json();
       console.log(content);
-      this.setState({ measuredString: content });
+      const bitString = content.photons;
       this.props.updateProps({
-        measuredString: this.state.measuredString
+        bitString: bitString
       });
-    }
-    getPolarization();
-    this.setState({ dataHasLoaded: true });
-  };
+    };
+    measurePhotons();
+    this.props.updateProps({
+      bobStringHasLoaded: true
+    });
+  }
 
   render() {
     return (

@@ -8,17 +8,7 @@ class ButtonAliceStart extends React.Component {
     this.state = {
       strLength: this.checkType(this.props.strLength)
     };
-
-    this.start = this.start.bind(this);
   }
-
-  checkType = arg => {
-    if (typeof arg !== "number") {
-      return eval(arg);
-    } else {
-      return arg;
-    }
-  };
 
   componentDidMount() {
     if (this.props.autostart) {
@@ -30,10 +20,18 @@ class ButtonAliceStart extends React.Component {
     const newProps = this.props;
     if (oldProps.strLength !== newProps.strLength) {
       this.setState({
-        strLength: this.props.strLength
+        strLength: this.checkType(this.props.strLength)
       });
     }
   }
+
+  checkType = arg => {
+    if (typeof arg !== "number") {
+      return eval(arg);
+    } else {
+      return arg;
+    }
+  };
 
   start() {
     this.props.updateProps({

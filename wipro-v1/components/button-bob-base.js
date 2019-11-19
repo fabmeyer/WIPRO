@@ -6,10 +6,17 @@ class ButtonBobBase extends React.Component {
     super(props);
 
     this.state = {
-      strLength: this.checkType(this.props.strLength),
-      baseString: this.props.baseString,
-      dataHasLoaded: false
+      strLength: this.checkType(this.props.strLength)
     };
+  }
+
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+    if (oldProps.strLength !== newProps.strLength) {
+      this.setState({
+        strLength: this.checkType(this.props.strLength)
+      });
+    }
   }
 
   checkType = arg => {
@@ -20,27 +27,18 @@ class ButtonBobBase extends React.Component {
     }
   };
 
-  componentDidUpdate(oldProps) {
-    const newProps = this.props;
-    if (oldProps.strLength !== newProps.strLength) {
-      this.setState({
-        strLength: this.props.strLength
-      });
-    }
-  }
-
-  start = () => {
-    console.log("start button");
+  start() {
+    this.props.updateProps({
+      bobBaseHasLoaded: false
+    });
 
     let formData = new FormData();
-    formData.append("stringLength", this.props.strLength);
+    formData.append("stringLength", this.checkType(this.props.strLength));
     formData.append("prob", 50);
     const data = new URLSearchParams(formData);
 
-    this.setState({ dataHasLoaded: false });
-    async function getBaseString(
-      url = "http://localhost:8080/rest/post/randombase"
-    ) {
+    const getBaseString = async () => {
+      const url = "http://localhost:8080/rest/post/randombase";
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -49,15 +47,16 @@ class ButtonBobBase extends React.Component {
         body: data
       });
       const content = await res.json();
-      console.log(content);
-      this.setState({ baseString: content });
+      const baseString = content.baseString;
       this.props.updateProps({
-        baseString: this.state.baseString
+        baseString: baseString
       });
-    }
+    };
     getBaseString();
-    this.setState({ dataHasLoaded: true });
-  };
+    this.props.updateProps({
+      bobBaseHasLoaded: true
+    });
+  }
 
   render() {
     return (

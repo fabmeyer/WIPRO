@@ -4,8 +4,6 @@ import "babel-polyfill";
 class ButtonEmitPhotons extends React.Component {
   constructor(props) {
     super(props);
-
-    this.emit = this.emit.bind(this);
   }
 
   emit() {
@@ -31,16 +29,19 @@ class ButtonEmitPhotons extends React.Component {
         body: data
       });
       const content = await res.json();
-      console.log(content);
       const photonString = content.photonString;
-      const photonArray = photonString.split(",");
-      console.log(photonArray);
       this.props.updateProps({
-        polarization: photonArray,
-        polarizationHasLoaded: true
+        rawPolarization: photonString
+      });
+      const photonArray = photonString.split(",");
+      this.props.updateProps({
+        polarization: photonArray
       });
     };
     getPolarization();
+    this.props.updateProps({
+      polarizationHasLoaded: true
+    });
   }
 
   render() {
