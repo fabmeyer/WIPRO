@@ -6,6 +6,26 @@
 * Komponenten photon-grid und scroll-box:
 	* In photon-grid: react-slider, default-value wird falsch gerendert
 
+## TODO bis 28.11
+
+### Dokumentation
+* Struktur aus Vorlage übernehmen
+
+### Frontend
+* Animation fixen: Photonen sollten nicht zurückfliegen
+* Einbau eines Komponenten, der Überblick und Zusammenhang zwischen Bitstring, Basis und Polarisation verschafft
+* Eve: Einbau von Eve, z.B. mit Regler, hört ab von 0 - 100%, im Systemüberblick
+* Einbau der realistischeren features:
+	* Verhältnis der Basen 0 - 100%
+	* Rauschen / noise 0 - 100%
+	* Eve hört ab 0 - 100%
+	* Frequency raus aus Frontend
+* Logischer Aufbau und Lesefluss der Webseite:
+	* Einfügen von zusätzlichen Informationen und Erklärungen, z.B. Popups
+	* Möglichkeit Systemübersicht als Header zu machen, damit dieser beim herunterscrollen (viewport) oben sticky bleibt und sich je nach Situation dynamische ändert:
+		* Farbliche Hervorhebung der Komponenten von denen gerade gesprochen wird
+		* Einfügen der Photonenanimation am jeweiligen Ort
+
 ## TODO bis 18.11
  * Komponente Schlüsselkürzung:
  	* Alice und Bob vergleichen ihre Basen
