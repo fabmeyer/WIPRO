@@ -2,23 +2,7 @@ const React = require("react");
 import Anime from "react-anime";
 import AnimationCircle from "./animation-circle";
 
-class AnimationTest extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  randomPolarisation = () => {
-    let rand = Math.random();
-    if (rand < 0.25) {
-      return 0;
-    } else if (rand < 0.5) {
-      return 45;
-    } else if (rand < 0.75) {
-      return 90;
-    } else return 135;
-  };
-
+class AnimationTest extends React.PureComponent {
   render() {
     const outerContainer = {
       display: "flex",
@@ -31,13 +15,13 @@ class AnimationTest extends React.Component {
     return (
       <div className="outerContainer" style={outerContainer}>
         <Anime
-          easing="easeInOutExpo"
-          elasticity="1"
+          easing="linear"
+          elasticity={1}
           duration={4000}
           direction="normal"
           loop={true}
           translateX={[300, 600, 900, 0]}
-          opacity={[1, 1, 1, 0]}
+          opacity={[0, 1, 1, 0, 0, 0, 0, 0]}
         >
           <span style={animationContainer}>
             <AnimationCircle
@@ -49,13 +33,13 @@ class AnimationTest extends React.Component {
           </span>
         </Anime>
         <Anime
-          easing="easeInOutExpo"
-          elasticity="1"
+          easing="linear"
+          elasticity={1}
           duration={4000}
           direction="normal"
           loop={true}
           translateX={[300, 600, -300, 0]}
-          opacity={[1, 1, 0, 1]}
+          opacity={[1, 0, 0, 0, 0, 0, 0, 1]}
         >
           <span style={animationContainer}>
             <AnimationCircle
@@ -67,13 +51,13 @@ class AnimationTest extends React.Component {
           </span>
         </Anime>
         <Anime
-          easing="easeInOutExpo"
-          elasticity="1"
+          easing="linear"
+          elasticity={1}
           duration={4000}
           direction="normal"
           loop={true}
           translateX={[300, -600, -300, 0]}
-          opacity={[1, 0, 1, 1]}
+          opacity={[0, 0, 0, 0, 0, 1, 1, 0]}
         >
           <span style={animationContainer}>
             <AnimationCircle
@@ -85,13 +69,13 @@ class AnimationTest extends React.Component {
           </span>
         </Anime>
         <Anime
-          easing="easeInOutExpo"
-          elasticity="1"
+          easing="linear"
+          elasticity={1}
           duration={4000}
           direction="normal"
           loop={true}
           translateX={[-900, -600, -300, 0]}
-          opacity={[0, 1, 1, 1]}
+          opacity={[0, 0, 0, 1, 1, 0, 0, 0]}
         >
           <span style={animationContainer}>
             <AnimationCircle
