@@ -46,7 +46,7 @@ class SystemOverview extends React.Component {
   render() {
     const overviewContainer = {
       backgroundColor: "#FEF9FF",
-      border: "1px solid #ccc"
+      border: "1px solid #CCC"
     };
 
     const titleStyle = {
@@ -59,8 +59,8 @@ class SystemOverview extends React.Component {
       margin: "auto",
       textAlign: "center",
       verticalAlign: "middle",
-      borderBottom: "1px solid #ccc",
-      paddingBottom: "10px"
+      paddingBottom: "10px",
+      borderBottom: "1px solid #CCC"
     };
 
     const specificContainer = {
@@ -74,14 +74,25 @@ class SystemOverview extends React.Component {
 
     const noiseContainer = {
       display: "flex",
-      transform: "translateY(-100px)"
+      transform: "translateY(-40px)"
     };
 
     const variables = {
-      containerWidth: "240",
-      containerHeight: "240",
-      width: "200",
-      height: "200"
+      containerWidth: "120",
+      containerHeight: "120",
+      width: "100",
+      height: "100"
+    };
+
+    const textStyle = {
+      padding: "0",
+      margin: "0"
+    };
+
+    const container = {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
     };
 
     const children = React.Children.toArray(this.props.children);
@@ -89,128 +100,194 @@ class SystemOverview extends React.Component {
 
     return (
       <div style={overviewContainer}>
-        <h2 style={titleStyle}>General options:</h2>
-        <div className="generalComponents" style={generalContainer}>
-          <span>
-            <p>Length of string:</p>
-            {textInput}
-          </span>
-          <span>
-            <p>Frequency</p>
-            <ReactSlider
-              className="horizontal-slider overview-slider"
-              thumbClassName="example-thumb"
-              trackClassName="example-track"
-              onChange={props => {
-                this.props.updateProps({
-                  frequency: props
-                });
-              }}
-              renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
-              defaultValue={this.props.frequency}
-              style={{ width: "500px" }}
-            />
-          </span>
-        </div>
-        <h2 style={titleStyle}>Specific options:</h2>
-        <div className="specificComponents" style={specificContainer}>
-          <div>
-            <p>Alice</p>
-            <ReactRough
-              width={eval(variables.containerWidth)}
-              height={eval(variables.containerHeight)}
-            >
-              <Rectangle
-                points={[20, 20, eval(variables.width), eval(variables.height)]}
-                fill="yellow"
-                fillWeight="6"
-                fillStyle="hachure"
-                strokeWidth="2"
-                roughness="2"
-                bowing="0"
-              />
-            </ReactRough>
-            <p>Ratio between orthogonal and diagonal base</p>
-            <ReactSlider
-              className="horizontal-slider small-slider"
-              thumbClassName="example-thumb"
-              trackClassName="example-track"
-              onChange={props => {
-                this.props.updateProps({
-                  aliceProb: props
-                });
-              }}
-              renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
-              defaultValue={this.props.aliceProb}
-              style={{ width: "200px" }}
-            />
-          </div>
-          <div>
-            <p>Channel</p>
-            <ReactRough width={640} height={240}>
-              <Rectangle
-                points={[20, 110, 600, 20]}
-                fill="grey"
-                fillWeight="6"
-                fillStyle="hachure"
-                strokeWidth="2"
-                roughness="2"
-                bowing="0"
-              />
-            </ReactRough>
-            <div style={noiseContainer}>
-              <p
-                style={{
-                  width: "100px",
-                  margin: "0"
-                }}
-              >
-                Set noise
-              </p>
+        <h4 style={titleStyle}>General options:</h4>
+        <div className="generalComponents">
+          <div style={generalContainer}>
+            <span>
+              <p style={textStyle}>Length of string:</p>
+              {textInput}
+            </span>
+            <span>
+              <p style={textStyle}>Frequency</p>
               <ReactSlider
                 className="horizontal-slider overview-slider"
                 thumbClassName="example-thumb"
                 trackClassName="example-track"
                 onChange={props => {
                   this.props.updateProps({
-                    noise: props
+                    frequency: props
                   });
                 }}
                 renderThumb={(props, state) => (
                   <p {...props}>{state.valueNow}</p>
                 )}
-                defaultValue={this.props.noise}
+                defaultValue={this.props.frequency}
                 style={{ width: "500px" }}
               />
-            </div>
+            </span>
           </div>
-          <div>
-            <p>Bob</p>
-            <ReactRough width={240} height={240}>
-              <Rectangle
-                points={[20, 20, 200, 200]}
-                fill="red"
-                fillWeight="6"
-                fillStyle="hachure"
-                strokeWidth="2"
-                roughness="2"
-                bowing="0"
+        </div>
+        <h4 style={titleStyle}>Specific options:</h4>
+        <div className="specificComponents">
+          <div style={specificContainer}>
+            <div style={container}>
+              <p style={textStyle}>Alice</p>
+              <div>
+                <ReactRough
+                  width={eval(variables.containerWidth)}
+                  height={eval(variables.containerHeight)}
+                >
+                  <Rectangle
+                    points={[
+                      10,
+                      10,
+                      eval(variables.width),
+                      eval(variables.height)
+                    ]}
+                    fill="yellow"
+                    fillWeight="6"
+                    fillStyle="hachure"
+                    strokeWidth="2"
+                    roughness="2"
+                    bowing="0"
+                  />
+                </ReactRough>
+              </div>
+              <p style={textStyle}>
+                Ratio between orthogonal and diagonal base
+              </p>
+              <ReactSlider
+                className="horizontal-slider small-slider"
+                thumbClassName="example-thumb"
+                trackClassName="example-track"
+                onChange={props => {
+                  this.props.updateProps({
+                    aliceProb: props
+                  });
+                }}
+                renderThumb={(props, state) => (
+                  <p {...props}>{state.valueNow}</p>
+                )}
+                defaultValue={this.props.aliceProb}
+                style={{ width: "100px" }}
               />
-            </ReactRough>
-            <p>Ratio between orthogonal and diagonal base</p>
-            <ReactSlider
-              className="horizontal-slider small-slider"
-              thumbClassName="example-thumb"
-              trackClassName="example-track"
-              onChange={props => {
-                this.props.updateProps({
-                  bobProb: props
-                });
-              }}
-              renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
-              defaultValue={this.props.bobProb}
-              style={{ width: "200px" }}
-            />
+            </div>
+            <div>
+              <div style={container} style={{ paddingBottom: "20px" }}>
+                <p style={textStyle}>Eve</p>
+                <div>
+                  <ReactRough width={120} height={120}>
+                    <Rectangle
+                      points={[10, 10, 100, 100]}
+                      fill="rgba(255, 0, 0, 0.25)"
+                      fillWeight="6"
+                      fillStyle="dashed"
+                      stroke="rgba(0, 0, 0, 0.25)"
+                      strokeWidth="2"
+                      roughness="2"
+                      bowing="0"
+                    />
+                  </ReactRough>
+                </div>
+                <p style={textStyle}>Eavesdropping ratio</p>
+                <ReactSlider
+                  className="horizontal-slider overview-slider"
+                  thumbClassName="example-thumb"
+                  trackClassName="example-track"
+                  onChange={props => {
+                    this.props.updateProps({
+                      noise: props
+                    });
+                  }}
+                  renderThumb={(props, state) => (
+                    <p {...props}>{state.valueNow}</p>
+                  )}
+                  defaultValue={this.props.noise}
+                  style={{ width: "500px" }}
+                />
+              </div>
+              <div style={container}>
+                <p style={textStyle}>Channel</p>
+                <ReactRough width={640} height={80}>
+                  <Rectangle
+                    points={[10, 10, 600, 20]}
+                    fill="grey"
+                    fillWeight="6"
+                    fillStyle="hachure"
+                    strokeWidth="2"
+                    roughness="2"
+                    bowing="0"
+                  />
+                </ReactRough>
+                <div style={noiseContainer}>
+                  <p
+                    style={{
+                      width: "100px",
+                      margin: "0"
+                    }}
+                  >
+                    Set noise
+                  </p>
+                  <ReactSlider
+                    className="horizontal-slider overview-slider"
+                    thumbClassName="example-thumb"
+                    trackClassName="example-track"
+                    onChange={props => {
+                      this.props.updateProps({
+                        noise: props
+                      });
+                    }}
+                    renderThumb={(props, state) => (
+                      <p {...props}>{state.valueNow}</p>
+                    )}
+                    defaultValue={this.props.noise}
+                    style={{ width: "500px" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div style={container}>
+              <p style={textStyle}>Bob</p>
+              <div>
+                <ReactRough
+                  width={eval(variables.containerWidth)}
+                  height={eval(variables.containerHeight)}
+                >
+                  <Rectangle
+                    points={[
+                      10,
+                      10,
+                      eval(variables.width),
+                      eval(variables.height)
+                    ]}
+                    fill="blue"
+                    fillWeight="6"
+                    fillStyle="hachure"
+                    strokeWidth="2"
+                    roughness="2"
+                    bowing="0"
+                  />
+                </ReactRough>
+              </div>
+              <p style={textStyle}>
+                Ratio between orthogonal and diagonal base
+              </p>
+              <ReactSlider
+                className="horizontal-slider small-slider"
+                thumbClassName="example-thumb"
+                trackClassName="example-track"
+                onChange={props => {
+                  this.props.updateProps({
+                    bobProb: props
+                  });
+                }}
+                renderThumb={(props, state) => (
+                  <p {...props}>{state.valueNow}</p>
+                )}
+                defaultValue={this.props.bobProb}
+                style={{ width: "100px" }}
+              />
+            </div>
           </div>
         </div>
         <button className="button-small" onClick={this.settings.bind(this)}>

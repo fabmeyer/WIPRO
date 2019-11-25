@@ -12,7 +12,7 @@
 * Struktur aus Vorlage übernehmen
 
 ### Frontend
-* Animation fixen: Photonen sollten nicht zurückfliegen
+* Animation fixen: Photonen sollten nicht zurückfliegen #BUG
 * Einbau eines Komponenten, der Überblick und Zusammenhang zwischen Bitstring, Basis und Polarisation verschafft
 * Eve: Einbau von Eve, z.B. mit Regler, hört ab von 0 - 100%, im Systemüberblick
 * Einbau der realistischeren features:
