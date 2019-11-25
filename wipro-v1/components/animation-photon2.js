@@ -21,38 +21,42 @@ class AnimationPhoton2 extends React.PureComponent {
     };
     return (
       <div style={outerContainer}>
-        <Anime
-          easing="linear"
-          duration={2500}
-          direction="normal"
-          loop={true}
-          translateX={[0, 400]}
-        >
-          <span style={animationContainer}>
-            <AnimationCircle
-              color="#FFF200"
-              x={200}
-              y={110}
-              polarisation={45}
-            ></AnimationCircle>
-          </span>
-        </Anime>
-        <Anime
-          easing="linear"
-          duration={2500}
-          direction="normal"
-          loop={true}
-          translateX={[0, 400]}
-        >
-          <span style={animationContainer}>
-            <AnimationCircle
-              color="#FFF200"
-              x={225}
-              y={110}
-              polarisation={0}
-            ></AnimationCircle>
-          </span>
-        </Anime>
+        <div>
+          <Anime
+            easing="linear"
+            duration={2500}
+            direction="normal"
+            loop={true}
+            translateX={[0, 400]}
+          >
+            <span style={animationContainer}>
+              <AnimationCircle
+                color="#FFF200"
+                x={100}
+                y={100}
+                polarisation={45}
+              ></AnimationCircle>
+            </span>
+          </Anime>
+        </div>
+        <div style={{ transform: `translateX(125px)` }}>
+          <Anime
+            easing="linear"
+            duration={2500}
+            direction="normal"
+            loop={true}
+            translateX={[0, 400]}
+          >
+            <span style={animationContainer}>
+              <AnimationCircle
+                color="#FFF200"
+                x={100}
+                y={100}
+                polarisation={0}
+              ></AnimationCircle>
+            </span>
+          </Anime>
+        </div>
         <span style={filterContainer}>
           <AnimationFilter></AnimationFilter>
         </span>

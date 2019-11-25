@@ -10,6 +10,10 @@
   color:"#ededef"
   /]
 
+[InformationBox
+  size:"big"
+  /]
+
 # Introduction
 
 The goal of this website is to explain the BB84-protocol in a simple way.

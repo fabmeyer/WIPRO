@@ -3,8 +3,8 @@
 ## Bugs
 
 ### Frontend
-* Komponenten photon-grid und scroll-box:
-	* In photon-grid: react-slider, default-value wird falsch gerendert
+* Komponenten photon-grid und scroll-box: default-value wird falsch gerendert
+* Komponente Animation-Test: animation funktioniert nicht 100% richtig
 
 ## TODO bis 28.11
 

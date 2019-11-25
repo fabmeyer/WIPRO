@@ -26,13 +26,13 @@ class AnimationPhoton1 extends React.PureComponent {
           duration={5000}
           direction="normal"
           loop={true}
-          translateX={[-190, 610]}
+          translateX={[-140, 660]}
         >
           <span style={animationContainer}>
             <AnimationCircle
               color="#FFF200"
-              x={175}
-              y={110}
+              x={100}
+              y={100}
               polarisation={0}
             ></AnimationCircle>
           </span>

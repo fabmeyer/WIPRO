@@ -6,7 +6,7 @@ class ShowHide extends React.Component {
 
     this.state = {
       showHideInner: {
-        heigth: "5px",
+        height: "5px",
         display: `${this.props.isVisible}`,
         alignItems: "middle",
         justifyContent: `${this.props.position}`,
