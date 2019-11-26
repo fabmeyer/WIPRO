@@ -6,6 +6,13 @@
 * Komponenten photon-grid und scroll-box: default-value wird falsch gerendert
 * Komponente Animation-Test: animation funktioniert nicht 100% richtig
 
+## TODO bis 05.12.
+### Frontend
+* Testing:
+	* Usertests ([Google Forms](https://www.google.com/intl/de_ch/forms/about/))
+	* Cross-browser tests ([Crossbrowsertesting](https://crossbrowsertesting.com))
+	* User tracking ([Inspectlet](https://www.inspectlet.com))
+
 ## TODO bis 28.11
 
 ### Dokumentation

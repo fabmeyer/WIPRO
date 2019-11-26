@@ -24,11 +24,12 @@ With this protocol, two parties (Alice and Bob) can compute together securely a 
 First of all Alice and Bob have to decide on some settings like the length of the bitstring, the ratio of their bases and so on:
 
 [var name:"strLength" value:2048 /]
-[var name:"noise" value:50 /]
+[var name:"noise" value:0 /]
 [var name:"frequency" value:1 /]
 [var name:"error" value:0 /]
 [var name:"aliceProb" value:50 /]
 [var name:"bobProb" value:50 /]
+[var name:"eavesdropping" value:0 /]
 [fullWidth]
   [SystemOverview
     strLength:strLength
@@ -37,6 +38,7 @@ First of all Alice and Bob have to decide on some settings like the length of th
     error:error
     aliceProb:aliceProb
     bobProb:bobProb
+    eavesdropping:eavesdropping
     text:"save settings"
     ]
     [TextInput value:strLength/]

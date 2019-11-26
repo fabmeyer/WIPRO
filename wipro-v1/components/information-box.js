@@ -12,22 +12,28 @@ class InformationBox extends React.PureComponent {
       height: "100px"
     };
 
+    const textStyle = {
+      fontSize: "16px",
+      fontFamily: `"Fira Code", monospace`,
+      fontVariantLigatures: "none"
+    };
+
     return (
       <div>
         <table style={container}>
           <tr>
             <td>Alice's bit</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1</td>
+            <td style={textStyle}>0</td>
+            <td style={textStyle}>1</td>
+            <td style={textStyle}>0</td>
+            <td style={textStyle}>1</td>
           </tr>
           <tr>
             <td>Alice's basis</td>
-            <td>+</td>
-            <td>+</td>
-            <td>x</td>
-            <td>x</td>
+            <td style={textStyle}>+</td>
+            <td style={textStyle}>+</td>
+            <td style={textStyle}>x</td>
+            <td style={textStyle}>x</td>
           </tr>
           <tr>
             <td>Alice's polarization</td>

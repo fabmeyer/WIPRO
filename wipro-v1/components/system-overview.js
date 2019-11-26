@@ -1,48 +1,9 @@
 const React = require("react");
 import ReactRough, { Rectangle } from "react-rough";
 import ReactSlider from "react-slider";
+import ButtonSettings from "./button-settings";
 
-class SystemOverview extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      strLength: this.checkType(this.props.strLength),
-      bitString: this.props.bitString,
-      baseString: this.props.baseString,
-      aliceProb: this.props.aliceProb,
-      bobProb: this.props.bobProb,
-      dataHasLoaded: false
-    };
-  }
-
-  checkType = arg => {
-    if (typeof arg !== "number") {
-      return eval(arg);
-    } else {
-      return arg;
-    }
-  };
-
-  settings = () => {
-    const data = {
-      stringLength: this.checkType(this.props.strLength),
-      noise: this.props.noise,
-      frequency: this.props.frequency,
-      error: this.props.error
-    };
-    async function postData(url = "http://localhost:8080/rest/post/settings") {
-      await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-        },
-        body: JSON.stringify(data)
-      });
-    }
-    postData();
-  };
-
+class SystemOverview extends React.PureComponent {
   render() {
     const overviewContainer = {
       backgroundColor: "#FEF9FF",
@@ -50,7 +11,8 @@ class SystemOverview extends React.Component {
     };
 
     const titleStyle = {
-      paddingLeft: "1em"
+      padding: "0 1em",
+      margin: "1em"
     };
 
     const generalContainer = {
@@ -92,7 +54,13 @@ class SystemOverview extends React.Component {
     const container = {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center"
+      justifyContent: "center",
+      alignItems: "center",
+      paddingBottom: "1em"
+    };
+
+    const sliderStyle = {
+      width: "150px"
     };
 
     const children = React.Children.toArray(this.props.children);
@@ -106,24 +74,6 @@ class SystemOverview extends React.Component {
             <span>
               <p style={textStyle}>Length of string:</p>
               {textInput}
-            </span>
-            <span>
-              <p style={textStyle}>Frequency</p>
-              <ReactSlider
-                className="horizontal-slider overview-slider"
-                thumbClassName="example-thumb"
-                trackClassName="example-track"
-                onChange={props => {
-                  this.props.updateProps({
-                    frequency: props
-                  });
-                }}
-                renderThumb={(props, state) => (
-                  <p {...props}>{state.valueNow}</p>
-                )}
-                defaultValue={this.props.frequency}
-                style={{ width: "500px" }}
-              />
             </span>
           </div>
         </div>
@@ -156,24 +106,25 @@ class SystemOverview extends React.Component {
               <p style={textStyle}>
                 Ratio between orthogonal and diagonal base
               </p>
-              <ReactSlider
-                className="horizontal-slider small-slider"
-                thumbClassName="example-thumb"
-                trackClassName="example-track"
-                onChange={props => {
-                  this.props.updateProps({
-                    aliceProb: props
-                  });
-                }}
-                renderThumb={(props, state) => (
-                  <p {...props}>{state.valueNow}</p>
-                )}
-                defaultValue={this.props.aliceProb}
-                style={{ width: "100px" }}
-              />
+              <div style={sliderStyle}>
+                <ReactSlider
+                  className="horizontal-slider small-slider"
+                  thumbClassName="example-thumb"
+                  trackClassName="example-track"
+                  onChange={props => {
+                    this.props.updateProps({
+                      aliceProb: props
+                    });
+                  }}
+                  renderThumb={(props, state) => (
+                    <p {...props}>{state.valueNow}</p>
+                  )}
+                  defaultValue={this.props.aliceProb}
+                />
+              </div>
             </div>
-            <div>
-              <div style={container} style={{ paddingBottom: "20px" }}>
+            <div style={container}>
+              <div style={container}>
                 <p style={textStyle}>Eve</p>
                 <div>
                   <ReactRough width={120} height={120}>
@@ -190,28 +141,29 @@ class SystemOverview extends React.Component {
                   </ReactRough>
                 </div>
                 <p style={textStyle}>Eavesdropping ratio</p>
-                <ReactSlider
-                  className="horizontal-slider overview-slider"
-                  thumbClassName="example-thumb"
-                  trackClassName="example-track"
-                  onChange={props => {
-                    this.props.updateProps({
-                      noise: props
-                    });
-                  }}
-                  renderThumb={(props, state) => (
-                    <p {...props}>{state.valueNow}</p>
-                  )}
-                  defaultValue={this.props.noise}
-                  style={{ width: "500px" }}
-                />
+                <div style={sliderStyle}>
+                  <ReactSlider
+                    className="horizontal-slider small-slider"
+                    thumbClassName="example-thumb"
+                    trackClassName="example-track"
+                    onChange={props => {
+                      this.props.updateProps({
+                        eavesdropping: props
+                      });
+                    }}
+                    renderThumb={(props, state) => (
+                      <p {...props}>{state.valueNow}</p>
+                    )}
+                    defaultValue={this.props.eavesdropping}
+                  />
+                </div>
               </div>
               <div style={container}>
                 <p style={textStyle}>Channel</p>
                 <ReactRough width={640} height={80}>
                   <Rectangle
                     points={[10, 10, 600, 20]}
-                    fill="grey"
+                    fill="lightgrey"
                     fillWeight="6"
                     fillStyle="hachure"
                     strokeWidth="2"
@@ -222,27 +174,27 @@ class SystemOverview extends React.Component {
                 <div style={noiseContainer}>
                   <p
                     style={{
-                      width: "100px",
-                      margin: "0"
+                      margin: "0 1em 0 0"
                     }}
                   >
                     Set noise
                   </p>
-                  <ReactSlider
-                    className="horizontal-slider overview-slider"
-                    thumbClassName="example-thumb"
-                    trackClassName="example-track"
-                    onChange={props => {
-                      this.props.updateProps({
-                        noise: props
-                      });
-                    }}
-                    renderThumb={(props, state) => (
-                      <p {...props}>{state.valueNow}</p>
-                    )}
-                    defaultValue={this.props.noise}
-                    style={{ width: "500px" }}
-                  />
+                  <div style={sliderStyle}>
+                    <ReactSlider
+                      className="horizontal-slider overview-slider"
+                      thumbClassName="example-thumb"
+                      trackClassName="example-track"
+                      onChange={props => {
+                        this.props.updateProps({
+                          noise: props
+                        });
+                      }}
+                      renderThumb={(props, state) => (
+                        <p {...props}>{state.valueNow}</p>
+                      )}
+                      defaultValue={this.props.noise}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,27 +224,26 @@ class SystemOverview extends React.Component {
               <p style={textStyle}>
                 Ratio between orthogonal and diagonal base
               </p>
-              <ReactSlider
-                className="horizontal-slider small-slider"
-                thumbClassName="example-thumb"
-                trackClassName="example-track"
-                onChange={props => {
-                  this.props.updateProps({
-                    bobProb: props
-                  });
-                }}
-                renderThumb={(props, state) => (
-                  <p {...props}>{state.valueNow}</p>
-                )}
-                defaultValue={this.props.bobProb}
-                style={{ width: "100px" }}
-              />
+              <div style={sliderStyle}>
+                <ReactSlider
+                  className="horizontal-slider small-slider"
+                  thumbClassName="example-thumb"
+                  trackClassName="example-track"
+                  onChange={props => {
+                    this.props.updateProps({
+                      bobProb: props
+                    });
+                  }}
+                  renderThumb={(props, state) => (
+                    <p {...props}>{state.valueNow}</p>
+                  )}
+                  defaultValue={this.props.bobProb}
+                />
+              </div>
             </div>
           </div>
         </div>
-        <button className="button-small" onClick={this.settings.bind(this)}>
-          {this.props.text}
-        </button>
+        <ButtonSettings text={this.props.text}></ButtonSettings>
       </div>
     );
   }
