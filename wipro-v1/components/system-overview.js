@@ -113,13 +113,13 @@ class SystemOverview extends React.PureComponent {
                   trackClassName="example-track"
                   onChange={props => {
                     this.props.updateProps({
-                      aliceProb: props
+                      AliceProb: props
                     });
                   }}
                   renderThumb={(props, state) => (
                     <p {...props}>{state.valueNow}</p>
                   )}
-                  defaultValue={this.props.aliceProb}
+                  defaultValue={this.props.AliceProb}
                 />
               </div>
             </div>
@@ -231,13 +231,13 @@ class SystemOverview extends React.PureComponent {
                   trackClassName="example-track"
                   onChange={props => {
                     this.props.updateProps({
-                      bobProb: props
+                      BobProb: props
                     });
                   }}
                   renderThumb={(props, state) => (
                     <p {...props}>{state.valueNow}</p>
                   )}
-                  defaultValue={this.props.bobProb}
+                  defaultValue={this.props.BobProb}
                 />
               </div>
             </div>

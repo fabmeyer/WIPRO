@@ -34,7 +34,7 @@ class ButtonBobBase extends React.Component {
 
     let formData = new FormData();
     formData.append("stringLength", this.checkType(this.props.strLength));
-    formData.append("prob", 50);
+    formData.append("prob", this.props.BobProb);
     const data = new URLSearchParams(formData);
 
     const getBaseString = async () => {
