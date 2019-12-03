@@ -10,7 +10,8 @@ class PhotonGridSingle extends React.Component {
     this.state = {
       string: null,
       isColor: false,
-      rodal: false
+      rodal: false,
+      showHide: "none"
     };
   }
 
@@ -23,6 +24,13 @@ class PhotonGridSingle extends React.Component {
       });
       this.colorBackground();
     } else if (oldProps.dataHasLoaded !== newProps.dataHasLoaded) {
+      newProps.dataHasLoaded === true
+        ? this.setState({
+            showHide: "block"
+          })
+        : this.setState({
+            showHide: "none"
+          });
       this.colorBackground();
     }
   }
@@ -78,7 +86,7 @@ class PhotonGridSingle extends React.Component {
     };
 
     return (
-      <div>
+      <div style={{ display: this.state.showHide }}>
         <div style={textContainer}>
           <p style={text} ref={this.exampleRef} onClick={this.rodal.bind(this)}>
             {this.props.string}

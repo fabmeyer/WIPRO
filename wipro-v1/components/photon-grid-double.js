@@ -13,7 +13,8 @@ class PhotonGridDouble extends React.Component {
       string2: null,
       isColor: false,
       rodal1: false,
-      rodal2: false
+      rodal2: false,
+      showHide: "none"
     };
   }
 
@@ -30,6 +31,13 @@ class PhotonGridDouble extends React.Component {
       });
       this.colorBackground();
     } else if (oldProps.dataHasLoaded !== newProps.dataHasLoaded) {
+      newProps.dataHasLoaded === true
+        ? this.setState({
+            showHide: "block"
+          })
+        : this.setState({
+            showHide: "none"
+          });
       this.colorBackground();
     }
   }
@@ -107,7 +115,7 @@ class PhotonGridDouble extends React.Component {
     };
 
     return (
-      <div>
+      <div style={{ display: this.state.showHide }}>
         <div style={textContainer}>
           <p
             style={text}
