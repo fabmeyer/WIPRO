@@ -81,6 +81,10 @@ This quantum channel is an optical channel like a optical-fibre cable.
 Sometimes the channel is noisy and some photons or their polarization will get changed. Click on the button below to send her photons to Bob.
 
 // TODO: insert noise here
+[SimpleSlider
+  setting:noise
+  text:"set noise"
+/]
 
 [var name:"RawPolarization" value:null /]
 [var name:"AlicePolarization" value:null /]
@@ -106,6 +110,10 @@ Sometimes the channel is noisy and some photons or their polarization will get c
 An eavesdropper could potentially measure Alice's photons and try to decode the original message.
 
 // TODO: insert eavesdropping here
+[SimpleSlider
+  setting:eavesdropping
+  text:"set eavesdropping"
+/]
 
 # Bob measures Alices photons
 
