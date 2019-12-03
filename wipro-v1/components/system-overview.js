@@ -4,34 +4,6 @@ import ReactSlider from "react-slider";
 import ButtonSettings from "./button-settings";
 
 class SystemOverview extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      noise: this.props.noise,
-      eavesdropping: this.props.eavesdropping
-    };
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const newProps = this.props;
-    if (prevProps.noise !== newProps.noise) {
-      this.setState({ noise: newProps.noise });
-    }
-    if (prevProps.eavesdropping !== newProps.eavesdropping) {
-      this.setState({ eavesdropping: newProps.eavesdropping });
-    }
-    if (prevState.noise !== this.state.noise) {
-      this.props.updateProps({
-        noise: this.state.noise
-      });
-    }
-    if (prevState.eavesdropping !== this.state.eavesdropping) {
-      this.props.updateProps({
-        eavesdropping: this.state.eavesdropping
-      });
-    }
-  }
-
   render() {
     const overviewContainer = {
       backgroundColor: "#FEF9FF",
@@ -175,12 +147,14 @@ class SystemOverview extends React.PureComponent {
                     thumbClassName="example-thumb"
                     trackClassName="example-track"
                     onChange={props => {
-                      this.setState({ eavesdropping: props });
+                      this.props.updateProps({
+                        eavesdropping: props
+                      });
                     }}
                     renderThumb={(props, state) => (
                       <p {...props}>{state.valueNow}</p>
                     )}
-                    value={this.state.eavesdropping}
+                    value={this.props.eavesdropping}
                   />
                 </div>
               </div>
@@ -211,12 +185,14 @@ class SystemOverview extends React.PureComponent {
                       thumbClassName="example-thumb"
                       trackClassName="example-track"
                       onChange={props => {
-                        this.setState({ noise: props });
+                        this.props.updateProps({
+                          noise: props
+                        });
                       }}
                       renderThumb={(props, state) => (
                         <p {...props}>{state.valueNow}</p>
                       )}
-                      value={this.state.noise}
+                      value={this.props.noise}
                     />
                   </div>
                 </div>

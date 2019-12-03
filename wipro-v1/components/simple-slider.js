@@ -1,26 +1,7 @@
 const React = require("react");
 import ReactSlider from "react-slider";
 
-class SimpleSlider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      setting: this.props.setting
-    };
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const newProps = this.props;
-    if (prevProps.setting !== newProps.setting) {
-      this.setState({ setting: newProps.setting });
-    }
-    if (prevState.setting !== this.state.setting) {
-      this.props.updateProps({
-        setting: this.state.setting
-      });
-    }
-  }
-
+class SimpleSlider extends React.PureComponent {
   render() {
     const sliderStyle = {
       width: "150px"
@@ -41,10 +22,12 @@ class SimpleSlider extends React.Component {
             thumbClassName="example-thumb"
             trackClassName="example-track"
             onChange={props => {
-              this.setState({ setting: props });
+              this.props.updateProps({
+                settings: props
+              });
             }}
             renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
-            value={this.state.setting}
+            value={this.props.setting}
           />
         </div>
       </div>
