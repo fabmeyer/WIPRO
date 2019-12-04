@@ -61,7 +61,7 @@ class InformationBox extends React.PureComponent {
                   color="#FFF200"
                   x={50}
                   y={50}
-                  polarisation={90}
+                  polarisation={45}
                   size={this.props.size}
                 ></AnimationCircle>
               </div>
@@ -72,7 +72,7 @@ class InformationBox extends React.PureComponent {
                   color="#FFF200"
                   x={50}
                   y={50}
-                  polarisation={45}
+                  polarisation={90}
                   size={this.props.size}
                 ></AnimationCircle>
               </div>

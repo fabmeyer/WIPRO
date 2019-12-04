@@ -23,7 +23,7 @@ class SimpleSlider extends React.PureComponent {
             trackClassName="example-track"
             onChange={props => {
               this.props.updateProps({
-                settings: props
+                setting: props
               });
             }}
             renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
