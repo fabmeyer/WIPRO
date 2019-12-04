@@ -5,6 +5,25 @@
 ### Frontend
 * Komponenten photon-grid und scroll-box: default-value wird falsch gerendert
 * Komponente Animation-Test: animation funktioniert nicht 100% richtig
+* Raster anpassen: Polarisation vertauscht
+
+## TODO bis 20.12.
+### Allgemein
+* Lauffähiger Prototyp
+	* Deployt
+	* Inhalt abgefüllt
+
+#### Dokumentation
+* Raster einhalten
+* Anleitung (Aufsetzen, Build)
+* Festhalten, wer was gemacht hat
+
+### Frontend
+* Rerender von Visualisierung verhindern
+* Alice, Bob und Eve als Strichmännchen
+* Animation neu machen
+* Text abfüllen
+* Usertests: Google-Formular überarbeiten
 
 ## TODO bis 05.12.
 ### Frontend
