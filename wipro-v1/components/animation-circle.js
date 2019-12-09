@@ -88,7 +88,7 @@ class AnimationCircle extends React.Component {
       <React.Fragment>
         <ReactRough width={newWidth} height={newHeight}>
           <Circle
-            points={[this.props.x, this.props.y, this.props.x * 0.75]}
+            points={[this.props.x, this.props.y, this.props.x * 0.667]}
             fill={this.props.color}
             fillWeight="6"
             fillStyle="hachure"

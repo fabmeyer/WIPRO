@@ -37,7 +37,7 @@ class SystemOverview extends React.PureComponent {
 
     const noiseContainer = {
       display: "flex",
-      transform: "translateY(-50px)"
+      transform: "translateY(-5px)"
     };
 
     const textStyle = {

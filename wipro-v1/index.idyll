@@ -100,7 +100,7 @@ Sometimes the channel is noisy and some photons or their polarization will get c
   /]
 
 [fullWidth]
-  [AnimationTest 
+  [AnimationEmit 
   dataHasLoaded:PolarizationHasLoaded
   /]
 [/fullWidth]

@@ -5,7 +5,7 @@ class InformationBox extends React.PureComponent {
   state = {};
   render() {
     const container = {
-      overflow: "initial"
+      overflow: "visible"
     };
 
     const circleContainer = {
