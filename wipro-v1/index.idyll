@@ -13,11 +13,13 @@
 # Introduction
 
 The goal of this website is to explain the BB84-protocol in a simple way.
-BB84 is named after its inventors, Charles H. Bennet and Gilles Brassard and the year of its publication, 1984. BB84 is one of the most popular quantum-key-distribution (QKD) Protocols.
+BB84 is named after its inventors, Charles H. Bennet and Gilles Brassard and the year of its publication, 1984. BB84 was the first quantum-key-distribution and is one of the most popular quantum-key-distribution (QKD) Protocols.
 
-With this protocol, two parties (Alice and Bob) can compute together securely a private key (a string of bits, 1 or 0) and share it via a quantum channel. With that key they can encrypt and decrypt data symmetric as a one-time pad.
+With this protocol, two parties (Alice and Bob) can compute together securely a private key (a string of bits, `1` or `0`) and share it via a (public) quantum channel. With that key they can encrypt and decrypt data symmetric as one does with a one-time pad.
 
-First of all Alice and Bob have to decide on some settings like the length of the bitstring, the ratio of their bases and so on:
+First of all Alice and Bob have to decide on some settings like the length of the bit string, the ratio of their bases and so on:
+
+## System Overview
 
 [var name:"strLength" value:2048 /]
 [var name:"noise" value:0 /]
@@ -39,7 +41,9 @@ First of all Alice and Bob have to decide on some settings like the length of th
 
 # Alices computes a string and a base with given length
 
-Alice computes a random bitstring with the given length [Display value:strLength format:"d" /]. She then also has to compute a random string of bases with the same length. You can change the ratio of her bases with the slider on the system-overview panel. Click on the button to start the computation of her bitstring and base.
+Alice computes a random bit string with the given length [Display value:strLength format:"d" /]. She then also has to compute a random string of bases with the same length. There are two possible bases, orthogonal (`+`) and diagonal (`x`).
+
+You can change the ratio of Alice's bases with the slider on the [system overview](#system-overview) panel. Click on the button below to start the computation of her bit string and base.
 
 [var name:"AliceBitString" value:"" /]
 [var name:"AliceBaseString" value:"" /]
@@ -51,12 +55,12 @@ Alice computes a random bitstring with the given length [Display value:strLength
   baseString:AliceBaseString
   autostart:false
   dataHasLoaded:AliceDataHasLoaded
-  text:"get Alices bitstring and base"
+  text:"get Alice's bit string and base"
   /]
 
-Now Alice has computed a random bitstring and a base. You can take a look at Alices bitstring and her base here when you click into the grid below:
+Now Alice has successfully computed a random bit string and a base, both with the same length. You can take a look at Alice's bit string and her base here:
 
-## Alices bitstring and base
+## Alice's bit string and base
 
 [var name:"AliceBitStringZoom" value:100 /]
 [var name:"AliceBaseStringZoom" value:100 /]
@@ -68,9 +72,22 @@ Now Alice has computed a random bitstring and a base. You can take a look at Ali
   baseStringZoom:AliceBaseStringZoom
   /]
 
+[ShowHide
+  isVisible:"none"
+  showButton:false
+  trigger:AliceDataHasLoaded
+  position:"flex-end"
+]
+  [Aside]
+    [AsideText
+      text:"Click into the grid to get a better view of the bit string and the base."
+    /]
+  [/Aside]
+[/ShowHide]
+
 ## Alice sends her photons to Bob
 
-Every single bit of her string will be encoded with the base so that from the bit and the base a specific polarization results. Her photons can have a polarization with 0°, 45°, 90° or 135°. The encryption of here photons follows the following schema:
+Every single bit of her string will be encoded with her base so that from the bit and the base a specific polarization results. Her photons can have a polarization with 0°, 45°, 90° or 135°. Orthogonal bases result in orthogonal polarization and vice versa. The encryption of here photons follows the following schema:
 
 [InformationBox
   size:"big"
@@ -78,13 +95,15 @@ Every single bit of her string will be encoded with the base so that from the bi
 
 Now Alice takes her photons and sends them via a quantum channel to Bob.
 This quantum channel is an optical channel like a optical-fibre cable.
-Sometimes the channel is noisy and some photons or their polarization will get changed. Click on the button below to send her photons to Bob.
+Usually the channel is noisy and some photons or their polarization will get changed. You can set the amount of noise with the noise slider or you can adjust it in the [system overview](#system-overview) section.
 
 // TODO: insert noise here
 [SimpleSlider
   setting:noise
   text:"set noise"
 /]
+
+Click on the button below to send Alice's photons to Bob.
 
 [var name:"RawPolarization" value:null /]
 [var name:"AlicePolarization" value:null /]
@@ -112,7 +131,7 @@ Sometimes the channel is noisy and some photons or their polarization will get c
 
 # Eve wants to eavesdrop on Alice's photons
 
-An eavesdropper could potentially measure Alice's photons and try to decode the original message.
+A potential eavesdropper, we call him Eve, could measure Alice's photons and try to decode the original message. However if she measures a photon with the wrong base, she then risks disturbing the original polarization with a probability [Equation] \frac{1}{2} [/Equation]. 
 
 // TODO: insert eavesdropping here
 [SimpleSlider
@@ -120,13 +139,13 @@ An eavesdropper could potentially measure Alice's photons and try to decode the 
   text:"set eavesdropping"
 /]
 
-# Bob measures Alices photons
+# Bob measures Alice's photons
 
-Like Alice, Bob first has to define a random basestring to measure Alices photons polarization. 
+Like Alice, Bob first has to define a random base string to measure Alice's photons polarization.
 
 ## Bobs computes a base with the same length
 
-Bobs basestring has to be the same length as Alices ones: Length [Display value:strLength format:"d" /]. Click on the button below to compute a corresponding base for Bob
+Bobs base string has to be the same length as Alice's ones: Length [Display value:strLength format:"d" /]. Click on the button below to compute a corresponding base for Bob.
 
 [var name:"BobBaseString" value:null /]
 [var name:"BobBaseHasLoaded" value:false /]
@@ -138,22 +157,22 @@ Bobs basestring has to be the same length as Alices ones: Length [Display value:
   text:"get Bobs base"
   /]
 
-## Bob measures Alices Photons with his base
+## Bob measures Alice's Photons with his base
 
-For every photon, if Bobs base is the same as Alices, the outcome will be certain and Bob will theoretically be able to decode the String from the polarization together with his base. That means the polarization of the measured photon will not change.
+For every photon, if Bobs base is the same as Alice's, the outcome will be certain and Bob will be able to decode the String from the polarization correctly with his own base. That means the polarization of the measured photon will not change.
 
 [fullWidth]
   [AnimationPhoton1/]
 [/fullWidth]
 
-However if he chose the wrong base, the polarization of the photons will be lost as he will set the polarization again randomly while measuring it. If Alice and Bob both chose both bases with a chance of 50%, Bob should measure every second photon correctly.
+However if he chose the wrong base, the polarization of the photons will be lost as he will set the polarization again randomly while measuring it. If Alice and Bob both chose both bases with a chance of [Equation] \frac{1}{2} [/Equation], Bob should measure every second photon correctly.
 
 [fullWidth]
   [AnimationPhoton2/]
 [/fullWidth]
 
-But Alice and Bob can decide to chose a specific base with a chance higher than 50%. In that way they can improve their key so that they measure the same base more often.
-Now Bob takes his base and measures Alices photons with his base to compute a bitstring. Click on the button below to measure Alices photons.
+Alice and Bob can decide to choose a specific base with a chance higher than [Equation] \frac{1}{2} [/Equation]. In that way they can improve their key so that they measure the same base more often.
+Now Bob takes his base and measures Alice's photons with his base to compute his own bit string. Click on the button below to measure Alice's photons.
 
 [var name:"BobBitString" value:null /]
 [var name:"BobStringHasLoaded" value:false /]
@@ -168,12 +187,12 @@ Now Bob takes his base and measures Alices photons with his base to compute a bi
   bobStringHasLoaded:BobStringHasLoaded
   bobDataHasLoaded:BobDataHasLoaded
   autostart:false
-  text:"measure Alices photons"
+  text:"measure Alice's photons"
   /]
 
-## Bobs bitstring and base
+## Bobs bit string and base
 
-Here you can see Bob's base and the bitstring that he computed from the photons that he received from Alice. You can again click on the grid to inspect this two strings.
+Here you can see Bob's base and the bit string that he computed from the photons that he received from Alice. You can again click on the grid to inspect this two strings. You will notice that his bit string is not the same as Alice's one.
 
 [var name:"BobBitStringZoom" value:100 /]
 [var name:"BobBaseStringZoom" value:100 /]
@@ -187,7 +206,9 @@ Here you can see Bob's base and the bitstring that he computed from the photons 
 
 ## Alice and Bob compare their bases
 
-Alice and Bob use a public authenticated channel to compare their bases.
+At this point, Bob can announce publicly that he received Alice's transmission.
+They then use a public authenticated channel to compare their bases.
+For every position in the string, if they both have chosen the same base, Bob can decode Alice's photon and retrieve the original bit.
 
 [var name:"ComparedBase" value:null /]
 [var name:"ComparedBaseHasLoaded" value:null /]
@@ -203,10 +224,10 @@ Alice and Bob use a public authenticated channel to compare their bases.
   commonKey:CommonKey
   commonKeyHasLoaded:CommonKeyHasLoaded
   commonKeyLength:CommonKeyLength
-  text:"compare basestrings"
+  text:"compare base strings"
   /]
 
-If they choose both bases with a chance of 50%, then they should have the same base for every photon with a probability of 50%.
+If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], then they should have the same base for every photon with a probability of [Equation] \frac{1}{2} [/Equation]. They drop all bits from their bit strings where their bases do not correspond. In that way they create a shortened key together that they already share.
 
 [var name:"ComparedBaseZoom" value:null /]
 [PhotonGridSingle
@@ -215,12 +236,15 @@ If they choose both bases with a chance of 50%, then they should have the same b
   stringZoom:ComparedBaseZoom
   /]
 
-## Alice and Bob shorten their bitstrings
+## Alice and Bob check if Eve has eavesdropped on the key
 
-They drop all bits from their bitstrings where their bases do not correspond.
-In that way they create a shortened key together that they share.
+From the shortened key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them public to check to see whether more than a certain number of them agree. In that way they can use statistical tests to find out if a potential eavesdropper (Eve) has measured the polarization and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared secret key.
 
-The length of their shortend key: [Display value:CommonKeyLength format:"d" /]
+TODO: Eve
+
+## Alice and Bob shorten their bit strings
+
+The length of their shortened key: [Display value:CommonKeyLength format:"d" /]
 
 This is the shortened key:
 
@@ -230,3 +254,4 @@ This is the shortened key:
   dataHasLoaded:CommonKeyHasLoaded
   stringZoom:CommonKeyZoom
   /]
+

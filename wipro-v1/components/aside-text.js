@@ -1,10 +1,6 @@
 const React = require("react");
 
-class AsideText extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+class AsideText extends React.PureComponent {
   render() {
     const textContainer = {
       backgroundColor: "#FEF9FF",
@@ -15,7 +11,7 @@ class AsideText extends React.Component {
 
     return (
       <div className="aside-text" style={textContainer}>
-        {this.props.children}
+        {this.props.text}
       </div>
     );
   }
