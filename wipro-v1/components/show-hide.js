@@ -6,11 +6,8 @@ class ShowHide extends React.Component {
 
     this.state = {
       showHideInner: {
-        height: "5px",
         display: `${this.props.isVisible}`,
-        alignItems: "middle",
-        justifyContent: `${this.props.position}`,
-        marginBottom: "5px"
+        justifyContent: `${this.props.position}`
       }
     };
   }
@@ -29,25 +26,32 @@ class ShowHide extends React.Component {
         });
   };
 
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+    if (oldProps.trigger !== newProps.trigger) {
+      this.showHide();
+    }
+  }
+
   render() {
-    const showHideOuter = {
-      borderTop: "1px solid #999"
-    };
-    const showHideButton = {
-      marginRight: "10%"
-    };
+    // conditional rendering
+    const showButton = this.props.showButton;
+    let button;
+    if (showButton) {
+      button = (
+        <button
+          className="button-small"
+          onClick={this.showHide.bind(this)}
+          style={{ marginRight: "10%" }}
+        >
+          Show/Hide
+        </button>
+      );
+    }
 
     return (
       <React.Fragment>
-        <div style={showHideOuter}>
-          <button
-            className="button-small"
-            onClick={this.showHide.bind(this)}
-            style={showHideButton}
-          >
-            Show/Hide
-          </button>
-        </div>
+        <div>{button}</div>
         <div style={this.state.showHideInner}>
           <div>{this.props.children}</div>
         </div>

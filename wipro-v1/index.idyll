@@ -100,9 +100,14 @@ Sometimes the channel is noisy and some photons or their polarization will get c
   /]
 
 [fullWidth]
-  [AnimationEmit 
-  dataHasLoaded:PolarizationHasLoaded
-  /]
+  [ShowHide
+    isVisible:"none"
+    showButton:false
+    trigger:PolarizationHasLoaded
+    position:"center"
+  ]
+    [AnimationEmit /]
+  [/ShowHide]
 [/fullWidth]
 
 # Eve wants to eavesdrop on Alice's photons

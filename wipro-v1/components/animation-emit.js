@@ -3,28 +3,7 @@ import Anime from "react-anime";
 import AnimationCircle from "./animation-circle";
 import AnimationPerson from "./animation-person";
 
-class AnimationEmit extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      display: "none"
-    };
-  }
-
-  componentDidUpdate(oldProps) {
-    const newProps = this.props;
-    if (oldProps.dataHasLoaded !== newProps.dataHasLoaded) {
-      newProps.dataHasLoaded === true
-        ? this.setState({
-            display: "flex"
-          })
-        : this.setState({
-            display: "flex"
-          });
-    }
-  }
-
+class AnimationEmit extends React.PureComponent {
   render() {
     const outerContainer = {
       display: "flex",
