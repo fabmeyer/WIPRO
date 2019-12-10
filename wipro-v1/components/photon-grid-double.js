@@ -127,9 +127,9 @@ class PhotonGridDouble extends React.Component {
           <Rodal
             visible={this.state.rodal1}
             onClose={this.rodal1.bind(this)}
-            width="500px"
-            height="auto"
-            measure=""
+            width={500}
+            height={560}
+            measure="px"
           >
             <div>
               <ReactSlider
@@ -168,9 +168,9 @@ class PhotonGridDouble extends React.Component {
           <Rodal
             visible={this.state.rodal2}
             onClose={this.rodal2.bind(this)}
-            width="500px"
-            height="auto"
-            measure=""
+            width={500}
+            height={560}
+            measure="px"
           >
             <div>
               <ReactSlider

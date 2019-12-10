@@ -77,6 +77,7 @@ class AnimationCircle extends React.Component {
         angle={this.props.polarisation}
         length={this.props.x}
         lineWidth={3}
+        lineDashed={0.9}
         style={{
           transform: `translate(${this.state.arrowX}px, ${this.state.arrowY}px)`,
           width: `${this.state.arrowLength}px`,

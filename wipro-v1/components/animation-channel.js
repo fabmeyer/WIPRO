@@ -1,10 +1,11 @@
 const React = require("react");
 import ReactRough, { Rectangle } from "react-rough";
 
-class AnimationChannel extends React.PureComponent {
+class AnimationChannel extends React.Component {
   shouldComponentUpdate() {
     return false;
   }
+
   render() {
     return (
       <ReactRough width={640} height={40}>

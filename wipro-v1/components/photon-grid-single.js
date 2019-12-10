@@ -94,9 +94,9 @@ class PhotonGridSingle extends React.Component {
           <Rodal
             visible={this.state.rodal}
             onClose={this.rodal.bind(this)}
-            width="500px"
-            height="auto"
-            measure=""
+            width={500}
+            height={560}
+            measure="px"
           >
             <div>
               <ReactSlider
