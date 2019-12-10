@@ -43,8 +43,9 @@ class ButtonMeasure extends React.Component {
     let formData = new FormData();
     formData.append("photons", this.props.rawPolarization);
     formData.append("base", this.props.baseString);
-    formData.append("fp", 0);
+    formData.append("fp", 0); 
     formData.append("undetected", 0);
+    formData.append("noise", this.props.noise);
     const data = new URLSearchParams(formData);
 
     const measurePhotons = async () => {

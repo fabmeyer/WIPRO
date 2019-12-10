@@ -1,8 +1,5 @@
 package ch.hslu.wipro.qc.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -15,7 +12,6 @@ import com.google.inject.Singleton;
 public class BB84Service {
 	
 	public static String getRandomBitString(int stringLength, int prob, HttpServletRequest request) {
-		System.out.println("bit string "+stringLength);
 
 		//int n = request.getSession().getAttribute("length");
 		String bitString = "";
@@ -34,7 +30,6 @@ public class BB84Service {
 	}
 
 	public static String getRandomBaseString(int n, float prob) {
-		System.out.println("base string "+n);
 		String bitString = "";
 		for (int i = 0; i < n; i++) {
 			Random random = new Random();
@@ -63,7 +58,7 @@ public class BB84Service {
 		return photonString;
 	}
 
-	public static String getPhotonString(String base, String str, float angle_var, float length_var) {
+	public static String getPhotonString(String base, String str, int noise, float angle_var, float length_var) {
 		if (base.length() != str.length()) {
 			return null;
 		}
@@ -80,14 +75,19 @@ public class BB84Service {
 			float angle_variance = 0f; // (float) randomDouble * 180 - 45;
 			double shift = Math.pow(10, 2);
 			angle_variance = (float) (Math.round(angle_variance * shift) / shift);
+			float photonPolarization = 0;
 			if (String.valueOf(base.charAt(i)).equals("x")) {
-	
-				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? 0 + angle_variance
+				photonPolarization = (String.valueOf(str.charAt(i)).equals("1")) ? 0 + angle_variance
 						: 90 + angle_variance;
 			} else {
-				photonString += (String.valueOf(str.charAt(i)).equals("1")) ? 45 + angle_variance
+				photonPolarization = (String.valueOf(str.charAt(i)).equals("1")) ? 45 + angle_variance
 						: 135 + angle_variance;
 			}
+			if (randomDouble <= (noise / 100.0f) ) {
+				int[] poolarizationList = {0, 45, 90, 35};
+				photonPolarization = poolarizationList[(int) Math.round(3.49 * random.nextDouble())];
+						}
+			photonString +=  photonPolarization;
 			if (i < StringLength - 1) {
 				photonString += ",";
 			}
@@ -110,27 +110,30 @@ public class BB84Service {
 		return bitString;
 	}
 
-	public static String getBitStringFromPhotons(String photons, String base, float fp, float undetected) {
+	public static String getBitStringFromPhotons(String photons, String base, int noise, float fp, float undetected) {
 		String bitString = "";
 		String[] photonList = photons.split(",");
 		if (photonList.length != base.length()) {
 			//return null;
 		}
 		for (int i = 0; i < base.length(); i++) {
-			Random randomUndetected = new Random();
-			double randomDoubleUndetected = randomUndetected.nextDouble();
+			Random randomDouble= new Random();
+			double randomDoubleNoise = randomDouble.nextDouble();
 			
 			Random randomFp = new Random();
 			double randomDoubleFp= randomFp.nextDouble();
 			
 			float photon = Float.parseFloat(photonList[i]);
 
-			if (1 - undetected >= randomDoubleUndetected) {
+			if ((noise / 100f) <= randomDoubleNoise) {
 				if (String.valueOf(base.charAt(i)).equals("x")) {
 					bitString += ((photon > -5 && photon < 5)) ? "1" : "0";
 				} else {
 					bitString += ((photon > 40 && photon < 50)) ? "1" : "0";
 				}
+			}
+			else {
+				bitString += (randomDouble.nextDouble() > 0.5f) ? "1" : "0"; 
 			}
 			
 			if (1 - fp >= randomDoubleFp) {
@@ -159,7 +162,6 @@ public class BB84Service {
 		for (String s: settings.keySet())  {
 			request.getSession().setAttribute(s, 10);  
 		}
-		System.out.println("session id setsettings " + request.getSession().getId());
 		// TODO Auto-generated method stub
 	}
 
