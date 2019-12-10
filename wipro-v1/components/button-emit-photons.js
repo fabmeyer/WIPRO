@@ -14,7 +14,7 @@ class ButtonEmitPhotons extends React.Component {
     let formData = new FormData();
     formData.append("str", this.props.bitString);
     formData.append("base", this.props.baseString);
-    formData.append("noise", this.checkType(this.props.noise));
+    formData.append("noise", this.props.noise);
     formData.append("angle_variance", 0);
     formData.append("length_variance", 0);
     const data = new URLSearchParams(formData);
