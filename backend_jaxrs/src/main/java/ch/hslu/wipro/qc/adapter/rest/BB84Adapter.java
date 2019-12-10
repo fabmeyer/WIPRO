@@ -23,7 +23,6 @@ public class BB84Adapter implements BB84Interface {
 
 	@Context
 	private HttpServletRequest request;
-
 	
 	@POST
 	@Path("/comparebase")
@@ -39,9 +38,9 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/emitphoton/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str, @FormParam("noise") int noise,
+	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str, int noise,
 			@FormParam("angle_variance") float angle_var, @FormParam("length_variance") float length_var) {
-		final String photonString = BB84Service.getPhotonString(base, str, noise, angle_var, length_var);
+		final String photonString = BB84Service.getPhotonString(base, str, angle_var, length_var);
 		JsonObject response = Json.createObjectBuilder().add("photonString", photonString).build();
 		return Response.ok(response.toString()).build();
 	}
@@ -83,18 +82,28 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/shortenkey")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice) {
-		final String[] shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, request); 
-		
-		
-		System.out.println(shortenedKey[0]);
-		System.out.println(shortenedKey[1]);	
-		
+	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("string_bob") String string_bob) {
+		final String[] shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, string_bob, request); 
 		JsonObject response = Json.createObjectBuilder().add("comparedBase", shortenedKey[0])
-		 .add("commonKey", shortenedKey[1])
+		 .add("commonKeyAlice", shortenedKey[1])
+		 .add("commonKeyBob", shortenedKey[2])
 		 .build();
 		return Response.ok(response.toString()).build();
 }	
+	
+	@POST
+	@Path("/comparekey")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response compareKey(@FormParam("key1") String key1, @FormParam("key2") String key2, @FormParam("percentage") int percentage ) {
+		final String[] shortenedKey = BB84Service.compareKey(key1, key2, percentage); 
+		JsonObject response = Json.createObjectBuilder()
+		 .add("restKeyAlice", shortenedKey[0])
+		 .add("restKeyBob", shortenedKey[1])
+		 .add("match", shortenedKey[2])
+		 .build();
+		return Response.ok(response.toString()).build();
+}
 	
 	
 	@POST
@@ -108,7 +117,6 @@ public class BB84Adapter implements BB84Interface {
 		settings.put("error", error);
 		settings.put("noise", noise);
 		settings.put("stringLength", stringLength); 
-		System.out.println("session id REST adapter " + request.getSession().getId());
 		BB84Service.setSettings(settings, request);
 		return Response.ok().build();
 	}

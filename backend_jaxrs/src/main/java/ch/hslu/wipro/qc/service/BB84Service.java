@@ -58,10 +58,10 @@ public class BB84Service {
 		return photonString;
 	}
 
-	public static String getPhotonString(String base, String str, int noise, float angle_var, float length_var) {
+	public static String getPhotonString(String base, String str, float angle_var, float length_var) {
 		if (base.length() != str.length()) {
 			return null;
-		}
+		} 
 		String photonString = "";
 		Random randomLength = new Random();
 		double randomDoubleLength = randomLength.nextDouble() * length_var;
@@ -83,10 +83,6 @@ public class BB84Service {
 				photonPolarization = (String.valueOf(str.charAt(i)).equals("1")) ? 45 + angle_variance
 						: 135 + angle_variance;
 			}
-			if (randomDouble <= (noise / 100.0f) ) {
-				int[] poolarizationList = {0, 45, 90, 35};
-				photonPolarization = poolarizationList[(int) Math.round(3.49 * random.nextDouble())];
-						}
 			photonString +=  photonPolarization;
 			if (i < StringLength - 1) {
 				photonString += ",";
@@ -165,25 +161,51 @@ public class BB84Service {
 		// TODO Auto-generated method stub
 	}
 
-	public static String[] shortenKey(String base1, String base2, String string_alice,
+	public static String[] shortenKey(String base1, String base2, String string_alice, String string_bob,
 		HttpServletRequest request) {
 		
 		String compareBase = ""; 
-		String commonKey = ""; 
-		
+		String commonKeyAlice = ""; 
+		String commonKeyBob = ""; 
+
 	
 		for (int i = 0; i < base1.length(); i++) {
 			if (String.valueOf(base1.charAt(i)).equals(String.valueOf(base2.charAt(i)))) {
 				compareBase += base1.charAt(i);
-				commonKey += string_alice.charAt(i);
+				commonKeyAlice += string_alice.charAt(i);
+				commonKeyBob += string_bob.charAt(i);
+
 			} else {
 				compareBase += "_";
 			}
+
 		}
 		
-		String[] result = {compareBase, commonKey};
+		String[] result = {compareBase, commonKeyAlice, commonKeyBob};
 		return result;
 		
 		// TODO Auto-generated method stub
+	}
+
+	public static String[] compareKey(String keyAlice, String keyBob, int percentage) {
+		Random randomDouble= new Random();
+		assert(keyAlice.length() == keyBob.length());
+		// TODO Auto-generated method stub
+		String restStringAlice = "";
+		String restStringBob = "";
+		int bitsTested = 0;
+		int matches = 0;
+		for (int i = 0; i < keyAlice.length(); i++ ){ 
+			if (percentage <= (randomDouble.nextFloat() * 100)) {
+				if (String.valueOf(keyAlice.charAt(i)).equals(String.valueOf(keyBob.charAt(i)))) {
+					matches++;
+				}
+				bitsTested++;	
+				restStringAlice += keyAlice.charAt(i);
+				restStringBob += keyBob.charAt(i);
+			}
+		}
+		String[] result = {restStringAlice, restStringBob, String.format("%.2f", ((float) matches * 100.0f / bitsTested ))};
+		return result;
 	}
 }
