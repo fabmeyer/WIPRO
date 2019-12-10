@@ -3,7 +3,6 @@ package ch.hslu.wipro.qc.adapter.rest;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import com.google.inject.Provider;
 
 import ch.hslu.wipro.qc.adapter.BB84Interface;
 import ch.hslu.wipro.qc.service.BB84Service;
@@ -42,9 +39,9 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/emitphoton/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str,
+	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str, @FormParam("noise") int noise,
 			@FormParam("angle_variance") float angle_var, @FormParam("length_variance") float length_var) {
-		final String photonString = BB84Service.getPhotonString(base, str, angle_var, length_var);
+		final String photonString = BB84Service.getPhotonString(base, str, noise, angle_var, length_var);
 		JsonObject response = Json.createObjectBuilder().add("photonString", photonString).build();
 		return Response.ok(response.toString()).build();
 	}
@@ -53,9 +50,9 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/receivephoton")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response receivePhoton(@FormParam("photons") String photons, @FormParam("base") String base,
+	public Response receivePhoton(@FormParam("photons") String photons, @FormParam("base") String base, @FormParam("noise") int noise,
 			@FormParam("fp") float fp, @FormParam("undetected") float undetected) {
-		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, fp, undetected);
+		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, noise, fp, undetected);
 		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
 		return Response.ok(response.toString()).build();
 	}
@@ -76,7 +73,6 @@ public class BB84Adapter implements BB84Interface {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response randomString(@FormParam("stringLength") int stringLength, @FormParam("prob") int prob) {
-		System.out.println("Session id rest " + request); 
 		final String bitString = BB84Service.getRandomBitString(stringLength, prob, request);
 		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
 		return Response.ok(response.toString()).build();
@@ -88,7 +84,6 @@ public class BB84Adapter implements BB84Interface {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice) {
-		System.out.println("Session id rest " + request); 
 		final String[] shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, request); 
 		
 		
