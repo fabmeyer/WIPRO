@@ -311,6 +311,6 @@ These are Alice and Bobs shared keys:
 
 In the absence of noise and eavesdropping, Alice and Bob should now have successfully established a shared secret key, that they can use to encrypt data as a one-time pad.
 
-[EmojiComponent
-  symbol:🐑
+[EmojiComponent 
+  emoji:":party_popper:"
 /]

@@ -1,23 +1,17 @@
 const React = require("react");
+import Emoji from "react-emoji-render";
 
 class EmojiComponent extends React.PureComponent {
   render() {
     return (
-      <div
+      <span
         style={{
-          margin: "10px"
+          margin: "10px 0",
+          fontSize: "50px"
         }}
       >
-        <p>hello</p>
-        <span
-          className="emoji"
-          role="img"
-          aria-label={this.props.label ? this.props.label : ""}
-          aria-hidden={this.props.label ? "false" : "true"}
-        >
-          {this.props.symbol}
-        </span>
-      </div>
+        <Emoji text={this.props.emoji} />
+      </span>
     );
   }
 }
