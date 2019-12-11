@@ -7,18 +7,17 @@ class ButtonCompareKey extends React.Component {
 
   shorten() {
     this.props.updateProps({
-      shortenKeyHasLoaded: false,
-      comparedBaseHasLoaded: false
+      restKeyHasLoaded: false
     });
 
     let formData = new FormData();
-    formData.append("base1", this.props.baseString1);
-    formData.append("base2", this.props.baseString2);
-    formData.append("string_alice", this.props.bitString);
+    formData.append("key1", this.props.bitString1);
+    formData.append("key2", this.props.bitString2);
+    formData.append("percentage", this.props.percentage);
     const data = new URLSearchParams(formData);
 
-    const getShortenedKey = async () => {
-      const url = "http://localhost:8080/rest/post/shortenkey";
+    const getRestKey = async () => {
+      const url = "http://localhost:8080/rest/post/comparekey";
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -27,24 +26,26 @@ class ButtonCompareKey extends React.Component {
         body: data
       });
       const content = await res.json();
-      console.log(content);
-      const comparedBase = content.comparedBase;
+      const restKeyAlice = content.restKeyAlice;
       this.props.updateProps({
-        comparedBase: comparedBase
+        restKeyAlice: restKeyAlice
       });
-      const commonKey = content.commonKey;
+      const restKeyBob = content.restKeyBob;
       this.props.updateProps({
-        commonKey: commonKey
+        restKeyBob: restKeyBob
       });
-      const commonKeyLength = commonKey.length;
+      const match = content.match / 100;
       this.props.updateProps({
-        commonKeyLength: commonKeyLength
+        match: match
+      });
+      const restKeyLength = restKeyAlice.length;
+      this.props.updateProps({
+        restKeyLength: restKeyLength
       });
     };
-    getShortenedKey();
+    getRestKey();
     this.props.updateProps({
-      comparedBaseHasLoaded: true,
-      commonKeyHasLoaded: true
+      restKeyHasLoaded: true
     });
   }
 

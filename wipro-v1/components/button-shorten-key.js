@@ -28,7 +28,6 @@ class ButtonShortenKey extends React.Component {
         body: data
       });
       const content = await res.json();
-      console.log(content);
       const comparedBase = content.comparedBase;
       this.props.updateProps({
         comparedBase: comparedBase

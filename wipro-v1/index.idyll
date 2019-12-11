@@ -97,10 +97,9 @@ Now Alice takes her photons and sends them via a quantum channel to Bob.
 This quantum channel is an optical channel like a optical-fibre cable.
 Usually the channel is noisy and some photons or their polarization will get changed. You can set the amount of noise with the noise slider or you can adjust it in the [system overview](#system-overview) section.
 
-// TODO: insert noise here
 [SimpleSlider
   setting:noise
-  text:"set noise"
+  text:"set noise: "
 /]
 
 Click on the button below to send Alice's photons to Bob.
@@ -133,12 +132,11 @@ Click on the button below to send Alice's photons to Bob.
 
 A potential eavesdropper, we call him Eve, could measure Alice's photons and try to decode the original message. As Eve has no clue about the encoding, she has no other option than to guess and use a random base to measure the photons from Alice.
 
-However if she measures a photon with the wrong base, she then risks disturbing the original polarization, setting the polarization randomly again, with a probability [Equation] \frac{1}{2} [/Equation]. If Alice chose all bases  orthogonal and diagonal respectively with a probability of [Equation] \frac{1}{2} [/Equation], Eve should measure [Equation] \frac{1}{2} [/Equation] of the photons correctly and set [Equation] \frac{1}{4} [/Equation] of the photons with a wrong base.
+However if she measures a photon with the wrong base, she then risks disturbing the original polarization, thus setting the polarization randomly again, with a probability [Equation] \frac{1}{2} [/Equation]. If Alice chose all bases  orthogonal and diagonal respectively with a probability of [Equation] \frac{1}{2} [/Equation], Eve should measure [Equation] \frac{1}{2} [/Equation] of the photons correctly and set [Equation] \frac{1}{4} [/Equation] of the photons with a wrong base.
 
-// TODO: insert eavesdropping here
 [SimpleSlider
   setting:eavesdropping
-  text:"set eavesdropping"
+  text:"set eavesdropping: "
 /]
 
 # Bob measures Alice's photons
@@ -235,7 +233,7 @@ Click on the button below to compare Alice's and Bob's base.
   text:"compare base strings"
   /]
 
-If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], and in the absence of noise, then they should have the same base for every photon with a probability of [Equation] \frac{1}{2} [/Equation]. As you can see, bases with an "`_`" mean that Bob used a different base than Alice to measure this specific photon.
+If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], and in the absence of noise, then they should have the same base for every photon with a probability of [Equation] \frac{1}{2} [/Equation]. As you can see, bases with an "`_`" implies that Bob used a different base than Alice to measure this specific photon.
 
 [var name:"ComparedBaseZoom" value:100 /]
 [PhotonGridSingle
@@ -250,7 +248,7 @@ Alice and Bob drop all bits from their bit strings where their bases do not corr
 
 The length of the sifted keys: [Display value:CommonKeyLength format:"d" /]
 
-This are Alice and Bobs sifted keys:
+These are Alice and Bobs sifted keys:
 
 [var name:"CommonKeyAliceZoom" value:100 /]
 [var name:"CommonKeyBobZoom" value:100 /]
@@ -264,31 +262,55 @@ This are Alice and Bobs sifted keys:
 
 ## Alice and Bob check if Eve has eavesdropped on the key
 
-From the sifted key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them public to check to see whether more than a certain number of them agree. In that way they can use statistical methods to find out if a potential eavesdropper (Eve) has eavesdropped on the transmission (measured the polarization) and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared "secret key".
+From the sifted key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them publicly to check whether more than a certain number of them agree. In that way they can use statistical methods to find out if a potential eavesdropper (Eve) has eavesdropped on the transmission (measured the polarization) and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared "secret key".
 
 You can set the percentage of the bits that they compare publicly with the slider below:
 
 [var name:"percentage" value:0 /]
 [SimpleSlider
   setting:percentage
-  text:"set percentage"
+  text:"set percentage: "
 /]
 
 Now Alice and Bob drop all the bits that they have announced publicly and form the shared secret key. Press on the button below to compute their shared keys:
 
-[var name:"ComparedBase" value:null /]
-[var name:"ComparedBaseHasLoaded" value:null /]
-[var name:"CommonKey" value: null /]
-[var name:"CommonKeyHasLoaded" value:null /]
-[var name:"CommonKeyLength" value: null /]
-[ButtonShortenKey
-  baseString1:AliceBaseString
-  baseString2:BobBaseString
-  bitString:AliceBitString
-  comparedBase:ComparedBase
-  comparedBaseHasLoaded:ComparedBaseHasLoaded
-  commonKey:CommonKey
-  commonKeyHasLoaded:CommonKeyHasLoaded
-  commonKeyLength:CommonKeyLength
-  text:"compare base strings"
+[var name:"RestKeyAlice" value: null /]
+[var name:"RestKeyBob" value: null /]
+[var name:"RestKeyHasLoaded" value:null /]
+[var name:"RestKeyLength" value: null /]
+[var name:"Match" value:null /]
+[ButtonCompareKey
+  bitString1:CommonKeyAlice
+  bitString2:CommonKeyBob
+  percentage:percentage
+  restKeyAlice:RestKeyAlice
+  restKeyBob:RestKeyBob
+  match:Match
+  restKeyHasLoaded:RestKeyHasLoaded
+  restKeyLength:RestKeyLength
+  text:"computed shared keys"
   /]
+
+Percentage of bits that match: [Display value:Match format:".0%" /]
+
+The length of the shared keys: [Display value:RestKeyLength format:"d" /]
+
+These are Alice and Bobs shared keys:
+
+[var name:"RestKeyAliceZoom" value:100 /]
+[var name:"RestKeyBobZoom" value:100 /]
+[PhotonGridDouble
+  bitString:RestKeyAlice
+  baseString:RestKeyBob
+  dataHasLoaded:RestKeyHasLoaded
+  bitStringZoom:RestKeyAliceZoom
+  baseStringZoom:RestKeyBobZoom
+  /]
+
+## Conclusion
+
+In the absence of noise and eavesdropping, Alice and Bob should now have successfully established a shared secret key, that they can use to encrypt data as a one-time pad.
+
+[EmojiComponent
+  symbol:🐑
+/]

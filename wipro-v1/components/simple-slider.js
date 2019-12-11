@@ -8,7 +8,12 @@ class SimpleSlider extends React.PureComponent {
     };
 
     return (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          margin: "10px 0"
+        }}
+      >
         <p
           style={{
             margin: "0 1em 0 0"
