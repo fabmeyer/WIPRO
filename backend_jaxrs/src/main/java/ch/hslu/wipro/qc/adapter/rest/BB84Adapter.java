@@ -38,7 +38,7 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/emitphoton/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str, int noise,
+	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str, 
 			@FormParam("angle_variance") float angle_var, @FormParam("length_variance") float length_var) {
 		final String photonString = BB84Service.getPhotonString(base, str, angle_var, length_var);
 		JsonObject response = Json.createObjectBuilder().add("photonString", photonString).build();
