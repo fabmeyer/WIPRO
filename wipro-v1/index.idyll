@@ -15,7 +15,7 @@
 The goal of this website is to explain the BB84-protocol in a simple way.
 BB84 is named after its inventors, Charles H. Bennet and Gilles Brassard and the year of its publication, 1984. BB84 was the first quantum-key-distribution and is one of the most popular quantum-key-distribution (QKD) Protocols.
 
-With this protocol, two parties (Alice and Bob) can compute together securely a private key (a string of bits, `1` or `0`) and share it via a (public) quantum channel. With that key they can encrypt and decrypt data symmetric as one does with a one-time pad.
+With this protocol, two parties (Alice and Bob) can compute  securely a private key (a string of bits, `1` or `0`) and share it via a (public) quantum channel. With that key they can encrypt and decrypt data symmetrically as one does with a one-time pad.
 
 First of all Alice and Bob have to decide on some settings like the length of the bit string, the ratio of their bases and so on:
 
@@ -41,9 +41,9 @@ First of all Alice and Bob have to decide on some settings like the length of th
 
 # Alice computes a string and a base with given length
 
-Alice computes a random bit string with the given length [Display value:strLength format:"d" /]. She then also has to compute a random string of bases with the same length. There are two possible bases, orthogonal (`+`) and diagonal (`x`).
+Alice chooses a random bit string with the given length [Display value:strLength format:"d" /]. She then also has to generate a random string of bases with the same length. There are two possible bases, orthogonal (`+`) and diagonal (`x`).
 
-You can change the ratio of Alice's bases with the slider on the [system overview](#system-overview) panel. Click on the button below to start the computation of her bit string and base.
+You can change the ratio of Alice's bases with the slider on the [system overview](#system-overview) panel. Click on the button below to gether bit string and base.
 
 [var name:"AliceBitString" value:"" /]
 [var name:"AliceBaseString" value:"" /]
@@ -58,7 +58,7 @@ You can change the ratio of Alice's bases with the slider on the [system overvie
   text:"get Alice's bit string and base"
   /]
 
-Now Alice has successfully computed a random bit string and a base, both with the same length. You can take a look at Alice's bit string and her base here:
+Now Alice has chosen a random bit string and a base, both with the same length. You can take a look at Alice's bit string and her base here:
 
 ## Alice's bit string and base
 
@@ -87,7 +87,7 @@ Now Alice has successfully computed a random bit string and a base, both with th
 
 ## Alice sends her photons to Bob
 
-Every single bit of her string will be encoded with her base so that from the bit and the base a specific polarization results. Her photons can have a polarization with 0°, 45°, 90° or 135°. Orthogonal bases result in orthogonal polarization and vice versa. The encryption of here photons follows the following schema:
+Every single bit of her string will be encoded with the corresponding base element, which results in a specific polarization. Her photons can have a polarization with 0°, 45°, 90° or 135°. Orthogonal bases result in orthogonal polarization and vice versa. The encryption of here photons follows the following schema:
 
 [InformationBox
   size:"big"
@@ -159,7 +159,7 @@ Bobs base string has to be at least the same length as Alice's ones: Length [Dis
 
 ## Bob measures Alice's Photons with his base
 
-For every photon, if Bobs base is the same as Alice's, and in the absence of noise and eavesdropping, the outcome will be certain and Bob will be able to decode the String from the polarization correctly with his own base. That means the polarization of the measured photon will not change and he will get the correct bit out of the photons.
+If Bobs base is the same as the one of Alice given a particular photon, the outcome will be certain in the case of absence of noise and eavesdropping. Thus, Bob will be able to decode the String from the polarization correctly with his own base. That means the polarization of the measured photon will not change and he will get the correct bit out of the photons.
 
 [fullWidth]
   [AnimationPhoton1/]
