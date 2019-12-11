@@ -1,6 +1,5 @@
 const React = require("react");
 import ReactSlider from "react-slider";
-import ButtonSettings from "./button-settings";
 import AnimationPerson from "./animation-person";
 import AnimationChannel from "./animation-channel";
 
@@ -189,7 +188,6 @@ class SystemOverview extends React.PureComponent {
             </div>
           </div>
         </div>
-        <ButtonSettings text={this.props.text}></ButtonSettings>
       </div>
     );
   }

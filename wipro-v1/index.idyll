@@ -182,6 +182,7 @@ Now Bob takes his base and measures Alice's photons with his base to compute his
   rawPolarization:RawPolarization
   polarization:AlicePolarization
   baseString:BobBaseString
+  noise:noise
   measuredString:BobBitString
   bobBaseHasLoaded:BobBaseHasLoaded
   bobStringHasLoaded:BobStringHasLoaded
@@ -236,12 +237,6 @@ If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], t
   stringZoom:ComparedBaseZoom
   /]
 
-## Alice and Bob check if Eve has eavesdropped on the key
-
-From the shortened key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them public to check to see whether more than a certain number of them agree. In that way they can use statistical tests to find out if a potential eavesdropper (Eve) has measured the polarization and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared secret key.
-
-TODO: Eve
-
 ## Alice and Bob shorten their bit strings
 
 The length of their shortened key: [Display value:CommonKeyLength format:"d" /]
@@ -254,4 +249,18 @@ This is the shortened key:
   dataHasLoaded:CommonKeyHasLoaded
   stringZoom:CommonKeyZoom
   /]
+
+## Alice and Bob check if Eve has eavesdropped on the key
+
+From the shortened key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them public to check to see whether more than a certain number of them agree. In that way they can use statistical tests to find out if a potential eavesdropper (Eve) has measured the polarization and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared secret key.
+
+// TODO: insert eavesdropping here
+[var name:"percentage" value:0 /]
+[SimpleSlider
+  setting:percentage
+  text:"set percentage"
+/]
+
+TODO: Eve
+
 
