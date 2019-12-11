@@ -1,6 +1,6 @@
 const React = require("react");
 
-class ButtonShortenKey extends React.Component {
+class ButtonCompareKey extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -14,8 +14,7 @@ class ButtonShortenKey extends React.Component {
     let formData = new FormData();
     formData.append("base1", this.props.baseString1);
     formData.append("base2", this.props.baseString2);
-    formData.append("string_alice", this.props.bitString1);
-    formData.append("string_bob", this.props.bitString2);
+    formData.append("string_alice", this.props.bitString);
     const data = new URLSearchParams(formData);
 
     const getShortenedKey = async () => {
@@ -33,15 +32,11 @@ class ButtonShortenKey extends React.Component {
       this.props.updateProps({
         comparedBase: comparedBase
       });
-      const commonKeyAlice = content.commonKeyAlice;
+      const commonKey = content.commonKey;
       this.props.updateProps({
-        commonKeyAlice: commonKeyAlice
+        commonKey: commonKey
       });
-      const commonKeyBob = content.commonKeyBob;
-      this.props.updateProps({
-        commonKeyBob: commonKeyBob
-      });
-      const commonKeyLength = commonKeyAlice.length;
+      const commonKeyLength = commonKey.length;
       this.props.updateProps({
         commonKeyLength: commonKeyLength
       });
@@ -64,4 +59,4 @@ class ButtonShortenKey extends React.Component {
   }
 }
 
-module.exports = ButtonShortenKey;
+module.exports = ButtonCompareKey;

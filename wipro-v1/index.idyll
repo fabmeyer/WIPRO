@@ -39,7 +39,7 @@ First of all Alice and Bob have to decide on some settings like the length of th
   [/SystemOverview]
 [/fullWidth]
 
-# Alices computes a string and a base with given length
+# Alice computes a string and a base with given length
 
 Alice computes a random bit string with the given length [Display value:strLength format:"d" /]. She then also has to compute a random string of bases with the same length. There are two possible bases, orthogonal (`+`) and diagonal (`x`).
 
@@ -131,7 +131,9 @@ Click on the button below to send Alice's photons to Bob.
 
 # Eve wants to eavesdrop on Alice's photons
 
-A potential eavesdropper, we call him Eve, could measure Alice's photons and try to decode the original message. However if she measures a photon with the wrong base, she then risks disturbing the original polarization with a probability [Equation] \frac{1}{2} [/Equation]. 
+A potential eavesdropper, we call him Eve, could measure Alice's photons and try to decode the original message. As Eve has no clue about the encoding, she has no other option than to guess and use a random base to measure the photons from Alice.
+
+However if she measures a photon with the wrong base, she then risks disturbing the original polarization, setting the polarization randomly again, with a probability [Equation] \frac{1}{2} [/Equation]. If Alice chose all bases  orthogonal and diagonal respectively with a probability of [Equation] \frac{1}{2} [/Equation], Eve should measure [Equation] \frac{1}{2} [/Equation] of the photons correctly and set [Equation] \frac{1}{4} [/Equation] of the photons with a wrong base.
 
 // TODO: insert eavesdropping here
 [SimpleSlider
@@ -141,11 +143,11 @@ A potential eavesdropper, we call him Eve, could measure Alice's photons and try
 
 # Bob measures Alice's photons
 
-Like Alice, Bob first has to define a random base string to measure Alice's photons polarization.
+Like Alice and Eve, Bob first has to define a random base string to measure Alice's photons polarization.
 
 ## Bobs computes a base with the same length
 
-Bobs base string has to be the same length as Alice's ones: Length [Display value:strLength format:"d" /]. Click on the button below to compute a corresponding base for Bob.
+Bobs base string has to be at least the same length as Alice's ones: Length [Display value:strLength format:"d" /]. Click on the button below to compute a corresponding base for Bob.
 
 [var name:"BobBaseString" value:null /]
 [var name:"BobBaseHasLoaded" value:false /]
@@ -159,7 +161,7 @@ Bobs base string has to be the same length as Alice's ones: Length [Display valu
 
 ## Bob measures Alice's Photons with his base
 
-For every photon, if Bobs base is the same as Alice's, the outcome will be certain and Bob will be able to decode the String from the polarization correctly with his own base. That means the polarization of the measured photon will not change.
+For every photon, if Bobs base is the same as Alice's, and in the absence of noise and eavesdropping, the outcome will be certain and Bob will be able to decode the String from the polarization correctly with his own base. That means the polarization of the measured photon will not change and he will get the correct bit out of the photons.
 
 [fullWidth]
   [AnimationPhoton1/]
@@ -172,7 +174,7 @@ However if he chose the wrong base, the polarization of the photons will be lost
 [/fullWidth]
 
 Alice and Bob can decide to choose a specific base with a chance higher than [Equation] \frac{1}{2} [/Equation]. In that way they can improve their key so that they measure the same base more often.
-Now Bob takes his base and measures Alice's photons with his base to compute his own bit string. Click on the button below to measure Alice's photons.
+Now Bob takes his base and measures Alice's photons to compute his own bit string. Click on the button below to measure Alice's photons.
 
 [var name:"BobBitString" value:null /]
 [var name:"BobStringHasLoaded" value:false /]
@@ -209,7 +211,70 @@ Here you can see Bob's base and the bit string that he computed from the photons
 
 At this point, Bob can announce publicly that he received Alice's transmission.
 They then use a public authenticated channel to compare their bases.
-For every position in the string, if they both have chosen the same base, Bob can decode Alice's photon and retrieve the original bit.
+For every position in the string, if they both have chosen the same base and in the absence of noise and eavesdropping, Bob can decode Alice's photon and retrieve the original bit.
+
+Click on the button below to compare Alice's and Bob's base.
+
+[var name:"ComparedBase" value:null /]
+[var name:"ComparedBaseHasLoaded" value:null /]
+[var name:"CommonKeyAlice" value: null /]
+[var name:"CommonKeyBob" value: null /]
+[var name:"CommonKeyHasLoaded" value:null /]
+[var name:"CommonKeyLength" value: null /]
+[ButtonShortenKey
+  baseString1:AliceBaseString
+  baseString2:BobBaseString
+  bitString1:AliceBitString
+  bitString2:BobBitString
+  comparedBase:ComparedBase
+  comparedBaseHasLoaded:ComparedBaseHasLoaded
+  commonKeyAlice:CommonKeyAlice
+  commonKeyBob:CommonKeyBob
+  commonKeyHasLoaded:CommonKeyHasLoaded
+  commonKeyLength:CommonKeyLength
+  text:"compare base strings"
+  /]
+
+If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], and in the absence of noise, then they should have the same base for every photon with a probability of [Equation] \frac{1}{2} [/Equation]. As you can see, bases with an "`_`" mean that Bob used a different base than Alice to measure this specific photon.
+
+[var name:"ComparedBaseZoom" value:100 /]
+[PhotonGridSingle
+  string:ComparedBase
+  dataHasLoaded:ComparedBaseHasLoaded
+  stringZoom:ComparedBaseZoom
+  /]
+
+## Alice and Bob shorten their bit strings according to their different bases
+
+Alice and Bob drop all bits from their bit strings where their bases do not correspond. This new shorter keys are called "sifted keys". Notice that if there is no noise or eavesdropping, both sifted keys are identical.
+
+The length of the sifted keys: [Display value:CommonKeyLength format:"d" /]
+
+This are Alice and Bobs sifted keys:
+
+[var name:"CommonKeyAliceZoom" value:100 /]
+[var name:"CommonKeyBobZoom" value:100 /]
+[PhotonGridDouble
+  bitString:CommonKeyAlice
+  baseString:CommonKeyBob
+  dataHasLoaded:CommonKeyHasLoaded
+  bitStringZoom:CommonKeyAliceZoom
+  baseStringZoom:CommonKeyBobZoom
+  /]
+
+## Alice and Bob check if Eve has eavesdropped on the key
+
+From the sifted key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them public to check to see whether more than a certain number of them agree. In that way they can use statistical methods to find out if a potential eavesdropper (Eve) has eavesdropped on the transmission (measured the polarization) and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared "secret key".
+
+You can set the percentage of the bits that they compare publicly with the slider below:
+
+[var name:"percentage" value:0 /]
+[SimpleSlider
+  setting:percentage
+  text:"set percentage"
+/]
+
+Now Alice and Bob drop all the bits that they have announced publicly and form the shared secret key. Press on the button below to compute their shared keys:
 
 [var name:"ComparedBase" value:null /]
 [var name:"ComparedBaseHasLoaded" value:null /]
@@ -227,40 +292,3 @@ For every position in the string, if they both have chosen the same base, Bob ca
   commonKeyLength:CommonKeyLength
   text:"compare base strings"
   /]
-
-If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], then they should have the same base for every photon with a probability of [Equation] \frac{1}{2} [/Equation]. They drop all bits from their bit strings where their bases do not correspond. In that way they create a shortened key together that they already share.
-
-[var name:"ComparedBaseZoom" value:null /]
-[PhotonGridSingle
-  string:ComparedBase
-  dataHasLoaded:ComparedBaseHasLoaded
-  stringZoom:ComparedBaseZoom
-  /]
-
-## Alice and Bob shorten their bit strings
-
-The length of their shortened key: [Display value:CommonKeyLength format:"d" /]
-
-This is the shortened key:
-
-[var name:"CommonKeyZoom" value:null /]
-[PhotonGridSingle
-  string:CommonKey
-  dataHasLoaded:CommonKeyHasLoaded
-  stringZoom:CommonKeyZoom
-  /]
-
-## Alice and Bob check if Eve has eavesdropped on the key
-
-From the shortened key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them public to check to see whether more than a certain number of them agree. In that way they can use statistical tests to find out if a potential eavesdropper (Eve) has measured the polarization and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared secret key.
-
-// TODO: insert eavesdropping here
-[var name:"percentage" value:0 /]
-[SimpleSlider
-  setting:percentage
-  text:"set percentage"
-/]
-
-TODO: Eve
-
-
