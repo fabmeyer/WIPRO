@@ -15,7 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --><!-- The contents of this file will be loaded for each web application -->
-<Context path="/services"
+<Context
 		antiResourceLocking="false"
 		sessionCookiePath="/" >
 
@@ -32,32 +32,5 @@
     <!--
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
-    <Realm className="org.apache.catalina.realm.LockOutRealm"
-						failureCount="5"
-						lockOutTime="60" >
-				<Realm className="org.apache.catalina.realm.JAASRealm"
-				    appName="LoginService"
-				    userClassNames="ch.alpnet.framework.loginmodule.authentication.UserPrincipal"
-				    roleClassNames="ch.alpnet.framework.loginmodule.authentication.GroupPrincipal" />
-		</Realm>
-
-		<Resource name="jdbc/asbDB"
-            auth="Container"
-            type="javax.sql.DataSource"
-						driverClassName="com.mysql.jdbc.Driver"
-            username="${db.username}"
-            password="${db.password}"
-            url="${db.url}" />
-
-    <Resource name="mail/Session"
-						auth="Container"
-            type="javax.mail.Session"
-            mail.smtp.host="${smtp.host}"
-            mail.smtp.port="${smtp.port}"
-            mail.smtp.auth="${smtp.auth}"
-            mail.user="${smtp.username}"
-            password="${smtp.password}"
-            mail.smtp.user="${smtp.username}"
-            mail.smtp.password="${smtp.password}" />
 
 </Context>

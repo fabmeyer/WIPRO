@@ -12,7 +12,6 @@ plugins {
     id 'idea'
     id 'war'
     id 'application'
-    id "at.comm_unity.gradle.plugins.jpamodelgen" version "1.1.1"
 }
 
 group = "ch.hslu.wipro.qc"
@@ -41,7 +40,7 @@ dependencies {
            "org.eclipse.jdt.core.compiler:ecj:4.6.1",
            "javax.servlet:javax.servlet-api:3.1.0",
            "org.apache.tomcat:tomcat-dbcp:${tomcatVersion}"
-    providedCompile( 'org.apache.tomcat.embed:tomcat-embed-el:8.5.16' ) { transitive = false }
+    compile( 'org.apache.tomcat.embed:tomcat-embed-el:8.5.16' ) { transitive = false }
     // ATTENTION: any changes here should be duplicated in the list
     // of runtime dependencies below!
     //compile( 'org.eclipse.jetty:jetty-server:9.3.0.M2' ) { transitive = false }
@@ -173,7 +172,7 @@ dependencies {
 
 
 mainClassName = 'ch.hslu.wipro.qc.embedded.TomcatStarter'
-applicationDefaultJvmArgs = ["-Xshare:off", "-Dcom.sun.management.jmxremote.port=8086", "-Dcom.sun.management.jmxremote.ssl=false", "-Ddb.url=jdbc:mysql://localhost:3306/qc", "-Ddb.username=asb", "-Ddb.password=m6HtPweJXn2HR4LG", "-Dsmtp.host=mail.application.expact.ch", "-Dmail.mime.charset=UTF-8", "-Dfile.encoding=UTF-8", "-Dsmtp.port=587", "-Dsmtp.auth=true", "-Dsmtp.username=baseexpact", "-Dsmtp.password=alov8RIamp7d", "-Dcom.sun.management.jmxremote.authenticate=false"]
+applicationDefaultJvmArgs = ["-Xshare:off"]
 compileJava.options.encoding = 'UTF-8'
 
 
@@ -217,54 +216,9 @@ run {
 }
 **/
 
-war {
-    from("${System.env.EXPACT_FRONTEND_DIR}") {
-        println "Including frontend dist from ${System.env.EXPACT_FRONTEND_DIR}"
-        include('**/*');
-    }
-}
 
 task testDebug(type: Test) {
 
 }
-
-task startDerby() {
-    doFirst {
-        println "***Derby starting as a Service***"
-    }
-    def process = ['java', '-cp', configurations.derbyNet.asPath, "org.apache.derby.drda.NetworkServerControl", "start", "-noSecurityManager"].execute()
-    process.in.close()
-    process.out.close()
-    process.err.close()
-    doLast {
-        println "***Derby listening on: jdbc:derby://localhost:1527/***"
-        println "***Database Name is: expactDB***"
-    }
-}
-
-task shutdownDerby {
-    def process = ['java', '-cp', configurations.derbyNet.asPath, "org.apache.derby.drda.NetworkServerControl", "shutdown", "-noSecurityManager"].execute()
-    process.in.close()
-    process.out.close()
-    process.err.close()
-}
-
-// The following closure demonstrates some of the configuration defaults and is not necessary.
-jpaModelgen {
-  library = "org.hibernate:hibernate-jpamodelgen:4.3.8.Final"
-  jpaModelgenSourcesDir = "src/jpaModelgen/java"
-}
-
-/* Include only entities to ignore conflicts of JPA Metamodel generated classes usage */
-
-// Important!!! Following configuration of compile java arguments
-// should be ALWAYS present when using jpamodelgen plugin.
-compileJava.options.compilerArgs += ["-proc:none"]
-
-
-apply plugin: 'war'
-apply plugin: 'eclipse-wtp'
-project.webAppDirName = 'WebContent'
-
 
 
