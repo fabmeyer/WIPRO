@@ -24,7 +24,7 @@ class ButtonSettings extends React.Component {
       noise: this.props.noise,
       eavesdropping: this.props.eavesdropping
     };
-    async function postData(url = "http://localhost:8080/rest/post/settings") {
+    async function postData(url = "/rest/post/settings") {
       await fetch(url, {
         method: "POST",
         headers: {

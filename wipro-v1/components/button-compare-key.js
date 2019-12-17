@@ -17,7 +17,7 @@ class ButtonCompareKey extends React.Component {
     const data = new URLSearchParams(formData);
 
     const getRestKey = async () => {
-      const url = "http://localhost:8080/rest/post/comparekey";
+      const url = "/rest/post/comparekey";
       const res = await fetch(url, {
         method: "POST",
         headers: {

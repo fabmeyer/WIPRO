@@ -49,7 +49,7 @@ class ButtonMeasure extends React.Component {
     const data = new URLSearchParams(formData);
 
     const measurePhotons = async () => {
-      const url = "http://localhost:8080/rest/post/receivephoton";
+      const url = "/rest/post/receivephoton";
       const res = await fetch(url, {
         method: "POST",
         headers: {

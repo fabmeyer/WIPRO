@@ -38,7 +38,7 @@ class ButtonStart extends React.Component {
   start() {
     this.setState({ dataHasLoaded: false });
     const newLenght = this.checkType(this.state.strLength);
-    fetch(`http://localhost:8080/rest/randomstring/${newLenght}`)
+    fetch(`/rest/randomstring/${newLenght}`)
       .then(res => res.json())
       .then(data => {
         this.setState({ bitString: data.bitString });
@@ -47,7 +47,7 @@ class ButtonStart extends React.Component {
         });
       })
       .catch(console.log);
-    fetch(`http://localhost:8080/rest/randombase/${newLenght}`)
+    fetch(`/rest/randombase/${newLenght}`)
       .then(res => res.json())
       .then(data => {
         this.setState({ baseString: data.baseString });
