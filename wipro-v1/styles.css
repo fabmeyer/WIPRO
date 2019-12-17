@@ -124,6 +124,11 @@ body {
   --overview-grey: #b1cba1;
 }
 
+table th,
+table td {
+  padding: 5px 5px;
+  border: 1px solid #dfe2e5;
+}
 /* React Slider */
 
 .horizontal-slider {

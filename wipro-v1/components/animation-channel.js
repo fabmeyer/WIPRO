@@ -8,10 +8,10 @@ class AnimationChannel extends React.Component {
 
   render() {
     return (
-      <ReactRough width={640} height={40}>
+      <ReactRough width={640} height={20}>
         <Rectangle
-          points={[10, 10, 600, 10]}
-          fill="lightgrey"
+          points={[10, 5, 600, 10]}
+          fill={this.props.color}
           fillWeight="6"
           fillStyle="hachure"
           strokeWidth="2"

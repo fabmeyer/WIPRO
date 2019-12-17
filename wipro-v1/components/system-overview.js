@@ -36,7 +36,7 @@ class SystemOverview extends React.PureComponent {
 
     const noiseContainer = {
       display: "flex",
-      transform: "translateY(-5px)"
+      transform: "translateY(-20px)"
     };
 
     const textStyle = {
@@ -50,6 +50,14 @@ class SystemOverview extends React.PureComponent {
       justifyContent: "center",
       alignItems: "center",
       paddingBottom: "0.5em"
+    };
+
+    const aliceAndBobContainer = {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      paddingBottom: "8em"
     };
 
     const sliderStyle = {
@@ -76,8 +84,12 @@ class SystemOverview extends React.PureComponent {
         </div>
         <h4 style={titleStyle}>Specific options:</h4>
         <div className="specificComponents">
+          <div style={container}>
+            <p style={textStyle}>insecure public Channel</p>
+            <AnimationChannel color="lightgrey"></AnimationChannel>
+          </div>
           <div style={specificContainer}>
-            <div style={container}>
+            <div style={aliceAndBobContainer}>
               <p style={textStyle}>Alice</p>
               <AnimationPerson
                 color="GreenYellow"
@@ -131,8 +143,8 @@ class SystemOverview extends React.PureComponent {
                 </div>
               </div>
               <div style={container}>
-                <p style={textStyle}>Channel</p>
-                <AnimationChannel></AnimationChannel>
+                <p style={textStyle}>quantum Channel</p>
+                <AnimationChannel color="#FFF200"></AnimationChannel>
                 <div style={noiseContainer}>
                   <p
                     style={{
@@ -160,7 +172,7 @@ class SystemOverview extends React.PureComponent {
                 </div>
               </div>
             </div>
-            <div style={container}>
+            <div style={aliceAndBobContainer}>
               <p style={textStyle}>Bob</p>
               <AnimationPerson
                 color="DodgerBlue"
