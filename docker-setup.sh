@@ -1,6 +1,8 @@
 # Build process
 #cd wipro-v1 
 #idyll build
+
+
 #cd ../backend_jaxrs
 #./gradlew  build
 
@@ -19,7 +21,7 @@ docker image build -t althaus/wipro ./
 
 
 #docker run  --publish 8080:8080 -it althaus/wipro #-v /usr/local/tomcat/webapps/ROOT.war
-docker run -p 8080:8080 -it althaus/wipro
+docker run -p 8080:8080 -d althaus/wipro 
 
 #docker exec -it wipro-container bash
 
