@@ -37,8 +37,7 @@ class SystemOverview extends React.PureComponent {
     };
 
     const noiseContainer = {
-      display: "flex",
-      transform: "translateY(-20px)"
+      display: "flex"
     };
 
     const textStyle = {
@@ -83,17 +82,23 @@ class SystemOverview extends React.PureComponent {
     class MiniPhoton extends React.Component {
       render() {
         return (
-          <ReactRough width={15} height={15}>
-            <Circle
-              points={[5, 5, 10]}
-              fill={"#FFF200"}
-              fillWeight="3"
-              fillStyle="hachure"
-              strokeWidth="1"
-              roughness="1"
-              bowing="0.5"
-            />
-          </ReactRough>
+          <React.Fragment>
+            <ReactRough width={20} height={20}>
+              <Circle
+                points={[10, 10, 10]}
+                fill={"#FFF200"}
+                fillWeight="3"
+                fillStyle="hachure"
+                strokeWidth="1"
+                roughness="1"
+                bowing="0.5"
+              />
+            </ReactRough>
+
+            <div style={{ width: "40px", height: "20px" }}>
+              <Arrow angle={90} length={40} lineWidth={2} />
+            </div>
+          </React.Fragment>
         );
       }
     }
