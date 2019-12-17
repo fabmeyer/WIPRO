@@ -2,6 +2,8 @@ const React = require("react");
 import ReactSlider from "react-slider";
 import AnimationPerson from "./animation-person";
 import AnimationChannel from "./animation-channel";
+import Arrow from "@elsdoerfer/react-arrow";
+import ReactRough, { Circle } from "react-rough";
 
 class SystemOverview extends React.PureComponent {
   render() {
@@ -57,7 +59,8 @@ class SystemOverview extends React.PureComponent {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      paddingBottom: "8em"
+      paddingBottom: "8em",
+      margin: "0 15px"
     };
 
     const sliderStyle = {
@@ -68,8 +71,42 @@ class SystemOverview extends React.PureComponent {
       paddingBottom: "1em"
     };
 
+    const miniPhotonContainer = {
+      width: "100%",
+      display: "flex",
+      justifyContent: "space-around"
+    };
+
     const children = React.Children.toArray(this.props.children);
     const textInput = children[0];
+
+    class MiniPhoton extends React.Component {
+      render() {
+        return (
+          <ReactRough width={15} height={15}>
+            <Circle
+              points={[5, 5, 10]}
+              fill={"#FFF200"}
+              fillWeight="3"
+              fillStyle="hachure"
+              strokeWidth="1"
+              roughness="1"
+              bowing="0.5"
+            />
+          </ReactRough>
+        );
+      }
+    }
+
+    class MultipleMiniPhotons extends React.Component {
+      render() {
+        let rows = [];
+        for (let i = 0; i < 10; i++) {
+          rows.push(<MiniPhoton key={i} />);
+        }
+        return <div style={miniPhotonContainer}>{rows}</div>;
+      }
+    }
 
     return (
       <div style={overviewContainer}>
@@ -91,10 +128,12 @@ class SystemOverview extends React.PureComponent {
           <div style={specificContainer}>
             <div style={aliceAndBobContainer}>
               <p style={textStyle}>Alice</p>
-              <AnimationPerson
-                color="GreenYellow"
-                stroke="black"
-              ></AnimationPerson>
+              <span style={{ display: "flex" }}>
+                <AnimationPerson
+                  color="GreenYellow"
+                  stroke="black"
+                ></AnimationPerson>
+              </span>
               <p style={textStyle}>
                 Ratio between orthogonal and diagonal base
               </p>
@@ -114,6 +153,15 @@ class SystemOverview extends React.PureComponent {
                   defaultValue={this.props.AliceProb}
                 />
               </div>
+            </div>
+            <div style={{ width: 100 }}>
+              <Arrow
+                angle={45}
+                length={75}
+                lineWidth={1}
+                style={{ marginBottom: 80 }}
+              />
+              <Arrow angle={135} length={75} lineWidth={1} style={{}} />
             </div>
             <div style={container}>
               <div style={eavesdroppingStyle}>
@@ -144,6 +192,7 @@ class SystemOverview extends React.PureComponent {
               </div>
               <div style={container}>
                 <p style={textStyle}>quantum Channel</p>
+                <MultipleMiniPhotons />
                 <AnimationChannel color="#FFF200"></AnimationChannel>
                 <div style={noiseContainer}>
                   <p
@@ -171,6 +220,15 @@ class SystemOverview extends React.PureComponent {
                   </div>
                 </div>
               </div>
+            </div>
+            <div style={{ width: 100 }}>
+              <Arrow
+                angle={-45}
+                length={75}
+                lineWidth={1}
+                style={{ marginBottom: 80 }}
+              />
+              <Arrow angle={45} length={75} lineWidth={1} style={{}} />
             </div>
             <div style={aliceAndBobContainer}>
               <p style={textStyle}>Bob</p>
