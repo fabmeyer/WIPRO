@@ -4,19 +4,19 @@
 
 ### Frontend
 * Komponenten photon-grid und scroll-box: default-value wird falsch gerendert
-* AliceProb und BobProb sollten nur für Base gelten und nicht für Bitstring
+* AliceProb und BobProb sollten nur für Base gelten und nicht für Bitstring #check
 
 ## TODO bis 20.12. b)
 
 ### Frontend
 
 * Photongrid: Färbung einbauen für noise (gelb) und Eve (rot)
-	* Codierung: 0: weder Eve noch noise, 1: Eve hat abgehört mit richtiger Basis (orange), 2: Eve hat abgehört mit falscher Basis (rot), 3: noise (gelb)
-* Channel umbenennen in authenticated anstatt insecure
+	* Codierung: 0: weder Eve noch noise, 1: Eve hat abgehört mit richtiger Basis (orange), 2: Eve hat abgehört mit falscher Basis (rot), 3: noise (gelb) #check
+* Channel umbenennen in authenticated anstatt insecure #check
 * Vernüftige Defaultwerte für alle Variabeln
 * Pfeile anpassen für Alice, Bob und Eve
 * Buttons ausgrauen oder mit Popup wenn noch nicht aktiv
-* Mini Photons: Rerender verhindern
+* Mini Photons: Rerender verhindern #check
 * Info einbauen bei Photon-grid: Klick auf String
 * Legende einbauen bei Scroll-box: schwarz für 1 und weiss für 0
 * Information Reconciliation und Privacy amplification einbauen in Algorithmus und Text

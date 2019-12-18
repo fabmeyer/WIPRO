@@ -5,7 +5,10 @@ import AnimationChannel from "./animation-channel";
 import Arrow from "@elsdoerfer/react-arrow";
 import ReactRough, { Circle } from "react-rough";
 
-class SystemOverview extends React.PureComponent {
+class SystemOverview extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
   render() {
     const overviewContainer = {
       backgroundColor: "#FEF9FF",
@@ -79,7 +82,7 @@ class SystemOverview extends React.PureComponent {
     const children = React.Children.toArray(this.props.children);
     const textInput = children[0];
 
-    class MiniPhoton extends React.Component {
+    class MiniPhoton extends React.PureComponent {
       render() {
         return (
           <React.Fragment>
@@ -103,7 +106,7 @@ class SystemOverview extends React.PureComponent {
       }
     }
 
-    class MultipleMiniPhotons extends React.Component {
+    class MultipleMiniPhotons extends React.PureComponent {
       render() {
         let rows = [];
         for (let i = 0; i < 10; i++) {
@@ -127,7 +130,7 @@ class SystemOverview extends React.PureComponent {
         <h4 style={titleStyle}>Specific options:</h4>
         <div className="specificComponents">
           <div style={container}>
-            <p style={textStyle}>insecure public Channel</p>
+            <p style={textStyle}>public authenticated Channel</p>
             <AnimationChannel color="lightgrey"></AnimationChannel>
           </div>
           <div style={specificContainer}>
