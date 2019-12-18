@@ -71,6 +71,8 @@ Now Alice has chosen a random bit string and a base, both with the same length. 
   bitStringZoom:AliceBitStringZoom
   baseStringZoom:AliceBaseStringZoom
   colorBackground:false
+  firstStringIsBit:true
+  secondStringIsBit:false
   /]
 
 ## Alice sends her photons to Bob
@@ -195,6 +197,8 @@ Here you can see Bob's base and the bit string that he computed from the photons
   bitStringZoom:BobBitStringZoom
   baseStringZoom:BobBaseStringZoom
   colorBackground:false
+  firstStringIsBit:true
+  secondStringIsBit:false
   /]
 
 ## Alice and Bob compare their bases
@@ -232,6 +236,7 @@ If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], a
   string:ComparedBase
   dataHasLoaded:ComparedBaseHasLoaded
   stringZoom:ComparedBaseZoom
+  firstStringIsBit:false
   /]
 
 ## Alice and Bob shorten their bit strings according to their different bases
@@ -251,6 +256,8 @@ These are Alice and Bobs sifted keys:
   bitStringZoom:CommonKeyAliceZoom
   baseStringZoom:CommonKeyBobZoom
   colorBackground:false
+  firstStringIsBit:true
+  secondStringIsBit:true
   /]
 
 ## Alice and Bob check if Eve has eavesdropped on the key
@@ -301,6 +308,8 @@ These are Alice and Bobs shared keys:
   bitStringZoom:RestKeyAliceZoom
   baseStringZoom:RestKeyBobZoom
   colorBackground:true
+  firstStringIsBit:true
+  secondStringIsBit:true
   /]
 
 # Conclusion

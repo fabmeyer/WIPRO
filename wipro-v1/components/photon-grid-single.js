@@ -85,6 +85,87 @@ class PhotonGridSingle extends React.Component {
       cursor: "pointer"
     };
 
+    const legendStyle = {
+      display: "flex",
+      width: "80px",
+      height: "15px",
+      justifyContent: "space-around"
+    };
+
+    const legendItemStyle = {
+      display: "flex",
+      alignItems: "baseline"
+    };
+
+    let span1;
+    if (this.props.firstStringIsBit) {
+      span1 = (
+        <span style={legendStyle}>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "black",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>1</p>
+          </span>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "white",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>0</p>
+          </span>
+        </span>
+      );
+    } else {
+      span1 = (
+        <span style={legendStyle}>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "blue",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>x</p>
+          </span>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "yellow",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>+</p>
+          </span>
+        </span>
+      );
+    }
+
     return (
       <div style={{ display: this.state.showHide }}>
         <div style={textContainer}>
@@ -123,6 +204,7 @@ class PhotonGridSingle extends React.Component {
               />
             </div>
             <div>
+              {span1}
               <ScrollBox
                 value={this.props.string}
                 zoomFactor={this.props.stringZoom}

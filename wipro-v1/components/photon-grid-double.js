@@ -115,6 +115,156 @@ class PhotonGridDouble extends React.Component {
       cursor: "pointer"
     };
 
+    const legendStyle = {
+      display: "flex",
+      width: "80px",
+      height: "15px",
+      justifyContent: "space-around"
+    };
+
+    const legendItemStyle = {
+      display: "flex",
+      alignItems: "baseline"
+    };
+
+    let span1;
+    if (this.props.firstStringIsBit) {
+      span1 = (
+        <span style={legendStyle}>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "black",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>1</p>
+          </span>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "white",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>0</p>
+          </span>
+        </span>
+      );
+    } else {
+      span1 = (
+        <span style={legendStyle}>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "blue",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>x</p>
+          </span>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "yellow",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>+</p>
+          </span>
+        </span>
+      );
+    }
+
+    let span2;
+    if (this.props.secondStringIsBit) {
+      span2 = (
+        <span style={legendStyle}>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "black",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>1</p>
+          </span>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "white",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>0</p>
+          </span>
+        </span>
+      );
+    } else {
+      span2 = (
+        <span style={legendStyle}>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "blue",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>x</p>
+          </span>
+          <span style={legendItemStyle}>
+            <canvas
+              width="10"
+              height="10"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "yellow",
+                height: "10px",
+                width: "10px",
+                marginRight: "5px"
+              }}
+            ></canvas>
+            <p>+</p>
+          </span>
+        </span>
+      );
+    }
+
     return (
       <div style={{ display: this.state.showHide }}>
         <div style={textContainer}>
@@ -133,7 +283,7 @@ class PhotonGridDouble extends React.Component {
             visible={this.state.rodal1}
             onClose={this.rodal1.bind(this)}
             width={500}
-            height={560}
+            height={575}
             measure="px"
           >
             <div>
@@ -157,6 +307,7 @@ class PhotonGridDouble extends React.Component {
               />
             </div>
             <div>
+              {span1}
               <ScrollBox
                 value={this.props.bitString}
                 zoomFactor={this.props.bitStringZoom}
@@ -174,7 +325,7 @@ class PhotonGridDouble extends React.Component {
             visible={this.state.rodal2}
             onClose={this.rodal2.bind(this)}
             width={500}
-            height={560}
+            height={575}
             measure="px"
           >
             <div>
@@ -198,6 +349,7 @@ class PhotonGridDouble extends React.Component {
               />
             </div>
             <div>
+              {span2}
               <ScrollBox
                 value={this.props.baseString}
                 zoomFactor={this.props.baseStringZoom}
