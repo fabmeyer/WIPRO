@@ -3,7 +3,6 @@ const React = require("react");
 class ButtonMeasure extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       strLength: this.checkType(this.props.strLength)
     };
@@ -44,15 +43,18 @@ class ButtonMeasure extends React.Component {
     formData.append("photons", this.props.rawPolarization);
     formData.append("base", this.props.baseString);
     formData.append("fp", 0); 
+    formData.append("eavesdropping", this.props.eavesdropping);
     formData.append("undetected", 0);
     formData.append("noise", this.props.noise);
     const data = new URLSearchParams(formData);
-
+    
     const measurePhotons = async () => {
-      const url = "/rest/post/receivephoton";
+      console.log(location.port == 3000);
+      const domain = (location.port == 3000) ? "http://localhost:8080" : "";
+      const url = domain + "/rest/post/receivephoton";
       const res = await fetch(url, {
         method: "POST",
-        headers: {
+        headers: { 
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
         body: data
