@@ -9,11 +9,10 @@ class PhotonGridDouble extends React.Component {
     this.exampleRef1 = React.createRef();
     this.exampleRef2 = React.createRef();
     this.state = {
-      string1: null,
-      string2: null,
       isColor: false,
       rodal1: false,
       rodal2: false,
+      colorKey: this.props.colorKey,
       showHide: "none"
     };
   }
@@ -22,11 +21,11 @@ class PhotonGridDouble extends React.Component {
     const newProps = this.props;
     if (
       oldProps.bitString !== newProps.bitString ||
-      oldProps.baseString !== newProps.baseString
+      oldProps.baseString !== newProps.baseString ||
+      oldProps.colorKey !== newProps.colorKey
     ) {
       this.setState({
-        string1: this.props.bitString,
-        string2: this.props.baseString,
+        colorKey: this.props.colorKey,
         isColor: false
       });
       this.colorBackground();
@@ -47,29 +46,35 @@ class PhotonGridDouble extends React.Component {
       let span1 = String(this.props.bitString)
         .split("")
         .map(function(el) {
-          return (
-            '<span class="photonGrid-' +
-            el.toLowerCase() +
-            '">' +
-            el +
-            "</span>"
-          );
+          return '<span class="photonGrid-0">' + el + "</span>";
         })
         .join("");
       this.exampleRef1.current.innerHTML = span1;
-      let span2 = String(this.props.baseString)
-        .split("")
-        .map(function(el) {
-          return (
-            '<span class="photonGrid-' +
-            el.toLowerCase() +
-            '">' +
-            el +
-            "</span>"
-          );
-        })
-        .join("");
-      this.exampleRef2.current.innerHTML = span2;
+      if (this.props.colorBackground === true) {
+        console.log("does have color key");
+        console.log("props", this.state.colorKey);
+        let colorString = String(this.state.colorKey);
+        console.log(colorString);
+        let span2 = String(this.props.baseString)
+          .split("")
+          .map(function(el, index) {
+            let colorChar = colorString[index];
+            return (
+              '<span class="photonGrid-' + colorChar + '">' + el + "</span>"
+            );
+          })
+          .join("");
+        this.exampleRef2.current.innerHTML = span2;
+      } else {
+        console.log("does not have color key");
+        let span2 = String(this.props.baseString)
+          .split("")
+          .map(function(el) {
+            return '<span class="photonGrid-0">' + el + "</span>";
+          })
+          .join("");
+        this.exampleRef2.current.innerHTML = span2;
+      }
       this.setState({ isColor: true });
     }
   };

@@ -70,6 +70,7 @@ Now Alice has chosen a random bit string and a base, both with the same length. 
   dataHasLoaded:AliceDataHasLoaded
   bitStringZoom:AliceBitStringZoom
   baseStringZoom:AliceBaseStringZoom
+  colorBackground:false
   /]
 
 [ShowHide
@@ -107,12 +108,14 @@ Click on the button below to send Alice's photons to Bob.
 [var name:"RawPolarization" value:null /]
 [var name:"AlicePolarization" value:null /]
 [var name:"PolarizationHasLoaded" value:false /]
+[var name:"ColorKey" value:null /]
 [ButtonEmitPhotons
   bitString:AliceBitString
   baseString:AliceBaseString
+  noise:noise
   rawPolarization:RawPolarization
   polarization:AlicePolarization
-  noise:noise
+  colorKey:ColorKey
   polarizationHasLoaded:PolarizationHasLoaded
   text:"Send photons to Bob"
   /]
@@ -203,6 +206,7 @@ Here you can see Bob's base and the bit string that he computed from the photons
   dataHasLoaded:BobDataHasLoaded
   bitStringZoom:BobBitStringZoom
   baseStringZoom:BobBaseStringZoom
+  colorBackground:false
   /]
 
 ## Alice and Bob compare their bases
@@ -258,6 +262,7 @@ These are Alice and Bobs sifted keys:
   dataHasLoaded:CommonKeyHasLoaded
   bitStringZoom:CommonKeyAliceZoom
   baseStringZoom:CommonKeyBobZoom
+  colorBackground:false
   /]
 
 ## Alice and Bob check if Eve has eavesdropped on the key
@@ -282,6 +287,7 @@ Now Alice and Bob drop all the bits that they have announced publicly and form t
 [ButtonCompareKey
   bitString1:CommonKeyAlice
   bitString2:CommonKeyBob
+  colorKey:ColorKey
   percentage:percentage
   restKeyAlice:RestKeyAlice
   restKeyBob:RestKeyBob
@@ -302,9 +308,11 @@ These are Alice and Bobs shared keys:
 [PhotonGridDouble
   bitString:RestKeyAlice
   baseString:RestKeyBob
+  colorKey:ColorKey
   dataHasLoaded:RestKeyHasLoaded
   bitStringZoom:RestKeyAliceZoom
   baseStringZoom:RestKeyBobZoom
+  colorBackground:true
   /]
 
 ## Conclusion

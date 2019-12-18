@@ -44,7 +44,7 @@ class ButtonAliceStart extends React.Component {
     const data = new URLSearchParams(formData);
 
     const getBitString = async () => {
-      const url = "/rest/post/randomstring";
+      const url = "http://localhost:8080/rest/post/randomstring";
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -61,7 +61,7 @@ class ButtonAliceStart extends React.Component {
     getBitString();
 
     const getBaseString = async () => {
-      const url = "/rest/post/randombase";
+      const url = "http://localhost:8080/rest/post/randombase";
       const res = await fetch(url, {
         method: "POST",
         headers: {

@@ -28,7 +28,7 @@
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
   
-  <!-- 
+
   	<filter>
 		<filter-name>CorsFilter</filter-name>
 		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
@@ -54,7 +54,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
   
-   -->
+   
 
    <listener>
       <listener-class>ch.hslu.wipro.qc.config.session.listener.QcSessionListener</listener-class>

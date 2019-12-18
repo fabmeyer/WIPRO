@@ -19,7 +19,7 @@ class ButtonShortenKey extends React.Component {
     const data = new URLSearchParams(formData);
 
     const getShortenedKey = async () => {
-      const url = "/rest/post/shortenkey";
+      const url = "http://localhost:8080/rest/post/shortenkey";
       const res = await fetch(url, {
         method: "POST",
         headers: {

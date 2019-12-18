@@ -38,7 +38,7 @@ class ButtonBobBase extends React.Component {
     const data = new URLSearchParams(formData);
 
     const getBaseString = async () => {
-      const url = "/rest/post/randombase";
+      const url = "http://localhost:8080/rest/post/randombase";
       const res = await fetch(url, {
         method: "POST",
         headers: {

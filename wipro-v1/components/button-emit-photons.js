@@ -19,7 +19,7 @@ class ButtonEmitPhotons extends React.Component {
     const data = new URLSearchParams(formData);
 
     const getPolarization = async () => {
-      const url = "/rest/post/emitphoton";
+      const url = "http://localhost:8080/rest/post/emitphoton";
       const res = await fetch(url, {
         method: "POST",
         headers: {

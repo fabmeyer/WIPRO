@@ -29,6 +29,19 @@ SoDa
 
 ## 6. Realisierung
 
+Überarbeiten!
+
+Alle Informationen die man braucht, um es zu implementieren.
+Nicht zu tief ins Detail.
+
+Visueller Überblick mit Screenshots der Seite.
+
+Gliederung mithilfe der Kapitel auf der Seite.
+
+
+
+Komponenten nur als Überblick, mit Fliesstext.
+
 Bezogen auf 2 und 3, wie wurde es umgesetzt. Beschreibung der Komponenten.
 
 Frontend:
@@ -47,4 +60,7 @@ Frontend:
 
 Die wichtigsten / interessantesten Erweiterungen bei mehr Zeit/Kapazität
 
-## 9. Anhänge<y
+## 9. Anhängey
+
+Frontend:
+Alle Komponente mit technischen Details
