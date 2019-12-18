@@ -108,6 +108,7 @@ public class BB84Adapter implements BB84Interface {
 		 .add("restKeyAlice", shortenedKey[0])
 		 .add("restKeyBob", shortenedKey[1])
 		 .add("match", shortenedKey[2])
+		 .add("colorString", shortenedKey[3])
 		 .build();
 		return Response.ok(response.toString()).build();
 }

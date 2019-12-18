@@ -193,8 +193,17 @@ public class BB84Service {
 		// TODO Auto-generated method stub
 		String restStringAlice = "";
 		String restStringBob = "";
+		String colorString = "";
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		
 		int bitsTested = 0;
 		int matches = 0;
+		String[] stateList = {"0", "1", "2", "3"};
 		for (int i = 0; i < keyAlice.length(); i++ ){ 
 			if (percentage <= (randomDouble.nextFloat() * 100)) {
 				if (String.valueOf(keyAlice.charAt(i)).equals(String.valueOf(keyBob.charAt(i)))) {
@@ -203,9 +212,10 @@ public class BB84Service {
 				bitsTested++;	
 				restStringAlice += keyAlice.charAt(i);
 				restStringBob += keyBob.charAt(i);
+				colorString += stateList[randomDouble.nextInt(4)];
 			}
 		}
-		String[] result = {restStringAlice, restStringBob, String.format("%.2f", ((float) matches * 100.0f / bitsTested ))};
+		String[] result = {restStringAlice, restStringBob, String.format("%.2f", ((float) matches * 100.0f / bitsTested )), colorString};
 		return result;
 	}
 }
