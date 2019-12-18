@@ -30,7 +30,7 @@ class InformationBox extends React.PureComponent {
               <td style={textStyle}>1</td>
             </tr>
             <tr>
-              <td>Alice's basis</td>
+              <td>Alice's base</td>
               <td style={textStyle}>+</td>
               <td style={textStyle}>+</td>
               <td style={textStyle}>x</td>

@@ -37,16 +37,17 @@ class PhotonGridSingle extends React.Component {
 
   colorBackground = () => {
     if (!this.state.isColor && this.props.dataHasLoaded === true) {
+      let propsVar = this.props;
       let span = String(this.props.string)
         .split("")
         .map(function(el) {
-          return (
-            '<span class="photonGrid-' +
-            el.toLowerCase() +
-            '">' +
-            el +
-            "</span>"
-          );
+          return propsVar.colorBackground
+            ? '<span class="photonGrid-' +
+                el.toLowerCase() +
+                '">' +
+                el +
+                "</span>"
+            : '<span class="photonGrid-0">' + el + "</span>";
         })
         .join("");
       this.exampleRef.current.innerHTML = span;
@@ -180,7 +181,7 @@ class PhotonGridSingle extends React.Component {
             visible={this.state.rodal}
             onClose={this.rodal.bind(this)}
             width={500}
-            height={560}
+            height={575}
             measure="px"
           >
             <div>
