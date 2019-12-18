@@ -1,0 +1,17 @@
+Reinforcement learning : state-of-the-art
+Marco Wiering ; Serie Adaptation, learning, and optimization ; vol. 12
+Heidelberg : Springer 2012
+
+
+http://scholarpedia.org/article/Reinforcement_learning
+
+Blog
+https://www.statworx.com/de/blog/einfuehrung-in-reinforcement-learning-wenn-maschinen-wie-menschen-lernen/
+
+
+==== 
+
+Stichwörte
+). Trial-and-error learning has roots in Psychology, especially Classical Conditioning and instrumental conditioning.
+
+
