@@ -53,7 +53,19 @@
 
 .photonGrid-1 {
   color: black;
-  background-color: white;
+  background-color: orange;
+  margin: 0 1px;
+}
+
+.photonGrid-2 {
+  color: black;
+  background-color: red;
+  margin: 0 1px;
+}
+
+.photonGrid-3 {
+  color: black;
+  background-color: yellow;
   margin: 0 1px;
 }
 
@@ -71,7 +83,7 @@
 
 .photonGrid-_ {
   color: black;
-  background-color: white;
+  background-color: lightgrey;
   margin: 0 1px;
 }
 

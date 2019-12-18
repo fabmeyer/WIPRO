@@ -42,16 +42,17 @@ class ButtonMeasure extends React.Component {
     let formData = new FormData();
     formData.append("photons", this.props.rawPolarization);
     formData.append("base", this.props.baseString);
-    formData.append("fp", 0); 
-    formData.append("eavesdropping", this.props.eavesdropping);
+    formData.append("fp", 0);
     formData.append("undetected", 0);
     formData.append("noise", this.props.noise);
+    formData.append("eavesdropping", this.props.eavesdropping);
     const data = new URLSearchParams(formData);
     
     const measurePhotons = async () => {
       console.log(location.port == 3000);
       const domain = (location.port == 3000) ? "http://localhost:8080" : "";
       const url = domain + "/rest/post/receivephoton";
+
       const res = await fetch(url, {
         method: "POST",
         headers: { 

@@ -1,12 +1,7 @@
 const React = require("react");
 import ReactRough, { Rectangle } from "react-rough";
 
-class AnimationFilter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+class AnimationFilter extends React.PureComponent {
   render() {
     return (
       <React.Fragment>

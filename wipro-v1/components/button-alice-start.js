@@ -38,10 +38,10 @@ class ButtonAliceStart extends React.Component {
       dataHasLoaded: false
     });
 
-    let formData = new FormData();
-    formData.append("stringLength", this.checkType(this.props.strLength));
-    formData.append("prob", this.props.AliceProb);
-    const data = new URLSearchParams(formData);
+    let formData1 = new FormData();
+    formData1.append("stringLength", this.checkType(this.props.strLength));
+    formData1.append("prob", 50);
+    const data1 = new URLSearchParams(formData1);
 
     const getBitString = async () => {
       const domain = (location.port == 3000) ? "http://localhost:8080" : "";
@@ -51,7 +51,7 @@ class ButtonAliceStart extends React.Component {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: data
+        body: data1
       });
       const content = await res.json();
       const bitString = content.bitString;
@@ -61,15 +61,21 @@ class ButtonAliceStart extends React.Component {
     };
     getBitString();
 
+    let formData2 = new FormData();
+    formData2.append("stringLength", this.checkType(this.props.strLength));
+    formData2.append("prob", this.props.AliceProb);
+    const data2 = new URLSearchParams(formData2);
+
     const getBaseString = async () => {
       const domain = (location.port == 3000) ? "http://localhost:8080" : "";
       const url = domain + "/rest/post/randombase";
+
       const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: data
+        body: data2
       });
       const content = await res.json();
       const baseString = content.baseString;

@@ -19,6 +19,7 @@ class ButtonCompareKey extends React.Component {
     const getRestKey = async () => {
       const domain = (location.port == 3000) ? "http://localhost:8080" : "";
       const url = domain +  "/rest/post/comparekey";
+
       const res = await fetch(url, {
         method: "POST",
         headers: {
@@ -27,6 +28,7 @@ class ButtonCompareKey extends React.Component {
         body: data
       });
       const content = await res.json();
+      console.log("content: ", content);
       const restKeyAlice = content.restKeyAlice;
       this.props.updateProps({
         restKeyAlice: restKeyAlice
@@ -34,6 +36,10 @@ class ButtonCompareKey extends React.Component {
       const restKeyBob = content.restKeyBob;
       this.props.updateProps({
         restKeyBob: restKeyBob
+      });
+      const colorKey = content.colorString;
+      this.props.updateProps({
+        colorKey: colorKey
       });
       const match = content.match / 100;
       this.props.updateProps({

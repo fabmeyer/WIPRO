@@ -88,6 +88,10 @@ class PhotonGridSingle extends React.Component {
     return (
       <div style={{ display: this.state.showHide }}>
         <div style={textContainer}>
+          <p style={{ color: "white" }}>
+            You can click into the string to get a more detailed view about the
+            string
+          </p>
           <p style={text} ref={this.exampleRef} onClick={this.rodal.bind(this)}>
             {this.props.string}
           </p>
