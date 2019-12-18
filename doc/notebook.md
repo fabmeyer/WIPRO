@@ -13,12 +13,12 @@
 * Photongrid: Färbung einbauen für noise (gelb) und Eve (rot)
 	* Codierung: 0: weder Eve noch noise, 1: Eve hat abgehört mit richtiger Basis (orange), 2: Eve hat abgehört mit falscher Basis (rot), 3: noise (gelb) #check
 * Channel umbenennen in authenticated anstatt insecure #check
-* Vernüftige Defaultwerte für alle Variabeln
-* Pfeile anpassen für Alice, Bob und Eve
+* Vernüftige Defaultwerte für alle Variabeln #check
+* Pfeile anpassen für Alice, Bob und Eve #check
 * Buttons ausgrauen oder mit Popup wenn noch nicht aktiv
 * Mini Photons: Rerender verhindern #check
-* Info einbauen bei Photon-grid: Klick auf String
-* Legende einbauen bei Scroll-box: schwarz für 1 und weiss für 0
+* Info einbauen bei Photon-grid: Klick auf String #check
+* Legende einbauen bei Scroll-box: schwarz für 1 und weiss für 0 bzw. blau und gelb für Basen
 * Information Reconciliation und Privacy amplification einbauen in Algorithmus und Text
 * Use cases einbauen: Um Benutzer anzuregen, Algorithmus noch einmal zu bedienen
 * (Weitere Verbesserungen einbauen aus Benutzerumfrage)

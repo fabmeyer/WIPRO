@@ -73,19 +73,6 @@ Now Alice has chosen a random bit string and a base, both with the same length. 
   colorBackground:false
   /]
 
-[ShowHide
-  isVisible:"none"
-  showButton:false
-  trigger:AliceDataHasLoaded
-  position:"flex-end"
-]
-  [Aside]
-    [AsideText
-      text:"Click into the grid to get a better view of the bit string and the base."
-    /]
-  [/Aside]
-[/ShowHide]
-
 ## Alice sends her photons to Bob
 
 Every single bit of her string will be encoded with the corresponding base element, which results in a specific polarization. Her photons can have a polarization with 0°, 45°, 90° or 135°. Orthogonal bases result in orthogonal polarization and vice versa. The encryption of here photons follows the following schema:
@@ -186,6 +173,7 @@ Now Bob takes his base and measures Alice's photons to compute his own bit strin
   polarization:AlicePolarization
   baseString:BobBaseString
   noise:noise
+  eavesdropping:eavesdropping
   measuredString:BobBitString
   bobBaseHasLoaded:BobBaseHasLoaded
   bobStringHasLoaded:BobStringHasLoaded
@@ -271,7 +259,7 @@ From the sifted key, they choose [Equation] \frac{k}{2} [/Equation] bits and ann
 
 You can set the percentage of the bits that they compare publicly with the slider below:
 
-[var name:"percentage" value:0 /]
+[var name:"percentage" value:20 /]
 [SimpleSlider
   setting:percentage
   text:"set percentage: "
@@ -315,7 +303,7 @@ These are Alice and Bobs shared keys:
   colorBackground:true
   /]
 
-## Conclusion
+# Conclusion
 
 In the absence of noise and eavesdropping, Alice and Bob should now have successfully established a shared secret key, that they can use to encrypt data as a one-time pad.
 

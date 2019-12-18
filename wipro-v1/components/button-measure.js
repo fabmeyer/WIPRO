@@ -46,6 +46,7 @@ class ButtonMeasure extends React.Component {
     formData.append("fp", 0);
     formData.append("undetected", 0);
     formData.append("noise", this.props.noise);
+    formData.append("eavesdropping", this.props.eavesdropping);
     const data = new URLSearchParams(formData);
 
     const measurePhotons = async () => {

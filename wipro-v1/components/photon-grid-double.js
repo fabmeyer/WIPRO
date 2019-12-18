@@ -51,10 +51,7 @@ class PhotonGridDouble extends React.Component {
         .join("");
       this.exampleRef1.current.innerHTML = span1;
       if (this.props.colorBackground === true) {
-        console.log("does have color key");
-        console.log("props", this.state.colorKey);
         let colorString = String(this.state.colorKey);
-        console.log(colorString);
         let span2 = String(this.props.baseString)
           .split("")
           .map(function(el, index) {
@@ -66,7 +63,6 @@ class PhotonGridDouble extends React.Component {
           .join("");
         this.exampleRef2.current.innerHTML = span2;
       } else {
-        console.log("does not have color key");
         let span2 = String(this.props.baseString)
           .split("")
           .map(function(el) {
@@ -122,6 +118,10 @@ class PhotonGridDouble extends React.Component {
     return (
       <div style={{ display: this.state.showHide }}>
         <div style={textContainer}>
+          <p style={{ color: "white" }}>
+            You can click into the string to get a more detailed view about the
+            string
+          </p>
           <p
             style={text}
             ref={this.exampleRef1}

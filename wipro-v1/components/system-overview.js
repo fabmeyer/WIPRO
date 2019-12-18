@@ -167,7 +167,13 @@ class SystemOverview extends React.Component {
                 angle={45}
                 length={75}
                 lineWidth={1}
-                style={{ marginBottom: 80 }}
+                style={{ marginBottom: 60 }}
+              />
+              <Arrow
+                angle={-135}
+                length={75}
+                lineWidth={1}
+                style={{ transform: "translateY(-200px)" }}
               />
               <Arrow angle={135} length={75} lineWidth={1} style={{}} />
             </div>
@@ -234,7 +240,13 @@ class SystemOverview extends React.Component {
                 angle={-45}
                 length={75}
                 lineWidth={1}
-                style={{ marginBottom: 80 }}
+                style={{ marginBottom: 60 }}
+              />
+              <Arrow
+                angle={135}
+                length={75}
+                lineWidth={1}
+                style={{ transform: "translateY(-200px)" }}
               />
               <Arrow angle={45} length={75} lineWidth={1} style={{}} />
             </div>
