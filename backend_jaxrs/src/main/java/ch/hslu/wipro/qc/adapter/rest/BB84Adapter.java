@@ -52,8 +52,7 @@ public class BB84Adapter implements BB84Interface {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response receivePhoton(@FormParam("photons") String photons, @FormParam("base") String base, @FormParam("noise") int noise,
-			@FormParam("fp") float fp, @FormParam("undetected") float undetected) {
-		int eavesdropping = 20;
+			@FormParam("eavesdropping") int eavesdropping, @FormParam("undetected") float undetected) {
 		final String[] result = BB84Service.getBitStringFromPhotons(photons, base, noise, eavesdropping);
 		JsonObject response = Json.createObjectBuilder().add("bitString", result[0]).add("stateString", result[1]).build();
 		return Response.ok(response.toString()).build();
@@ -75,11 +74,10 @@ public class BB84Adapter implements BB84Interface {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response randomString(@FormParam("stringLength") int stringLength, @FormParam("prob") int prob) {
-		final String bitString = BB84Service.getRandomBitString(stringLength, prob, request);
+		final String bitString = BB84Service.getRandomBitString(stringLength, prob);
 		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
 		return Response.ok(response.toString()).build();
-	}
-
+	} 
 	
 	@POST
 	@Path("/shortenkey")
@@ -109,7 +107,7 @@ public class BB84Adapter implements BB84Interface {
 		 .build();
 		return Response.ok(response.toString()).build();
 }
-	
+	 
 	
 	@POST
 	@Path("/settings")

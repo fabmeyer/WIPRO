@@ -11,7 +11,7 @@ import com.google.inject.Singleton;
 @Singleton
 public class BB84Service {
 	
-	public static String getRandomBitString(int stringLength, int prob, HttpServletRequest request) {
+	public static String getRandomBitString(int stringLength, int prob) {
 
 		//int n = request.getSession().getAttribute("length");
 		String bitString = "";
@@ -107,9 +107,8 @@ public class BB84Service {
 	}
 	
 	public static String simulateQuantumChannel(String photons, int noise, int eavesdropping) {
-		return null;
-		
-	}
+		return null;	
+	} 
 
 	public static String[] getBitStringFromPhotons(String photons, String base, int noise, int eavesdropping) {
 		String bitString = "";
@@ -122,13 +121,11 @@ public class BB84Service {
 		Random randomDouble= new Random();
 		/* Channel: Noise and Eve */
 		
-		String[] stringPolarizations = {"0", "45", "90", "135"};
+		String[] stringPolarizations = {"0.0", "45.0", "90.0", "135.0"};
 		
 		for (int i = 0; i < base.length(); i++) {
 			int state = 0;
 
-
-			
 			float photon = Float.parseFloat(photonList[i]);
 			
 			if ((eavesdropping / 100f) >= randomDouble.nextDouble()) {
@@ -150,7 +147,7 @@ public class BB84Service {
 
 			if ((noise / 100f) >= randomDouble.nextDouble()) {
 				photonList[i] =  stringPolarizations[randomDouble.nextInt(4)];
-				stateString += 3;
+				state = 3;
 			}
 			
 			stateString += state;
@@ -171,9 +168,9 @@ public class BB84Service {
 			float photon = Float.parseFloat(photonList[i]);
 		
 				if (String.valueOf(base.charAt(i)).equals("x")) {
-					bitStringBob += ((photon > -5 && photon < 5)) ? "1" : "0";
+					bitStringBob += ((photon > -5 && photon < 5) || (photon > 85 && photon < 95)) ? "1" : "0";
 				} else {
-					bitStringBob += ((photon > 40 && photon < 50)) ? "1" : "0";
+					bitStringBob += ((photon > 40 && photon < 50) || (photon > 130 && photon < 140)) ? "1" : "0";
 				}
 			}
 		String[] result = {bitStringBob, stateString};
