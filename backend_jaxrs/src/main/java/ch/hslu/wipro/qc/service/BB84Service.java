@@ -105,38 +105,79 @@ public class BB84Service {
 		}
 		return bitString;
 	}
+	
+	public static String simulateQuantumChannel(String photons, int noise, int eavesdropping) {
+		return null;
+		
+	}
 
-	public static String getBitStringFromPhotons(String photons, String base, int noise, float fp, float undetected) {
+	public static String[] getBitStringFromPhotons(String photons, String base, int noise, int eavesdropping) {
 		String bitString = "";
+		String stateString = ""; 
+		
 		String[] photonList = photons.split(",");
 		if (photonList.length != base.length()) {
 			//return null;
 		}
+		Random randomDouble= new Random();
+		/* Channel: Noise and Eve */
+		
+		String[] stringPolarizations = {"0", "45", "90", "135"};
+		
 		for (int i = 0; i < base.length(); i++) {
-			Random randomDouble= new Random();
+			int state = 0;
+
+
+			
+			float photon = Float.parseFloat(photonList[i]);
+			
+			if ((eavesdropping / 100f) >= randomDouble.nextDouble()) {
+				
+			 String randomBaseAlice = getRandomBaseString(1, 0.5f);
+			 if (String.valueOf(base.charAt(i)).equals(randomBaseAlice)){
+				 state = 1;
+			 }
+			 else {
+				 if (randomBaseAlice.equals("x")) {
+					 photonList[i] = "90";
+				 }
+				 else {
+					 photonList[i] = "45"; 
+				 }
+				 state = 2;
+			 }
+			}
+
+			if ((noise / 100f) >= randomDouble.nextDouble()) {
+				photonList[i] =  stringPolarizations[randomDouble.nextInt(4)];
+				stateString += 3;
+			}
+			
+			stateString += state;
+		}
+		
+		
+		/* BOB */ 
+		
+		String bitStringBob = "";
+		
+		
+		for (int i = 0; i < base.length(); i++) {
 			double randomDoubleNoise = randomDouble.nextDouble();
 			
 			Random randomFp = new Random();
 			double randomDoubleFp= randomFp.nextDouble();
 			
 			float photon = Float.parseFloat(photonList[i]);
-
-			if ((noise / 100f) <= randomDoubleNoise) {
+		
 				if (String.valueOf(base.charAt(i)).equals("x")) {
-					bitString += ((photon > -5 && photon < 5)) ? "1" : "0";
+					bitStringBob += ((photon > -5 && photon < 5)) ? "1" : "0";
 				} else {
-					bitString += ((photon > 40 && photon < 50)) ? "1" : "0";
+					bitStringBob += ((photon > 40 && photon < 50)) ? "1" : "0";
 				}
 			}
-			else {
-				bitString += (randomDouble.nextDouble() > 0.5f) ? "1" : "0"; 
-			}
-			
-			if (1 - fp >= randomDoubleFp) {
-				//bitString += (randomDoubleUndetected >  0.5f) ? "1" : "0";
-			}	
-		}
-		return bitString;
+		String[] result = {bitStringBob, stateString};
+		return result;
 	}
 
 	public static String compareBase(String base1, String base2) {
@@ -162,11 +203,11 @@ public class BB84Service {
 	}
 
 	public static String[] shortenKey(String base1, String base2, String string_alice, String string_bob,
-		HttpServletRequest request) {
-		
+		String string_state) {		
 		String compareBase = ""; 
 		String commonKeyAlice = ""; 
 		String commonKeyBob = ""; 
+		String stateString = "";
 
 	
 		for (int i = 0; i < base1.length(); i++) {
@@ -174,20 +215,20 @@ public class BB84Service {
 				compareBase += base1.charAt(i);
 				commonKeyAlice += string_alice.charAt(i);
 				commonKeyBob += string_bob.charAt(i);
-
+				stateString += string_state.charAt(i);
 			} else {
 				compareBase += "_";
 			}
 
 		}
 		
-		String[] result = {compareBase, commonKeyAlice, commonKeyBob};
+		String[] result = {compareBase, commonKeyAlice, commonKeyBob, stateString};
 		return result;
 		
 		// TODO Auto-generated method stub
 	}
 
-	public static String[] compareKey(String keyAlice, String keyBob, int percentage) {
+	public static String[] compareKey(String keyAlice, String keyBob, String state_string, int percentage) {
 		Random randomDouble= new Random();
 		assert(keyAlice.length() == keyBob.length());
 		// TODO Auto-generated method stub
@@ -212,7 +253,7 @@ public class BB84Service {
 				bitsTested++;	
 				restStringAlice += keyAlice.charAt(i);
 				restStringBob += keyBob.charAt(i);
-				colorString += stateList[randomDouble.nextInt(4)];
+				colorString += state_string.charAt(i);
 			}
 		}
 		String[] result = {restStringAlice, restStringBob, String.format("%.2f", ((float) matches * 100.0f / bitsTested )), colorString};

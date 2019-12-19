@@ -25,11 +25,6 @@ public class BB84Adapter implements BB84Interface {
 	@Context
 	private HttpServletRequest request;
 
-	@GET
-	@Path("/ping")
-	public String ping() {
-		return "pong";
-	}
 	
 	@POST
 	@Path("/comparebase")
@@ -58,8 +53,9 @@ public class BB84Adapter implements BB84Interface {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response receivePhoton(@FormParam("photons") String photons, @FormParam("base") String base, @FormParam("noise") int noise,
 			@FormParam("fp") float fp, @FormParam("undetected") float undetected) {
-		final String bitString = BB84Service.getBitStringFromPhotons(photons, base, noise, fp, undetected);
-		JsonObject response = Json.createObjectBuilder().add("bitString", bitString).build();
+		int eavesdropping = 20;
+		final String[] result = BB84Service.getBitStringFromPhotons(photons, base, noise, eavesdropping);
+		JsonObject response = Json.createObjectBuilder().add("bitString", result[0]).add("stateString", result[1]).build();
 		return Response.ok(response.toString()).build();
 	}
 
@@ -89,21 +85,22 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/shortenkey")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("string_bob") String string_bob) {
-		final String[] shortenedKey = BB84Service.shortenKey(base1, base2, string_alice, string_bob, request); 
-		JsonObject response = Json.createObjectBuilder().add("comparedBase", shortenedKey[0])
-		 .add("commonKeyAlice", shortenedKey[1])
-		 .add("commonKeyBob", shortenedKey[2])
+	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("string_bob") String string_bob, @FormParam("state_string") String state_string) {
+		final String[] result = BB84Service.shortenKey(base1, base2, string_alice, string_bob, state_string); 
+		JsonObject response = Json.createObjectBuilder().add("comparedBase", result[0])
+		 .add("commonKeyAlice", result[1])
+		 .add("commonKeyBob", result[2])
+		 .add("stateString", result[3])
 		 .build();
 		return Response.ok(response.toString()).build();
 }	
 	
 	@POST
-	@Path("/comparekey")
+	@Path("/comparekey") 
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response compareKey(@FormParam("key1") String key1, @FormParam("key2") String key2, @FormParam("percentage") int percentage ) {
-		final String[] shortenedKey = BB84Service.compareKey(key1, key2, percentage); 
+	public Response compareKey(@FormParam("key1") String key1, @FormParam("key2") String key2, @FormParam("state_string") String state_string, @FormParam("percentage") int percentage ) {
+		final String[] shortenedKey = BB84Service.compareKey(key1, key2, state_string, percentage); 
 		JsonObject response = Json.createObjectBuilder()
 		 .add("restKeyAlice", shortenedKey[0])
 		 .add("restKeyBob", shortenedKey[1])
