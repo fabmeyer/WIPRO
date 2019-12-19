@@ -19,7 +19,7 @@ With this protocol, two parties (Alice and Bob) can compute  securely a private 
 
 First of all Alice and Bob have to decide on some settings like the length of the bit string, the ratio of their bases and so on:
 
-## System Overview
+# System Overview
 
 [var name:"strLength" value:2048 /]
 [var name:"noise" value:0 /]
@@ -59,8 +59,6 @@ You can change the ratio of Alice's bases with the slider on the [system overvie
 
 Now Alice has chosen a random bit string and a base, both with the same length. You can take a look at Alice's bit string and her base here:
 
-## Alice's bit string and base
-
 [var name:"AliceBitStringZoom" value:100 /]
 [var name:"AliceBaseStringZoom" value:100 /]
 [PhotonGridDouble
@@ -74,7 +72,7 @@ Now Alice has chosen a random bit string and a base, both with the same length. 
   secondStringIsBit:false
   /]
 
-## Alice sends her photons to Bob
+# Alice sends her photons to Bob
 
 Every single bit of her string will be encoded with the corresponding base element, which results in a specific polarization. Her photons can have a polarization with 0°, 45°, 90° or 135°. Orthogonal bases result in orthogonal polarization and vice versa. The encryption of here photons follows the following schema:
 
@@ -82,13 +80,16 @@ Every single bit of her string will be encoded with the corresponding base eleme
   size:"big"
   /]
 
+# Noise
+
 Now Alice takes her photons and sends them via a quantum channel to Bob.
 This quantum channel is an optical channel like a optical-fibre cable.
-Usually the channel is noisy and some photons or their polarization will get changed. You can set the amount of noise with the noise slider or you can adjust it in the [system overview](#system-overview) section.
+Usually the channel is noisy and some photons or their polarization will get changed. This is a process called birefringence. You can set the amount of noise with the noise slider here or in the [system overview](#system-overview) section.
 
 [SimpleSlider
   setting:noise
   text:"set noise: "
+  max:100
 /]
 
 Click on the button below to send Alice's photons to Bob.
@@ -120,20 +121,19 @@ Click on the button below to send Alice's photons to Bob.
 
 # Eve wants to eavesdrop on Alice's photons
 
-A potential eavesdropper, we call him Eve, could measure Alice's photons and try to decode the original message. As Eve has no clue about the encoding, she has no other option than to guess and use a random base to measure the photons from Alice.
+A potential eavesdropper, we call him Eve, could measure Alice's photons and try to decode the original message. As Eve has no clue about the encoding, she has no other option than to guess and to use a random base to measure the photons from Alice.
 
 However if she measures a photon with the wrong base, she then risks disturbing the original polarization, thus setting the polarization randomly again, with a probability [Equation] \frac{1}{2} [/Equation]. If Alice chose all bases  orthogonal and diagonal respectively with a probability of [Equation] \frac{1}{2} [/Equation], Eve should measure [Equation] \frac{1}{2} [/Equation] of the photons correctly and set [Equation] \frac{1}{4} [/Equation] of the photons with a wrong base.
 
 [SimpleSlider
   setting:eavesdropping
   text:"set eavesdropping: "
+  max:100
 /]
 
-# Bob measures Alice's photons
+# Bobs computes a base with the same length
 
 Like Alice and Eve, Bob first has to define a random base string to measure Alice's photons polarization.
-
-## Bobs computes a base with the same length
 
 Bobs base string has to be at least the same length as Alice's ones: Length [Display value:strLength format:"d" /]. Click on the button below to compute a corresponding base for Bob.
 
@@ -156,7 +156,7 @@ Bobs base string has to be at least the same length as Alice's ones: Length [Dis
   colorBackground:false
   /]
 
-## Bob measures Alice's Photons with his base
+# Bob measures Alice's Photons with his base
 
 If Bobs base is the same as the one of Alice given a particular photon, the outcome will be certain in the case of absence of noise and eavesdropping. Thus, Bob will be able to decode the String from the polarization correctly with his own base. That means the polarization of the measured photon will not change and he will get the correct bit out of the photons.
 
@@ -192,7 +192,7 @@ Now Bob takes his base and measures Alice's photons to compute his own bit strin
   text:"measure Alice's photons"
   /]
 
-## Bobs bit string
+# Bobs bit string
 
 Here you can see Bob's bit string that he computed from the photons that he received from Alice. You can again click on the grid to inspect string. You will notice that his bit string is not the same as Alice's one.
 
@@ -205,7 +205,7 @@ Here you can see Bob's bit string that he computed from the photons that he rece
   colorBackground:false
   /]
 
-## Alice and Bob compare their bases
+# Alice and Bob compare their bases
 
 At this point, Bob can announce publicly that he received Alice's transmission.
 They then use a public authenticated channel to compare their bases.
@@ -238,6 +238,15 @@ Click on the button below to compare Alice's and Bob's base.
 
 If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], and in the absence of noise, then they should have the same base for every photon with a probability of [Equation] \frac{1}{2} [/Equation]. As you can see, bases with an "`_`" implies that Bob used a different base than Alice to measure this specific photon.
 
+[ShowHide
+    isVisible:"none"
+    showButton:false
+    trigger:ComparedBaseHasLoaded
+    position:"center"
+  ]
+    [Legend1 /]
+[/ShowHide]
+
 [var name:"ComparedBaseZoom" value:100 /]
 [PhotonGridSingle
   string:ComparedBase
@@ -247,7 +256,7 @@ If they choose both bases with a chance of [Equation] \frac{1}{2} [/Equation], a
   colorBackground:true
   /]
 
-## Alice and Bob shorten their bit strings according to their different bases
+# Alice and Bob shorten their bit strings according to their different bases
 
 Alice and Bob drop all bits from their bit strings where their bases do not correspond. This new shorter keys are called "sifted keys". Notice that if there is no noise or eavesdropping, both sifted keys are identical.
 
@@ -268,7 +277,7 @@ These are Alice and Bobs sifted keys:
   secondStringIsBit:true
   /]
 
-## Alice and Bob check if Eve has eavesdropped on the key
+# Alice and Bob check if Eve has eavesdropped on the key
 
 From the sifted key, they choose [Equation] \frac{k}{2} [/Equation] bits and announce them publicly to check whether more than a certain number of them agree. In that way they can use statistical methods to find out if a potential eavesdropper (Eve) has eavesdropped on the transmission (measured the polarization) and disturbed the signal. If the bits agree, they are discarded and the remaining bits form the shared "secret key".
 
@@ -278,6 +287,7 @@ You can set the percentage of the bits that they compare publicly with the slide
 [SimpleSlider
   setting:percentage
   text:"set percentage: "
+  max:99
 /]
 
 Now Alice and Bob drop all the bits that they have announced publicly and form the shared secret key. Press on the button below to compute their shared keys:
@@ -287,6 +297,7 @@ Now Alice and Bob drop all the bits that they have announced publicly and form t
 [var name:"RestKeyHasLoaded" value:null /]
 [var name:"RestKeyLength" value: null /]
 [var name:"Match" value:null /]
+[var name:"RelativeLength" value:null /]
 [ButtonCompareKey
   bitString1:CommonKeyAlice
   bitString2:CommonKeyBob
@@ -296,6 +307,8 @@ Now Alice and Bob drop all the bits that they have announced publicly and form t
   restKeyAlice:RestKeyAlice
   restKeyBob:RestKeyBob
   match:Match
+  strLength:strLength
+  relativeLength:RelativeLength
   restKeyHasLoaded:RestKeyHasLoaded
   restKeyLength:RestKeyLength
   text:"computed shared keys"
@@ -303,9 +316,20 @@ Now Alice and Bob drop all the bits that they have announced publicly and form t
 
 Percentage of bits that match: [Display value:Match format:".0%" /]
 
-The length of the shared keys: [Display value:RestKeyLength format:"d" /]
+Length of the shared keys: [Display value:RestKeyLength format:"d" /]
+
+Relative length of the shared key compared to string in the beginning: [Display value:RelativeLength format:".0%" /]
 
 These are Alice and Bobs shared keys:
+
+[ShowHide
+    isVisible:"none"
+    showButton:false
+    trigger:RestKeyHasLoaded
+    position:"center"
+  ]
+    [Legend2 /]
+[/ShowHide]
 
 [var name:"RestKeyAliceZoom" value:100 /]
 [var name:"RestKeyBobZoom" value:100 /]
@@ -329,7 +353,7 @@ In the absence of noise and eavesdropping, Alice and Bob should now have success
   emoji:":party_popper:"
 /]
 
-If there is noise or eavesdropping, Alice and Bob can not distinguish between it because both of it disturbs the polarization of the transmitted photons. So they will have to treat noise as eavesdropping also. If Eve is listening on the whole transmission, 50% of her measured photons will go undetected and 25% of her measured photons will still have the correct polarization due to correct resetting of the polarization. As a rule of thumb, if more than 10% of the two bit strings do not match, Alice and Bob can assume that Eve has eavesdropped on their transmission and should repeat the transmission.
+If there is noise or eavesdropping, Alice and Bob can not distinguish between it because both of it disturbs the polarization of the transmitted photons. So they will have to treat noise as eavesdropping also. If Eve is listening on the whole transmission, 50% of her measured photons will go undetected and 25% of her measured photons will still have the correct polarization due to correct resetting of the polarization. As a rule of thumb, if more than 10% of the two bit strings do not match, Alice and Bob can assume that Eve has eavesdropped on their transmission and should abort the transmission.
 
 There are two further post-processing improvements that Alice and Bob can do: Information reconciliation algorithms can repair disturbed strings to a certain extent. And privacy amplification algorithms are similar to hashing in that way, that they create a much smaller key that is used as a one time pad in the end.
 

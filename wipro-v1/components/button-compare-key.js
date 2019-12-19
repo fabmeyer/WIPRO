@@ -50,6 +50,10 @@ class ButtonCompareKey extends React.Component {
       this.props.updateProps({
         restKeyLength: restKeyLength
       });
+      const relativeLength = restKeyLength / this.props.strLength;
+      this.props.updateProps({
+        relativeLength: relativeLength
+      });
     };
     getRestKey();
     this.props.updateProps({

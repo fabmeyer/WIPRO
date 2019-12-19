@@ -33,6 +33,7 @@ class SimpleSlider extends React.PureComponent {
             }}
             renderThumb={(props, state) => <p {...props}>{state.valueNow}</p>}
             value={this.props.setting}
+            max={this.props.max}
           />
         </div>
       </div>
