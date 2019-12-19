@@ -100,7 +100,6 @@ Click on the button below to send Alice's photons to Bob.
 [ButtonEmitPhotons
   bitString:AliceBitString
   baseString:AliceBaseString
-  noise:noise
   rawPolarization:RawPolarization
   polarization:AlicePolarization
   colorKey:ColorKey
@@ -177,14 +176,15 @@ Now Bob takes his base and measures Alice's photons to compute his own bit strin
 [var name:"BobBitString" value:null /]
 [var name:"BobStringHasLoaded" value:false /]
 [var name:"BobDataHasLoaded" value:false /]
+[var name:"StateString" value:null /]
 [ButtonMeasure
   strLength:strLength
   rawPolarization:RawPolarization
-  polarization:AlicePolarization
   baseString:BobBaseString
   noise:noise
   eavesdropping:eavesdropping
   measuredString:BobBitString
+  stateString:StateString
   bobBaseHasLoaded:BobBaseHasLoaded
   bobStringHasLoaded:BobStringHasLoaded
   bobDataHasLoaded:BobDataHasLoaded
@@ -218,12 +218,15 @@ Click on the button below to compare Alice's and Bob's base.
 [var name:"CommonKeyAlice" value: null /]
 [var name:"CommonKeyBob" value: null /]
 [var name:"CommonKeyHasLoaded" value:null /]
-[var name:"CommonKeyLength" value: null /]
+[var name:"CommonKeyLength" value:null /]
+[var name:"StateString2" value:null /]
 [ButtonShortenKey
   baseString1:AliceBaseString
   baseString2:BobBaseString
   bitString1:AliceBitString
   bitString2:BobBitString
+  stateString:StateString
+  stateString2:StateString2
   comparedBase:ComparedBase
   comparedBaseHasLoaded:ComparedBaseHasLoaded
   commonKeyAlice:CommonKeyAlice
@@ -287,6 +290,7 @@ Now Alice and Bob drop all the bits that they have announced publicly and form t
 [ButtonCompareKey
   bitString1:CommonKeyAlice
   bitString2:CommonKeyBob
+  stateString:StateString2
   colorKey:ColorKey
   percentage:percentage
   restKeyAlice:RestKeyAlice
@@ -325,7 +329,7 @@ In the absence of noise and eavesdropping, Alice and Bob should now have success
   emoji:":party_popper:"
 /]
 
-If there is noise or eavesdropping, Alice and Bob can not distinguish between noise and eavesdropping because both of them disturb the polarization of the transmitted photons. So they have to treat noise as eavesdropping also. If Eve is listening on the whole transmission, 50% of her measured photons will go undetected and 25% of her measured photons will still have the correct polarization due to correct resetting of the polarization. As a rule of thumb, if more than 10% of the two bit strings do not match, Alice and Bob can assume that Eve has eavesdropped on their transmission and should repeat the transmission.
+If there is noise or eavesdropping, Alice and Bob can not distinguish between it because both of it disturbs the polarization of the transmitted photons. So they will have to treat noise as eavesdropping also. If Eve is listening on the whole transmission, 50% of her measured photons will go undetected and 25% of her measured photons will still have the correct polarization due to correct resetting of the polarization. As a rule of thumb, if more than 10% of the two bit strings do not match, Alice and Bob can assume that Eve has eavesdropped on their transmission and should repeat the transmission.
 
 There are two further post-processing improvements that Alice and Bob can do: Information reconciliation algorithms can repair disturbed strings to a certain extent. And privacy amplification algorithms are similar to hashing in that way, that they create a much smaller key that is used as a one time pad in the end.
 

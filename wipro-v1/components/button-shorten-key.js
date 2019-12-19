@@ -16,10 +16,11 @@ class ButtonShortenKey extends React.Component {
     formData.append("base2", this.props.baseString2);
     formData.append("string_alice", this.props.bitString1);
     formData.append("string_bob", this.props.bitString2);
+    formData.append("state_string", this.props.stateString);
     const data = new URLSearchParams(formData);
 
     const getShortenedKey = async () => {
-      const domain = (location.port == 3000) ? "http://localhost:8080" : "";
+      const domain = location.port == 3000 ? "http://localhost:8080" : "";
       const url = domain + "/rest/post/shortenkey";
       const res = await fetch(url, {
         method: "POST",
@@ -40,6 +41,10 @@ class ButtonShortenKey extends React.Component {
       const commonKeyBob = content.commonKeyBob;
       this.props.updateProps({
         commonKeyBob: commonKeyBob
+      });
+      const stateString2 = content.stateString;
+      this.props.updateProps({
+        stateString2: stateString2
       });
       const commonKeyLength = commonKeyAlice.length;
       this.props.updateProps({

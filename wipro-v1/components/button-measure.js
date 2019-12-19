@@ -47,15 +47,15 @@ class ButtonMeasure extends React.Component {
     formData.append("noise", this.props.noise);
     formData.append("eavesdropping", this.props.eavesdropping);
     const data = new URLSearchParams(formData);
-    
+
     const measurePhotons = async () => {
       console.log(location.port == 3000);
-      const domain = (location.port == 3000) ? "http://localhost:8080" : "";
+      const domain = location.port == 3000 ? "http://localhost:8080" : "";
       const url = domain + "/rest/post/receivephoton";
 
       const res = await fetch(url, {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
         body: data
@@ -64,6 +64,10 @@ class ButtonMeasure extends React.Component {
       const bitString = content.bitString;
       this.props.updateProps({
         measuredString: bitString
+      });
+      const stateString = content.stateString;
+      this.props.updateProps({
+        stateString: stateString
       });
     };
     measurePhotons();
