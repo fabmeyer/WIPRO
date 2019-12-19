@@ -33,7 +33,6 @@ First of all Alice and Bob have to decide on some settings like the length of th
     AliceProb:AliceProb
     BobProb:BobProb
     eavesdropping:eavesdropping
-    text:"save settings"
     ]
     [TextInput value:strLength/]
   [/SystemOverview]
