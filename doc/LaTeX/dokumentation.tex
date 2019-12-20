@@ -265,8 +265,22 @@ Eine erschöpfende Liste von Software, welche sich primär mit Quantumcomputing 
 
 \subsection{Modularisierung}
 % Backend: Event getrieben vs Simulation getrieben. 
-Modularisierung ist ein grundlegendes Prinzip der Softwaretechnik. Sie hilft bei der Komplexitätsreduktion und erhöht die Flexibilität von Software. Unterteil man Software in verschiedene Module, so geschieht dies nach gängigen Kriterien wie minimale Schnittstellen, maximale Bindung, minimale Koppelung oder Testbarkeit. In Falle einer Simulation mit physikalischen Komponenten liegt es nahe, die einzelen Komponenten als in sich geschlossenes Modul zu betrachten. In Java geschieht dies auf technischer Ebene mit Paketen und JARs. 
+Modularisierung ist ein grundlegendes Prinzip der Softwaretechnik. Sie hilft bei der Komplexitätsreduktion und erhöht die Flexibilität von Software. Unterteil man Software in verschiedene Module, so geschieht dies nach gängigen Kriterien wie minimale Schnittstellen, maximale Bindung, minimale Koppelung oder Testbarkeit. In Falle einer Simulation mit physikalischen Komponenten liegt es nahe, die einzelen Komponenten als in sich geschlossenes Modul zu betrachten. In Java geschieht dies auf technischer Ebene mit Interfaces. Damit eine Klasse zum Modul wird, muss sie richtig konzipiert sein. Unterstützend wirken Pakete und JARs, die aber keine Zugriffskontrolle über eine Schnittstelle kennen. Vor Java 9 war eine echte Modularisierung nur mit \emph{Open Services Gateway} (OSGi) möglich, welche aber nicht Teil des Standardumfangs von Java ist \cite[S. 32f]{modul}
 \subsubsection{Modularisierung mit Java 9} 
+Mit dem lange erwarteten Projekt \emph{Jigsaw} es eine explizite Erstellung von Modulen möglich. Sie können aus einem oder mehreren Paketen bestehen, und die Sichtbarkeiten und Abhängigkeiten sind klar definiert. So lassen sich gleichsam verschachtelte Modulabhängigkeiten und transitive Abhängigkeiten verwirklichen. Ein Modul besteht aus einem Namen, einer Schnittstelle und natürlich der Implementierung. Im Zuge von Jigsaw wurde auch das JDK in eine Vielzahl von Modulen aufgeteilt\cite[S. 863]{inden}. 
+\begin{table}
+\begin{tabular}{ll}
+\texttt{exports} & Öffentlich zugänglich gemachte Pakete \\
+\texttt{requires} & Liste importierbarer Module \\
+\texttt{uses / provides} & Benötigter und angebotener \emph{service} \\
+\texttt{opens} & Zugriff über Reflection erlauben
+\end{tabular} 
+\caption{Jigsaw Keywords}
+\end{table}
+Skalierbarkeit der Jva-Plattform, Erhöhung der Sicherhiet, Startup-Performance, Unterstüztung beim entwur fmodularer und gut wartbarer Anwendungen und Bibliotheken. 
+
+\subsubsection{Entscheid}
+Keine Modulhierarchien 
 
 
 \section{Ideen und Konzepte}
@@ -279,49 +293,6 @@ Da die beiden Autoren jedoch unterschiedliche Ausrichtungen und Fähigkeiten bes
 
 Hinsichtlich der Kommunikation zwischen Frontend und Backend war es lange nicht ganz eindeutig, inwiefern das Backend Kenntnisse über den Zustand des Frontends haben sollte. Versuchsweise wurde deshalb für die Zwischenspeicherung von berechnetetn Werten auf dem Server eine Unterstützung für Sessions eingebaut. Das Frontend beinhaltete in einer früheren Version einen Settings-Button, der Parameter, die bei mindestens zwei unterschiedlichen physikalischen Komponenten benötigt werden, an den Server für eine Ablage in der Session sendet. Im weiteren Projektverlauf wurde dieser Ansatz verworfen, weil sich die Anzahl Parameter wie auch die Datengrösse der Payloads im jeweiligen Requests in Grenzen hielt. Die Verbindung einer REST-Schnittstelle und Sessions erschien dann quasi als Antipattern, da REST einerseits für ein zustandsloses Paradigma steht. Und ein zustandsloses Backend macht grundsätlich Sinn, da sich atomare Ausführungseinheiten besser parallelisieren oder gar auslagern lassen, etwa in eine Cloud als Function-as-a-Service. Und wenn das Zusammenspiel mit dem Frontend zustandslos funktionert, wird es dies bei der Einbindung der Komponenten in anderen Kontexten sowieso tun. 
 
-\emph{}\subsection{Physikalische Komponenten}
-\subsubsection*{ Bitstring Generator}
-\begin{itemize}
-\item Länge
-\item  Wahrscheinlichkeitsverteilung / Wahrscheinlichkeit von Rückgabewert 1 im Gegensatz zu Rückgabewert 0
-\end{itemize}
-\subsubsection*{ Basen Generator}
-\begin{itemize}
-\item  Länge       
-\item  Wahrscheinlichkeitsverteilung / Wahrscheinlichkeit von Rückgabewert rectilinear im Gegensatz zu Rückgabewert diagonal
-\end{itemize}
-
-\subsubsection*{ Photon Emitter}
-\begin{itemize}
-\item Frequenz / Speed des Outputs
-\item  Ungenauigkeit der erzeugten Polarisierung (Winkel verändert sich, 0 - 100\%) 
-\item  Photon zuviel ausgesendet
-\item  Photon zuwenig ausgesendet
-\end{itemize}
-
-\subsubsection*{ Photon Empfänger}
-\begin{itemize}
-\item  Frequenz / Speed des Inputs
-\item  Ungenaugkeit der gemessenen Polarisierung (falscher Winkel gemessen, 0 - 100\%) 
-\item  Prozentsatz falsche Messung (nichtexistentes Photon gemessen)
-\item  Prozentsatz fehlgeschlagene Messung (Photon bleibt unbemerkt)
-\end{itemize}
-\subsubsection*{ Übertragungskanal}
-\begin{itemize}
-\item  Verlustrate (Photon geht verloren)
-\item  Noise (Polarisierung verändert sich, 0 - 100%)
-\end{itemize}
-
-\subsubsection*{ Comparator}
-\begin{itemize}
-\item Basis / Bitstring 1
-\item Basis / Bitstring 2
-\end{itemize}
-\subsubsection*{ Eavesdropping}
-\begin{itemize}
-\item  Basis
-\end{itemize}
-
 \section{Realisierung}
 \subsection{Architektur}
 Die Aufgabenstellung verlangt eine Art Zweiteilung der Programmierarbeiten. Die Umsetzung der physikalischen Komponenten ist zunächst einmal unabhängig vom Einsatzzweck. Bei den beiden Anwendungsfällen aber werden sie auf unterschiedliche Weisen angesprochen. Bei der Vermittlung des BB84-Protokolls an interessierten Personen kommt ein interaktives Webfrontend zum Zuge, das über eine REST-Schnittstelle mit dem Java-Backend kommuniziert. Die eigentlichen Komponenten können als Java-Kompontenten angesprochen werden. 
@@ -329,7 +300,7 @@ Die Aufgabenstellung verlangt eine Art Zweiteilung der Programmierarbeiten. Die 
 \subsubsection{Client-Server Architektur}
 
 \subsection{Frontend}
-Das frontend wurde mithilfe von idyll und react umgesetzt. Die Grundstruktur eines idyll-Projektes besteht aus einem index.idyll file und einem Ordner mit allen Komponenten. Das index.idyll file ist vergleichbar mit einem HTML-file, welches für die Struktur des Dokumentes zuständig ist. In dieses file wird dann der gesamte Text und alle Komponenten eingebunden.
+Das Frontend wurde mithilfe von Idyll und React umgesetzt. Die Grundstruktur eines idyll-Projektes besteht aus einem index.idyll file und einem Ordner mit allen Komponenten. Das index.idyll file ist vergleichbar mit einem HTML-file, welches für die Struktur des Dokumentes zuständig ist. In dieses file wird dann der gesamte Text und alle Komponenten eingebunden.
 \subsubsection{Verwendete Idyll-Komponenten}
 Idyll bringt eine Reihe von Komponenten mit, die jedoch alle ziemlich simpel sind und von welchen nicht gross Gebrauch gemacht wurde. Einzige Ausnahmen sind:
 
@@ -412,6 +383,55 @@ Input-Komponenten & Sind Komponenten, die der Benutzer bedienen kann, um den Pro
 \end{figure}
 \end{description}
 
+
+\subsection{Physikalische Komponenten}
+Im Backend sind die physikalischen Komponenten verwirklicht, welche je durch eine eigene Klasse repräsentiert werden. Die Anzahl Komponenten wie auch deren Attribute sind gegeben durch die erreichten Funktionalitäten in der Umsetzung des BB84-Protokolls. Den Komponenten entspricht in der Regel eine Komponente im Frontend, jedoch kann ein Schritt in der Durchführung mehrere Komponente involvieren. Folgende Komponenten sind umgesetzt. 
+\subsubsection*{RandomBitString}
+Generiert einen Bitstring der Länge n
+\begin{itemize}
+\item Länge: n
+\item Wahrscheinlichkeitsverteilung: Wahrscheinlichkeit von 0 oder 1
+\end{itemize}
+\subsubsection*{RandomBase}
+Generiert eine Base 
+\begin{itemize}
+\item  Länge: n     
+\item  Wahrscheinlichkeitsverteilung: Wahrscheinlichkeit von Rückgabewert rectilinear im Gegensatz zu Rückgabewert diagonal
+\end{itemize}
+
+\subsubsection*{PhotonEmitter}
+Schickt eine Reihe von Photonen 
+\begin{itemize}
+\item  Länge: n
+\item  Base: Liste von gewählten Basen
+\item  Polarisierung: Liste von Polarisierung (Winkel)
+\end{itemize}
+
+\subsection{Channel}
+
+
+
+\subsubsection*{PhotonReceiver}
+\begin{itemize}
+\item  Ungenaugkeit der gemessenen Polarisierung (falscher Winkel gemessen, 0 - 100\%) 
+\item  Prozentsatz falsche Messung (nichtexistentes Photon gemessen)
+\item  Prozentsatz fehlgeschlagene Messung (Photon bleibt unbemerkt)
+\end{itemize}
+\subsubsection*{ Übertragungskanal}
+\begin{itemize}
+\item  Verlustrate (Photon geht verloren)
+\item  Noise (Polarisierung verändert sich, 0 - 100%)
+\end{itemize}
+
+\subsubsection*{ Comparator}
+\begin{itemize}
+\item Basis / Bitstring 1
+\item Basis / Bitstring 2
+\end{itemize}
+\subsubsection*{ Eavesdropping}
+\begin{itemize}
+\item  Basis
+\end{itemize}
 
 \subsection{Ablauf}
 \section{Vorgehensmodell}
