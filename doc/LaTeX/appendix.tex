@@ -1,0 +1,216 @@
+\section{Spezifikation des Frontends}
+\subsection{Erstellte Komponenten}
+\begin{itemize}
+\item \texttt{SystemOverview} \\[3mm]
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+strLength & Die Länge des Bitstrings, der von Alice verschickt wird. Diese Länge wird auch automatisch benutzt für die Länge der Basenfolge von Alice, sowie des Bitstrings und der Basenfolge von Bob und der Basenfolge von Eve. Die Stringlänge lässt sich mittels eines Eingabefensters mithilfe einer Tastatur eingeben. \\
+noise & Diese Variable bezeichnet das Rauschen des Übertragungskanals. Bei einem Rauschen von 0 erfolgt eine perfekte Übertragung, bei 100 wird jede Polarisation zufälligerweise neu gesetzt. Das Rauschen lässt sich mit einem Regler einstellen. \\
+AliceProb & Die Wahrscheinlichkeit der Basenverteilung von Alice. Von 0 (100\% diagonale Basis) bis 100 (100\% gerade Basis) lässt sich dies mithilfe eines Reglers steuern. \\
+BobProb & Wie AliceProb, jedoch für Bob. \\
+eavesdropping & Das Verhältnis, wie stark Eve die Übertragung abhört. Mit einem Regler lässt sich ein Wert von 0\% bis 100\% einstellen.
+\end{tabularx}
+\item \texttt{ButtonAliceStart}\\[3mm]
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+strLength & Die Länge des Bitstrings, wie oben beschrieben. \\
+AliceProb & Die Wahrscheinlichkeitsverteilung der Basen, wie oben beschrieben. \\
+bitString & Der Bitstring, der als Antwort vom backend zurückkommt. \\
+baseString &  Die Base, die als Antwort vom backend zurückkommt. \\
+autostart & Ein boolean, mit welchem sich der Algorithmus automatisch ausführen lässt, wenn das Dokument fertig geladen ist. \\
+dataHasLoaded & Ein boolean, welcher auf true geschaltet wird, wenn der Bitstring und die Base fertig geladen sind. \\
+text &  Der Text, welcher auf dem Button erscheint. 
+\end{tabularx}
+\item \texttt{PhotonGridDouble}\\
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+bitString & Der obere String, der dargestellt werden soll. \\
+baseString & Der untere String, der dargestellt werden soll. \\
+dataHasLoaded & Ein boolean, welcher steuert, wann das Raster mit Zeichen gefüllt werden soll. \\
+bitStringZoom & Eine variable, welche den Zoomfaktor des oberen Strings steuert. \\
+baseStringZoom & Eine variable, welche den Zoomfaktor des unteren Strings steuert.
+\end{tabularx}
+\item \texttt{InformationBox} \\
+Hat keine Variabeln
+\item \texttt{SimpleSlider} \\
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+setting & Das property, das beeinflusst werden sollte. \\
+text & Der Text, welcher neben dem Regler steht.
+\end{tabularx}
+\item \texttt{ButtonEmitPhotons} \\
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+bitString & Alices Bitstring, welcher für die Polarisation codiert. \\
+baseString & Alices Basestring, welcher für die Polarisation codiert. \\
+rawPolarization & Die Antwort vom backend, als ein String von Polarisationswerten (0, 45, 90 oder 135), getrennt durch ein Komma. \\
+polarization & Alices Polarisation, als Array von getrennten Polarisationen \\
+noise &  Das Rauschen, welches die Übertragung beeinflusst (siehe oben bei der Systemübersicht). \\
+polarizationHasLoaded & Ein boolean, welcher auf true gesetzt wird, wenn die Polarisation geladen und in das Array geschrieben wurde. \\
+text & Der Text, welcher auf dem Button erscheint.
+\end{tabularx}
+\item \texttt{ShowHide} \\
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+isVisible & Der boolean, welcher bestimmt, ob die innere Komponente ein- oder ausgeblendet ist. \\
+showButton & Die Möglichkeit, einen Button zu rendern, der den boolean umschaltet \\
+trigger & Ein anderer boolean, welcher das Verhalten dieses Komponenten extern ansteuern kann. \\
+position & Ein CSS-Attribut, mit welchem man die Position des Wrappers festlegt 
+\end{tabularx}
+\item \texttt{AnimationEmit} \\
+Hat keine Argumente
+\item \texttt{ButtonBobBase} \\[3mm]
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+strLength & Die Stringlänge, welche die Länge von Bobs Base festlegt. \\
+BobProb & Die Wahrscheinlichkeitsverteilung, welche für die festlegung von Bobs Base wichtig ist. \\
+baseString & Die Variable, welche die zurückgesendete Base speichert \\
+bobBaseHasLoaded & Ein boolean, welcher auf true gesetzt wird, wenn die Base gespeichert ist. \\ 
+text & Der Text, welcher auf dem Button erscheint.
+\end{tabularx}
+\item \texttt{AnimationPhoton1} \\
+Hat keine Komponente
+\item \texttt{AnimationPhoton2} \\
+Hat keine Komponente
+\item \texttt{ButtonMeasure} \\
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+strLength & Die Länge des Bitstrings der für Bob berechnet werden soll. \\
+rawPolarization & Alices Polarisation, als ein einzigen String. \\
+polarization & Alices Polarisation, als Array von getrennten Polarisationen. \\
+baseString &  Bobs Base, mit welcher die Photonen gemessen werden. \\
+noise &  Das Rauschen, welche die Polarisationen bei der Übertragung gestört hat. \\
+measuredString &  Der Rückgabewert, Bobs gemessener Bitstring. \\
+bobBaseHasLoaded & Ein boolean, ob Bobs Base geladen ist (siehe oben, bei ButtonBobBase) \\
+bobStringHasLoaded & Ein boolean, welcher auf true gesetzt wird, wenn der Bitstring gespeichert ist. \\
+bobDataHasLoaded &  Ein boolean, welcher auf true gesetzt wird, wenn alle Daten von Bob gespeichert sind. \\
+autostart & Ob die Komponente automatisch gestartet werden soll oder nicht. \\
+text & Der Text, welcher auf dem Button erscheint.
+\end{tabularx}
+\item \texttt{ButtonShortenKey} \\
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+baseString1 & Dies ist Alices Base, welche mitgeschickt wird. \\
+baseString2 & Dies ist Bobs Base, welche mitgeschickt wird. \\
+bitString1 & Dies ist Alices Bitstring, welcher mitgeschickt wird. \\
+bitString2 &  Dies ist Bobs Bitstring, welcher mitgeschickt wird. \\
+comparedBase & Ein Rückgabewert, die verglichene Base, welche mit \'1\' eine Übereinstimmung von zwei Einsen an dieser Stelle, mit \'0\' eine Übereinstimmung von zwei Nullen an dieser Stelle und mit \'\_\' keine Übereinstimmung an dieser Stelle codiert. \\ 
+comparedBaseHasLoaded &  Ein boolean, welcher auf true gesetzt wird, wenn die verglichene Base gespeichert wurde \\
+commonKeyAlice &  Alices gekürzter Bitstring, bei dem alle Stellen gestrichen wurden, an denen Alices und Bobs Basen nicht übereinstimmten. \\
+commonKeyBob & Bobs gekürzter Bitstring, bei dem alle Stellen gestrichen wurden, an denen Alices und Bobs Basen nicht übereinstimmten. \\
+commonKeyHasLoaded &  Ein boolean, welcher auf true gesetzt wird, wenn die gekürzten Bitstrings gespeichert wurden \\
+commonKeyLength &  Die Länge des gekürzten Schlüssels als Ganzzahl \\
+text &  Der Text, welcher auf dem Button erscheint.
+\end{tabularx}
+\item \texttt{ButtonCompareKey} \\
+\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} \\
+bitString1 &  Dies ist Alices Bitstring, welcher mitgeschickt wird. \\
+bitString2 &  Dies ist Bobs Bitstring, welcher mitgeschickt wird. \\
+percentage &  Die Anzahl (Verhältnis 0\% bis 100\%) der Stellen in den Bitstrings, die verglichen werden \\
+restKeyAlice &  Alices um die verglichenen Stellen gekürzter Key \\
+restKeyBob &  Bobs um die verglichenen Stellen gekürzter Key \\
+match & Das Verhältnis (0\% - 100\%) der Stellen, die übereingestimmt haben \\
+restKeyHasLoaded &  Ein boolean, welcher auf true gesetzt wird, wenn die gekürzten Keys gespeichert wurden \\
+restKeyLength &  Die Länge der beiden gekürzten Keys \\
+text & Der Text, welcher auf dem Button erscheint.
+\end{tabularx}
+\item \texttt{EmojiComponent} \\
+Eine kleine visuelle Komponente, die ein emoji rendert, um eine Stimmung auszudrücken.
+\end{itemize}
+
+
+\section{Arbeitsjournal}
+\begin{longtable}{p{1cm}p{6cm}p{6cm}}
+Woche & A. Althaus & F. Meyer \\
+\hline
+1 &  -Einarbeitung in die Thematik Quantenkryptografie / BB84-Protokoll & Dokument Aufgabenstellung für die Auftraggebenden: 
+\begin{itemize} 
+\item Ziele formulieren \vspace{-3mm}
+\item Bewertungs-kriterien festlegen \vspace{-3mm}
+\item Aufgabenstellung konkretisieren \vspace{-3mm}
+\item Fokus festlegen \vspace{-3mm}
+\item Ideen zur Validation festhalten \vspace{-3mm}
+\item Grobplanung (Meilensteine) festgelegt \vspace{-3mm}
+\item Architektur erklären und begründen \vspace{-3mm}
+\item Use Case der Software festlegen 
+\end{itemize} \\
+2  & -Einarbeitung in die Thematik Quantenkryptografie / BB84-Protokoll \newline -Rekapitulation Modularisierung \newline -Konzeptionierung Backend &  -Einarbeitung in die Thematik Quantenkryptografie / BB84-Protokoll \newline -Erarbeitung der Mindest- und der optionalen Anforderungen \newline  -Idyll-Projekt für Experimentieren und Lernen aufgesetzt \newline  -Erste Tests mit Idyll gemacht (Versuche, eigene Komponenten zu entwickeln)
+ \\ 
+3  & Prototyp Backend mit Tomcat und JAX-RS \newline -Gradle \newline Dependencies-Untersützung für Persistenz und Session-Management & -Gesamtes BB84-Protkoll erarbeitet und schriftlich in eigener Sprache festgehalten \newline
+-Tests mit Idyll \\
+4 & -Prototyp Backend mit Tomcat und JAX-RS \newline -Rekapitulation Modularisierung  & -BB84-Protokoll um offene Fragen an die Auftraggebenden ergänzt \\
+5 & -Komponentenerstellung \newline -REST-API & -Neues Idyll-Projekt für das Projekt erstellt \newline  -Erster Komponente erstellt \newline -Erster Versuch, Daten mithilfe einer REST-API zu laden \\
+6 & Ansteuerung Java-Module über Schnittstelle & -Erster Versuch, frontend und backend zusammenzuführen via REST-API \newline -Session \newline -Geladene Daten aus dem backend darstellen \newline -Komponentenentwicklung \newline -Erster Versuch, Graphik zu rendern \newline -Erster Versuch, Animation zu rendern \newline -Spezifikation der Komponenten für Simulation \\
+7 & -Modellierung physikalischer Komponenten \newline Tests mit Java 9  \newline -Bestellung Umgebung in Enterpriselab \newline -Handling wiederholender Parameter über Sessions  & -Komponentenentwicklung \\
+8 & -Erweiterung der Komponenten für neue Paramter wie Noise, unerkannte Photonen, Abweichungen in Polarisation & -Komponentenentwicklung \\
+9   & -Struktur Doku in LaTeX \newline -Refactoring \newline Änderung von GET zu POST-Parameter & -Design, Style und Fonts angepasst \newline -Komponentenentwicklung \\
+10 & -Throttling \newline -MessagePack & -Komponentenentwicklung \newline -Änderung der REST-Methoden von GET zu POST \\
+11 & -Testing \newline -Dokumentation \newline -Docker & -Komponentenentwicklung \\
+12 & -Dokumentation & -Usertests konzipiert \newline -Komponentenentwicklung\\
+13 & -Refactoring \newline -Dokumentation \newline -Deployment \newline -Anpassung Gradle \newline -Eavesdropping & -Usertests konzipiert \newline -Dokumentation \newline -Komponentenentwicklung \newline -Umsetzung letzter Inputs\\
+14 & -Ergänzung \newline -Umsetzung letzter Inputs \newline -Deployment \newline Integration von Frontend-Build in Tomcat & -Usertests durchgeführt und evaluiert  \newline -Deployment \newline -Anpassung Gradle \newline -Dokumentation \newline -Fertigstellung \newline -Komponentenentwicklung
+\end{longtable}
+
+
+
+\section{Aufgabenstellung}
+\subsection{Ausgangslage und Problemstellung}
+Bei Quantenschlüsselverteilung wird mit Hilfe von Lichtteilchen und Glasfaserkabeln zwischen zwei Parteien ein Schlüssel ausgetauscht. Die Sicherheit dieses Schlüssels beruht auf physikalischen Eigenschaften, insbesondere der Tatsache, dass erkannt werden kann, ob der übertragene Schlüssel abgehört wurde.
+\subsection{Ausgangslage und Problemstellung:}
+\subsubsection{Schwerpunkte}
+\begin{itemize} 
+\item Backend \\
+Umsetzung der Simulation von Quantenkryptografie mithilfe von modularer Programmierung. Dies beinhaltet die Abbildung der physikalischen Vorgänge der Quantenkryptografie als einzelne Komponenten, die über Schnittstellen miteinander verbunden sind und welche zu einem späteren Zeitpunkt mühelos erweitert, ausgetauscht und angepasst werden können. Die Simulation soll schlussendlich über eine API von aussen benutzbar, konfigurierbar und abgreifbar sein (Bytestrom als Output).\begin{itemize}
+\item Mindestanforderung \\Einfachtestes Quantenkryptoprotokoll simulieren (ohne Rauschen) BB84, Photonemitter (Polarisationkonfiguration), Photonendetektor, externe API
+\item Soll-Anforderung\\
+Export des Bytestream (sehr wichtig)
+Einfügen von Rauschen und Fehlerquellen, Komponenten für Übertragungsmedien, Konfigurationsmöglichkeiten der Komponenten, Auftrennung in physikalisch realistische Komponenten
+\item Nice-To-Have\\
+Weitere Protokolle (z.B. Ekart, Continuous Variables), 
+\end{itemize}
+\item Frontend \\
+Frontend: Darstellung der Simulation der einzelnen Schritte der Quantenkryptografie mithilfe eines geeigneten Frontends, um diesen Prozess für den Benutzer möglichst lehrreich, intuitiv und ästhetisch visualisieren zu können. Dies beinhaltet die die Repräsentation der einzelnen Komponenten der Simulation von Quantenkryptografie als UI-Elementen. Das Frontend soll vom User interaktiv bedienbar sein, um so die Erzeugung der Schlüssel der Quantenkryptografie auf geeignete Weise beeinflussen zu können. \begin{itemize}
+\item Mindestanforderung \\ 
+Start und End-Knopf der interaktiven Simulation, Austausch des Schlüssel sichtbar, Nutzung der Backend-API, Verwendung und Erklärung des einfachsten Simulationsmodells
+\item Soll-Anforderung \\
+Übertragung verschlüsselter Nachricht, interaktiver Komponentenaustausch, interaktive Konfiguration der Komponenten, Erklärung des Vorgangs
+\item Nice-to-Have \\
+Didaktische Erklärungen, Semantischer Zoom, digitales Storytelling, Multilingual
+\end{itemize}
+\item  Aneignung des Verständnisses der nötigen theoretischen Zusammenhänge der Quantenkryptografie, um die wissenschaftliche Arbeit durchführen zu können Insgesamt verfolgen wir nicht einen einzigen Schwerpunkt, sondern streben sowohl ein attraktives Frontend als auch ein sauber programmiertes Backend für die Modellierung an. Grundsätzlich aber übernimmt je eine Person die Verantwortung für eine der beiden Schichten
+\item Messbare Ziele
+\begin{itemize}
+\item Backend
+\begin{itemize}
+\item Modularisierungsgrad
+\item Einhaltung der festgelegten API-Standards
+\item Performance der Serialisierung
+\item Adäquate Code-Dokumentation
+\end{itemize}
+\item Frontend
+\begin{itemize}
+\item  Adäquatheit; Angemessenheit der Darstellung der physikalischen Komponenten in Detaillierungsgrad; Exaktheit der Repräsentation
+\item Intuitivität und Benutzerfreundichkeit der Applikation; Effektivität und Effizienz der Bedienung
+\item Interaktivität; Grad der Mächtigkeit des Eingriffs des Benutzers in den Prozess
+\item Ästhetische Angemessenheit
+\end{itemize}
+\item Testing 
+\begin{itemize}
+\item Backend: Adäquate Testing Strategie 
+\item Frontend: Adäquate qualitative Evaluation (z.B. Befragung von Studenten)
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\subsection{Gewünschte Methoden, Vorgehen}
+Vorgehensmodell: Hybrides Vorgehensmodell nach SODA
+
+Vorgeschlagene Technologien (begründete Abweichungen möglich)
+\begin{itemize}
+\item Frontend: JavaScript-Stack zum Beispiel mit Idyll. Idyll ist ein Toolkit für explorable explainables und data driven stories. Idyll basiert auf JavaScript und stellt eigene UI-Komponenten bereit, die ihrerseits auf React basieren.
+\item Backend zum Beispiel: Java, Modularisierung mit Jigsaw, JUnit 5, Gradle. Vorgesehen für Kommunikation mit Frontend, zum Beispiel: REST-Schnittstelle mit Jersey, JAX-RS, (embedded) Tomcat, OpenAPI / Swagger. 
+\item Testing Backend  \begin{itemize} \item Unit-Tests \item Integrationstests  \item LuP-Tests der (REST-)Schnittstellen \item ggf. Security-Tests (OWASP)  \end{itemize} 
+\end{itemize}
+\subsection{Kreativität, Varianten, Innovation}
+\begin{itemize}
+\item Varianten \begin{itemize}
+\item Frontend \\ Benutzen eines Python-Stacks anstatt eines JavaScript-Stacks, z.B. mithilfe von Dash.
+\item Backend \\ Wie die von uns geschriebenen Module genutzt werden (aufgerufen vom Webserver, einem CLI-Tool und / oder einer weiteren Java-Komponente aus einem anderen Projekt), bleibt offen. Ebenso ist vorerst unklar, ob im Serverbetrieb mit Sessions gearbeitet werden soll, d.h. ob der Client durch einen bestimmten Zustand repräsentiert werden soll. 
+\item Zusammenspiel Frontend - Backend \\
+Vorgesehen ist eine asynchrone Kommunikation mit dem Backend über eine REST-Schnittstelle. Die eigentliche Berechnung einer Benutzereingabe erfolgt auf dem Backend. Theoretisch aber könnte das Frontend je nach Komplexität der Aufgabenstellung auch unabhängig vom Backend betrieben werden.
+\end{itemize}
+\item Innovation / Kreativität \\ Da die Quantenkryptografie für den durchschnittlichen Informatikstudenten ein unbekanntes Gebiet ist, soll die Arbeit zusätzlich durch einen didaktischen Anspruch hervorstechen. Dies meint, dass ein Ziel der Arbeit sein soll, diese komplexe Thematik so darzustellen, dass sie für den durchschnittlichen Informatikstudenten erfassbar und erfahrbar werden soll. Dies soll insbesondere durch einen hohen Anteil an Interaktivität erreicht werden. 
+\end{itemize}
+
+
+
