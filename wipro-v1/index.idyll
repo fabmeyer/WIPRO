@@ -223,7 +223,7 @@ Click on the button below to compare Alice's and Bob's base.
 [var name:"ComparedBaseHasLoaded" value:null /]
 [var name:"CommonKeyAlice" value: null /]
 [var name:"CommonKeyBob" value: null /]
-[var name:"CommonKeyHasLoaded" value:null /]
+[var name:"CommonKeyHasLoaded" value:false /]
 [var name:"CommonKeyLength" value:null /]
 [var name:"StateString2" value:null /]
 [ButtonShortenKey
@@ -312,6 +312,8 @@ Now Alice and Bob drop all the bits that they have announced publicly and form t
   stateString:StateString2
   colorKey:ColorKey
   percentage:percentage
+  buttonActive:CommonKeyHasLoaded
+  rodalText:"Did Alice and Bob shorten their keys?"
   restKeyAlice:RestKeyAlice
   restKeyBob:RestKeyBob
   match:Match
