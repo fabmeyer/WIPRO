@@ -1,15 +1,16 @@
-@book{inden,
-	author = {Inden, Michael},
-	publisher = {dpunkt},
-	title = {Der Weg zum Java-Profi. Konzepte und Techniken f{\"u}r die professionelle Java-Entwicklung},
-	year = {2018}
-}
-
 @article{modul,
 	author = {Oelmann, Guido},
 	location = {Heidelberg},
 	publisher = {dpunkt},
 	title = {Modularisierung mit Java 9. Grundlagen und Techniken f{\"u}r langlebige Softwareentwicklung},
+	year = {2018}
+}
+
+@book{inden,
+	author = {Inden, Michael},
+	crossref = {inden},
+	publisher = {dpunkt},
+	title = {Der Weg zum Java-Profi. Konzepte und Techniken f{\"u}r die professionelle Java-Entwicklung},
 	year = {2018}
 }
 
