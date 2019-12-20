@@ -1,0 +1,49 @@
+\babel@toc {ngerman}{}
+\babel@toc {ngerman}{}
+\contentsline {section}{\numberline {1}Problem, Fragestellung, Vision}{3}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}Quantenkryptografie: Das BB84-Protokoll}{3}{subsection.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.1}BB84 Protokoll}{3}{subsubsection.1.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.2}Kompromiss aus Simulation und Visualisierung des BB84-Protokolls}{5}{subsubsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.2}Schwerpunkte}{5}{subsection.1.2}% 
+\contentsline {section}{\numberline {2}Stand der Praxis}{6}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Frontend / Informationsvisualiserung}{6}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Explorable Explainables}{7}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Idyll}{7}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}Vergleichbare Projekte}{8}{subsection.2.4}% 
+\contentsline {subsection}{\numberline {2.5}Modularisierung}{8}{subsection.2.5}% 
+\contentsline {subsubsection}{\numberline {2.5.1}Modularisierung mit Java 9}{9}{subsubsection.2.5.1}% 
+\contentsline {section}{\numberline {3}Ideen und Konzepte}{9}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Alternative Ideen}{9}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Physikalische Komponenten}{10}{subsection.3.2}% 
+\contentsline {section}{\numberline {4}Realisierung}{11}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Architektur}{11}{subsection.4.1}% 
+\contentsline {subsubsection}{\numberline {4.1.1}Das modulare Prinzip}{12}{subsubsection.4.1.1}% 
+\contentsline {subsubsection}{\numberline {4.1.2}Client-Server Architektur}{12}{subsubsection.4.1.2}% 
+\contentsline {subsection}{\numberline {4.2}Frontend}{12}{subsection.4.2}% 
+\contentsline {subsubsection}{\numberline {4.2.1}Verwendete Idyll-Komponenten}{12}{subsubsection.4.2.1}% 
+\contentsline {subsubsection}{\numberline {4.2.2}Verwendete npm packages}{13}{subsubsection.4.2.2}% 
+\contentsline {subsubsection}{\numberline {4.2.3}Arten von Komponenten}{13}{subsubsection.4.2.3}% 
+\contentsline {subsubsection}{\numberline {4.2.4}Erstellte Komponenten}{13}{subsubsection.4.2.4}% 
+\contentsline {subsection}{\numberline {4.3}Ablauf}{16}{subsection.4.3}% 
+\contentsline {section}{\numberline {5}Vorgehensmodell}{16}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}Architektur}{17}{subsection.5.1}% 
+\contentsline {subsubsection}{\numberline {5.1.1}Frontend}{17}{subsubsection.5.1.1}% 
+\contentsline {subsubsection}{\numberline {5.1.2}Backend}{17}{subsubsection.5.1.2}% 
+\contentsline {subsection}{\numberline {5.2}Deployment}{17}{subsection.5.2}% 
+\contentsline {section}{\numberline {6}Evaluation, Testing und Validation}{17}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Automatisierte Tests}{17}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Usertests}{17}{subsection.6.2}% 
+\contentsline {section}{\numberline {7}Ausblick}{17}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Realistischere Simulation des BB84-Protokolls}{17}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7.2}Frontend}{18}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7.3}API}{18}{subsection.7.3}% 
+\contentsline {subsection}{\numberline {7.4}Backend}{18}{subsection.7.4}% 
+\contentsline {section}{\numberline {A}Spezifikation des Frontends}{19}{appendix.A}% 
+\contentsline {subsection}{\numberline {A.1}Erstellte Komponenten}{19}{subsection.A.1}% 
+\contentsline {section}{\numberline {B}Arbeitsjournal}{22}{appendix.B}% 
+\contentsline {section}{\numberline {C}Aufgabenstellung}{25}{appendix.C}% 
+\contentsline {subsection}{\numberline {C.1}Ausgangslage und Problemstellung}{25}{subsection.C.1}% 
+\contentsline {subsection}{\numberline {C.2}Ausgangslage und Problemstellung:}{25}{subsection.C.2}% 
+\contentsline {subsubsection}{\numberline {C.2.1}Schwerpunkte}{25}{subsubsection.C.2.1}% 
+\contentsline {subsection}{\numberline {C.3}Gew\IeC {\"u}nschte Methoden, Vorgehen}{27}{subsection.C.3}% 
+\contentsline {subsection}{\numberline {C.4}Kreativit\IeC {\"a}t, Varianten, Innovation}{27}{subsection.C.4}% 
