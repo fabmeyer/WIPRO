@@ -77,11 +77,11 @@ public class BB84Service {
 			angle_variance = (float) (Math.round(angle_variance * shift) / shift);
 			float photonPolarization = 0;
 			if (String.valueOf(base.charAt(i)).equals("x")) {
-				photonPolarization = (String.valueOf(str.charAt(i)).equals("1")) ? 0 + angle_variance
-						: 90 + angle_variance;
+				photonPolarization = (String.valueOf(str.charAt(i)).equals("1")) ? 135
+						: 90 ;
 			} else {
-				photonPolarization = (String.valueOf(str.charAt(i)).equals("1")) ? 45 + angle_variance
-						: 135 + angle_variance;
+				photonPolarization = (String.valueOf(str.charAt(i)).equals("1")) ? 45
+						: 0;
 			}
 			photonString +=  photonPolarization;
 			if (i < StringLength - 1) {
@@ -98,7 +98,7 @@ public class BB84Service {
 		}
 		for (int i = 0; i < base.length(); i++) {
 			if (String.valueOf(base.charAt(i)).equals("x")) {
-				bitString += (String.valueOf(photons.charAt(i)).equals("0")) ? "1" : "0";
+				bitString += (String.valueOf(photons.charAt(i)).equals("0")) ? "1" : "0"; 
 			} else {
 				bitString += (String.valueOf(photons.charAt(i)).equals("1")) ? "1" : "0";
 			}
@@ -143,7 +143,7 @@ public class BB84Service {
 				 }
 				 state = 2;
 			 }
-			}
+			} 
 
 			if ((noise / 100f) >= randomDouble.nextDouble()) {
 				photonList[i] =  stringPolarizations[randomDouble.nextInt(4)];
@@ -152,6 +152,7 @@ public class BB84Service {
 			
 			stateString += state;
 		}
+		
 		
 		
 		/* BOB */ 
@@ -166,11 +167,10 @@ public class BB84Service {
 			double randomDoubleFp= randomFp.nextDouble();
 			
 			float photon = Float.parseFloat(photonList[i]);
-		
-				if (String.valueOf(base.charAt(i)).equals("x")) {
-					bitStringBob += ((photon > -5 && photon < 5) || (photon > 85 && photon < 95)) ? "1" : "0";
+				if (String.valueOf(base.charAt(i)).equals("+")) {
+					bitStringBob += (photon >= 0 && photon < 10.0f)  ? "1" : "0";
 				} else {
-					bitStringBob += ((photon > 40 && photon < 50) || (photon > 130 && photon < 140)) ? "1" : "0";
+					bitStringBob += (photon > 80.0f && photon < 100.0f)  ? "0" : "1";
 				}
 			}
 		String[] result = {bitStringBob, stateString};

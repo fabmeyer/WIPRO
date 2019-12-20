@@ -8,7 +8,6 @@ import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -37,7 +36,7 @@ public class BB84Adapter implements BB84Interface {
 	}
 
 	@POST
-	@Path("/emitphoton/")
+	@Path("/emitphoton/") 
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str, 
@@ -57,7 +56,6 @@ public class BB84Adapter implements BB84Interface {
 		JsonObject response = Json.createObjectBuilder().add("bitString", result[0]).add("stateString", result[1]).build();
 		return Response.ok(response.toString()).build();
 	}
-
 	
 	@POST
 	@Path("/randombase")
@@ -83,7 +81,7 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/shortenkey")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("string_bob") String string_bob, @FormParam("state_string") String state_string) {
+ 	public Response shortenKey(@FormParam("base1") String base1, @FormParam("base2") String base2, @FormParam("string_alice") String string_alice, @FormParam("string_bob") String string_bob, @FormParam("state_string") String state_string) {
 		final String[] result = BB84Service.shortenKey(base1, base2, string_alice, string_bob, state_string); 
 		JsonObject response = Json.createObjectBuilder().add("comparedBase", result[0])
 		 .add("commonKeyAlice", result[1])
@@ -108,7 +106,6 @@ public class BB84Adapter implements BB84Interface {
 		return Response.ok(response.toString()).build();
 }
 	 
-	
 	@POST
 	@Path("/settings")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
