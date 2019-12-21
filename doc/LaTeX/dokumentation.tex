@@ -180,7 +180,7 @@ Betreuungspersonen \\[2mm] Dr.\,Esther Hänggi \\ Dr.\,Halldór Janetzko\\[3mm]
 \newpage
 \abstract{
 \subsection*{Abstract}
-Das Ziel dieser Arbeit besteht in der Simulation und Visualisierung des BB84-Protokolls. Dazu wurden zwei Applikationen entwickelt, zum einen ein Java-Backend, welches sich um die Simulation kümmert, und ein Frontend zur Visualisierung im Browser. Der Fokus des Backends liegt auf der korrekten Berechnung der Simulation und der sauberen Implementation mithilfe von komponentenbasierter Entwicklung. Der Schwerpunkt des Frontends liegt auf der Erklärungsfähigkeit, Interaktivität, Didaktik und Ästhetik. Die beiden Applikationen wurden auf dem enterpriselab (link) der Hochschule Luzern deployt. Mit dem deployten Prototypen (Stand: 17.12). wurden Benutzertests durchgeführt, um ein Feedback zur Qualität der Applikation, insbesondere der Erklärungsfähigkeit, der Interaktion und der Visualisation einzuholen). Die Benutzertests fielen durchaus positiv aus, was als Projekterfolg gedeutet werden kann.} 
+Das Ziel dieser Arbeit besteht in der Simulation und Visualisierung des BB84-Protokolls. Dazu wurden zwei Applikationen entwickelt, zum einen ein Java-Backend, welches sich um die Simulation kümmert, und ein JavaScript-Frontend zur Visualisierung im Browser. Der Fokus des Backends liegt auf der korrekten Berechnung der Simulation und der sauberen Implementation mithilfe von komponentenbasierter Entwicklung. Der Schwerpunkt des Frontends liegt auf der Erklärungsfähigkeit, Interaktivität, Didaktik und Ästhetik. Die beiden Applikationen wurden auf dem Enterpriselab (http://wiproh19-tbalthau.enterpriselab.ch:8080/) der Hochschule Luzern deployt. Mit dem deployten Prototypen (Stand: 17.12). wurden Benutzertests durchgeführt, um ein Feedback zur Qualität der Applikation, insbesondere der Erklärungsfähigkeit, der Interaktion und der Visualisation einzuholen). Die Benutzertests fielen durchaus positiv aus, was als Projekterfolg gedeutet werden kann.} 
 \newpage
 \pdfbookmark{Inhalt}{toc}
 \tableofcontents 
@@ -188,19 +188,19 @@ Das Ziel dieser Arbeit besteht in der Simulation und Visualisierung des BB84-Pro
 
 \section{Problem, Fragestellung, Vision}
 \subsection{Quantenkryptografie: Das BB84-Protokoll} 
-In der Quantenverschlüsselung werden sich Eigenschaften der Quantenphysik zunutze gemacht, um damit Informationen verschlüsseln zu können. Gleichzeitig ist es eine inhärente Eigenschaft eines quantenphysikalischen Systems, dass bei einem Messvorgang das System selbst gestört wird. Diese Eigenschaft wird genutzt, um ein mögliches Abhören einer Botschaft detektieren zu können.
+In der Quantenverschlüsselung werden sich Eigenschaften der Quantenphysik zunutze gemacht, um damit Informationen verschlüsseln zu können. Gleichzeitig ist es eine inhärente Eigenschaft eines quantenphysikalischen Systems, dass bei einem Messvorgang das System selbst gestört wird. Diese Eigenschaft wird benutzt, um ein mögliches Abhören einer Botschaft detektieren zu können.
 
 Eine Möglichkeit, Informationen mithilfe eines quantenphysikalischen Systems zu übertragen, ist die Polarisierung von Photonen. Dabei werden Photonen mithilfe geeigneter Gerätschaft polarisiert und dann durch einen Lichtwellenleiter verschickt. Am anderen Ende kann der Empfänger die Polarisation durch den Einsatz von optischen Geräten rekonstruieren und so die originale Botschaft wiederherstellen. 
 
-Photonen können in 4 möglichen Zuständen polarisiert werden: 0°, 45°, 90° und 135°. Dabei stellen 0° und 90° gerade Polarisierungen dar und 45° und 135° diagonale Polarisierungen. Ein Bit kann nun in 2 möglichen Polarisierungen kodiert werden: 0 mit 0° oder 45° und 1 mit 90° oder 135°. Nur durch das Wissen der Polarisierung und der richtigen Basis kann das korrekte Bit bestimmt werden.
+Photonen können in 4 möglichen Zuständen polarisiert werden: 0°, 45°, 90° und 135°. Dabei stellen 0° und 90° gerade Polarisierungen dar und 45° und 135° diagonale Polarisierungen. Ein Bit kann nun in 2 möglichen Polarisierungen kodiert werden: 0 mit 0° oder 45° und 1 mit 90° oder 135°. Nur durch das Wissen sowohl über die Polarisierung und der richtigen Basis kann das korrekte Bit bestimmt werden.
 
-Ist das Protokoll erfolgreich durchgeführt worden unter Einhaltung von gewöhnlichen Sicherheitsvorkehrungen, können der Sender und der Empfänger erfolgreich einen Schlüssel generieren, mit dem sich Informationen ähnlich einem one-time pad (symmetrisch) verschlüsseln können. 
+Ist das Protokoll erfolgreich durchgeführt worden, unter Einhaltung von gewöhnlichen Sicherheitsvorkehrungen, können der Sender und der Empfänger erfolgreich einen Schlüssel generieren, mit dem sie Informationen ähnlich einem one-time pad (symmetrisch) verschlüsseln und entschlüsseln können. 
 
-Ein weiterer, wichtiger Vorteil von Quantenverschlüsselung im Gegensatz zu konventioneller (asymmetrischer) Verschlüsselung ist, dass die Etablierung des Schlüssels auf physikalischen Eigenschaften beruht und nicht auf mathematischen Berechnungen wie beispielsweise Hashfunktionen. Diese physikalischen Eigenschaften lassen sich auch mit erhöhtem Rechenaufwand nicht umgeghen. Ebenso arbietet man in der Quantenverschlüsselung weitgehend mit probabilistischen Verfahren. Aufgrund von quantenphysikalischen Eigenschaften ist ein Abfangen von Photonen zwar grundsätzlich feststellbar, aber letzten Endes bleibt für Sender und Empfänger lässt sich die Frage, ob Photonen abgehört wurden, nur mit einer bestimmten Wahrscheinlichkeit beantworten. 
+Ein weiterer, wichtiger Vorteil von Quantenverschlüsselung im Gegensatz zu konventioneller (asymmetrischer) Verschlüsselung ist, dass die Etablierung des Schlüssels auf physikalischen Eigenschaften beruht und nicht auf mathematischen Berechnungen wie beispielsweise Hashfunktionen bei der asymmetrischen Verschlüsselung. Diese physikalischen Eigenschaften lassen sich auch mit erhöhtem Rechenaufwand nicht umgehen. Ebenso arbeitet man in der Quantenverschlüsselung weitgehend mit probabilistischen Verfahren. Aufgrund von quantenphysikalischen Eigenschaften ist ein Abfangen von Photonen zwar grundsätzlich feststellbar, aber letzten Endes lässt sich die Frage, ob Photonen abgehört wurden, nur mit einer bestimmten Wahrscheinlichkeit beantworten. 
 
 
 \subsubsection{BB84 Protokoll}
-Das BB84-Protokoll, benannt nach seinen Erfindern, Charles Bennet und Gilles Brassard, und seinem Veröffentlichungsjahr 1984, ist das bekannteste Protokoll zur Realisierung einer Quantenverschlüsselung. Es soll hier kurz beschrieben werden.
+Das BB84-Protokoll, benannt nach seinen Erfindern, Charles Bennet und Gilles Brassard und seinem Veröffentlichungsjahr 1984, ist das bekannteste Protokoll zur Realisierung einer Quantenverschlüsselung. Es soll hier kurz beschrieben werden.
 
 Der Einfachheit halber gehen wir von 3 Personen aus: Alice, welche die Nachricht verschickt, Bob, welche sie empfängt und Eve, welche die Nachricht abhören möchte.
 
@@ -217,9 +217,9 @@ Ablauf:
 \item  Alice und Bob können über einen authentisierten, öffentlichen Kanal ein Teil des Bitstrings miteinander vergleichen, um sicherzugehen, dass sie nicht abgehört wurden
 \item  Dieser Teil wird dann verworfen. Der restliche Teil bildet den \q{shared secret key}
 \item  Falls Eve die Nachricht abhören will, muss sie die Polarisierung der Photonen zwischen Alice und Bob messen. Auch Eve muss daher eine zufällig generierte Abfolge von Basen (gerade und diagonal) verwenden, um die Polarisation zu messen
-\item  Wenn Eve eine falsche Basis gewählt hat, wird die Polarisierung des jeweiligen Photons aufgrund zufälligerweise neu gesetzt
+\item  Wenn Eve eine falsche Basis gewählt hat, wird die Polarisierung des jeweiligen Photons zufälligerweise neu gesetzt
 \item  Falls Eve alle Bits gemessen hat, sinkt die Wahrscheinlichkeit, dass Eve unentdeckt bleibt nach $n$ verglichenen Bits auf $(\frac{3}{4})^n$. Mithilfe von statistischen Tests kann überprüft werden, ob ein Mithörer die Photonen abgehört hat oder nicht
-\item  Falls ein Mithörer vorhanden war, wird das Protokoll wiederholt
+\item  Falls ein Mithörer vorhanden war, wird das Protokoll wiederholt oder die Übertragung abgebrochen
 \item  Durch ein Absprechen können Alice und Bob eine andere Basenverteilung von geraden und diagonalen Basen als 50/50 benutzen. Dies führt zu längeren Schlüsseln bzw. weniger Kürzung
 \end{enumerate}
 
@@ -230,38 +230,39 @@ Für die Simulation bietet sich natürlich ein Backend an, bei welcher Performan
 
 Dies führte zu der Idee, eine Webapplikation zu programmieren, welche beide Anwendungen miteinander verbindet. Diese Verbindung führte zu einem bedingten Kompromiss: Das Backend generiert Daten für eine Simulation von quantenkryptografischer Verschlüsselung, bei welcher üblicherweise sehr grosse Datenmengen verarbeitet werden. Das Frontend hingegen muss den Sachverhalt möglichst einfach erklären können. Dazu sind keine grossen Datenmengen nötig. Die Daten werden für die Visualisierung über eine REST-Schnittstelle geladen. 
 
-Dieser Kompromiss sollte erreicht werden, indem dem Benutzer trotzdem das Gefühl gegeben wird, dass hier sehr grosse Mengen von Daten verarbeitet werden und der Benutzer einen Einblick in die Komplexität der Thematik erhält. 
+Dieser Kompromiss sollte erreicht werden, indem dem Benutzer trotzdem das Gefühl gegeben wird, dass hier sehr grosse Mengen von Daten verarbeitet werden können und der Benutzer einen Einblick in die Komplexität der Thematik erhält, indem die Komplexität auf ein Minimum reduziert wird.
  
 
 
 
 \subsection{Schwerpunkte}
-Durch die Unterteilung in Frontend und Backend und deren Zuweisung an eine Person ergeben sich in beiden Bereichen unterschiedliche Schwerpunkte. Beim Frontend geht es im Wesentlichen um die Darstellung der Simulation der einzelnen Schritte des BB84-Protokolls, um diesen Prozess für den Benutzer möglichst lehrreich, intuitiv und ästhetisch befriedigend visualisieren zu können. Dies beinhaltet die die Repräsentation der einzelnen Komponenten der Simulation von Quantenkryptografie als UI-Elementen. Das Frontend soll vom User interaktiv bedienbar sein, um so die Erzeugung der Schlüssel der Quantenkryptografie auf geeignete Weise beeinflussen zu können.
+Durch die Unterteilung in Frontend und Backend und deren Zuweisung an eine Person ergeben sich in beiden Bereichen unterschiedliche Schwerpunkte. Beim Frontend geht es im Wesentlichen um die Darstellung der Simulation der einzelnen Schritte des BB84-Protokolls, um diesen Prozess für den Benutzer möglichst lehrreich, intuitiv, interaktiv und ästhetisch befriedigend visualisieren zu können. Dies beinhaltet die Repräsentation der einzelnen Komponenten der Simulation des BB84-Protokolls als UI-Elementen. Das Frontend soll vom User interaktiv bedienbar sein, um so die Erzeugung der Schlüssel der Quantenkryptografie auf geeignete Weise beeinflussen zu können.
 
-Das Backend übernimmt die Abbildung der physikalischen Vorgänge der Quantenkryptografie als einzelne Komponenten, die über Schnittstellen miteinander verbunden sind.  und welche zu einem späteren Zeitpunkt mühelos erweitert, ausgetauscht und angepasst werden können. Die Simulation soll schlussendlich über eine API von aussen benutzbar, konfigurierbar und abgreifbar sein mit einem Bytestream als Output.
+Das Backend übernimmt die Abbildung der physikalischen Vorgänge des BB84-Protokolls als einzelne Komponenten, die über Schnittstellen miteinander verbunden sind und welche zu einem späteren Zeitpunkt mühelos erweitert, ausgetauscht und angepasst werden können. Die Simulation soll schlussendlich über eine API von aussen benutzbar, konfigurierbar und abgreifbar sein, mit einem Bytestream als Output.
 
-Unabhängig von der Umsetzung und Arbeitsteilung bildet ein Schwerpunkt die Erlangung der nötigen Kenntnisse, die für ein vertieftes Verständnis des BB84-Protokolls erforderlich sind.
+Unabhängig von der Umsetzung und Arbeitsteilung bildet ein Schwerpunkt die Erlangung der nötigen physikalischen Kenntnisse, die für ein vertieftes Verständnis des BB84-Protokolls erforderlich sind.
 
 \section{Stand der Praxis}
-\subsection{Frontend / Informationsvisualiserung}
+\subsection{Informationsvisualiserung}
 In den letzten Jahren haben sich die Möglichkeiten in der Datenvisualisierung rasant verändert. Gleichzeitig findet eine Verschiebung von statischer Berichterstattung mit Text und Bild zu dynamischen, interaktiven Multimediaformen statt.
 
-Beispielsweise hat die Onlineausgabe der \emph{New York Times} seit dem Jahr 2014 eine neue Sparte namens \q{The Upshot}\footnote{\url{https://www.nytimes.com/section/upshot}}, auf welcher Artikel veröffentlicht werden, die politische, wirtschaftliche oder gesellschaftliche Themen durch den Einsatz von Techniken der Datascience und Datenvisualierung ergänzen, sogenanntes \q{data-driven storytelling} aufwerten. Diese Artikel sind dynamisch und interaktiv; der Benutzer kann die Daten manipulieren und so direkt in die Visualierung eingreifen.
+Beispielsweise besitzt die Onlineausgabe der \emph{New York Times} seit dem Jahr 2014 eine neue Sparte namens \q{The Upshot}\footnote{\url{https://www.nytimes.com/section/upshot}}, auf welcher Artikel veröffentlicht werden, die politische, wirtschaftliche oder gesellschaftliche Themen durch den Einsatz von Techniken des Datascience und Datenvisualierung ergänzen, sogenanntes \q{data-driven storytelling}. Diese Artikel sind dynamisch und interaktiv; der Benutzer kann die Daten manipulieren und so direkt in die Visualisierung eingreifen.
 
-Möglich macht dies Fortschritte nicht nur die Produktion leistungsfähigerer Computerhardware, sondern auch die Entwicklung von immer leistungsfähigerer Browsersoftware. Dabei findet eine stetige Verschiebung von Rendering auf der Serverseite zum Rendering auf der Clientseite statt. Wo früher grosse Mengen von Daten nur auf hochspezialiserten Computer berechnet und visualisiert werden konnten, kann dies heutzutage auch auf einem PC im Browser realisiert werden. Daher erstaunt es nicht, dass auch spezialisierte Datenvisualierungsbibliotheken, wie D3 für die clientseitige Scriptsprache JavaScript zur Verfügung stehen.
+Möglich macht dies Fortschritte nicht nur in der Produktion leistungsfähigerer Computerhardware, sondern auch die Entwicklung von immer leistungsfähigerer Browsersoftware. Dabei findet eine stetige Verschiebung von Rendering auf der Serverseite zum Rendering auf der Clientseite statt. Wo früher grosse Mengen von Daten nur auf hochspezialiserten Computer berechnet und visualisiert werden konnten, kann dies heutzutage auch auf einem PC im Browser realisiert werden. Daher erstaunt es nicht, dass auch spezialisierte Datenvisualierungsbibliotheken, wie D3 für die clientseitige Scriptsprache JavaScript zur Verfügung stehen.
 
 \subsection{Explorable Explainables}
-Im letzten Jahrzehnt sind einige Tools, Frameworks, Markupsprachen oder Bibliotheken erschienen, welche sich darauf spezialisieren, Techniken der Datenvisualisierung zu benutzen, um so dynamischen, interaktiven und multimedialem content zu erzeugen. Diese unterscheiden sich jedoch gross in Bezug auf die Voraussetzungen des angesprochenen Benutzers (Informatik-Hintergrund oder Autor bei einer Zeitung) oder Domäne (spezialiserte Software oder allgemein einsatzfähig).
+In den letzten Jahren sind auch einige Tools, Frameworks, Markupsprachen oder Bibliotheken erschienen, welche sich darauf spezialisieren, Techniken der Datenvisualisierung zu benutzen, um so dynamischen, interaktiven und multimedialem content zu erzeugen. Diese unterscheiden sich jedoch gross in Bezug auf die Voraussetzungen des angesprochenen Benutzers (Informatik-Hintergrund oder Autor bei einer Zeitung) oder der Domäne (spezialiserte Software oder allgemein einsatzfähig).
 
-Diese Art von Software, welche Berichterstattung mit interaktiven Techniken der Datenvisualierung kombiniert wird als \emph{Explorable Explainables} bezeichnet. Die Abgrenzung zu anderer Software ist nicht ganz eindeutig, beispielsweise kann auch Project Jupyter verwendet werden, um Daten interaktiv zu visualisieren und dies einer grossen Audienz zugänglich zu machen. Jedoch verlangen Jupyter notebooks sehr viel Vorkentnisse in der Informatik und sind daher auf eine bestimmte Zielgruppe beschränkt. 
+Diese Art von Software, welche Berichterstattung mit interaktiven Techniken der Datenvisualierung kombiniert und deren Resultate, wird als \emph{Explorable Explainables} bezeichnet. Die Abgrenzung zu anderer Software ist nicht ganz eindeutig, beispielsweise kann auch Project Jupyter verwendet werden, um Daten interaktiv zu visualisieren und dies einer grossen Audienz zugänglich zu machen. Jedoch verlangen Jupyter notebooks sehr viel Vorkentnisse in der Informatik und sind daher auf eine bestimmte Zielgruppe beschränkt. 
 \subsection{Idyll}
 Eine dieser Markupsprachen ist Idyll \footnote{\url{https://idyll-lang.org}}, welche die Erzeugung interaktiver Dokumente mit der Markupsprache Markdown verbindet. Idyll stellt eine Reihe von UI-Komponenten zur Verfügung, mit welchen sich einerseits Inhalte wie Text, Bild und Visualisierungen darstellen lassen, als auch Komponenten wie Regler, Eingabefelder und weitere, um Daten zu manipulieren.
 
-Idyll selbst basiert auf der UI-Bibliothek React \footnote{\url{https://reactjs.org}}, welche anfänglich von Facebook entwickelt wurde und im Jahr 2013 als open-source Projekt der Öffentlichkeit zugänglich gemacht wurde. Die Philosophie von React beruht einerseits auf der Entwicklung von Komponenten mit Schnittstellen, die wiederverwendet werden können und andererseits auf der reaktiven Programmierung, ein relatives neues Programmierparadigma, welches Zustände und Änderungen einzig und allein auf Datenflüsse zurückführt. React eignet sich insbesonders um single-page Applications (SPAs) zu erzeugen. Dabei wird bei einem Seitenaufruf nur eine leere Hülle aus HTML geladen und der gesamte content wird beim client im Browser dynamisch durch JavaScript erzeugt (server-side Rendering, SSR).
+Idyll selbst basiert auf der UI-Bibliothek React \footnote{\url{https://reactjs.org}}, einem JavaScript Frontend-Framework, welches anfänglich von Facebook entwickelt wurde und im Jahr 2013 als open-source Projekt der Öffentlichkeit zugänglich gemacht wurde. Die Philosophie von React beruht einerseits auf der Entwicklung von Komponenten mit Schnittstellen, die wiederverwendet werden können und andererseits auf der reaktiven Programmierung, ein relatives neues Programmierparadigma, welches Zustände und Änderungen einzig und allein auf Datenflüsse zurückführt. React eignet sich insbesonders um single-page Applications (SPAs) zu erzeugen. Dabei wird bei einem Seitenaufruf nur eine leere Hülle aus HTML geladen und der gesamte content wird beim client im Browser dynamisch durch JavaScript erzeugt (Clientside Rendering).
 
 Idyll verknüpft die einfache Herstellung von Komponenten von React mit dem simplen Markupsyntax von Markdown, mit welchem sich rasch einfache Dokumente schreiben lässt. Ähnlich wie bei LaTeX, wird bei Markdown Inhalt und Struktur gegenüber Layout getrennt. Das Layout kann einfach mit einer CSS-Datei gesteuert werden.
 
 In Idyll wird also der einfache Syntax zum Schreiben von Texten mit Markdown mit dem System zur Erzeugung von Komponenten von React verknüpft. Bei der Kompilation werden gewöhnliche JavaScript-, HTML- und CSS-Dateien erzeugt, welche statisch auf einem Server abgelegt werden können.
+
 \subsection{Vergleichbare Projekte}
 Es existieren wenige Projekte, welche sich zum Ziel gemacht haben, das BB84-Protokoll oder Quantenverschlüsselung allgemein zu simulieren und visualisieren. 
 
@@ -274,9 +275,10 @@ Eine erschöpfende Liste von Software, welche sich primär mit Quantumcomputing 
 
 \subsection{Modularisierung}
 % Backend: Event getrieben vs Simulation getrieben. 
-Modularisierung ist ein grundlegendes Prinzip der Softwaretechnik. Sie hilft bei der Komplexitätsreduktion und erhöht die Flexibilität von Software. Unterteil man Software in verschiedene Module, so geschieht dies nach gängigen Kriterien wie minimale Schnittstellen, maximale Bindung, minimale Koppelung oder Testbarkeit. In Falle einer Simulation mit physikalischen Komponenten liegt es nahe, die einzelen Komponenten als in sich geschlossenes Modul zu betrachten. In Java geschieht dies auf technischer Ebene mit Interfaces. Damit eine Klasse zum Modul wird, muss sie richtig konzipiert sein. Unterstützend wirken Pakete und JARs, die aber keine Zugriffskontrolle über eine Schnittstelle kennen. Vor Java 9 war eine echte Modularisierung nur mit \emph{Open Services Gateway} (OSGi) möglich, welche aber nicht Teil des Standardumfangs von Java ist \cite[S. 32f]{modul}
+Modularisierung ist ein grundlegendes Prinzip der Softwaretechnik. Sie hilft bei der Komplexitätsreduktion und erhöht die Flexibilität von Software. Unterteil man Software in verschiedene Module, so geschieht dies nach gängigen Kriterien wie minimale Schnittstellen, maximale Bindung, minimale Kopplung oder Testbarkeit. Im Falle einer Simulation mit physikalischen Komponenten liegt es nahe, die einzelnen Komponenten als in sich geschlossene Module zu betrachten. In Java geschieht dies auf technischer Ebene mit Interfaces. Damit eine Klasse zum Modul wird, muss sie richtig konzipiert sein. Unterstützend wirken Pakete und JARs, die aber keine Zugriffskontrolle über eine Schnittstelle kennen. Vor Java 9 war eine echte Modularisierung nur mit \emph{Open Services Gateway} (OSGi) möglich, welche aber nicht Teil des Standardumfangs von Java ist \cite[S. 32f]{modul}
+
 \subsubsection{Modularisierung mit Java 9} 
-Mit dem lange erwarteten Projekt \emph{Jigsaw} es eine explizite Erstellung von Modulen möglich. Sie können aus einem oder mehreren Paketen bestehen, und die Sichtbarkeiten und Abhängigkeiten sind klar definiert. So lassen sich gleichsam verschachtelte Modulabhängigkeiten und transitive Abhängigkeiten verwirklichen. Ein Modul besteht aus einem Namen, einer Schnittstelle und natürlich der Implementierung. Im Zuge von Jigsaw wurde auch das JDK in eine Vielzahl von Modulen aufgeteilt\cite[S. 863]{inden}. 
+Mit dem lange erwarteten Projekt \emph{Jigsaw} ist nun eine explizite Erstellung von Modulen möglich. Sie können aus einem oder mehreren Paketen bestehen, und die Sichtbarkeiten und Abhängigkeiten sind klar definiert. So lassen sich gleichsam verschachtelte Modulabhängigkeiten und transitive Abhängigkeiten verwirklichen. Ein Modul besteht aus einem Namen, einer Schnittstelle und natürlich der Implementierung. Im Zuge von Jigsaw wurde auch das JDK in eine Vielzahl von Modulen aufgeteilt \cite[S. 863]{inden}. 
 
 \begin{table}
 \hspace{1cm}
@@ -289,23 +291,23 @@ Mit dem lange erwarteten Projekt \emph{Jigsaw} es eine explizite Erstellung von 
 \caption{Jigsaw Keywords}
 \end{table}
 
-Skalierbarkeit der Jva-Plattform, Erhöhung der Sicherhiet, Startup-Performance, Unterstüztung beim entwur fmodularer und gut wartbarer Anwendungen und Bibliotheken. 
+Skalierbarkeit der Java-Plattform, Erhöhung der Sicherheit, Startup-Performance, Unterstüztung beim Entwurf modularer und gut wartbarer Anwendungen und Bibliotheken sind Ziel der Modularisierung und der komponentenbasierten Entwicklung.
 
 
 
 \section{Ideen und Konzepte}
-Aus der Aufgabenstellung geht hervor, dass sich das Projekt zum einen gewissen didaktischen Anforderunge erfüllen muss, zum anderen die Einbettung in bestehende Systeme am Departement für Informatik zu berücksichtigen hat. Insofern wurden Ansätze einer monolithischen Applikation bereits bei den ersten Überlegungen verworfen. Vielmehr hatte sich rasch herauskristallisiert, dass die unterschiedlichen Anwendungsfälle am besten mit einem modularen Kernsystem abgedeckt werden, die dann entweder in einem diaktischen Kontext als Webapplikation, oder dann eben im produktivem Einsatz beispielsweise als CLI-Tool eingebunden werden. Dadurch lässt sich das Projekt zudem in ein Frontend und Backend einteilen, für die dann -- abhängig von den jeweiligen Präferenzen --  je einer der beiden Projektpartner zugewiesen werden können. Zum Projektstart hat man sich auf eine Modellierung geeinigt, die das BB84-Protokoll physikalisch in einer Webapplikation abbildet, wobei es zu der jeweiligen physikalischen Komponente je eine Entsprechung im Frontend und Backend gibt, die miteinander interagieren. Der Ablauf der BB84-Protokoll wird somit in Teilschritte gegliedert, die unabhängig voneinander atomar ausgeführt werden können. Bei jedem dieser Teilschritte wird die REST-Schnittstelle mit den benötigten Parametern angesteuert. Das Backend arbeitet damit stateless. 
+Aus der Aufgabenstellung geht hervor, dass sich das Projekt zum einen gewissen didaktischen Anforderunge erfüllen muss, zum anderen die Einbettung in bestehende Systeme am Departement für Informatik zu berücksichtigen hat. Insofern wurden Ansätze einer monolithischen Applikation bereits bei den ersten Überlegungen verworfen. Vielmehr hatte sich rasch herauskristallisiert, dass die unterschiedlichen Anwendungsfälle am besten mit einem modularen Kernsystem abgedeckt werden, die dann entweder in einem diaktischen Kontext als Webapplikation, oder dann eben im produktivem Einsatz beispielsweise als CLI-Tool eingebunden werden. Dadurch lässt sich das Projekt zudem in ein Frontend und Backend einteilen, für die dann -- abhängig von den jeweiligen Präferenzen --  je einer der beiden Projektpartner zugewiesen werden können. Zum Projektstart hat man sich auf eine Modellierung geeinigt, die das BB84-Protokoll physikalisch in einer Webapplikation abbildet, wobei es zu der jeweiligen physikalischen Komponente je eine Entsprechung im Frontend und Backend gibt, die miteinander interagieren. Der Ablauf des BB84-Protokolls wird somit in Teilschritte gegliedert, die unabhängig voneinander atomar ausgeführt werden können. Bei jedem dieser Teilschritte wird die REST-Schnittstelle mit den benötigten Parametern angesteuert. Das Backend arbeitet damit stateless. 
 
 \subsection{Alternative Ideen}
 Die offene Aufgabenstellung und die Zielsetzung lassen viele Freiheiten bei der Konzeption des Projekts zu.
 
-Da die beiden Autoren jedoch unterschiedliche Ausrichtungen und Fähigkeiten besitzen (Frontend vs. Backend), hat sich ein Konzept angeboten, welche auf der Frontendseite die Visualierung und auf der Backendseite die Logik umsetzt. Für das Backend sollen Module entwickelt werden, die in unterschiedlichen Kontexten eingebunden werden können. Dies erschien als die sinnvollste Lösung für die beiden unterschiedlichen Anwendungszwecke.  Dieser Ansatz stand rasch fest. Die Kombination aus Idyll und Java-Backend musste sich erst herauskristallisieren. Für Java sprach die Unterstützung von Modularisierung ebenso wie der Aspekt der Performance. Darüber hinaus wird Java an der Hochschule Luzern unterrichtet. Idyll machte mit Blick auf die Idee eines interaktiven Papers einen überzeugenden Eindruck. Dennoch haben stand Python als Backendlösung zur Debatte. 
+Da die beiden Autoren jedoch unterschiedliche Ausrichtungen und Fähigkeiten besitzen (Frontend vs. Backend), hat sich ein Konzept angeboten, welche auf der Frontendseite die Visualierung und auf der Backendseite die Logik umsetzt. Für das Backend sollen Module entwickelt werden, die in unterschiedlichen Kontexten eingebunden werden können. Dies erschien als die sinnvollste Lösung für die beiden unterschiedlichen Anwendungszwecke. Die Kombination aus Idyll und Java-Backend musste sich erst herauskristallisieren. Für Java sprach die Unterstützung von Modularisierung ebenso wie der Aspekt der Performance. Darüber hinaus wird Java an der Hochschule Luzern unterrichtet. Idyll machte mit Blick auf die Idee eines interaktiven Papers einen überzeugenden Eindruck. Dennoch standen Sprachen wie Python oder Kotlin als Backendlösung zur Debatte. 
 
-Hinsichtlich der Kommunikation zwischen Frontend und Backend war es lange nicht ganz eindeutig, inwiefern das Backend Kenntnisse über den Zustand des Frontends haben sollte. Versuchsweise wurde deshalb für die Zwischenspeicherung von berechnetetn Werten auf dem Server eine Unterstützung für Sessions eingebaut. Das Frontend beinhaltete in einer früheren Version einen Settings-Button, der Parameter, die bei mindestens zwei unterschiedlichen physikalischen Komponenten benötigt werden, an den Server für eine Ablage in der Session sendet. Im weiteren Projektverlauf wurde dieser Ansatz verworfen, weil sich die Anzahl Parameter wie auch die Datengrösse der Payloads im jeweiligen Requests in Grenzen hielt. Die Verbindung einer REST-Schnittstelle und Sessions erschien dann quasi als Antipattern, da REST einerseits für ein zustandsloses Paradigma steht. Und ein zustandsloses Backend macht grundsätlich Sinn, da sich atomare Ausführungseinheiten besser parallelisieren oder gar auslagern lassen, etwa in eine Cloud als Function-as-a-Service. Und wenn das Zusammenspiel mit dem Frontend zustandslos funktionert, wird es dies bei der Einbindung der Komponenten in anderen Kontexten sowieso tun. 
+Hinsichtlich der Kommunikation zwischen Frontend und Backend war es lange nicht ganz eindeutig, inwiefern das Backend Kenntnisse über den Zustand des Frontends haben sollte. Versuchsweise wurde deshalb für die Zwischenspeicherung von berechnetetn Werten auf dem Server eine Unterstützung für Sessions eingebaut. Das Frontend beinhaltete in einer früheren Version einen Settings-Button, der Parameter, die bei mindestens zwei unterschiedlichen physikalischen Komponenten benötigt werden, an den Server für eine Ablage in der Session sendet. Im weiteren Projektverlauf wurde dieser Ansatz verworfen, weil sich die Anzahl Parameter wie auch die Datengrösse der Payloads im jeweiligen Requests in Grenzen hielt. Die Verbindung einer REST-Schnittstelle und Sessions erschien dann quasi als Antipattern, da REST für ein zustandsloses Paradigma steht. Ein zustandsloses Backend macht grundsätzlich Sinn, da sich atomare Ausführungseinheiten besser parallelisieren oder gar auslagern lassen, etwa in eine Cloud als Function-as-a-Service. Wenn das Zusammenspiel mit dem Frontend zustandslos funktionert, wird es dies bei der Einbindung der Komponenten in einen anderen Kontexten auch tun. 
 
 \section{Methoden}
 \subsection{Vorgehensmodell}
-Aufgrund der Aufgabenstellung empfiehlt sich ein hybrides Vorgehensmodell nach SODA. Ein Wasserfallmodell ist aus dem einfachen Grund ausgeschlossen, dass zum Zeitpunkt des Projektstarts der genaue Projektumfang noch nicht vorlag. Das Minimalziel liegt in der Umsetzung der Minimalanforderung, i.e. ein Schulbeispiel des BB84-Prototkolls. Die weiteren Punkte während der Projektverlaufs fortwährend festgelegt. Die Abstände zwischen den Treffen mit den Auftraggeber erlaubt ein agiles Vorgehen. Der primäre Milestone bestand in der Abnahme des Testates in der Semesterwoche 10, wo es die Erreichung der minimalen Ziele unter Beweis zu stellen galt.
+Aufgrund der Aufgabenstellung empfiehlt sich ein hybrides Vorgehensmodell nach SoDA. Ein Wasserfallmodell ist aus dem einfachen Grund ausgeschlossen, dass zum Zeitpunkt des Projektstarts der genaue Projektumfang noch nicht vorlag. Das Minimalziel liegt in der Umsetzung der Minimalanforderung, i.e. ein Schulbeispiel des BB84-Prototkolls. Die weiteren Punkte während der Projektverlaufs fortwährend festgelegt. Die Abstände zwischen den Treffen mit den Auftraggeber erlaubt ein agiles Vorgehen. Der primäre Milestone bestand in der Abnahme des Testates in der Semesterwoche 10, wo es die Erreichung der minimalen Ziele unter Beweis zu stellen galt.
 
 \subsection{Frontend: Benutzertests}
 Um das Frontend evaluieren zu können, wurde ein high-fidelity Prototyp (Stand: 17.12.2019) auf dem Enterpriselab deployt. Dann wurden Informationen an Bekannte ausgegeben mit der Bitte, den Prototypen zu testen und das Formular mit den Fragen (auf Google forms) auszufüllen. Es wurden bewusst Personen aus verschiedenen Altersklassen und Berufen ausgewählt, da es ja gerade das Ziel des Frontends ist, den Sachverhalt zu erklären.
@@ -314,9 +316,9 @@ Es wurden Remote Usertests durchgeführt, das heisst alle Benutzer konnten den P
 
 Dann wurden je 4 Fragen zu den Bereichen Erklärung (Erklärungsfähigkeit), Interaktion und Visualisierung gestellt. Bei jedem Bereich wurde zuerst eine allgemeine Frage zum Eindruck davon quantitativ gestellt (1 bis 6), dann je eine qualitative Frage, was man besonders gut fand, je eine qualitative Frage, was man besonders schlecht fand und wieder eine quantitative Frage (1 bis 6) zu einem bestimmten Komponenten. Damit erfolgt wieder zuerst ein warm-up mit einer einfacheren, allgemeinen Frage.
 
-Zum Schluss konnten die Benutzer frei ihre Gedanken als Anmerkungen, Kritik, Wünsche und offene Fragen. Damit konnte man alle Informationen einholen, die vorher in den Fragen nicht gestellt worden waren.
+Zum Schluss konnten die Benutzer frei ihre Gedanken als Anmerkungen, Kritik, Wünsche und offene Fragen. Damit konnte man alle Informationen abfangen, zu denen vorher keine Fragen gestellt worden sind.
 
-Die Evaluierung der Benutzerumfrage fliess so gut es ging noch in die Weiterentwicklung der Applikation (insbesondere des Frontends) mit ein. Die Erkentnisse der Resultate sind im Kapitel 7 festgehalten und der Fragebogen mit Antworten im Anhang.
+Die Evaluierung der Benutzerumfrage fliess so gut es ging noch in die Weiterentwicklung der Applikation (insbesondere des Frontends) mit ein. Die Erkenntnisse der Resultate sind im Kapitel 7 festgehalten und der Fragebogen mit Antworten im Anhang.
 
 \subsection{Testing Backend}
 Im Backend sind im test-package Unit-Tests enthalten, welche die korrekte Berechnung der entsprechenden Aufrufe sicherstellen sollen. 
@@ -356,6 +358,7 @@ Visuelle Komponenten &  Sind Komponenten, die Sachverhalte visuell darstellen, u
 Logik-Komponenten & Sind Komponenten, die für die Logik des Frontends gebraucht werden, um den Ablauf des Algorithmus darstellen zu können. Sie sind entweder mit dem backend via der REST-API verbunden oder benutzen eine interne Logik, welche nur für das frontend von Bedeutung ist. \\
 Input-Komponenten & Sind Komponenten, die der Benutzer bedienen kann, um den Programmablauf zu steuern.
 \end{tabularx}
+
 \subsubsection{Erstellte Komponenten} 
 \begin{description}
 \item[SystemOverview] Eine visuelle Komponente, die dazu dient dem Benutzer schon früh im Dokument eine Übersicht über das BB84-Protokoll zu geben und ihm die Möglichkeit zu geben, wichtige Einstellungen der Simulation festlegen zu können. Sie zeigt die drei Teilnehmer des Algorithmus, Alice, Bob und Eve, sowie die zwei Übertragungskanälen samt den einstellbaren Parameter.
@@ -365,6 +368,11 @@ Input-Komponenten & Sind Komponenten, die der Benutzer bedienen kann, um den Pro
 	\caption{System overview}
 \end{figure}
 \item[ButtonAliceStart] Eine Logik-Komponente, welche einen Button rendert, der den Algorithmus startet. Dabei wird die \texttt{strLength} zusammen mit \texttt{AliceProb} per POST-Methode an das Backend geschickt, um damit Alices Bitstring und ihre Base zu berechnen. Als Antwort kommt dann der Bitstring und die Base zurück.
+\begin{figure}[h]
+	\centering
+  \includegraphics[width=\textwidth]{graphics/component_button_alice_start.png}
+	\caption{System overview}
+\end{figure}
 \item[PhotonGridDouble] Eine visuelle Komponente, welche zwei Strings entgegennimmt und diese rendert als zwei Raster von einzelnen Symbolen. Der Hintergrund des Rasters kann bei Bedarf gefärbt werden (was am Schluss auch gemacht wird). Diese Komponente wird benutzt um zwei Strings (Bitstring oder Base) darzustellen. Per Klick auf das Raster öffnet sich ein Modal, welches den String in einem quadratischen Fenster darstellt (Komponente ScrollBox). 
 \begin{figure}[h]
 	\centering
@@ -409,8 +417,12 @@ Input-Komponenten & Sind Komponenten, die der Benutzer bedienen kann, um den Pro
 	\caption{ButtonBobBase}
 \end{figure}
 \end{description}
+
+\subsection{Starten des Frontends}
+Da das Frontend auf JavaScript läuft, benötigt es den JavaScript package manager npm. Dieser kann mit \texttt{npm install npm@latest -g} installiert werden. Dann müssen im directory des frontends alle nötigen packages installiert werden: \texttt{cd path/to/wipro-v1 && npm install}. Schliesslich kann das Frontend gestartet werden: \texttt{idyll}
+
 \subsection{Physikalische Komponenten}
-Im Backend sind die physikalischen Komponenten verwirklicht, welche je durch eine eigene Klasse repräsentiert werden. Die Anzahl Komponenten wie auch deren Attribute sind gegeben durch die erreichten Funktionalitäten in der Umsetzung des BB84-Protokolls. Den Komponenten entspricht in der Regel eine Komponente im Frontend, jedoch kann ein Schritt in der Durchführung mehrere Komponente involvieren. Folgende Komponenten sind umgesetzt.
+Im Backend sind die physikalischen Komponenten verwirklicht, welche je durch eine eigene Klasse repräsentiert werden. Die Anzahl Komponenten wie auch deren Attribute sind gegeben durch die erreichte Funktionalität in der Umsetzung des BB84-Protokolls. Den Komponenten im Backend entspricht in der Regel eine Komponente im Frontend, jedoch kann ein Schritt in der Durchführung mehrere Komponente involvieren. Folgende Komponenten wurden umgesetzt:
 \begin{description} 
 \item[RandomBitString] Generiert einen Bitstring der Länge n \\
 \begin{tabular}{p{3cm}p{9cm}}
@@ -446,14 +458,14 @@ Base1 & Base String 1   \\
 Base2 & Base String 2  
 \end{tabular}
 \item[KeyShortener] 
-Diese Komponente vergleicht die Basen von Alice und Bob und simuliert damit den öffentlichen Kanal. Anhand der Bitstrings von Alice und Bob werden damit zwei unterschiedliche Bitstrings zurückgegeben, die jeweils einen Underscore an allen Stellen enthalten, wo sich die entsprechenden Stellen in den beiden Basen unterscheiden. 
+Diese Komponente vergleicht die Basen von Alice und Bob und simuliert damit die Absprache über den öffentlichen Kanal. Anhand der Bitstrings von Alice und Bob werden damit zwei unterschiedliche Bitstrings zurückgegeben, die jeweils einen Underscore an allen Stellen enthalten, an der sich die entsprechenden Stellen in den beiden Basen unterscheiden. 
 \\
 \begin{tabular}{p{3cm}p{7.5cm}}
 base1  & Basis von Alice \\
 base2  & Basis von Bob \\
 string\_alice &  Bitstring von Alice \\
 string\_bob & Bitstring von Bob \\ 
-state\_string & Spezieller Statusstring vom Frontend, der die Information über Noise und Eavesdropping an den jeweiligen Stellen enthält und bei jeder Abweichung der Basen gekürzt werden muss \\
+state\_string & Spezieller Statusstring vom Frontend, der die Information über Noise und Eavesdropping an den jeweiligen Stellen für die Visualisierung enthält und der bei jeder Abweichung der Basen gekürzt werden muss \\
 \end{tabular} 
 \item[KeyComparator] 
 Diese Komponente überprüft die Bitstrings von Alice und Bob und überprüft anhand eines prozentualen Werts, wie hoch der Anteil sein soll, der überprüft und danach verworfen werden soll. \\
@@ -465,16 +477,16 @@ colorString & String, der spezifisch für das Frontend mitvearbeitet wird und di
 \end{description}
 
 
-\subsection{Backend}
-Im Backend residiert ein Tomcat-Server. Bei der lokalen Entwicklung wird er als EmbeddedTomcat bereitsgestellt. Das Gradle-Skript enthält zudem alle Maven-Dependencies, die für den Server von Interesse sind oder bei dereinstigen Weiterentwicklungen gebraucht werden könnten, etwas im Bereich von Persistierung, Dependency-Injection oder Session-Handling. Das Backend wird mit \texttt{.gradlew clean run} gestartet, sodass das Backend unter Port 8080 erreichbar ist. Mit Blick auf Security ist es lediglich für den Port 3000 geöffnet, was dem Idyll-Server während des Entwicklungsprozesses entspricht. 
+\subsection{Server des Backends}
+Im Backend residiert ein Tomcat-Server. Bei der lokalen Entwicklung wird er als EmbeddedTomcat bereitsgestellt. Das Gradle-Script enthält zudem alle Maven-Dependencies, die für den Server von Interesse sind oder bei einer Weiterentwicklungen gebraucht werden könnten, etwa im Bereich von Persistierung, Dependency-Injection oder Session-Handling. Das Backend wird mit \texttt{.gradlew clean run} gestartet, sodass das Backend unter Port 8080 erreichbar ist. Mit Blick auf Security ist es lediglich für den Port 3000 geöffnet, was dem Idyll-Server während des Entwicklungsprozesses entspricht. 
 
-Die eingehenden Requests der REST-Schnittstelle werden von einem REST-Adapter abgefangen und an den \emph{service} weitergeleitet. Der Service holt im Anschluss die Argumente der Abfrage und ruft die entsprechenden Komponenten auf. Der Server liefert schlussendlich ein JSON-Objekt an den Client zurück, der die entsprechenden Information als Key konsultiert (\"bitstring\", \"commonKey", \dots). 
+Die eingehenden Requests der REST-Schnittstelle werden von einem REST-Adapter abgefangen und an den \emph{service} weitergeleitet. Der Service holt im Anschluss die Argumente der Abfrage und ruft die entsprechenden Komponenten auf. Der Server liefert schlussendlich ein JSON-Objekt an den Client zurück, der die entsprechenden Information als Key konsultiert (bitstring, commonKey, \dots). 
 
 
 \subsection{Installation und Deployment}
 Der Code besteht aus einem \texttt{backend\_jaxrs}-Verzeichnis und einem \texttt{wipro\_v1}-Ordner, welcher das Idyll-Projekt beinhaltet. Mit \texttt{idyll build} lässt sich im Frontend-Verzeichnis das Projekt nach einer Ändeurng neu bilden. Das Resultat landet im \texttt{build}-Verzeichnis und muss im Anschluss beim Backend in \texttt{src/main/webapp} kopiert werden, was die Startseite des Tomcat-Servers überschreibt. Mit \texttt{./gradlew build} wird der Build-Prozess gestartet, was bei einer Java-Webapplikation stets ein .war-File produziert. Das damit generierte ROOT.war kann in jeden beliebigen Tomcat-Server deployt werden. 
 
-Die ganze Applikation ist auch als Docker-Image verfügbar. Die Installation setzt also einen Docker-Client und eine Unix / Linux-Maschine voraus. Danach kann das Skript \texttt{install-docker.sh}-File ausgeführt werden.  Ausserdem ist sie noch bis zum 31.01.2020 in einer virtuellen Umgebung auf dem Enterpriselab erreichbar \footnote{\url{http://wiproh19-tbalthau.enterpriselab.ch:8080/}}
+Die ganze Applikation ist auch als Docker-Image verfügbar. Die Installation setzt also einen Docker-Client und eine Unix / Linux-Maschine voraus. Danach kann das Skript \texttt{install-docker.sh}-File ausgeführt werden.  Ausserdem ist sie noch bis zum 31.01.2020 in einer virtuellen Umgebung auf dem Enterpriselab erreichbar. \footnote{\url{http://wiproh19-tbalthau.enterpriselab.ch:8080/}}
 
 \section{Evaluation, Testing und Validation}
 \subsection{Benutzertests und Umfrage}
@@ -486,7 +498,7 @@ Insgesamt konnte das BB84-Protokoll gut erklärt werden, mit einem Mittelwert vo
 
 Als besonders gut wurden genannt, wie in diesem Protokoll auf den secret key geschlossen werden kann (drei Personen), die Erklärung wie das BB84-Protokoll grundsätzlich funktioniert (drei Personen) und die grafische Darstellung der polarisierten Photonen (drei Personen). Der Ablauf der Applikation scheint logisch zu sein und die Visualisierungen helfen den Benutzer den Sachverhalt zu verstehen.
 
-Als nicht gut erklärt, wurde von drei Personen genannt, wie das Abhören die Polarisierung verändert und dass das noise bzw. die Ablenkung im Kanal nicht weiter erklärt wird (zwei Personen). Weiterhin wurde gefragt, Warum das Protokoll schlussendlich sicher sein und dass die beiden Basen besser erklärt werden müssen. Unterdessen wurde bereits ein Kapitel zum Thema noise eingefügt. Bei einer weiteren Iteration sollte also mehr Zeit in die Erklärung der Basen und deren Messvorgang investiert werden um die Polarisierung von Photonen bei der Messung besser erklären zu können.
+Als nicht gut erklärt, wurde von drei Personen genannt, wie das Abhören die Polarisierung verändert und dass das noise bzw. die Ablenkung im Kanal nicht weiter erklärt wird (zwei Personen). Weiterhin wurde gefragt, Warum das Protokoll schlussendlich sicher sei und dass die beiden Basen besser erklärt werden müssen. Unterdessen wurde bereits ein Kapitel zum Thema noise eingefügt. Bei einer weiteren Iteration sollte also mehr Zeit in die Erklärung der Basen und deren Messvorgang investiert werden um die Polarisierung von Photonen bei der Messung besser erklären zu können.
 
 Die Frage, ob die Systemübersicht für die Erklärung geholfen hat, wurde sehr positiv beantwortet, mit einem Mittelwert von 4,7 von 6 Punkten. Bei einer weiteren Iteration sollte besonders Wert darauf gelegt werden, die Systemübersicht auszubauen und um mehr Graphiken und Einstellungsmöglichkeiten erweitern. 
 \subsection{Erkentnisse zur Interaktion}
@@ -500,7 +512,7 @@ Die Idee, einen Komponenten zu entwickeln, mit dem man in einen String reinzoome
 \subsection{Erkentnisse zur Visualisierung}
 Die Visualisierung wurde mit 4,6 Punkte von 6 schlechter als die Erklärungsfähigkeit und die Interaktion bewertet.
 
-Mit Abstand am meisten gelobt wurde erneut die Systemübersicht (fünf Personen), es wurde genannt, dass sie die Darstellung ist, welche das Protokoll am besten zusammenfassen kann und sehr eindeutig ist. Weitere 5 Personen nannten die Darstellung der Polarisierung der Photonen, bzw. die Änderung der Polarisation beim Messen als sehr gut. Hier ist unklar, welche Visualisierung genau gemeint ist, da mehrere Komponenten die Polarisierung darstellen (unter anderem auch die `informationBox`). Gelobt wurde die visuelle Umsetzung und die Ästhetik von zwei Personen.
+Mit Abstand am meisten gelobt wurde erneut die Systemübersicht (fünf Personen), es wurde genannt, dass sie die Darstellung ist, welche das Protokoll am besten zusammenfassen kann und sehr eindeutig ist. Weitere 5 Personen nannten die Darstellung der Polarisierung der Photonen, bzw. die Änderung der Polarisation beim Messen als sehr gut. Hier ist unklar, welche Visualisierung genau gemeint ist, da mehrere Komponenten die Polarisierung darstellen (unter anderem auch die informationBox). Gelobt wurde die visuelle Umsetzung und die Ästhetik von zwei Personen.
 
 Als negative Kommentare wurden beispielsweise genannt, dass bei der Messung des Photons mit einem Filter, welches eine andere Ausrichtung besitzt die Polarisierung des Photons zufällig gesetzt werden müsste (wie im Text erklärt) und nicht immer gleich (eine Person). Dies könnte mit Programmieraufwand so umgesetzt werden.
 
@@ -511,9 +523,8 @@ Grundsätzlich wurde der Prototyp sehr positiv bewertet. Es war schwierig Person
 
 Die wichtigsten Punkte aus der Benutzerumfrage sind zusammengefasst:
 
-
-Der Algorithmus kann als ganzes durchaus gut erklärt werden. Dies ist sehr erfreulich, da es sich hiermit um ein komplexes Thema handelt, mit dem sich die meisten Personen der Umfrage wahrscheinlich noch nie befasst haben.
 \begin{itemize}
+\item Der Algorithmus kann als ganzes durchaus gut erklärt werden. Dies ist sehr erfreulich, da es sich hiermit um ein komplexes Thema handelt, mit dem sich die meisten Personen der Umfrage wahrscheinlich noch nie befasst haben.
 \item Die Sytstemübersicht wurde sehr positiv aufgenommen und hat auch uns persönlich gefallen. Die Idee einen visuellen Überblick über das System schon ganz am Anfang des Dokuments zu geben ist sehr gut und könnte auch für weitere Projekte in der Art benutzt werden.
 \item Die Animationen und Visualisierungen sind grundsätzlich gut und überzeugen auch ästhetisch. Bei einer weiteren Iteration oder einem anderen Projekt könnten die verwendeten Bibliotheken erneut verwendet werden.
 \item Das Ziel des frontends, das BB84-Protokoll auf eine interaktive und ansprechende Weise zu erklären konnte also erreicht werden. 
@@ -525,10 +536,10 @@ Der Algorithmus kann als ganzes durchaus gut erklärt werden. Dies ist sehr erfr
 
 Um das BB84-Protokoll realistischer darstellen zu können, müsste man auf jeden Fall die Möglichkeit zur Verfügung stellen, dass der Photonenemitter Photonen zu viel oder zu wenig aussendet und dass der Photonendetektor Photonen zu viel oder zu wenig detektiert. Dies führt jedoch automatisch zu einer Veränderung der Länge und einer Verschiebung der jeweiligen Strings von Polarisationen (und Bits) von Alice und Bob. Damit dieses feature realisiert werden kann, muss jedoch gezwungenermassen ein timestamp mitgeschickt werden, mit dem jedes Photon datiert wird. Nur so können Alice und Bob Gewissheit haben, ob das jeweilige Photon ausgesendet und auch angekommen ist.
 
-Weiterhin müssten Prozesse wie Rauschen (noise) oder Abhören (eavesdropping) als zeitabhängige, anstatt rein stochastische Prozesse implementiert werden. Das heisst, dass Rauschen und Abhören nicht mit einer konstanten Rate auftritt, sondern mit zeitabhängigen Variabeln modelliert werden sollte. Beispielsweise tritt Rauschen dann plötzlich auf (sogenannte "bursts") und flacht dann wieder ab. Und Eve wird möglicherweise nur ein Teil der Übertragung (dafür alle Photonen davon) messen, anstatt ein Verhältnis der gesamten Übertragung.
+Weiterhin müssten Prozesse wie Rauschen (noise) oder Abhören (eavesdropping) als zeitabhängige, anstatt rein stochastische Prozesse implementiert werden. Das heisst, dass Rauschen und Abhören nicht mit einer konstanten Rate auftritt, sondern mit zeitabhängigen Variabeln modelliert werden sollte. Beispielsweise tritt Rauschen dann plötzlich auf (sogenannte "bursts") und flacht dann wieder ab. Und Eve wird möglicherweise nur ein Teil der Übertragung (dafür alle Photonen davon) messen, anstatt ein konstantes Verhältnis der gesamten Übertragung.
 
 \subsection{Modularisierung}
-Im Verlaufe des Projektes hat sich der Fokus fast ausschliesslich auf den Lehrzweck verschoben, sodass die Modularisierung für eine Anbindugn an weitere Projekte an Bedeutung verloren hat. Insofern hat es keinen Sinn ergeben, Jigsaw als Neuerung von Java 9 zu nutzen. Der Modularisierungsgrad könnte aber ausgebaut werden. 
+Im Verlaufe des Projektes hat sich der Fokus fast ausschliesslich auf den Lehrzweck verschoben, sodass die Modularisierung für eine Anbindung an weitere Projekte an Bedeutung verloren hat. Insofern hat es keinen Sinn ergeben, Jigsaw als Neuerung von Java 9 zu nutzen. Der Modularisierungsgrad könnte aber ausgebaut werden. 
 
 
 \subsection{Frontend}
@@ -538,6 +549,7 @@ Bei mehr verfügbarer Zeit wären im frontend die folgenden Verbesserungen imple
 \item Eine verkleinerte Darstellung der Systemübersicht (eine Art minimap) sollte dem User jederzeit eingeblendet werden, um den Standpunkt im Ablauf des Algorithmus zu visualisieren. Diese wäre beispielsweise in der oberen rechten Ecke platziert und würde nicht im Dokument mitscrollen. Darauf könnten dann die jeweiligen Komponenten, welche gerade im Algorithmus eine Rolle spielen farblich hervorgehoben werden.
 \item Ein Plot am Ende des Dokumentes, vor der Konklusion könnte verwendet werden, um die Länge des common shared keys vs. der Länge des anfänglichen Bitstrings von Alice zu plotten. Damit könnte man visualisieren, wie sich die Wahl der Basen, das Rauschen und das Abhören auf die Länge des resultierenden Strings auswirken. Die Realisierung könnte mit einer Bibliothek, wie D3.js erfolgen.
 \item Im Verlauf des Dokuments sollte dem User mehr feedback gegeben werden, damit die App sich interaktiver präsentiert und sich der Ablauf des Algorithmus weniger atomar anfühlt.
+\item Die App könnte responsive, für Smartphones und Tabletts umprogrammiert werden.
 \end{itemize}
 
 
