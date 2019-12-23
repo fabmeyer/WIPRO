@@ -17,7 +17,7 @@ import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 
 
-import ch.hslu.wipro.qc.adapter.AbstractCrudResource;
+//import ch.hslu.wipro.qc.adapter.AbstractCrudResource;
 import ch.hslu.wipro.qc.config.transaction.GuiceTransactionRunner;
 import ch.hslu.wipro.qc.config.transaction.GuiceTransactionRunnerImpl;
 //import ch.asb.initializer.DataInitializer;
@@ -56,10 +56,10 @@ public class GuiceServletConfig extends GuiceServletContextListener {
     					bind(r).asEagerSingleton();
     				});
     				
-    				restAdapters.getSubTypesOf(AbstractCrudResource.class).forEach((r) -> {
-    					System.out.println("Binding Adapter: " + r.getName());
-    					bind(r);
-    				});
+//    				restAdapters.getSubTypesOf(AbstractCrudResource.class).forEach((r) -> {
+//    					System.out.println("Binding Adapter: " + r.getName());
+//    					bind(r); 
+//    				});
     				
     				bind(GuiceTransactionRunnerImpl.class).asEagerSingleton();
     				bind(GuiceTransactionRunner.class).asEagerSingleton();
@@ -82,9 +82,6 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 		if (!initialized) {
 			try
 			{
-				// URL jaasURL = getClass().getClassLoader().getResource( "ch/alpnet/framework/loginmodule/jaas.config" );
-				// LOG.debug( "Getting JAAS Config from URL: " + jaasURL.toExternalForm() );
-				// System.setProperty( "java.security.auth.login.config", jaasURL.toExternalForm() );
 				Properties props = System.getProperties();
 				LOG.debug( "Start Loading Properties from almconfig.properties file");
 				props.load( getClass().getClassLoader().getResourceAsStream( "almconfig.properties" ) );

@@ -2,7 +2,7 @@
 \subsection{Erstellte Komponenten}
 \begin{itemize}
 \item \texttt{SystemOverview} \\[3mm]
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} 
 strLength & Die Länge des Bitstrings, der von Alice verschickt wird. Diese Länge wird auch automatisch benutzt für die Länge der Basenfolge von Alice, sowie des Bitstrings und der Basenfolge von Bob und der Basenfolge von Eve. Die Stringlänge lässt sich mittels eines Eingabefensters mithilfe einer Tastatur eingeben. \\
 noise & Diese Variable bezeichnet das Rauschen des Übertragungskanals. Bei einem Rauschen von 0 erfolgt eine perfekte Übertragung, bei 100 wird jede Polarisation zufälligerweise neu gesetzt. Das Rauschen lässt sich mit einem Regler einstellen. \\
 AliceProb & Die Wahrscheinlichkeit der Basenverteilung von Alice. Von 0 (100\% diagonale Basis) bis 100 (100\% gerade Basis) lässt sich dies mithilfe eines Reglers steuern. \\
@@ -10,7 +10,7 @@ BobProb & Wie AliceProb, jedoch für Bob. \\
 eavesdropping & Das Verhältnis, wie stark Eve die Übertragung abhört. Mit einem Regler lässt sich ein Wert von 0\% bis 100\% einstellen.
 \end{tabularx}
 \item \texttt{ButtonAliceStart}\\[3mm]
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} 
 strLength & Die Länge des Bitstrings, wie oben beschrieben. \\
 AliceProb & Die Wahrscheinlichkeitsverteilung der Basen, wie oben beschrieben. \\
 bitString & Der Bitstring, der als Antwort vom backend zurückkommt. \\
@@ -20,7 +20,7 @@ dataHasLoaded & Ein boolean, welcher auf true geschaltet wird, wenn der Bitstrin
 text &  Der Text, welcher auf dem Button erscheint. 
 \end{tabularx}
 \item \texttt{PhotonGridDouble}\\
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} 
 bitString & Der obere String, der dargestellt werden soll. \\
 baseString & Der untere String, der dargestellt werden soll. \\
 dataHasLoaded & Ein boolean, welcher steuert, wann das Raster mit Zeichen gefüllt werden soll. \\
@@ -30,12 +30,12 @@ baseStringZoom & Eine variable, welche den Zoomfaktor des unteren Strings steuer
 \item \texttt{InformationBox} \\
 Hat keine Variabeln
 \item \texttt{SimpleSlider} \\
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} 
 setting & Das property, das beeinflusst werden sollte. \\
 text & Der Text, welcher neben dem Regler steht.
 \end{tabularx}
 \item \texttt{ButtonEmitPhotons} \\
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} 
 bitString & Alices Bitstring, welcher für die Polarisation codiert. \\
 baseString & Alices Basestring, welcher für die Polarisation codiert. \\
 rawPolarization & Die Antwort vom backend, als ein String von Polarisationswerten (0, 45, 90 oder 135), getrennt durch ein Komma. \\
@@ -45,7 +45,7 @@ polarizationHasLoaded & Ein boolean, welcher auf true gesetzt wird, wenn die Pol
 text & Der Text, welcher auf dem Button erscheint.
 \end{tabularx}
 \item \texttt{ShowHide} \\
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} 
 isVisible & Der boolean, welcher bestimmt, ob die innere Komponente ein- oder ausgeblendet ist. \\
 showButton & Die Möglichkeit, einen Button zu rendern, der den boolean umschaltet \\
 trigger & Ein anderer boolean, welcher das Verhalten dieses Komponenten extern ansteuern kann. \\
@@ -54,7 +54,7 @@ position & Ein CSS-Attribut, mit welchem man die Position des Wrappers festlegt
 \item \texttt{AnimationEmit} \\
 Hat keine Argumente
 \item \texttt{ButtonBobBase} \\[3mm]
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} \\
 strLength & Die Stringlänge, welche die Länge von Bobs Base festlegt. \\
 BobProb & Die Wahrscheinlichkeitsverteilung, welche für die festlegung von Bobs Base wichtig ist. \\
 baseString & Die Variable, welche die zurückgesendete Base speichert \\
@@ -66,7 +66,7 @@ Hat keine Komponente
 \item \texttt{AnimationPhoton2} \\
 Hat keine Komponente
 \item \texttt{ButtonMeasure} \\
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} \\
 strLength & Die Länge des Bitstrings der für Bob berechnet werden soll. \\
 rawPolarization & Alices Polarisation, als ein einzigen String. \\
 polarization & Alices Polarisation, als Array von getrennten Polarisationen. \\
@@ -80,7 +80,7 @@ autostart & Ob die Komponente automatisch gestartet werden soll oder nicht. \\
 text & Der Text, welcher auf dem Button erscheint.
 \end{tabularx}
 \item \texttt{ButtonShortenKey} \\
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} 
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} \\
 baseString1 & Dies ist Alices Base, welche mitgeschickt wird. \\
 baseString2 & Dies ist Bobs Base, welche mitgeschickt wird. \\
 bitString1 & Dies ist Alices Bitstring, welcher mitgeschickt wird. \\
@@ -94,7 +94,7 @@ commonKeyLength &  Die Länge des gekürzten Schlüssels als Ganzzahl \\
 text &  Der Text, welcher auf dem Button erscheint.
 \end{tabularx}
 \item \texttt{ButtonCompareKey} \\
-\begin{tabularx}{\textwidth}{p{3cm}p{11cm}} \\
+\begin{tabularx}{\textwidth}{p{4.5cm}p{9.5cm}} \\
 bitString1 &  Dies ist Alices Bitstring, welcher mitgeschickt wird. \\
 bitString2 &  Dies ist Bobs Bitstring, welcher mitgeschickt wird. \\
 percentage &  Die Anzahl (Verhältnis 0\% bis 100\%) der Stellen in den Bitstrings, die verglichen werden \\

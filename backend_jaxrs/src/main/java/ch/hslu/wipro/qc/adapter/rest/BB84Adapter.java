@@ -1,5 +1,12 @@
 package ch.hslu.wipro.qc.adapter.rest;
 
+/**
+ * This class determines the REST interface on the server. Each request starts with /post/ followed by the specific name. 
+ * The parameters are sent as POST parameters, whereas their name must be identical to the @FormParam name
+ * @author Adrian Althaus
+ */
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,16 +22,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import ch.hslu.wipro.qc.adapter.BB84Interface;
 import ch.hslu.wipro.qc.service.BB84Service;
 
 @Path("/post")
-public class BB84Adapter implements BB84Interface {
+public class BB84Adapter {
 
 	@Context
-	private HttpServletRequest request;
+	private HttpServletRequest request; // needed if session is required 
 
-	
 	@POST
 	@Path("/comparebase")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -39,9 +44,8 @@ public class BB84Adapter implements BB84Interface {
 	@Path("/emitphoton/") 
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str, 
-			@FormParam("angle_variance") float angle_var, @FormParam("length_variance") float length_var) {
-		final String photonString = BB84Service.getPhotonString(base, str, angle_var, length_var);
+	public Response emitPhoton(@FormParam("base") String base, @FormParam("str") String str){
+		final String photonString = BB84Service.emitPhoton(base, str);
 		JsonObject response = Json.createObjectBuilder().add("photonString", photonString).build();
 		return Response.ok(response.toString()).build();
 	}
@@ -51,8 +55,8 @@ public class BB84Adapter implements BB84Interface {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response receivePhoton(@FormParam("photons") String photons, @FormParam("base") String base, @FormParam("noise") int noise,
-			@FormParam("eavesdropping") int eavesdropping, @FormParam("undetected") float undetected) {
-		final String[] result = BB84Service.getBitStringFromPhotons(photons, base, noise, eavesdropping);
+		@FormParam("eavesdropping") int eavesdropping, @FormParam("undetected") float undetected) {
+		final String[] result = BB84Service.receivePhoton(photons, base, noise, eavesdropping);
 		JsonObject response = Json.createObjectBuilder().add("bitString", result[0]).add("stateString", result[1]).build();
 		return Response.ok(response.toString()).build();
 	}
@@ -62,11 +66,11 @@ public class BB84Adapter implements BB84Interface {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response randomBase(@FormParam("stringLength") int stringLength, @FormParam("prob") float prob) {
-		final String baseString = BB84Service.getRandomBaseString(stringLength, prob);
+		final String baseString = BB84Service.getRandomBase(stringLength, prob);
 		JsonObject response = Json.createObjectBuilder().add("baseString", baseString).build();
 		return Response.ok(response.toString()).build();
 	}
-
+ 
 	@POST
 	@Path("/randomstring")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -91,7 +95,7 @@ public class BB84Adapter implements BB84Interface {
 		return Response.ok(response.toString()).build();
 }	
 	
-	@POST
+	@POST 
 	@Path("/comparekey") 
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)

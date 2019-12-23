@@ -13,7 +13,7 @@ import org.jvnet.hk2.guice.bridge.api.GuiceIntoHK2Bridge;
 
 import com.google.inject.Injector;
 
-import ch.hslu.wipro.qc.config.crnk.AdvancedCrnkFeature;
+import ch.hslu.wipro.qc.service.BB84Service;
 
 public class JerseyResourceConfiguration extends ResourceConfig {
 
@@ -61,6 +61,10 @@ public class JerseyResourceConfiguration extends ResourceConfig {
                 guiceBridge.bridgeGuiceInjector(injector);
             }
         });
+        
+        
+        register(injector.getProvider(BB84Service.class).get());
+        
         //register(injector.getProvider(AdvancedCrnkFeature.class).get());
 //        EntityManagerFactory emf = injector.getInstance(EntityManagerFactory.class);
     }

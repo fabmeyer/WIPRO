@@ -92,7 +92,7 @@ dependencies {
     testCompile( 'com.google.inject:guice:4.2.0' ) { transitive = false }
     testCompile( 'com.google.inject.extensions:guice-persist:4.2.0' ) { transitive = false }
     testCompile( 'com.google.inject.extensions:guice-servlet:4.2.0' ) { transitive = false }
-    testCompile( 'com.google.guava:guava:25.0-jre' ) { transitive = false }
+    compile( 'com.google.guava:guava:25.0-jre' ) { transitive = false }
 
     // Copy of compile dependencies, but with transitive dependencies included.
     //runtime 'org.eclipse.jetty:jetty-server:9.3.0.M2'

@@ -34,24 +34,21 @@ public class TomcatStarter {
         connector.setProperty("noCompressionUserAgents", "gozilla, traviata");
         connector.setProperty("compressableMimeType", "text/html,text/xml, text/css, application/json, application/javascript");
         
+        // Set context
         StandardContext ctx = (StandardContext) tomcat.addWebapp("", new File(webappDirLocation).getAbsolutePath());
         System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
 
         ctx.setDefaultContextXml( new File(webappDirLocation+"META-INF/context.xml").getAbsolutePath() );
-        // Define and bind web.xml file location.
         File configFile = new File(webappDirLocation + "WEB-INF/web.xml");
         ctx.setConfigFile(configFile.toURI().toURL());
-        
 
         File additionWebInfClasses = new File("build/classes/main/");
-//        File additionWebInfLibs = new File(System.getenv( "MAVEN_LOCAL" ));
         WebResourceRoot resources = new StandardRoot(ctx);
         resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes/",
         	 additionWebInfClasses.getAbsolutePath(), "/"));
 
         ctx.setResources(resources);
         
-
         tomcat.start();
         tomcat.getServer().await();
 	}
