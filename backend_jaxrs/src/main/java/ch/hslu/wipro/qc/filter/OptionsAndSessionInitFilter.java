@@ -16,10 +16,6 @@ public class OptionsAndSessionInitFilter extends AbstractFilter {
 			throws IOException, ServletException {
 		String method = ((HttpServletRequest) request).getMethod();
 		HttpServletResponse resp = (HttpServletResponse) response;
-//		resp.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-//		resp.setHeader("Access-Control-Allow-Credentials", "true");
-//		resp.setHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token");
-		
 		if (method.equalsIgnoreCase("options"))
 			resp.setStatus(HttpServletResponse.SC_OK);
 		else

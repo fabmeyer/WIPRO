@@ -1,5 +1,10 @@
 package ch.hslu.wipro.qc.config.session.listener;
 
+/**
+ * This class provides the Session implementation in case Session is ever needed
+ * @author Adrian Althaus
+ */
+
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;

@@ -27,6 +27,5 @@ public abstract class AbstractFilter implements Filter {
 	
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 }

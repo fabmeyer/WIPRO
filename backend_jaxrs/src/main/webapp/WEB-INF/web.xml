@@ -33,8 +33,9 @@
 		<filter-name>CorsFilter</filter-name>
 		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
 		<init-param>
+			<!-- Allow cross-origin requests from Idyll server -->
 		    <param-name>cors.allowed.origins</param-name>
-		    <param-value>*</param-value>
+		    <param-value>http://localhost:3000</param-value>
 		  </init-param>
 		<init-param>
 		    <param-name>cors.allowed.headers</param-name>
@@ -54,8 +55,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
   
-   
-
    <listener>
       <listener-class>ch.hslu.wipro.qc.config.session.listener.QcSessionListener</listener-class>
    </listener>

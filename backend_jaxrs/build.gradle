@@ -94,21 +94,13 @@ dependencies {
     testCompile( 'com.google.inject.extensions:guice-servlet:4.2.0' ) { transitive = false }
     compile( 'com.google.guava:guava:25.0-jre' ) { transitive = false }
 
-    // Copy of compile dependencies, but with transitive dependencies included.
-    //runtime 'org.eclipse.jetty:jetty-server:9.3.0.M2'
-    //runtime '__org.eclipse.jetty:jetty-server-deflected:9.3.0.M2'
-    //runtime 'org.eclipse.jetty:jetty-util:9.3.0.M2'
-    //runtime '__org.eclipse.jetty:jetty-util-deflected:9.3.0.M2'
-    //runtime 'org.eclipse.jetty:jetty-servlet:9.3.0.M2'
+
     runtime 'javax.servlet:javax.servlet-api:3.1.0'
-    //runtime '__javax.servlet:javax.servlet-api-deflected:3.1.0'
     runtime 'org.glassfish.jersey.core:jersey-server:2.17'
     runtime 'org.glassfish.jersey.media:jersey-media-json-jackson:2.17'
     runtime 'org.glassfish.jersey.containers:jersey-container-servlet-core:2.17'
     runtime 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
     runtime 'com.fasterxml.jackson.core:jackson-core:2.3.2'
-    //runtime 'org.apache.derby:derbynet:10.11.1.1'
-    //runtime '__org.apache.derby:derbynet-deflected:10.11.1.1'
     runtime 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
     runtime 'net.sf.dozer:dozer:5.5.1'
     runtime 'org.slf4j:slf4j-api:1.7.12'
@@ -128,13 +120,6 @@ dependencies {
     runtime 'org.glassfish.hk2:guice-bridge:2.4.0-b31'
     runtime 'org.glassfish.hk2:hk2-api:2.4.0-b31'
     runtime 'org.glassfish.hk2:hk2-junitrunner:2.4.0-b31'
-    runtime 'io.crnk:crnk-core:2.5.20180326220647'
-    runtime 'io.crnk:crnk-guice:2.5.20180326220647'
-    runtime 'io.crnk:crnk-rs:2.5.20180326220647'
-    runtime 'io.crnk:crnk-jpa:2.5.20180326220647'
-    runtime 'io.crnk:crnk-security:2.5.20180326220647'
-    runtime 'io.crnk:crnk-meta:2.5.20180326220647'
-    runtime 'io.crnk:crnk-validation:2.5.20180326220647'
     runtime 'io.jsonwebtoken:jjwt:0.9.0'
 
     testRuntime 'junit:junit:4.12'
@@ -146,18 +131,8 @@ dependencies {
     testRuntime 'com.google.guava:guava:25.0-jre'
 
 
-    runtime 'org.hibernate:hibernate-entitymanager:4.3.10.Final'
-    runtime 'org.hibernate:hibernate-validator:5.2.2.Final'
     runtime 'org.glassfish.web:javax.el:2.2.4'
     runtime 'org.slf4j:slf4j-simple:1.7.12'
-
-    // MySQL
-    compile('mysql:mysql-connector-java:5.1.36') { transitive = false }
-    runtime 'mysql:mysql-connector-java:5.1.36'
-
-    // Java Mail
-    providedCompile('javax.mail:mail:1.4.5') { transitive = false }
-    compile('javax.activation:activation:1.1.1') { transitive = false }
 
     runtime 'javax.activation:activation:1.1.1' 
     
@@ -176,21 +151,26 @@ applicationDefaultJvmArgs = ["-Xshare:off"]
 compileJava.options.encoding = 'UTF-8'
 
 
+
 // Sources JAR
+
 task sourceJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
 
+
 // Javadocs JAR
+/*
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+*/
 
 artifacts {
     archives sourceJar
-    archives javadocJar
+//    archives javadocJar
 }
 
 eclipse {
@@ -200,22 +180,6 @@ eclipse {
         downloadJavadoc = true
     }
 }
-
-// TODO: need to factor out common build process elements into gradle plugin
-// (or something similar) at the framework level.
-
-//mainClassName = 'eu.expact.framework.FrameworkEngine'
-/**
-// TODO: configure run task to use standard JVM debug port 9009 rather than 5005.
-run {
-    systemProperty "eu.expact.framework.buildDir", projectDir.getAbsolutePath() + "/build";
-    systemProperty "eu.expact.framework.configClassName", "eu.expact.pilot.PilotConfig";
-
-    if ( this.hasProperty( "webProxy" ) )
-        systemProperty "eu.expact.framework.webProxy", webProxy;
-}
-**/
-
 
 task testDebug(type: Test) {
 
